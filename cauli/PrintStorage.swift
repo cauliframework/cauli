@@ -14,6 +14,6 @@ class PrintStorage: Storage {
     }
     
     func store(_ response: URLResponse, for request: URLRequest) {
-        print("store response for \(request)")
+        print("store response \(response) for request \(request)")
     }
 }

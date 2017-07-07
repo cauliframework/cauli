@@ -12,12 +12,15 @@ class ViewController: UIViewController {
 
     var session: URLSession = {
         let sessionConfiguration = URLSessionConfiguration.default
-        URLProtocolAdapter.register(for: sessionConfiguration)
+//        URLProtocolAdapter.register(for: sessionConfiguration)
         return URLSession(configuration: sessionConfiguration)
     }()
     
     var cauli: Cauli = {
-        let cauli = Cauli()
+        let adapter = URLProtocolAdapter()
+        adapter.swizzle()
+        
+        let cauli = Cauli(adapter: adapter)
         cauli.florets = [BlackHoleFloret()]
         return cauli
     }()
@@ -32,12 +35,4 @@ class ViewController: UIViewController {
             }
         }.resume()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-

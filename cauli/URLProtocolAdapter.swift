@@ -22,11 +22,6 @@ class URLProtocolAdapter:  NSObject, Adapter {
         CauliURLProtocol.adapter = self
     }
     
-    public class func register(for configuration: URLSessionConfiguration) {
-        let protocolClasses = configuration.protocolClasses ?? []
-        configuration.protocolClasses = ([CauliURLProtocol.self] + protocolClasses)
-    }
-    
     func canInit(_ request: URLRequest) -> Bool {
         guard let cauli = cauli else { return false }
         return cauli.canHandle(request)
@@ -42,6 +37,37 @@ class URLProtocolAdapter:  NSObject, Adapter {
         dataTask.resume()
         
         return dataTask
+    }
+}
+
+@objc class URLProtocolAdapterSwizzler: NSObject {
+    public func swizzle() {
+        let originalSelector = #selector(URLSessionConfiguration.self.init)
+        let swizzledSelector = #selector(URLSessionConfiguration.self.cauli_sessionConfiguration_init)
+        
+        let originalMethod = class_getInstanceMethod(URLSessionConfiguration.self, originalSelector)
+        let swizzledMethod = class_getInstanceMethod(URLSessionConfiguration.self, swizzledSelector)
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+    }
+}
+
+extension URLSessionConfiguration {
+    func cauli_sessionConfiguration_init() {
+//        self.cauli_sessionConfiguration_init()
+        print("YEAH YEAH YEAH")
+    }
+}
+
+extension URLProtocolAdapter {
+    @nonobjc static var swizzler: URLProtocolAdapterSwizzler = URLProtocolAdapterSwizzler()
+    
+    public class func register(for configuration: URLSessionConfiguration) {
+        let protocolClasses = configuration.protocolClasses ?? []
+        configuration.protocolClasses = ([CauliURLProtocol.self] + protocolClasses)
+    }
+    
+    public class func swizzle() {
+        URLProtocolAdapter.swizzler.swizzle()
     }
 }
 
