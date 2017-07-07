@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */; };
 		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
+		8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0D81F0F8F210003AC87 /* Floret.swift */; };
+		8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DA1F0F90900003AC87 /* Storage.swift */; };
+		8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */; };
+		8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */; };
+		8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */; };
 		8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */; };
 		8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */; };
 		8CD296FF1F0F8B3A004F7CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */; };
@@ -35,6 +40,11 @@
 		817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.release.xcconfig"; sourceTree = "<group>"; };
 		8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C30AC071F0F8D400017D962 /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
+		8CC0F0D81F0F8F210003AC87 /* Floret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
+		8CC0F0DA1F0F90900003AC87 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolAdapter.swift; sourceTree = "<group>"; };
+		8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		8CD296F61F0F8B3A004F7CBC /* cauli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cauli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,8 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				8C30AC071F0F8D400017D962 /* Cauli.swift */,
-				8C30AC061F0F8C320017D962 /* URLProtocolAdapter */,
 				8C30AC051F0F8C2A0017D962 /* protocols */,
+				8CC0F0DE1F0F91AC0003AC87 /* Storage */,
+				8C30AC061F0F8C320017D962 /* URLProtocolAdapter */,
 			);
 			name = cauli;
 			sourceTree = "<group>";
@@ -101,6 +112,9 @@
 		8C30AC051F0F8C2A0017D962 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8CC0F0D81F0F8F210003AC87 /* Floret.swift */,
+				8CC0F0DA1F0F90900003AC87 /* Storage.swift */,
+				8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -108,8 +122,17 @@
 		8C30AC061F0F8C320017D962 /* URLProtocolAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */,
 			);
 			name = URLProtocolAdapter;
+			sourceTree = "<group>";
+		};
+		8CC0F0DE1F0F91AC0003AC87 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */,
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 		8CD296ED1F0F8B3A004F7CBC = {
@@ -358,8 +381,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */,
+				8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */,
 				8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */,
 				8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */,
+				8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */,
+				8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */,
+				8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */,
+				8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

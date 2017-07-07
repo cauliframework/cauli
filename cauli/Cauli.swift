@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class Cauli {
+    
+    var florets: [Floret] = []
+    let adapter: Adapter
+    let storage: Storage
+
+    init(adapter: Adapter, storage: Storage) {
+        self.adapter = adapter
+        self.storage = storage
+    }
+    
+}
