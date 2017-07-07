@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */; };
 		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
 		8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */; };
 		8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */; };
@@ -14,6 +15,7 @@
 		8CD297011F0F8B3A004F7CBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD297001F0F8B3A004F7CBC /* Assets.xcassets */; };
 		8CD297041F0F8B3A004F7CBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */; };
 		8CD2970F1F0F8B3A004F7CBC /* cauliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2970E1F0F8B3A004F7CBC /* cauliTests.swift */; };
+		A48F502A5E3F4DD77189ABCE /* Pods_cauliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24B0192165EEDFFF03A486AD /* Pods-cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.debug.xcconfig"; sourceTree = "<group>"; };
+		3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.release.xcconfig"; sourceTree = "<group>"; };
+		6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.debug.xcconfig"; sourceTree = "<group>"; };
+		817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.release.xcconfig"; sourceTree = "<group>"; };
+		8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C30AC071F0F8D400017D962 /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		8CD296F61F0F8B3A004F7CBC /* cauli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cauli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +45,7 @@
 		8CD2970A1F0F8B3A004F7CBC /* cauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD2970E1F0F8B3A004F7CBC /* cauliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cauliTests.swift; sourceTree = "<group>"; };
 		8CD297101F0F8B3A004F7CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,12 +61,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A48F502A5E3F4DD77189ABCE /* Pods_cauliTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7016BE2676A8DF146D7E8999 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */,
+				8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		851E745C5AA7957716246AB9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				24B0192165EEDFFF03A486AD /* Pods-cauli.debug.xcconfig */,
+				817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */,
+				6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */,
+				3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8C30AC001F0F8B920017D962 /* cauli */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +118,8 @@
 				8CD296F81F0F8B3A004F7CBC /* cauli */,
 				8CD2970D1F0F8B3A004F7CBC /* cauliTests */,
 				8CD296F71F0F8B3A004F7CBC /* Products */,
+				851E745C5AA7957716246AB9 /* Pods */,
+				7016BE2676A8DF146D7E8999 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CD297131F0F8B3A004F7CBC /* Build configuration list for PBXNativeTarget "cauli" */;
 			buildPhases = (
+				25160E5BC97CB31626EC5D32 /* [CP] Check Pods Manifest.lock */,
 				8CD296F21F0F8B3A004F7CBC /* Sources */,
 				8CD296F31F0F8B3A004F7CBC /* Frameworks */,
 				8CD296F41F0F8B3A004F7CBC /* Resources */,
+				24BCE84CBA626C46E218478C /* [CP] Embed Pods Frameworks */,
+				3AE5575B0569CFA193703E2E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -147,9 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CD297161F0F8B3A004F7CBC /* Build configuration list for PBXNativeTarget "cauliTests" */;
 			buildPhases = (
+				18E1359BD32A15D29E1279EF /* [CP] Check Pods Manifest.lock */,
 				8CD297061F0F8B3A004F7CBC /* Sources */,
 				8CD297071F0F8B3A004F7CBC /* Frameworks */,
 				8CD297081F0F8B3A004F7CBC /* Resources */,
+				0091FA974B7884762FD1D123 /* [CP] Embed Pods Frameworks */,
+				8140E648983699D673B2DA24 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +258,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0091FA974B7884762FD1D123 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		18E1359BD32A15D29E1279EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		24BCE84CBA626C46E218478C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli/Pods-cauli-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		25160E5BC97CB31626EC5D32 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3AE5575B0569CFA193703E2E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli/Pods-cauli-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8140E648983699D673B2DA24 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8CD296F21F0F8B3A004F7CBC /* Sources */ = {
@@ -367,6 +498,7 @@
 		};
 		8CD297141F0F8B3A004F7CBC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24B0192165EEDFFF03A486AD /* Pods-cauli.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = cauli/Info.plist;
@@ -379,6 +511,7 @@
 		};
 		8CD297151F0F8B3A004F7CBC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = cauli/Info.plist;
@@ -391,6 +524,7 @@
 		};
 		8CD297171F0F8B3A004F7CBC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -405,6 +539,7 @@
 		};
 		8CD297181F0F8B3A004F7CBC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
