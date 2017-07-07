@@ -14,12 +14,16 @@
 		8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */; };
 		8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */; };
 		8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */; };
+		8CC0F0E51F0F94770003AC87 /* CauliSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */; };
+		8CC0F0E81F0F96E20003AC87 /* ComDomainFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E71F0F96E20003AC87 /* ComDomainFloret.swift */; };
+		8CC0F0EA1F0FB0F10003AC87 /* PrintStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */; };
+		8CC0F0EC1F0FB3450003AC87 /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */; };
+		8CC0F0F01F0FBC090003AC87 /* BlackHoleFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */; };
 		8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */; };
 		8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */; };
 		8CD296FF1F0F8B3A004F7CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */; };
 		8CD297011F0F8B3A004F7CBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD297001F0F8B3A004F7CBC /* Assets.xcassets */; };
 		8CD297041F0F8B3A004F7CBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */; };
-		8CD2970F1F0F8B3A004F7CBC /* cauliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2970E1F0F8B3A004F7CBC /* cauliTests.swift */; };
 		A48F502A5E3F4DD77189ABCE /* Pods_cauliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,11 @@
 		8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 		8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolAdapter.swift; sourceTree = "<group>"; };
 		8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliSpecs.swift; sourceTree = "<group>"; };
+		8CC0F0E71F0F96E20003AC87 /* ComDomainFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComDomainFloret.swift; sourceTree = "<group>"; };
+		8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintStorage.swift; sourceTree = "<group>"; };
+		8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHoleFloret.swift; sourceTree = "<group>"; };
 		8CD296F61F0F8B3A004F7CBC /* cauli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cauli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +62,6 @@
 		8CD297031F0F8B3A004F7CBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CD297051F0F8B3A004F7CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD2970A1F0F8B3A004F7CBC /* cauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CD2970E1F0F8B3A004F7CBC /* cauliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cauliTests.swift; sourceTree = "<group>"; };
 		8CD297101F0F8B3A004F7CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,6 +113,7 @@
 				8C30AC051F0F8C2A0017D962 /* protocols */,
 				8CC0F0DE1F0F91AC0003AC87 /* Storage */,
 				8C30AC061F0F8C320017D962 /* URLProtocolAdapter */,
+				8CC0F0EE1F0FBBED0003AC87 /* Florets */,
 			);
 			name = cauli;
 			sourceTree = "<group>";
@@ -123,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */,
+				8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */,
 			);
 			name = URLProtocolAdapter;
 			sourceTree = "<group>";
@@ -131,8 +141,33 @@
 			isa = PBXGroup;
 			children = (
 				8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */,
+				8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */,
 			);
 			name = Storage;
+			sourceTree = "<group>";
+		};
+		8CC0F0E31F0F940A0003AC87 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */,
+			);
+			name = Specs;
+			sourceTree = "<group>";
+		};
+		8CC0F0E61F0F96B40003AC87 /* Florets */ = {
+			isa = PBXGroup;
+			children = (
+				8CC0F0E71F0F96E20003AC87 /* ComDomainFloret.swift */,
+			);
+			name = Florets;
+			sourceTree = "<group>";
+		};
+		8CC0F0EE1F0FBBED0003AC87 /* Florets */ = {
+			isa = PBXGroup;
+			children = (
+				8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */,
+			);
+			name = Florets;
 			sourceTree = "<group>";
 		};
 		8CD296ED1F0F8B3A004F7CBC = {
@@ -172,7 +207,8 @@
 		8CD2970D1F0F8B3A004F7CBC /* cauliTests */ = {
 			isa = PBXGroup;
 			children = (
-				8CD2970E1F0F8B3A004F7CBC /* cauliTests.swift */,
+				8CC0F0E61F0F96B40003AC87 /* Florets */,
+				8CC0F0E31F0F940A0003AC87 /* Specs */,
 				8CD297101F0F8B3A004F7CBC /* Info.plist */,
 			);
 			path = cauliTests;
@@ -238,6 +274,7 @@
 					};
 					8CD297091F0F8B3A004F7CBC = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8CD296F51F0F8B3A004F7CBC;
 					};
@@ -383,6 +420,9 @@
 				8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */,
 				8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */,
 				8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */,
+				8CC0F0F01F0FBC090003AC87 /* BlackHoleFloret.swift in Sources */,
+				8CC0F0EA1F0FB0F10003AC87 /* PrintStorage.swift in Sources */,
+				8CC0F0EC1F0FB3450003AC87 /* CauliURLProtocol.swift in Sources */,
 				8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */,
 				8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */,
 				8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */,
@@ -395,7 +435,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD2970F1F0F8B3A004F7CBC /* cauliTests.swift in Sources */,
+				8CC0F0E51F0F94770003AC87 /* CauliSpecs.swift in Sources */,
+				8CC0F0E81F0F96E20003AC87 /* ComDomainFloret.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,10 +597,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = cauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauliTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cauli.app/cauli";
 			};
@@ -571,6 +614,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = cauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauliTests;

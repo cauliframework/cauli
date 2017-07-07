@@ -8,9 +8,8 @@
 
 import Foundation
 
-protocol Floret {
-    func request(for request: URLRequest)
-    func response(for request: URLRequest)
-    func response(for response: URLResponse)
-    func collected(metrics: URLSessionTaskMetrics, for request:URLRequest)
+public protocol Floret {
+    func request(for request: URLRequest) -> URLRequest?
+    func response(for request: URLRequest) -> URLResponse?
+    func response(for response: URLResponse) -> URLResponse?
 }
