@@ -9,5 +9,10 @@
 import Foundation
 
 class MemoryStorage: Storage {
+    func store(_ request: URLRequest, originalRequest: URLRequest) {
+    }
     
+    func store(_ response: URLResponse, for request: URLRequest) {
+    }
+
 }
