@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
 		8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */; };
 		8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */; };
 		8CD296FF1F0F8B3A004F7CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C30AC071F0F8D400017D962 /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		8CD296F61F0F8B3A004F7CBC /* cauli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cauli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,8 +61,25 @@
 		8C30AC001F0F8B920017D962 /* cauli */ = {
 			isa = PBXGroup;
 			children = (
+				8C30AC071F0F8D400017D962 /* Cauli.swift */,
+				8C30AC061F0F8C320017D962 /* URLProtocolAdapter */,
+				8C30AC051F0F8C2A0017D962 /* protocols */,
 			);
 			name = cauli;
+			sourceTree = "<group>";
+		};
+		8C30AC051F0F8C2A0017D962 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
+		8C30AC061F0F8C320017D962 /* URLProtocolAdapter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = URLProtocolAdapter;
 			sourceTree = "<group>";
 		};
 		8CD296ED1F0F8B3A004F7CBC = {
@@ -207,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */,
 				8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */,
 				8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */,
 			);
