@@ -23,21 +23,21 @@ class Cauli {
         self.adapter.cauli = self
         self.adapter.configure()
     }
- 
+    
     func canHandle(_ request: URLRequest) -> Bool {
-        guard florets.count > 0,
-            florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) != nil else { return false }
-        return true
+        guard florets.count > 0 else { return false }
+        return florets.reduce(false, { $0 || $1.canHandle(request) })
     }
     
     func request(for request: URLRequest) -> URLRequest {
-        let designatedRequest = florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) ?? request
-
+        let designatedRequest = florets.reduce(request, { $1.request(for: $0) })
+        
         storage.store(designatedRequest, originalRequest: request)
         
-        return designatedRequest
+        return request
     }
     
+    // fragen: resposne for request -> response dann nochmals alles itereiren vom response?
     func response(for request: URLRequest) -> URLResponse? {
         let response = florets.reduce(nil, { (response, floret) -> URLResponse? in
             if let response = response {
@@ -55,16 +55,10 @@ class Cauli {
     }
     
     func response(for response: URLResponse, request: URLRequest) -> URLResponse {
-        let responseToUse = florets.reduce(nil) { (result, floret) -> URLResponse? in
-            if let response = result {
-                return response
-            }
-            
-            return floret.response(for: response)
-        } ?? response
+        let designatedResponse = florets.reduce(response, { $1.response(for: $0) })
         
-        storage.store(responseToUse, for: request)
+        storage.store(designatedResponse, for: request)
         
-        return responseToUse
+        return designatedResponse
     }
 }

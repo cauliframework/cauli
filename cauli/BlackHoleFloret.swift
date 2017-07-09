@@ -9,7 +9,11 @@
 import Foundation
 
 class BlackHoleFloret: Floret {
-    func request(for request: URLRequest?) -> URLRequest? {
+    func canHandle(_ request: URLRequest) -> Bool {
+        return true
+    }
+    
+    func request(for request: URLRequest) -> URLRequest {
         return request
     }
     
@@ -17,7 +21,7 @@ class BlackHoleFloret: Floret {
         return URLResponse(url: URL(string: "https://partyparty.de")!, mimeType: nil, expectedContentLength: 1234, textEncodingName: nil)
     }
     
-    func response(for response: URLResponse) -> URLResponse? {
+    func response(for response: URLResponse) -> URLResponse {
         return response
     }
 }

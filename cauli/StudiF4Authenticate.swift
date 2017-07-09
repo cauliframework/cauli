@@ -9,10 +9,12 @@
 import Foundation
 
 class StudiF4Authenticate: Floret {
-    func request(for request: URLRequest?) -> URLRequest? {
-        guard let req = request,
-            req.url?.absoluteString.contains("studi.f4.htw-berlin.de/~s0549433/") ?? false,
-            let mutableRequest = (req as NSURLRequest).mutableCopy() as? NSMutableURLRequest else { return request }
+    func canHandle(_ request: URLRequest) -> Bool {
+        return request.url?.absoluteString.contains("studi.f4.htw-berlin.de/~s0549433/") ?? false
+    }
+
+    func request(for request: URLRequest) -> URLRequest {
+        guard let mutableRequest = (request as NSURLRequest).mutableCopy() as? NSMutableURLRequest else { return request }
         
         let userPasswordString = "secure:secure123"
         let userPasswordData = userPasswordString.data(using: .utf8)
@@ -26,7 +28,7 @@ class StudiF4Authenticate: Floret {
         return nil
     }
     
-    func response(for response: URLResponse) -> URLResponse? {
+    func response(for response: URLResponse) -> URLResponse {
         return response
     }
 }
