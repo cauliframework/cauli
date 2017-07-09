@@ -11,7 +11,8 @@ import Foundation
 class Cauli {
     // todo florets initalizer to be static
     var florets: [Floret] = []
-    var requestCache: [URLRequest:URLRequest] = [:]
+    // todo request cache useless
+//    var requestCache: [URLRequest:URLRequest] = [:]
     private var adapter: Adapter
     let storage: Storage
 
@@ -25,21 +26,13 @@ class Cauli {
  
     func canHandle(_ request: URLRequest) -> Bool {
         guard florets.count > 0,
-            let designatedRequest = florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) else { return false }
-        requestCache[request] = designatedRequest
+            florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) != nil else { return false }
         return true
     }
     
     func request(for request: URLRequest) -> URLRequest {
-        let designatedRequest: URLRequest
-        
-        if let cached = requestCache[request] {
-            designatedRequest = cached
-            requestCache.removeValue(forKey: request)
-        } else {
-            designatedRequest = florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) ?? request
-        }
-        
+        let designatedRequest = florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) ?? request
+
         storage.store(designatedRequest, originalRequest: request)
         
         return designatedRequest
