@@ -33,8 +33,13 @@ class URLProtocolAdapter:  NSObject, Adapter {
         let networkRequest = cauli.request(for: request)
         let dataTask = urlSession.dataTask(with: networkRequest)
         
-        urlProtocols[dataTask.taskIdentifier] = urlProtocol
-        dataTask.resume()
+        if let response = cauli.response(for: networkRequest) {
+            urlProtocol.client?.urlProtocol(urlProtocol, didReceive: response, cacheStoragePolicy: .allowed)
+            urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
+        } else {
+            urlProtocols[dataTask.taskIdentifier] = urlProtocol
+            dataTask.resume()
+        }
         
         return dataTask
     }
@@ -63,10 +68,9 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
         
         if let error = error {
             urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
-        } else {
-            urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
         }
         
+        urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
         urlProtocols.removeValue(forKey: task.taskIdentifier)
     }
 }

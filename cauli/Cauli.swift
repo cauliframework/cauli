@@ -26,7 +26,18 @@ class Cauli {
     
     func canHandle(_ request: URLRequest) -> Bool {
         guard florets.count > 0 else { return false }
-        return florets.reduce(false, { $0 || $1.canHandle(request) })
+        
+        var canHandle = false
+        for floret in florets {
+            if floret.canHandle(request) {
+                canHandle = true
+                break
+            }
+        }
+        
+        return canHandle
+//        // stop after first true
+//        return florets.reduce(false, { $0 || $1.canHandle(request) })
     }
     
     func request(for request: URLRequest) -> URLRequest {
