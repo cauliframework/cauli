@@ -9,7 +9,7 @@
 import Foundation
 
 class BlackHoleFloret: Floret {
-    func request(for request: URLRequest) -> URLRequest? {
+    func request(for request: URLRequest?) -> URLRequest? {
         return request
     }
     

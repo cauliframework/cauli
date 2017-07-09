@@ -12,13 +12,12 @@ class ViewController: UIViewController {
 
     var session: URLSession = {
         let sessionConfiguration = URLSessionConfiguration.default
-//        URLProtocolAdapter.register(for: sessionConfiguration)
+        URLProtocolAdapter.register(for: sessionConfiguration)
         return URLSession(configuration: sessionConfiguration)
     }()
     
     var cauli: Cauli = {
         let adapter = URLProtocolAdapter()
-        adapter.swizzle()
         
         let cauli = Cauli(adapter: adapter)
         cauli.florets = [BlackHoleFloret()]

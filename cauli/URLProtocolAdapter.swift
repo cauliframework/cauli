@@ -40,37 +40,6 @@ class URLProtocolAdapter:  NSObject, Adapter {
     }
 }
 
-@objc class URLProtocolAdapterSwizzler: NSObject {
-    public func swizzle() {
-        let originalSelector = #selector(URLSessionConfiguration.self.init)
-        let swizzledSelector = #selector(URLSessionConfiguration.self.cauli_sessionConfiguration_init)
-        
-        let originalMethod = class_getInstanceMethod(URLSessionConfiguration.self, originalSelector)
-        let swizzledMethod = class_getInstanceMethod(URLSessionConfiguration.self, swizzledSelector)
-        method_exchangeImplementations(originalMethod, swizzledMethod)
-    }
-}
-
-extension URLSessionConfiguration {
-    func cauli_sessionConfiguration_init() {
-//        self.cauli_sessionConfiguration_init()
-        print("YEAH YEAH YEAH")
-    }
-}
-
-extension URLProtocolAdapter {
-    @nonobjc static var swizzler: URLProtocolAdapterSwizzler = URLProtocolAdapterSwizzler()
-    
-    public class func register(for configuration: URLSessionConfiguration) {
-        let protocolClasses = configuration.protocolClasses ?? []
-        configuration.protocolClasses = ([CauliURLProtocol.self] + protocolClasses)
-    }
-    
-    public class func swizzle() {
-        URLProtocolAdapter.swizzler.swizzle()
-    }
-}
-
 extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
@@ -99,5 +68,20 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
         }
         
         urlProtocols.removeValue(forKey: task.taskIdentifier)
+    }
+}
+
+
+extension URLProtocolAdapter {
+    public class func register(for configuration: URLSessionConfiguration) {
+        let protocolClasses = configuration.protocolClasses ?? []
+        configuration.protocolClasses = ([CauliURLProtocol.self] + protocolClasses)
+    }
+    
+    public class func swizzle() {
+        let defaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))
+        let mockingjayDefaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(URLSessionConfiguration.cauliDefaultSessionConfiguration))
+        method_exchangeImplementations(defaultSessionConfiguration, mockingjayDefaultSessionConfiguration)
+        
     }
 }

@@ -8,8 +8,10 @@
 
 import Foundation
 
-class Cauli {   
+class Cauli {
+    // todo florets initalizer to be static
     var florets: [Floret] = []
+    var requestCache: [URLRequest:URLRequest] = [:]
     private var adapter: Adapter
     let storage: Storage
 
@@ -22,21 +24,25 @@ class Cauli {
     }
  
     func canHandle(_ request: URLRequest) -> Bool {
-        guard florets.count > 0 else { return false }
-        return florets.reduce(false, { $0 || $1.request(for: request) != nil })
+        guard florets.count > 0,
+            let designatedRequest = florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) else { return false }
+        requestCache[request] = designatedRequest
+        return true
     }
     
     func request(for request: URLRequest) -> URLRequest {
-        let networkRequest = florets.reduce(nil) { (result, floret) -> URLRequest? in
-            if let request = result {
-                return request
-            }
-            
-            return floret.request(for: request)
-        } ?? request
-
-        storage.store(networkRequest, originalRequest: request)
-        return networkRequest
+        let designatedRequest: URLRequest
+        
+        if let cached = requestCache[request] {
+            designatedRequest = cached
+            requestCache.removeValue(forKey: request)
+        } else {
+            designatedRequest = florets.reduce(request, { (result, floret) -> URLRequest? in floret.request(for: result) }) ?? request
+        }
+        
+        storage.store(designatedRequest, originalRequest: request)
+        
+        return designatedRequest
     }
     
     func response(for request: URLRequest) -> URLResponse? {

@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol Floret {
-    func request(for request: URLRequest) -> URLRequest?
+    func request(for request: URLRequest?) -> URLRequest?
     func response(for request: URLRequest) -> URLResponse?
     func response(for response: URLResponse) -> URLResponse?
 }

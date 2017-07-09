@@ -10,7 +10,7 @@ import Foundation
 
 class PrintStorage: Storage {
     func store(_ request: URLRequest, originalRequest: URLRequest) {
-        print("store request \(originalRequest)")
+        print("store designated request \(originalRequest) for originalRequest \(originalRequest)")
     }
     
     func store(_ response: URLResponse, for request: URLRequest) {
