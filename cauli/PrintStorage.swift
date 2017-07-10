@@ -29,6 +29,10 @@ class PrintStorage: Storage {
 //        print("store data \(data) for request \(request)")
     }
     
+    func store(_ error: Error, for request: URLRequest) {
+        print("error")
+    }
+    
     var records: [NetworkRecord] {
         return []
     }

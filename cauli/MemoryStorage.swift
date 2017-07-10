@@ -27,6 +27,10 @@ class MemoryStorage: Storage {
         storage[request]?.data = data
     }
     
+    func store(_ error: Error, for request: URLRequest) {
+        storage[request]?.error = error
+    }
+    
     var records: [NetworkRecord] {
         get {
             return storage.values.sorted(by: { $0.createdAt < $1.createdAt })

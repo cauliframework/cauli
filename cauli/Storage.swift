@@ -15,6 +15,7 @@ struct NetworkRecord {
     var response: URLResponse?
     var metrics: URLSessionTaskMetrics?
     var data: Data?
+    var error: Error?
 }
 
 extension NetworkRecord {
@@ -29,6 +30,7 @@ protocol Storage {
     func store(_ response: URLResponse, for request: URLRequest)
     func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest)
     func store(_ data: Data, for request: URLRequest)
+    func store(_ error: Error, for request: URLRequest)
     
     var records: [NetworkRecord] { get }
 }
