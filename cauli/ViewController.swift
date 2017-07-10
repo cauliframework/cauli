@@ -10,16 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var session: URLSession! = {
+        let sessionConfiguration = URLSessionConfiguration.default
+        URLProtocolAdapter.register(for: sessionConfiguration)
+        return URLSession(configuration: sessionConfiguration)
+    }()
+    
+    var cauli: Cauli = {
+        let adapter = URLProtocolAdapter()
+        
+        let cauli = Cauli(adapter: adapter)
+        cauli.florets = [
+            BlackHoleFloret(), StudiF3Rewrite(), StudiF4Authenticate()
+        ]
+        return cauli
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let request = URLRequest(url: URL(string: "https://studi.f3.htw-berlin.de/~s0549433/")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 20)
+        session.dataTask(with: request) { (data, response, error) in
+//            if let response = response {
+//                print("\(response)")
+//            }
+            print(error)
+        }.resume()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-
