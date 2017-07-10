@@ -8,6 +8,11 @@
 
 import Foundation
 
+struct MockedResponse {
+    let data: Data
+    let response: URLResponse
+}
+
 class Cauli {
     // todo florets initalizer to be static
     var florets: [Floret] = []
@@ -46,13 +51,8 @@ class Cauli {
         return designatedRequest
     }
     
-    struct MockedResponse {
-        let data: Data
-        let response: URLResponse
-        let error: Error?
-    }
-    
     // fragen: resposne for request -> response dann nochmals alles itereiren vom response?
+    // todo rethink. error should be extra case
     func response(for request: URLRequest) -> MockedResponse? {
         guard let response = florets.reduce(nil, { (response, floret) -> URLResponse? in
             if let response = response {
@@ -63,14 +63,40 @@ class Cauli {
         }) else { return nil }
         
         let data = "YEAH".data(using: .utf8)!
-        return MockedResponse(data: data, response: response, error: nil)
+        
+        storage.store(data, for: request)
+        storage.store(response, for: request)
+        
+        return MockedResponse(data: data, response: response)
+    }
+    
+    func error(for request: URLRequest) -> Error? {
+        guard let error = florets.reduce(nil, { (error, floret) -> Error? in
+            if let error = error {
+                return error
+            }
+            
+            return floret.error(for: request)
+        }) else { return nil }
+        
+        //ggf store
+        
+        return error
     }
     
     func response(for response: URLResponse, request: URLRequest) -> URLResponse {
-        let designatedResponse = florets.reduce(response, { $1.response(for: $0) })
+        let designatedResponse = florets.reduce(response, { $1.response(for: $0) ?? response })
         
         storage.store(designatedResponse, for: request)
         
         return designatedResponse
+    }
+    
+    func didLoad(_ data: Data, for request: URLRequest) {
+        storage.store(data, for: request)
+    }
+    
+    func collected(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
+        storage.store(metrics, for: request)
     }
 }

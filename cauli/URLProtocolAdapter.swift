@@ -28,19 +28,17 @@ class URLProtocolAdapter:  NSObject, Adapter {
     }
     
     func startLoading(_ request: URLRequest, urlProtocol:CauliURLProtocol) -> URLSessionDataTask {
-        guard let cauli = cauli else { fatalError("") }
+        guard let cauli = cauli else { fatalError("there should be a cauli instance") }
         
         let networkRequest = cauli.request(for: request)
         let dataTask = urlSession.dataTask(with: networkRequest)
         
         if let mockedResponse = cauli.response(for: networkRequest) {
-            if let error = mockedResponse.error {
-                urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
-            }
-            
-            urlProtocol.client?.urlProtocol(urlProtocol, didLoad: mockedResponse.data)
             urlProtocol.client?.urlProtocol(urlProtocol, didReceive: mockedResponse.response, cacheStoragePolicy: .allowed)
+            urlProtocol.client?.urlProtocol(urlProtocol, didLoad: mockedResponse.data)
             urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
+        } else if let error = cauli.error(for: request) {
+            urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
         } else {
             urlProtocols[dataTask.taskIdentifier] = urlProtocol
             dataTask.resume()
@@ -53,7 +51,7 @@ class URLProtocolAdapter:  NSObject, Adapter {
 extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
-
+        
         if let cauli = cauli, let originalRequest = dataTask.originalRequest {
             let newResponse = cauli.response(for: response, request: originalRequest)
             urlProtocol.client?.urlProtocol(urlProtocol, didReceive: newResponse, cacheStoragePolicy: .allowed)
@@ -63,8 +61,11 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     }
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return }
+        guard let urlProtocol = urlProtocols[dataTask.taskIdentifier],
+            let originalRequest = dataTask.originalRequest,
+            let cauli = cauli else { return }
         
+        cauli.didLoad(data, for: originalRequest)
         urlProtocol.client?.urlProtocol(urlProtocol, didLoad: data)
     }
     
@@ -73,13 +74,19 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
         
         if let error = error {
             urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
+        } else {
+            urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
         }
         
-        urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
         urlProtocols.removeValue(forKey: task.taskIdentifier)
     }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+        guard let originalRequest = task.originalRequest,
+            let cauli = cauli else { return }
+        cauli.collected(metrics, for: originalRequest)
+    }
 }
-
 
 extension URLProtocolAdapter {
     public class func register(for configuration: URLSessionConfiguration) {

@@ -1,24 +1,22 @@
 //
-//  StudiF4Authenticate.swift
+//  StudiF3Rewrite.swift
 //  cauli
 //
-//  Created by Pascal Stüdlein on 09.07.17.
+//  Created by Pascal Stüdlein on 10.07.17.
 //  Copyright © 2017 TBO Interactive GmbH & Co KG. All rights reserved.
 //
 
 import Foundation
 
-class StudiF4Authenticate: Floret {
-    // problem da jetzt bei jedem das gemacht wird, canHandle
+class StudiF3Rewrite: Floret {
     func request(for request: URLRequest) -> URLRequest? {
-        guard request.url?.absoluteString.contains("studi.f4.htw-berlin.de/~s0549433/") ?? false,
+        guard let url = request.url,
+            url.absoluteString.contains("studi.f3.htw-berlin.de"),
             let mutableRequest = (request as NSURLRequest).mutableCopy() as? NSMutableURLRequest else { return nil }
         
-        let userPasswordString = "secure:secure123"
-        let userPasswordData = userPasswordString.data(using: .utf8)
-        let base64EncodedCredential = userPasswordData?.base64EncodedString() ?? ""
-        let authString = "Basic \(base64EncodedCredential)"
-        mutableRequest.allHTTPHeaderFields?["Authorization"] = authString
+        let newUrlString = url.absoluteString.replacingOccurrences(of: "studi.f3.htw-berlin.de", with: "studi.f4.htw-berlin.de")
+        mutableRequest.url = URL(string: newUrlString)
+        
         return mutableRequest as URLRequest
     }
     

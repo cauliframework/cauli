@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5079A91E1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */; };
 		5079A9201F125E06004BBB4F /* StudiF4Authenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079A91F1F125E06004BBB4F /* StudiF4Authenticate.swift */; };
+		5082604B1F1371C300AB7374 /* StudiF3Rewrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082604A1F1371C300AB7374 /* StudiF3Rewrite.swift */; };
 		6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */; };
 		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
 		8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0D81F0F8F210003AC87 /* Floret.swift */; };
@@ -44,6 +45,7 @@
 		3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.release.xcconfig"; sourceTree = "<group>"; };
 		5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		5079A91F1F125E06004BBB4F /* StudiF4Authenticate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudiF4Authenticate.swift; sourceTree = "<group>"; };
+		5082604A1F1371C300AB7374 /* StudiF3Rewrite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudiF3Rewrite.swift; sourceTree = "<group>"; };
 		6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.debug.xcconfig"; sourceTree = "<group>"; };
 		817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.release.xcconfig"; sourceTree = "<group>"; };
 		8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */,
+				5082604A1F1371C300AB7374 /* StudiF3Rewrite.swift */,
 				5079A91F1F125E06004BBB4F /* StudiF4Authenticate.swift */,
 			);
 			name = Florets;
@@ -434,6 +437,7 @@
 				8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */,
 				8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */,
 				8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */,
+				5082604B1F1371C300AB7374 /* StudiF3Rewrite.swift in Sources */,
 				5079A9201F125E06004BBB4F /* StudiF4Authenticate.swift in Sources */,
 				8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */,
 			);

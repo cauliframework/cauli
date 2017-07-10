@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         
         let cauli = Cauli(adapter: adapter)
         cauli.florets = [
-            BlackHoleFloret(), StudiF4Authenticate()
+            BlackHoleFloret(), StudiF3Rewrite(), StudiF4Authenticate()
         ]
         return cauli
     }()
@@ -29,11 +29,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = URLRequest(url: URL(string: "https://studi.f4.htw-berlin.de/~s0549433/")!)
+        let request = URLRequest(url: URL(string: "https://studi.f3.htw-berlin.de/~s0549433/")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 20)
         session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print("\(response)")
-            }
+//            if let response = response {
+//                print("\(response)")
+//            }
+            print(error)
         }.resume()
     }
 }

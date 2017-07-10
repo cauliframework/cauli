@@ -17,7 +17,11 @@ class BlackHoleFloret: Floret {
         return nil//URLResponse(url: URL(string: "https://partyparty.de")!, mimeType: nil, expectedContentLength: 1234, textEncodingName: nil)
     }
     
-    func response(for response: URLResponse) -> URLResponse {
+    func response(for response: URLResponse) -> URLResponse? {
         return response
+    }
+
+    func error(for request: URLRequest) -> Error? {
+        return nil
     }
 }
