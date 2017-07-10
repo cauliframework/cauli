@@ -115,33 +115,36 @@
 		8C30AC001F0F8B920017D962 /* cauli */ = {
 			isa = PBXGroup;
 			children = (
-				8C30AC071F0F8D400017D962 /* Cauli.swift */,
-				8C30AC051F0F8C2A0017D962 /* protocols */,
+				8CC0F0EE1F0FBBED0003AC87 /* Florets */,
 				8CC0F0DE1F0F91AC0003AC87 /* Storage */,
 				8C30AC061F0F8C320017D962 /* URLProtocolAdapter */,
-				8CC0F0EE1F0FBBED0003AC87 /* Florets */,
+				8C30AC051F0F8C2A0017D962 /* protocols */,
+				8C30AC071F0F8D400017D962 /* Cauli.swift */,
 			);
 			name = cauli;
+			path = cauli;
 			sourceTree = "<group>";
 		};
 		8C30AC051F0F8C2A0017D962 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */,
 				8CC0F0D81F0F8F210003AC87 /* Floret.swift */,
 				8CC0F0DA1F0F90900003AC87 /* Storage.swift */,
-				8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */,
 			);
 			name = protocols;
+			path = protocols;
 			sourceTree = "<group>";
 		};
 		8C30AC061F0F8C320017D962 /* URLProtocolAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */,
 				8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */,
+				8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */,
 				5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */,
 			);
 			name = URLProtocolAdapter;
+			path = URLProtocolAdapter;
 			sourceTree = "<group>";
 		};
 		8CC0F0DE1F0F91AC0003AC87 /* Storage */ = {
@@ -151,6 +154,7 @@
 				8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */,
 			);
 			name = Storage;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		8CC0F0E31F0F940A0003AC87 /* Specs */ = {
@@ -159,6 +163,7 @@
 				8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */,
 			);
 			name = Specs;
+			path = Specs;
 			sourceTree = "<group>";
 		};
 		8CC0F0E61F0F96B40003AC87 /* Florets */ = {
@@ -167,6 +172,7 @@
 				8CC0F0E71F0F96E20003AC87 /* ComDomainFloret.swift */,
 			);
 			name = Florets;
+			path = Florets;
 			sourceTree = "<group>";
 		};
 		8CC0F0EE1F0FBBED0003AC87 /* Florets */ = {
@@ -177,16 +183,17 @@
 				5079A91F1F125E06004BBB4F /* StudiF4Authenticate.swift */,
 			);
 			name = Florets;
+			path = Florets;
 			sourceTree = "<group>";
 		};
 		8CD296ED1F0F8B3A004F7CBC = {
 			isa = PBXGroup;
 			children = (
+				7016BE2676A8DF146D7E8999 /* Frameworks */,
+				851E745C5AA7957716246AB9 /* Pods */,
+				8CD296F71F0F8B3A004F7CBC /* Products */,
 				8CD296F81F0F8B3A004F7CBC /* cauli */,
 				8CD2970D1F0F8B3A004F7CBC /* cauliTests */,
-				8CD296F71F0F8B3A004F7CBC /* Products */,
-				851E745C5AA7957716246AB9 /* Pods */,
-				7016BE2676A8DF146D7E8999 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,11 +211,11 @@
 			children = (
 				8C30AC001F0F8B920017D962 /* cauli */,
 				8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */,
-				8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */,
-				8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */,
 				8CD297001F0F8B3A004F7CBC /* Assets.xcassets */,
-				8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */,
 				8CD297051F0F8B3A004F7CBC /* Info.plist */,
+				8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */,
+				8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */,
+				8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */,
 			);
 			path = cauli;
 			sourceTree = "<group>";
@@ -469,6 +476,7 @@
 				8CD296FE1F0F8B3A004F7CBC /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */ = {
@@ -477,6 +485,7 @@
 				8CD297031F0F8B3A004F7CBC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
