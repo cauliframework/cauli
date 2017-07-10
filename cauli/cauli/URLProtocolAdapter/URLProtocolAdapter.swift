@@ -15,7 +15,9 @@ class URLProtocolAdapter:  NSObject, Adapter {
     
     override init() {
         super.init()
-        self.urlSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        let defaultC = URLSessionConfiguration.default
+        defaultC.protocolClasses = defaultC.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
+        self.urlSession = URLSession(configuration: defaultC, delegate: self, delegateQueue: nil)
     }
     
     func configure() {
@@ -97,8 +99,8 @@ extension URLProtocolAdapter {
     
     public class func swizzle() {
         let defaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))
-        let mockingjayDefaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(URLSessionConfiguration.cauliDefaultSessionConfiguration))
-        method_exchangeImplementations(defaultSessionConfiguration, mockingjayDefaultSessionConfiguration)
+        let cauliDefaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(URLSessionConfiguration.cauliDefaultSessionConfiguration))
+        method_exchangeImplementations(defaultSessionConfiguration, cauliDefaultSessionConfiguration)
         
     }
 }
