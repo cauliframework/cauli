@@ -20,7 +20,9 @@ class ViewController: UIViewController {
         let adapter = URLProtocolAdapter()
         
         let cauli = Cauli(adapter: adapter)
-        cauli.florets = [BlackHoleFloret(), StudiF4Authenticate()]
+        cauli.florets = [
+            BlackHoleFloret(), StudiF4Authenticate()
+        ]
         return cauli
     }()
     
@@ -28,12 +30,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let request = URLRequest(url: URL(string: "https://studi.f4.htw-berlin.de/~s0549433/")!)
-        let first = Date()
         session.dataTask(with: request) { (data, response, error) in
             if let response = response {
                 print("\(response)")
-                let second = Date()
-                print(second.timeIntervalSince1970 - first.timeIntervalSince1970)
             }
         }.resume()
     }

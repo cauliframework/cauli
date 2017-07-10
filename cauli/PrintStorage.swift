@@ -10,7 +10,8 @@ import Foundation
 
 class PrintStorage: Storage {
     func store(_ request: URLRequest, originalRequest: URLRequest) {
-        print("store designated request \(originalRequest) for originalRequest \(originalRequest)")
+        print(request.allHTTPHeaderFields)
+        print("store designated request \(request) for originalRequest \(originalRequest)")
     }
     
     func store(_ response: URLResponse, for request: URLRequest) {

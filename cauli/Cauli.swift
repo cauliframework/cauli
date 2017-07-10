@@ -29,40 +29,41 @@ class Cauli {
         
         var canHandle = false
         for floret in florets {
-            if floret.canHandle(request) {
+            if floret.request(for: request) != nil {
                 canHandle = true
                 break
             }
         }
         
         return canHandle
-//        // stop after first true
-//        return florets.reduce(false, { $0 || $1.canHandle(request) })
     }
     
     func request(for request: URLRequest) -> URLRequest {
-        let designatedRequest = florets.reduce(request, { $1.request(for: $0) })
+        let designatedRequest = florets.reduce(request, { $1.request(for: $0) ?? request })
         
         storage.store(designatedRequest, originalRequest: request)
         
-        return request
+        return designatedRequest
+    }
+    
+    struct MockedResponse {
+        let data: Data
+        let response: URLResponse
+        let error: Error?
     }
     
     // fragen: resposne for request -> response dann nochmals alles itereiren vom response?
-    func response(for request: URLRequest) -> URLResponse? {
-        let response = florets.reduce(nil, { (response, floret) -> URLResponse? in
+    func response(for request: URLRequest) -> MockedResponse? {
+        guard let response = florets.reduce(nil, { (response, floret) -> URLResponse? in
             if let response = response {
                 return response
             }
             
             return floret.response(for: request)
-        })
+        }) else { return nil }
         
-        if let response = response {
-            storage.store(response, for: request)
-        }
-        
-        return response
+        let data = "YEAH".data(using: .utf8)!
+        return MockedResponse(data: data, response: response, error: nil)
     }
     
     func response(for response: URLResponse, request: URLRequest) -> URLResponse {

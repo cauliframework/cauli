@@ -8,12 +8,8 @@
 
 import Foundation
 
-class BlackHoleFloret: Floret {
-    func canHandle(_ request: URLRequest) -> Bool {
-        return true
-    }
-    
-    func request(for request: URLRequest) -> URLRequest {
+class BlackHoleFloret: Floret {   
+    func request(for request: URLRequest) -> URLRequest? {
         return request
     }
     

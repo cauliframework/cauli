@@ -33,8 +33,13 @@ class URLProtocolAdapter:  NSObject, Adapter {
         let networkRequest = cauli.request(for: request)
         let dataTask = urlSession.dataTask(with: networkRequest)
         
-        if let response = cauli.response(for: networkRequest) {
-            urlProtocol.client?.urlProtocol(urlProtocol, didReceive: response, cacheStoragePolicy: .allowed)
+        if let mockedResponse = cauli.response(for: networkRequest) {
+            if let error = mockedResponse.error {
+                urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
+            }
+            
+            urlProtocol.client?.urlProtocol(urlProtocol, didLoad: mockedResponse.data)
+            urlProtocol.client?.urlProtocol(urlProtocol, didReceive: mockedResponse.response, cacheStoragePolicy: .allowed)
             urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
         } else {
             urlProtocols[dataTask.taskIdentifier] = urlProtocol
