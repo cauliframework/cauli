@@ -28,4 +28,8 @@ class PrintStorage: Storage {
         print("store data for request")
 //        print("store data \(data) for request \(request)")
     }
+    
+    var records: [NetworkRecord] {
+        return []
+    }
 }
