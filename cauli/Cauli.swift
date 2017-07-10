@@ -70,6 +70,12 @@ class Cauli {
         return MockedResponse(data: data, response: response)
     }
     
+    func error(for error: Error, request: URLRequest) -> Error {
+        // todo florets?
+        storage.store(error, for: request)
+        return error
+    }
+    
     func error(for request: URLRequest) -> Error? {
         guard let error = florets.reduce(nil, { (error, floret) -> Error? in
             if let error = error {
@@ -79,7 +85,7 @@ class Cauli {
             return floret.error(for: request)
         }) else { return nil }
         
-        //ggf store
+        storage.store(error, for: request)
         
         return error
     }

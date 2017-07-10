@@ -72,8 +72,9 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let urlProtocol = urlProtocols[task.taskIdentifier] else { return }
         
-        if let error = error {
-            urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
+        if let error = error, let cauli = cauli, let originalRequest = task.originalRequest {
+            let designatedError = cauli.error(for: error, request: originalRequest)
+            urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: designatedError)
         } else {
             urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
         }
