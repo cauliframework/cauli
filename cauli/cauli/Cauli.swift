@@ -46,7 +46,7 @@ class Cauli {
     func request(for request: URLRequest) -> URLRequest {
         let designatedRequest = florets.reduce(request, { $1.request(for: $0) ?? request })
         
-        storage.store(designatedRequest, originalRequest: request)
+        storage.store(request, for: designatedRequest)
         
         return designatedRequest
     }

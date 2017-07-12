@@ -8,7 +8,7 @@
 
 ## Build generated
 build/
-DerivedData/
+DerivedData*
 
 ## Various settings
 *.pbxuser

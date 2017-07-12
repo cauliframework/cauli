@@ -12,6 +12,8 @@
 		5082604B1F1371C300AB7374 /* StudiF3Rewrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082604A1F1371C300AB7374 /* StudiF3Rewrite.swift */; };
 		6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */; };
 		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
+		8C5B53F31F16285700AC49BD /* NetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B53F21F16285700AC49BD /* NetworkRecord.swift */; };
+		8C5B53F51F1628EA00AC49BD /* StaticNetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */; };
 		8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0D81F0F8F210003AC87 /* Floret.swift */; };
 		8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DA1F0F90900003AC87 /* Storage.swift */; };
 		8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */; };
@@ -50,6 +52,8 @@
 		817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.release.xcconfig"; sourceTree = "<group>"; };
 		8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C30AC071F0F8D400017D962 /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
+		8C5B53F21F16285700AC49BD /* NetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRecord.swift; sourceTree = "<group>"; };
+		8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNetworkRecord.swift; sourceTree = "<group>"; };
 		8CC0F0D81F0F8F210003AC87 /* Floret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
 		8CC0F0DA1F0F90900003AC87 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
@@ -121,7 +125,6 @@
 				8C30AC051F0F8C2A0017D962 /* protocols */,
 				8C30AC071F0F8D400017D962 /* Cauli.swift */,
 			);
-			name = cauli;
 			path = cauli;
 			sourceTree = "<group>";
 		};
@@ -131,8 +134,8 @@
 				8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */,
 				8CC0F0D81F0F8F210003AC87 /* Floret.swift */,
 				8CC0F0DA1F0F90900003AC87 /* Storage.swift */,
+				8C5B53F21F16285700AC49BD /* NetworkRecord.swift */,
 			);
-			name = protocols;
 			path = protocols;
 			sourceTree = "<group>";
 		};
@@ -143,7 +146,6 @@
 				8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */,
 				5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */,
 			);
-			name = URLProtocolAdapter;
 			path = URLProtocolAdapter;
 			sourceTree = "<group>";
 		};
@@ -152,8 +154,8 @@
 			children = (
 				8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */,
 				8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */,
+				8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */,
 			);
-			name = Storage;
 			path = Storage;
 			sourceTree = "<group>";
 		};
@@ -162,7 +164,6 @@
 			children = (
 				8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */,
 			);
-			name = Specs;
 			path = Specs;
 			sourceTree = "<group>";
 		};
@@ -171,7 +172,6 @@
 			children = (
 				8CC0F0E71F0F96E20003AC87 /* ComDomainFloret.swift */,
 			);
-			name = Florets;
 			path = Florets;
 			sourceTree = "<group>";
 		};
@@ -182,7 +182,6 @@
 				5082604A1F1371C300AB7374 /* StudiF3Rewrite.swift */,
 				5079A91F1F125E06004BBB4F /* StudiF4Authenticate.swift */,
 			);
-			name = Florets;
 			path = Florets;
 			sourceTree = "<group>";
 		};
@@ -438,8 +437,10 @@
 				8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */,
 				8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */,
 				8CC0F0F01F0FBC090003AC87 /* BlackHoleFloret.swift in Sources */,
+				8C5B53F51F1628EA00AC49BD /* StaticNetworkRecord.swift in Sources */,
 				8CC0F0EA1F0FB0F10003AC87 /* PrintStorage.swift in Sources */,
 				8CC0F0EC1F0FB3450003AC87 /* CauliURLProtocol.swift in Sources */,
+				8C5B53F31F16285700AC49BD /* NetworkRecord.swift in Sources */,
 				8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */,
 				8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */,
 				8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */,

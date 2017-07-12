@@ -9,8 +9,7 @@
 import Foundation
 
 class PrintStorage: Storage {
-    func store(_ request: URLRequest, originalRequest: URLRequest) {
-//        print("store designated request for originalRequest")
+    func store(_ originalRequest: URLRequest, for request: URLRequest) {
         print("store designated request \(request) for originalRequest \(originalRequest)")
     }
     

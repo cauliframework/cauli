@@ -11,8 +11,8 @@ import Foundation
 class MemoryStorage: Storage {
     private var storage: [URLRequest: NetworkRecord] = [:]
 
-    func store(_ request: URLRequest, originalRequest: URLRequest) {
-        storage[request] = NetworkRecord(originalRequest: originalRequest, request: request)
+    func store(_ originalRequest: URLRequest, for request: URLRequest) {
+        storage[request] = StaticNetworkRecord(originalRequest: originalRequest, request: request)
     }
     
     func store(_ response: URLResponse, for request: URLRequest) {
