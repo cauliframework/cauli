@@ -9,7 +9,5 @@
 import Foundation
 
 protocol Adapter {
-    weak var cauli: Cauli? { get set }
-    
-    func configure()
+    init(cauli: Cauli)
 }

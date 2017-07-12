@@ -18,20 +18,20 @@ class ViewController: UIViewController {
     
     var storage: Storage!
     
-    var cauli: Cauli!
+//    var cauli: Cauli!
+    var urlProtocolAdapter: URLProtocolAdapter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let adapter = URLProtocolAdapter()
         storage = MemoryStorage()
         
-        let cauli = Cauli(adapter: adapter, storage: storage)
+        let cauli = Cauli(storage: storage)
         cauli.florets = [
             BlackHoleFloret(), StudiF3Rewrite(), StudiF4Authenticate()
         ]
-        self.cauli = cauli
         
+        urlProtocolAdapter = URLProtocolAdapter(cauli: cauli)
         
         let request = URLRequest(url: URL(string: "https://studi.f3.htw-berlin.de/~s0549433/")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 20)
         session.dataTask(with: request) { (data, response, error) in

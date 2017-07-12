@@ -18,15 +18,10 @@ class Cauli {
     var florets: [Floret] = []
     // todo request cache useless
 //    var requestCache: [URLRequest:URLRequest] = [:]
-    private var adapter: Adapter
     let storage: Storage
 
-    init(adapter: Adapter = URLProtocolAdapter(), storage: Storage = PrintStorage()) {
-        self.adapter = adapter
+    init(storage: Storage = PrintStorage()) {
         self.storage = storage
-        
-        self.adapter.cauli = self
-        self.adapter.configure()
     }
     
     func canHandle(_ request: URLRequest) -> Bool {

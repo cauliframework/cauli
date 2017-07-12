@@ -9,29 +9,28 @@
 import Foundation
 
 class URLProtocolAdapter:  NSObject, Adapter {
-    weak var cauli: Cauli?
+    
+    let cauli: Cauli
     private(set) var urlSession: URLSession!
     fileprivate var urlProtocols: [Int:CauliURLProtocol] = [:]
-    
-    override init() {
+
+    required init(cauli: Cauli) {
+        self.cauli = cauli
+        
         super.init()
+        
         let defaultC = URLSessionConfiguration.default
         defaultC.protocolClasses = defaultC.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
         self.urlSession = URLSession(configuration: defaultC, delegate: self, delegateQueue: nil)
-    }
-    
-    func configure() {
+        
         CauliURLProtocol.adapter = self
     }
     
     func canInit(_ request: URLRequest) -> Bool {
-        guard let cauli = cauli else { return false }
         return cauli.canHandle(request)
     }
     
     func startLoading(_ request: URLRequest, urlProtocol:CauliURLProtocol) -> URLSessionDataTask {
-        guard let cauli = cauli else { fatalError("there should be a cauli instance") }
-        
         let networkRequest = cauli.request(for: request)
         let dataTask = urlSession.dataTask(with: networkRequest)
         
@@ -54,7 +53,7 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
         
-        if let cauli = cauli, let originalRequest = dataTask.originalRequest {
+        if let originalRequest = dataTask.originalRequest {
             let newResponse = cauli.response(for: response, request: originalRequest)
             urlProtocol.client?.urlProtocol(urlProtocol, didReceive: newResponse, cacheStoragePolicy: .allowed)
         }
@@ -64,8 +63,7 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier],
-            let originalRequest = dataTask.originalRequest,
-            let cauli = cauli else { return }
+            let originalRequest = dataTask.originalRequest else { return }
         
         cauli.didLoad(data, for: originalRequest)
         urlProtocol.client?.urlProtocol(urlProtocol, didLoad: data)
@@ -74,7 +72,7 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let urlProtocol = urlProtocols[task.taskIdentifier] else { return }
         
-        if let error = error, let cauli = cauli, let originalRequest = task.originalRequest {
+        if let error = error, let originalRequest = task.originalRequest {
             let designatedError = cauli.error(for: error, request: originalRequest)
             urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: designatedError)
         } else {
@@ -85,8 +83,7 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        guard let originalRequest = task.originalRequest,
-            let cauli = cauli else { return }
+        guard let originalRequest = task.originalRequest else { return }
         cauli.collected(metrics, for: originalRequest)
     }
 }

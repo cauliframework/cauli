@@ -10,11 +10,11 @@ import Foundation
 
 class CauliURLProtocol: URLProtocol {
     
-    static var adapter: URLProtocolAdapter = URLProtocolAdapter()
+    static var adapter: URLProtocolAdapter?
     var networkDataTask: URLSessionDataTask?
     
     override class func canInit(with request: URLRequest) -> Bool {
-        return adapter.canInit(request)
+        return adapter?.canInit(request) ?? false
     }
     
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
@@ -22,7 +22,7 @@ class CauliURLProtocol: URLProtocol {
     }
     
     override func startLoading() {
-        networkDataTask = CauliURLProtocol.adapter.startLoading(request, urlProtocol: self)
+        networkDataTask = CauliURLProtocol.adapter?.startLoading(request, urlProtocol: self)
     }
     
     override func stopLoading() {
