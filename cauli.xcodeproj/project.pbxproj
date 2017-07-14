@@ -14,6 +14,9 @@
 		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
 		8C5B53F31F16285700AC49BD /* NetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B53F21F16285700AC49BD /* NetworkRecord.swift */; };
 		8C5B53F51F1628EA00AC49BD /* StaticNetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */; };
+		8C6E644A1F1906BC00BD98E6 /* FailableFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E64491F1906BC00BD98E6 /* FailableFloret.swift */; };
+		8C6E644C1F190DC900BD98E6 /* RegexFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E644B1F190DC900BD98E6 /* RegexFloret.swift */; };
+		8C6E644E1F19116D00BD98E6 /* URLRewriteFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E644D1F19116D00BD98E6 /* URLRewriteFloret.swift */; };
 		8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0D81F0F8F210003AC87 /* Floret.swift */; };
 		8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DA1F0F90900003AC87 /* Storage.swift */; };
 		8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */; };
@@ -54,6 +57,9 @@
 		8C30AC071F0F8D400017D962 /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		8C5B53F21F16285700AC49BD /* NetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRecord.swift; sourceTree = "<group>"; };
 		8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNetworkRecord.swift; sourceTree = "<group>"; };
+		8C6E64491F1906BC00BD98E6 /* FailableFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailableFloret.swift; sourceTree = "<group>"; };
+		8C6E644B1F190DC900BD98E6 /* RegexFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexFloret.swift; sourceTree = "<group>"; };
+		8C6E644D1F19116D00BD98E6 /* URLRewriteFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRewriteFloret.swift; sourceTree = "<group>"; };
 		8CC0F0D81F0F8F210003AC87 /* Floret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
 		8CC0F0DA1F0F90900003AC87 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
@@ -181,6 +187,9 @@
 				8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */,
 				5082604A1F1371C300AB7374 /* StudiF3Rewrite.swift */,
 				5079A91F1F125E06004BBB4F /* StudiF4Authenticate.swift */,
+				8C6E64491F1906BC00BD98E6 /* FailableFloret.swift */,
+				8C6E644B1F190DC900BD98E6 /* RegexFloret.swift */,
+				8C6E644D1F19116D00BD98E6 /* URLRewriteFloret.swift */,
 			);
 			path = Florets;
 			sourceTree = "<group>";
@@ -434,7 +443,9 @@
 			files = (
 				8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */,
 				5079A91E1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift in Sources */,
+				8C6E644E1F19116D00BD98E6 /* URLRewriteFloret.swift in Sources */,
 				8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */,
+				8C6E644C1F190DC900BD98E6 /* RegexFloret.swift in Sources */,
 				8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */,
 				8CC0F0F01F0FBC090003AC87 /* BlackHoleFloret.swift in Sources */,
 				8C5B53F51F1628EA00AC49BD /* StaticNetworkRecord.swift in Sources */,
@@ -447,6 +458,7 @@
 				8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */,
 				5082604B1F1371C300AB7374 /* StudiF3Rewrite.swift in Sources */,
 				5079A9201F125E06004BBB4F /* StudiF4Authenticate.swift in Sources */,
+				8C6E644A1F1906BC00BD98E6 /* FailableFloret.swift in Sources */,
 				8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,6 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = cauli/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -606,6 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = cauli/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauli;
 				PRODUCT_NAME = "$(TARGET_NAME)";

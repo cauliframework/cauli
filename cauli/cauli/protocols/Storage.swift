@@ -11,6 +11,7 @@ import Foundation
 public protocol Storage {
     func store(_ originalRequest: URLRequest, for request: URLRequest)
     func store(_ response: URLResponse, for request: URLRequest)
+    @available(iOS 10.0, *)
     func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest)
     func store(_ data: Data, for request: URLRequest)
     func store(_ error: Error, for request: URLRequest)

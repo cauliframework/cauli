@@ -9,7 +9,11 @@
 import Foundation
 
 class PrintStorage: Storage {
+    func blub() -> String {
+        return ""
+    }
     func store(_ originalRequest: URLRequest, for request: URLRequest) {
+        blub()
         print("store designated request \(request) for originalRequest \(originalRequest)")
     }
     
@@ -18,6 +22,7 @@ class PrintStorage: Storage {
         print("store response \(response) for request \(request)")
     }
     
+    @available(iOS 10.0, *)
     func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
         print("store metrics for request")
 //        print("store metrics \(metrics) for request \(request)")

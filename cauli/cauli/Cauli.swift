@@ -27,15 +27,16 @@ public class Cauli {
     func canHandle(_ request: URLRequest) -> Bool {
         guard florets.count > 0 else { return false }
         
-        var canHandle = false
+        var nextRequest: URLRequest? = request
         for floret in florets {
-            if floret.request(for: request) != nil {
-                canHandle = true
+            if let r = nextRequest {
+                nextRequest = floret.request(for: r)
+            } else {
                 break
             }
         }
         
-        return canHandle
+        return nextRequest != nil
     }
     
     func request(for request: URLRequest) -> URLRequest {
@@ -100,6 +101,7 @@ public class Cauli {
         return data
     }
     
+    @available(iOS 10.0, *)
     func collected(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
         storage.store(metrics, for: request)
     }

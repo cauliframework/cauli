@@ -79,6 +79,7 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
         urlProtocols.removeValue(forKey: task.taskIdentifier)
     }
     
+    @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         guard let originalRequest = task.originalRequest else { return }
         cauli.collected(metrics, for: originalRequest)

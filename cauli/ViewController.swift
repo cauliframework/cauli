@@ -24,16 +24,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        storage = MemoryStorage()
+        storage = PrintStorage()
         
         let cauli = Cauli(storage: storage)
+        let regex = try! NSRegularExpression(pattern: ".*htw.*", options: [])
+        
         cauli.florets = [
-            BlackHoleFloret(), StudiF3Rewrite(), StudiF4Authenticate()
+            BlackHoleFloret(), RegexFloret(regex: regex), URLRewriteFloret(replaceMe: "studi.f3.htw-berlin.de", withThis: "google.de"), StudiF4Authenticate()
         ]
         
         urlProtocolAdapter = URLProtocolAdapter(cauli: cauli)
         
-        let request = URLRequest(url: URL(string: "https://studi.f3.htw-berlin.de/~s0549433/")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 20)
+        let request = URLRequest(url: URL(string: "https://studi.f3.htw-berlin.de/")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 20)
         session.dataTask(with: request) { (data, response, error) in
             print(self.storage.records)
         }.resume()
