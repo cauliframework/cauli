@@ -13,14 +13,14 @@ struct MockedResponse {
     let response: URLResponse
 }
 
-class Cauli {
+public class Cauli {
     // todo florets initalizer to be static
-    var florets: [Floret] = []
+    public var florets: [Floret] = []
     // todo request cache useless
-//    var requestCache: [URLRequest:URLRequest] = [:]
+    //    var requestCache: [URLRequest:URLRequest] = [:]
     let storage: Storage
-
-    init(storage: Storage = PrintStorage()) {
+    
+    public init(storage: Storage = PrintStorage()) {
         self.storage = storage
     }
     

@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Adapter {
+public protocol Adapter {
     init(cauli: Cauli)
 }

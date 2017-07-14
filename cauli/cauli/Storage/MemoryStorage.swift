@@ -8,30 +8,32 @@
 
 import Foundation
 
-class MemoryStorage: Storage {
+public class MemoryStorage: Storage {
     private var storage: [URLRequest: NetworkRecord] = [:]
-
-    func store(_ originalRequest: URLRequest, for request: URLRequest) {
+    
+    public init() {}
+    
+    public func store(_ originalRequest: URLRequest, for request: URLRequest) {
         storage[request] = StaticNetworkRecord(originalRequest: originalRequest, request: request)
     }
     
-    func store(_ response: URLResponse, for request: URLRequest) {
+    public func store(_ response: URLResponse, for request: URLRequest) {
         storage[request]?.response = response
     }
-
-    func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
+    
+    public func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
         storage[request]?.metrics = metrics
     }
     
-    func store(_ data: Data, for request: URLRequest) {
+    public func store(_ data: Data, for request: URLRequest) {
         storage[request]?.data = data
     }
     
-    func store(_ error: Error, for request: URLRequest) {
+    public func store(_ error: Error, for request: URLRequest) {
         storage[request]?.error = error
     }
     
-    var records: [NetworkRecord] {
+    public var records: [NetworkRecord] {
         get {
             return storage.values.sorted(by: { $0.createdAt < $1.createdAt })
         }

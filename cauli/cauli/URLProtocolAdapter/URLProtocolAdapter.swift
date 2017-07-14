@@ -8,13 +8,13 @@
 
 import Foundation
 
-class URLProtocolAdapter:  NSObject, Adapter {
+public class URLProtocolAdapter:  NSObject, Adapter {
     
     let cauli: Cauli
     private(set) var urlSession: URLSession!
     fileprivate var urlProtocols: [Int:CauliURLProtocol] = [:]
-
-    required init(cauli: Cauli) {
+    
+    required public init(cauli: Cauli) {
         self.cauli = cauli
         super.init()
         let defaultC = URLSessionConfiguration.default
@@ -48,7 +48,7 @@ class URLProtocolAdapter:  NSObject, Adapter {
 }
 
 extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
         
         if let originalRequest = dataTask.originalRequest {
@@ -59,14 +59,14 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
         completionHandler(.allow)
     }
     
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier],
             let originalRequest = dataTask.originalRequest else { return }
-
+        
         urlProtocol.client?.urlProtocol(urlProtocol, didLoad: cauli.data(for: data, request: originalRequest))
     }
     
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let urlProtocol = urlProtocols[task.taskIdentifier] else { return }
         
         if let error = error, let originalRequest = task.originalRequest {
@@ -79,7 +79,7 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
         urlProtocols.removeValue(forKey: task.taskIdentifier)
     }
     
-    func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         guard let originalRequest = task.originalRequest else { return }
         cauli.collected(metrics, for: originalRequest)
     }

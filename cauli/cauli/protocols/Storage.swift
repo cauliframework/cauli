@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Storage {
+public protocol Storage {
     func store(_ originalRequest: URLRequest, for request: URLRequest)
     func store(_ response: URLResponse, for request: URLRequest)
     func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest)

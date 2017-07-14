@@ -8,24 +8,26 @@
 
 import Foundation
 
-class BlackHoleFloret: Floret {   
-    func request(for request: URLRequest) -> URLRequest? {
+public class BlackHoleFloret: Floret {
+    public init() {}
+    
+    public func request(for request: URLRequest) -> URLRequest? {
         return request
     }
     
-    func response(for request: URLRequest) -> URLResponse? {
+    public func response(for request: URLRequest) -> URLResponse? {
         return nil//URLResponse(url: URL(string: "https://partyparty.de")!, mimeType: nil, expectedContentLength: 1234, textEncodingName: nil)
     }
     
-    func response(for response: URLResponse) -> URLResponse? {
+    public func response(for response: URLResponse) -> URLResponse? {
         return response
     }
     
-    func data(for data: Data?, request: URLRequest) -> Data? {
+    public func data(for data: Data?, request: URLRequest) -> Data? {
         return data
     }
-
-    func error(for request: URLRequest) -> Error? {
+    
+    public func error(for request: URLRequest) -> Error? {
         return nil
     }
 }

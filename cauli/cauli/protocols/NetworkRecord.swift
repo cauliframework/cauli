@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol NetworkRecord {
+public protocol NetworkRecord {
     var createdAt: Date { get }
     var originalRequest: URLRequest { get }
     var request: URLRequest { get }
