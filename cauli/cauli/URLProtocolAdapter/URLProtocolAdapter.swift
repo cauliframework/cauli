@@ -16,9 +16,7 @@ class URLProtocolAdapter:  NSObject, Adapter {
 
     required init(cauli: Cauli) {
         self.cauli = cauli
-        
         super.init()
-        
         let defaultC = URLSessionConfiguration.default
         defaultC.protocolClasses = defaultC.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
         self.urlSession = URLSession(configuration: defaultC, delegate: self, delegateQueue: nil)
@@ -64,9 +62,8 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier],
             let originalRequest = dataTask.originalRequest else { return }
-        
-        cauli.didLoad(data, for: originalRequest)
-        urlProtocol.client?.urlProtocol(urlProtocol, didLoad: data)
+
+        urlProtocol.client?.urlProtocol(urlProtocol, didLoad: cauli.data(for: data, request: originalRequest))
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

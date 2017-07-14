@@ -28,6 +28,10 @@ class StudiF3Rewrite: Floret {
         return response
     }
     
+    func data(for data: Data?, request: URLRequest) -> Data? {
+        return data
+    }
+    
     func error(for request: URLRequest) -> Error? {
         return nil
     }

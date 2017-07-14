@@ -39,7 +39,9 @@ class Cauli {
     }
     
     func request(for request: URLRequest) -> URLRequest {
-        let designatedRequest = florets.reduce(request, { $1.request(for: $0) ?? request })
+        let designatedRequest = florets.reduce(request, {
+            return $1.request(for: $0) ?? $0
+        })
         
         storage.store(request, for: designatedRequest)
         
@@ -93,8 +95,9 @@ class Cauli {
         return designatedResponse
     }
     
-    func didLoad(_ data: Data, for request: URLRequest) {
+    func data(for data: Data, request: URLRequest) -> Data {
         storage.store(data, for: request)
+        return data
     }
     
     func collected(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {

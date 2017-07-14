@@ -20,6 +20,10 @@ class BlackHoleFloret: Floret {
     func response(for response: URLResponse) -> URLResponse? {
         return response
     }
+    
+    func data(for data: Data?, request: URLRequest) -> Data? {
+        return data
+    }
 
     func error(for request: URLRequest) -> Error? {
         return nil

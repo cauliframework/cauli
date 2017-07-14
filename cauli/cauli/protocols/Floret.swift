@@ -12,5 +12,6 @@ public protocol Floret {
     func request(for request: URLRequest) -> URLRequest?
     func response(for request: URLRequest) -> URLResponse?
     func response(for response: URLResponse) -> URLResponse?
+    func data(for data: Data?, request: URLRequest) -> Data?
     func error(for request: URLRequest) -> Error?
 }
