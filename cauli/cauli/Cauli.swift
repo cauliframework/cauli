@@ -26,23 +26,14 @@ public class Cauli {
     
     func canHandle(_ request: URLRequest) -> Bool {
         guard florets.count > 0 else { return false }
-        
-        var nextRequest: URLRequest? = request
-        for floret in florets {
-            if let r = nextRequest {
-                nextRequest = floret.request(for: r)
-            } else {
-                break
-            }
-        }
-        
-        return nextRequest != nil
+        return florets.contains(where: { $0.request(for: request) != nil })
     }
     
     func request(for request: URLRequest) -> URLRequest {
-        let designatedRequest = florets.reduce(request, {
+        var designatedRequest = florets.reduce(request, {
             return $1.request(for: $0) ?? $0
         })
+        designatedRequest.addValue(String(Date().timeIntervalSince1970), forHTTPHeaderField: "X-Cauli")
         
         storage.store(request, for: designatedRequest)
         
@@ -52,19 +43,19 @@ public class Cauli {
     // fragen: resposne for request -> response dann nochmals alles itereiren vom response?
     // todo rethink. error should be extra case
     func response(for request: URLRequest) -> MockedResponse? {
-        guard let response = florets.reduce(nil, { (response, floret) -> URLResponse? in
-            if let response = response {
-                return response
+        let result = florets.reduce(nil) { (result, floret) -> (response: URLResponse, data: Data)? in
+            if let result = result {
+                return result
             }
             
-            return floret.response(for: request)
-        }) else { return nil }
+            guard let r = floret.response(for: request) else { return nil }
+            return (r, floret.data(for: nil, request: request) ?? Data())
+        }
         
-        let data = "YEAH".data(using: .utf8)!
+        guard let response = result?.response, let data = result?.data else { return nil }
         
         storage.store(data, for: request)
         storage.store(response, for: request)
-        
         return MockedResponse(data: data, response: response)
     }
     
@@ -97,8 +88,12 @@ public class Cauli {
     }
     
     func data(for data: Data, request: URLRequest) -> Data {
-        storage.store(data, for: request)
-        return data
+        let designatedData = florets.reduce(data, {
+            return $1.data(for: $0, request: request) ?? $0
+        })
+        
+        storage.store(designatedData, for: request)
+        return designatedData
     }
     
     @available(iOS 10.0, *)
