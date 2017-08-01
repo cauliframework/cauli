@@ -13,7 +13,11 @@ public protocol NetworkRecord {
     var originalRequest: URLRequest { get }
     var request: URLRequest { get }
     var response: URLResponse? { get set }
-    var metrics: URLSessionTaskMetrics? { get set }
     var data: Data? { get set }
     var error: Error? { get set }
+}
+
+@available(iOS 10.0, *)
+public protocol ExtendedNetworkRecord: NetworkRecord {
+    var metrics: URLSessionTaskMetrics? { get set }
 }

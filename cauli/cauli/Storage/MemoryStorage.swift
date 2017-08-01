@@ -14,15 +14,21 @@ public class MemoryStorage: Storage {
     public init() {}
     
     public func store(_ originalRequest: URLRequest, for request: URLRequest) {
-        storage[request] = StaticNetworkRecord(originalRequest: originalRequest, request: request)
+        if #available(iOS 10, *) {
+            storage[request] = ExtendedStaticNetworkRecord(originalRequest: originalRequest, request: request)
+        } else {
+            storage[request] = StaticNetworkRecord(originalRequest: originalRequest, request: request)
+        }
     }
     
     public func store(_ response: URLResponse, for request: URLRequest) {
         storage[request]?.response = response
     }
     
+    @available(iOS 10.0, *)
     public func store(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
-        storage[request]?.metrics = metrics
+        guard var storage = storage[request] as? ExtendedNetworkRecord else { return }
+        storage.metrics = metrics
     }
     
     public func store(_ data: Data, for request: URLRequest) {

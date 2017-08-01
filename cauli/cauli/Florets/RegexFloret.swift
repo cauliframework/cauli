@@ -8,15 +8,15 @@
 
 import Foundation
 
-class RegexFloret: Floret {
+public class RegexFloret: Floret {
     
     let regex: NSRegularExpression
     
-    init(regex: NSRegularExpression) {
+    public init(regex: NSRegularExpression) {
         self.regex = regex
     }
     
-    func request(for request: URLRequest) -> URLRequest? {
+    public func request(for request: URLRequest) -> URLRequest? {
         if let absoluteUrlString = request.url?.absoluteString,
             self.regex.matches(in: absoluteUrlString, range: NSMakeRange(0, absoluteUrlString.utf16.count)).count > 0 {
             return request
@@ -25,19 +25,19 @@ class RegexFloret: Floret {
         return nil
     }
     
-    func response(for request: URLRequest) -> URLResponse? {
+    public func response(for request: URLRequest) -> URLResponse? {
         return nil
     }
     
-    func response(for response: URLResponse) -> URLResponse? {
+    public func response(for response: URLResponse) -> URLResponse? {
         return response
     }
     
-    func data(for data: Data?, request: URLRequest) -> Data? {
+    public func data(for data: Data?, request: URLRequest) -> Data? {
         return data
     }
     
-    func error(for request: URLRequest) -> Error? {
+    public func error(for request: URLRequest) -> Error? {
         return nil
     }
 }

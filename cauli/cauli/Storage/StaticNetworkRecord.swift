@@ -13,13 +13,31 @@ struct StaticNetworkRecord: NetworkRecord {
     var originalRequest: URLRequest
     var request: URLRequest
     var response: URLResponse?
-    var metrics: URLSessionTaskMetrics?
     var data: Data?
     var error: Error?
 }
 
 extension StaticNetworkRecord {
-    init(originalRequest: URLRequest, request: URLRequest) {
+    public init(originalRequest: URLRequest, request: URLRequest) {
+        self.originalRequest = originalRequest
+        self.request = request
+    }
+}
+
+@available(iOS 10.0, *)
+struct ExtendedStaticNetworkRecord: ExtendedNetworkRecord {
+    var createdAt: Date = Date()
+    var originalRequest: URLRequest
+    var request: URLRequest
+    var response: URLResponse?
+    var data: Data?
+    var error: Error?
+    var metrics: URLSessionTaskMetrics?
+}
+
+@available(iOS 10.0, *)
+extension ExtendedStaticNetworkRecord {
+    public init(originalRequest: URLRequest, request: URLRequest) {
         self.originalRequest = originalRequest
         self.request = request
     }
