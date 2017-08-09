@@ -13,6 +13,11 @@ import Nimble
 
 class CauliSpec: QuickSpec {
     let cauli: Cauli = Cauli()
+    let regexFloret: RegexFloret = {
+        let regex = try! NSRegularExpression(pattern: ".*tbointeractive.*", options: [])
+        return RegexFloret(regex: regex)
+    }()
+    let rewrite = URLRewriteFloret(replaceMe: "github", withThis: "tbointeractive")
     
     override func spec() {
         describe("canHandle") {
@@ -21,15 +26,15 @@ class CauliSpec: QuickSpec {
                 expect(self.cauli.canHandle(request)).to(equal(false))
             }
             
-            it("should return true for an tbointeractive.com request with ComDomainFloret as floret") {
-                self.cauli.florets = [ComDomainFloret()]
+            it("should return true for an tbointeractive.com request with RegexFloret") {
+                self.cauli.florets = [self.regexFloret]
                 let request = URLRequest(url: URL(string: "http://tbointeractive.com")!)
                 expect(self.cauli.canHandle(request)).to(equal(true))
             }
             
-            it("should return false for an tbointeractive.de request with ComDomainFloret as floret") {
-                self.cauli.florets = [ComDomainFloret()]
-                let request = URLRequest(url: URL(string: "http://tbointeractive.de")!)
+            it("should return false for an google.com request with RegexFloret") {
+                self.cauli.florets = [self.regexFloret]
+                let request = URLRequest(url: URL(string: "http://google.com")!)
                 expect(self.cauli.canHandle(request)).to(equal(false))
             }
         }
