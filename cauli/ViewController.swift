@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let regex = try! NSRegularExpression(pattern: ".*htw.*", options: [])
         
         cauli.florets = [
-            BlackHoleFloret(), RegexFloret(regex: regex), URLRewriteFloret(replaceMe: "studi.f3.htw-berlin.de", withThis: "google.de"), StudiF4Authenticate()
+            BlackHoleFloret(), RegexFloret(regex: regex), URLRewriteFloret(replaceMe: "studi.f3.htw-berlin.de", withThis: "google.de")
         ]
         
         urlProtocolAdapter = URLProtocolAdapter(cauli: cauli)

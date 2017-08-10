@@ -9,16 +9,30 @@
 import Foundation
 
 public class MemoryStorage: Storage {
-    private var storage: [URLRequest: NetworkRecord] = [:]
     
-    public init() {}
+    /// helper for remembering the order of the requests
+    private var orderedRequests: [URLRequest] = []
+    
+    private var storage: [URLRequest: NetworkRecord] = [:]
+    private let recordingLimit: Int
+    
+    public init(recordingLimit: Int = Int.max) {
+        self.recordingLimit = recordingLimit
+    }
     
     public func store(_ originalRequest: URLRequest, for request: URLRequest) {
+        if orderedRequests.count >= recordingLimit {
+            let requestToRemove = orderedRequests.remove(at: 0)
+            storage.removeValue(forKey: requestToRemove)
+        }
+        
         if #available(iOS 10, *) {
             storage[request] = ExtendedStaticNetworkRecord(originalRequest: originalRequest, request: request)
         } else {
             storage[request] = StaticNetworkRecord(originalRequest: originalRequest, request: request)
         }
+        
+        orderedRequests.append(request)
     }
     
     public func store(_ response: URLResponse, for request: URLRequest) {

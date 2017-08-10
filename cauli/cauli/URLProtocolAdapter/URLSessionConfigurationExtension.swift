@@ -14,9 +14,4 @@ extension URLSessionConfiguration {
         URLProtocolAdapter.register(for: configuration)
         return configuration
     }
-    
-//    override open class func initialize() {
-//        super.initialize()
-//        URLProtocolAdapter.swizzle()
-//    }
 }

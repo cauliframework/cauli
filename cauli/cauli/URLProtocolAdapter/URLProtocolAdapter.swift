@@ -36,7 +36,7 @@ public class URLProtocolAdapter:  NSObject, Adapter {
             urlProtocol.client?.urlProtocol(urlProtocol, didReceive: mockedResponse.response, cacheStoragePolicy: .allowed)
             urlProtocol.client?.urlProtocol(urlProtocol, didLoad: mockedResponse.data)
             urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
-        } else if let error = cauli.error(for: request) {
+        } else if let error = cauli.error(for: networkRequest) {
             urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
         } else {
             urlProtocols[dataTask.taskIdentifier] = urlProtocol
@@ -87,6 +87,10 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
 }
 
 extension URLProtocolAdapter {
+    public class func register() {
+        URLProtocol.registerClass(CauliURLProtocol.self)
+    }
+    
     public class func register(for configuration: URLSessionConfiguration) {
         let protocolClasses = configuration.protocolClasses ?? []
         configuration.protocolClasses = ([CauliURLProtocol.self] + protocolClasses)

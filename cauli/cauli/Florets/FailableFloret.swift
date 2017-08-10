@@ -7,11 +7,12 @@
 //
 
 import Foundation
-import cauli
 
-public struct FailableError: Error {}
+public struct FailableFloretError: Error {}
 
 public class FailableFloret: Floret {
+    public var failInterval = 3
+    private var requestCounter = 0
     
     public func request(for request: URLRequest) -> URLRequest? {
         return request
@@ -25,14 +26,11 @@ public class FailableFloret: Floret {
         return response
     }
     
-    public var failInterval = 3
-    private var requestCounter = 0
-    
     public func error(for request: URLRequest) -> Error? {
         requestCounter += 1
         
         if requestCounter % failInterval == 0 {
-            return FailableError()
+            return FailableFloretError()
         }
         
         return nil
