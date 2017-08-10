@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Stores all the information defined in the Storage protocol in the RAM.
+/// It uses the StaticNetworkStruct and ExtendedStaticNetworkStruct as dataSource for those informations.
 public class MemoryStorage: Storage {
     
     /// helper for remembering the order of the requests
@@ -16,6 +18,9 @@ public class MemoryStorage: Storage {
     private var storage: [URLRequest: NetworkRecord] = [:]
     private let recordingLimit: Int
     
+    /// Determines how many NetworkRecords should be stored in RAM
+    ///
+    /// - Parameter recordingLimit: number of NetworkRecords to store. By default it is Int.max
     public init(recordingLimit: Int = Int.max) {
         self.recordingLimit = recordingLimit
     }

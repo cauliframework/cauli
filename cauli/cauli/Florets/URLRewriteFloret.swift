@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This Floret checks the URLRequest for matching a specfic substring. On a match, the substring is replaced by a predefined value.
 public class URLRewriteFloret: Floret {
     
     let replacementString: String

@@ -8,6 +8,13 @@
 
 import Foundation
 
+/// DataStructure to represent
+/// a request with additional informations.
+/// Such as:
+/// * createdAt date
+/// * response
+/// * data
+/// * error
 public protocol NetworkRecord {
     var createdAt: Date { get }
     var originalRequest: URLRequest { get }
@@ -17,6 +24,9 @@ public protocol NetworkRecord {
     var error: Error? { get set }
 }
 
+
+/// Extends the NetworkRecord dataStructure
+/// for supporting URLSessionTaskMetrics
 @available(iOS 10.0, *)
 public protocol ExtendedNetworkRecord: NetworkRecord {
     var metrics: URLSessionTaskMetrics? { get set }

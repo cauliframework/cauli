@@ -8,15 +8,13 @@ Pod::Spec.new do |s|
                     cauli is a tool for recording and manipulating network traffic.
                    DESC
 
-  s.homepage     = "https://bitbucket.org/Achelsmar/cauli"
-
   s.license      = "MIT"
 
   s.author      = { "Pascal Stüdlein" => "stuedlein@tbointeractive.com" }
 
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "git@private:Achelsmar/cauli.git", :branch => 'develop' }
+  s.source       = { :git => "git@bitbucket.org:Achelsmar/cauli.git", :branch => 'develop' }
 
   s.source_files = "cauli/cauli/**/*.swift"
 end
