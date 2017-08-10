@@ -4,6 +4,8 @@ Pod::Spec.new do |s|
   s.version      = "0.1"
   s.summary      = "Stay health. Eat cauli."
 
+  s.homepage     = "https://bitbucket.org/Achelsmar/cauli"
+
   s.description  = <<-DESC
                     cauli is a tool for recording and manipulating network traffic.
                    DESC
