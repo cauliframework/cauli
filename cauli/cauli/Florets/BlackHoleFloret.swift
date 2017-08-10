@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Announces to handle all requests without modifing the request, data or response.
 public class BlackHoleFloret: Floret {
     public init() {}
     

@@ -8,16 +8,18 @@
 
 import Foundation
 
+/// DataStructure used by a Cauli instance to bind Data to a URLResponse.
 struct MockedResponse {
     let data: Data
     let response: URLResponse
 }
 
+/// Cauli holds references to n Florets and one Storage.
+/// An Adapter is tunneling the network traffic through an instance of Cauli.
+/// It offers Florets the possibility to modify the traffic.
+/// In the end the (modified) traffic is stored in a Storage instance.
 public class Cauli {
-    // todo florets initalizer to be static
     public var florets: [Floret] = []
-    // todo request cache useless
-    //    var requestCache: [URLRequest:URLRequest] = [:]
     let storage: Storage
     
     public init(storage: Storage = PrintStorage()) {
@@ -40,8 +42,6 @@ public class Cauli {
         return designatedRequest
     }
     
-    // fragen: resposne for request -> response dann nochmals alles itereiren vom response?
-    // todo rethink. error should be extra case
     func response(for request: URLRequest) -> MockedResponse? {
         let result = florets.reduce(nil) { (result, floret) -> (response: URLResponse, data: Data)? in
             if let result = result {
@@ -60,7 +60,6 @@ public class Cauli {
     }
     
     func error(for error: Error, request: URLRequest) -> Error {
-        // todo florets?
         storage.store(error, for: request)
         return error
     }

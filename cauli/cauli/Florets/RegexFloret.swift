@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// This Floret is typically used as first floret of a cauli instance and acts as filter. 
+/// It checks if the request url is matching the predefined regular expression.
+/// On a match it announce to handle this specific request. 
+/// It won't modify the request itself, the data or the response.
 public class RegexFloret: Floret {
     
     let regex: NSRegularExpression
