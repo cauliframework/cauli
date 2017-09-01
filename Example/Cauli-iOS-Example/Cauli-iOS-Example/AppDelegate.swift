@@ -1,22 +1,36 @@
 //
 //  AppDelegate.swift
-//  cauli
+//  TestApplication
 //
-//  Created by Pascal Stüdlein on 07.07.17.
-//  Copyright © 2017 TBO Interactive GmbH & Co KG. All rights reserved.
+//  Created by Pascal Stüdlein on 20.07.17.
+//  Copyright © 2017 HTW Berlin. All rights reserved.
 //
 
 import UIKit
+import Cauli
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var adapter: URLProtocolAdapter!
+    var memoryStorage: MemoryStorage!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        URLProtocolAdapter.swizzle()
-//        URLSessionConfiguration.default
-        // Override point for customization after application launch.
+        
+        memoryStorage = MemoryStorage()
+        
+        let cauli: Cauli = Cauli(storage: memoryStorage)
+        let regex = try! NSRegularExpression(pattern: ".*htw-berlin.*", options: [])
+        
+        let regexFloret = RegexFloret(regex: regex)
+        let rewriteFloret = URLRewriteFloret(replaceMe: "www.f3.htw-berlin.de", withThis: "www.f4.htw-berlin.de")
+        let fakeJsonFloret = FakeJSONFloret()
+        let failRequestFloret = FailRequestFloret(urlToFail: "https://www.f2.htw-berlin.de")
+        
+        cauli.florets = [regexFloret, rewriteFloret, fakeJsonFloret, failRequestFloret]
+        adapter = URLProtocolAdapter(cauli: cauli)
+
         return true
     }
 

@@ -7,239 +7,243 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5079A91E1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */; };
-		50BFE5E21F3AFB110076578F /* RegexFloretSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BFE5E01F3AFB110076578F /* RegexFloretSpecs.swift */; };
-		50BFE5E31F3AFB110076578F /* URLRewriteFloretSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BFE5E11F3AFB110076578F /* URLRewriteFloretSpec.swift */; };
-		6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */; };
-		8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AC071F0F8D400017D962 /* Cauli.swift */; };
-		8C5B53F31F16285700AC49BD /* NetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B53F21F16285700AC49BD /* NetworkRecord.swift */; };
-		8C5B53F51F1628EA00AC49BD /* StaticNetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */; };
-		8C6E644A1F1906BC00BD98E6 /* FailableFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E64491F1906BC00BD98E6 /* FailableFloret.swift */; };
-		8C6E644C1F190DC900BD98E6 /* RegexFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E644B1F190DC900BD98E6 /* RegexFloret.swift */; };
-		8C6E644E1F19116D00BD98E6 /* URLRewriteFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E644D1F19116D00BD98E6 /* URLRewriteFloret.swift */; };
-		8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0D81F0F8F210003AC87 /* Floret.swift */; };
-		8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DA1F0F90900003AC87 /* Storage.swift */; };
-		8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */; };
-		8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */; };
-		8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */; };
-		8CC0F0E51F0F94770003AC87 /* CauliSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */; };
-		8CC0F0EA1F0FB0F10003AC87 /* PrintStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */; };
-		8CC0F0EC1F0FB3450003AC87 /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */; };
-		8CC0F0F01F0FBC090003AC87 /* BlackHoleFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */; };
-		8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */; };
-		8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */; };
-		8CD296FF1F0F8B3A004F7CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */; };
-		8CD297011F0F8B3A004F7CBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD297001F0F8B3A004F7CBC /* Assets.xcassets */; };
-		8CD297041F0F8B3A004F7CBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */; };
-		A48F502A5E3F4DD77189ABCE /* Pods_cauliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */; };
+		1FEBA73D1F507C1D00B1D67A /* cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEBA7331F507C1D00B1D67A /* cauli.framework */; };
+		1FEBA7441F507C1D00B1D67A /* cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEBA7361F507C1D00B1D67A /* cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FEBA7601F507C6900B1D67A /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA74D1F507C6900B1D67A /* Cauli.swift */; };
+		1FEBA7611F507C6900B1D67A /* BlackHoleFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA74F1F507C6900B1D67A /* BlackHoleFloret.swift */; };
+		1FEBA7621F507C6900B1D67A /* FailableFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7501F507C6900B1D67A /* FailableFloret.swift */; };
+		1FEBA7631F507C6900B1D67A /* RegexFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7511F507C6900B1D67A /* RegexFloret.swift */; };
+		1FEBA7641F507C6900B1D67A /* URLRewriteFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7521F507C6900B1D67A /* URLRewriteFloret.swift */; };
+		1FEBA7651F507C6900B1D67A /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7541F507C6900B1D67A /* Adapter.swift */; };
+		1FEBA7661F507C6900B1D67A /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7551F507C6900B1D67A /* Floret.swift */; };
+		1FEBA7671F507C6900B1D67A /* NetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7561F507C6900B1D67A /* NetworkRecord.swift */; };
+		1FEBA7681F507C6900B1D67A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7571F507C6900B1D67A /* Storage.swift */; };
+		1FEBA7691F507C6900B1D67A /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7591F507C6900B1D67A /* MemoryStorage.swift */; };
+		1FEBA76A1F507C6900B1D67A /* PrintStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75A1F507C6900B1D67A /* PrintStorage.swift */; };
+		1FEBA76B1F507C6900B1D67A /* StaticNetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75B1F507C6900B1D67A /* StaticNetworkRecord.swift */; };
+		1FEBA76C1F507C6900B1D67A /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75D1F507C6900B1D67A /* CauliURLProtocol.swift */; };
+		1FEBA76D1F507C6900B1D67A /* URLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75E1F507C6900B1D67A /* URLProtocolAdapter.swift */; };
+		1FEBA76E1F507C6900B1D67A /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75F1F507C6900B1D67A /* URLSessionConfigurationExtension.swift */; };
+		1FEBA7711F507C8600B1D67A /* ComDomainFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7701F507C8600B1D67A /* ComDomainFloret.swift */; };
+		1FEBA7761F507C8C00B1D67A /* CauliSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7731F507C8C00B1D67A /* CauliSpecs.swift */; };
+		1FEBA7771F507C8C00B1D67A /* RegexFloretSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7741F507C8C00B1D67A /* RegexFloretSpecs.swift */; };
+		1FEBA7781F507C8C00B1D67A /* URLRewriteFloretSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7751F507C8C00B1D67A /* URLRewriteFloretSpec.swift */; };
+		744519B2B7D587A890395A1E /* Pods_cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77462D9C973C06A250D97C70 /* Pods_cauli.framework */; };
+		897BAF9DE57F5661654D167A /* Pods_cauliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620546DE984EEE8B82AE5554 /* Pods_cauliTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8CD2970B1F0F8B3A004F7CBC /* PBXContainerItemProxy */ = {
+		1FEBA73E1F507C1D00B1D67A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8CD296EE1F0F8B3A004F7CBC /* Project object */;
+			containerPortal = 1FEBA72A1F507C1D00B1D67A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8CD296F51F0F8B3A004F7CBC;
+			remoteGlobalIDString = 1FEBA7321F507C1D00B1D67A;
 			remoteInfo = cauli;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24B0192165EEDFFF03A486AD /* Pods-cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.debug.xcconfig"; sourceTree = "<group>"; };
-		3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.release.xcconfig"; sourceTree = "<group>"; };
-		5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
-		50BFE5E01F3AFB110076578F /* RegexFloretSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexFloretSpecs.swift; sourceTree = "<group>"; };
-		50BFE5E11F3AFB110076578F /* URLRewriteFloretSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRewriteFloretSpec.swift; sourceTree = "<group>"; };
-		6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.debug.xcconfig"; sourceTree = "<group>"; };
-		817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.release.xcconfig"; sourceTree = "<group>"; };
-		8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C30AC071F0F8D400017D962 /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
-		8C5B53F21F16285700AC49BD /* NetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRecord.swift; sourceTree = "<group>"; };
-		8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNetworkRecord.swift; sourceTree = "<group>"; };
-		8C6E64491F1906BC00BD98E6 /* FailableFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailableFloret.swift; sourceTree = "<group>"; };
-		8C6E644B1F190DC900BD98E6 /* RegexFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexFloret.swift; sourceTree = "<group>"; };
-		8C6E644D1F19116D00BD98E6 /* URLRewriteFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRewriteFloret.swift; sourceTree = "<group>"; };
-		8CC0F0D81F0F8F210003AC87 /* Floret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
-		8CC0F0DA1F0F90900003AC87 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
-		8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolAdapter.swift; sourceTree = "<group>"; };
-		8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
-		8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliSpecs.swift; sourceTree = "<group>"; };
-		8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintStorage.swift; sourceTree = "<group>"; };
-		8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
-		8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHoleFloret.swift; sourceTree = "<group>"; };
-		8CD296F61F0F8B3A004F7CBC /* cauli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cauli.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8CD296FE1F0F8B3A004F7CBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8CD297001F0F8B3A004F7CBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8CD297031F0F8B3A004F7CBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8CD297051F0F8B3A004F7CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CD2970A1F0F8B3A004F7CBC /* cauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CD297101F0F8B3A004F7CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0037452172F0699B4B491CA4 /* Pods-cauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1FEBA7331F507C1D00B1D67A /* cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FEBA7361F507C1D00B1D67A /* cauli.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cauli.h; sourceTree = "<group>"; };
+		1FEBA7371F507C1D00B1D67A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FEBA73C1F507C1D00B1D67A /* cauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FEBA7431F507C1D00B1D67A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FEBA74D1F507C6900B1D67A /* Cauli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
+		1FEBA74F1F507C6900B1D67A /* BlackHoleFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHoleFloret.swift; sourceTree = "<group>"; };
+		1FEBA7501F507C6900B1D67A /* FailableFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailableFloret.swift; sourceTree = "<group>"; };
+		1FEBA7511F507C6900B1D67A /* RegexFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexFloret.swift; sourceTree = "<group>"; };
+		1FEBA7521F507C6900B1D67A /* URLRewriteFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRewriteFloret.swift; sourceTree = "<group>"; };
+		1FEBA7541F507C6900B1D67A /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		1FEBA7551F507C6900B1D67A /* Floret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
+		1FEBA7561F507C6900B1D67A /* NetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRecord.swift; sourceTree = "<group>"; };
+		1FEBA7571F507C6900B1D67A /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		1FEBA7591F507C6900B1D67A /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		1FEBA75A1F507C6900B1D67A /* PrintStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintStorage.swift; sourceTree = "<group>"; };
+		1FEBA75B1F507C6900B1D67A /* StaticNetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNetworkRecord.swift; sourceTree = "<group>"; };
+		1FEBA75D1F507C6900B1D67A /* CauliURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		1FEBA75E1F507C6900B1D67A /* URLProtocolAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolAdapter.swift; sourceTree = "<group>"; };
+		1FEBA75F1F507C6900B1D67A /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
+		1FEBA7701F507C8600B1D67A /* ComDomainFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComDomainFloret.swift; sourceTree = "<group>"; };
+		1FEBA7731F507C8C00B1D67A /* CauliSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliSpecs.swift; sourceTree = "<group>"; };
+		1FEBA7741F507C8C00B1D67A /* RegexFloretSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexFloretSpecs.swift; sourceTree = "<group>"; };
+		1FEBA7751F507C8C00B1D67A /* URLRewriteFloretSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRewriteFloretSpec.swift; sourceTree = "<group>"; };
+		5625247FD7123A3A110B3910 /* Pods-cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.release.xcconfig"; sourceTree = "<group>"; };
+		620546DE984EEE8B82AE5554 /* Pods_cauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77462D9C973C06A250D97C70 /* Pods_cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F3C42B87F272CB13B7213C2 /* Pods-cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauli/Pods-cauli.debug.xcconfig"; sourceTree = "<group>"; };
+		D00D29CFEB09E4DD95567559 /* Pods-cauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8CD296F31F0F8B3A004F7CBC /* Frameworks */ = {
+		1FEBA72F1F507C1D00B1D67A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D78D6FF8D15248465C1A554 /* Pods_cauli.framework in Frameworks */,
+				744519B2B7D587A890395A1E /* Pods_cauli.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CD297071F0F8B3A004F7CBC /* Frameworks */ = {
+		1FEBA7391F507C1D00B1D67A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A48F502A5E3F4DD77189ABCE /* Pods_cauliTests.framework in Frameworks */,
+				1FEBA73D1F507C1D00B1D67A /* cauli.framework in Frameworks */,
+				897BAF9DE57F5661654D167A /* Pods_cauliTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7016BE2676A8DF146D7E8999 /* Frameworks */ = {
+		1FEBA7291F507C1D00B1D67A = {
 			isa = PBXGroup;
 			children = (
-				CCB36AE92B4AC2566D79201E /* Pods_cauli.framework */,
-				8A62351B6C6F9ED458153592 /* Pods_cauliTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		851E745C5AA7957716246AB9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				24B0192165EEDFFF03A486AD /* Pods-cauli.debug.xcconfig */,
-				817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */,
-				6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */,
-				3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		8C30AC001F0F8B920017D962 /* cauli */ = {
-			isa = PBXGroup;
-			children = (
-				8CC0F0EE1F0FBBED0003AC87 /* Florets */,
-				8CC0F0DE1F0F91AC0003AC87 /* Storage */,
-				8C30AC061F0F8C320017D962 /* URLProtocolAdapter */,
-				8C30AC051F0F8C2A0017D962 /* protocols */,
-				8C30AC071F0F8D400017D962 /* Cauli.swift */,
-			);
-			path = cauli;
-			sourceTree = "<group>";
-		};
-		8C30AC051F0F8C2A0017D962 /* protocols */ = {
-			isa = PBXGroup;
-			children = (
-				8CC0F0DC1F0F90B40003AC87 /* Adapter.swift */,
-				8CC0F0D81F0F8F210003AC87 /* Floret.swift */,
-				8CC0F0DA1F0F90900003AC87 /* Storage.swift */,
-				8C5B53F21F16285700AC49BD /* NetworkRecord.swift */,
-			);
-			path = protocols;
-			sourceTree = "<group>";
-		};
-		8C30AC061F0F8C320017D962 /* URLProtocolAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				8CC0F0EB1F0FB3450003AC87 /* CauliURLProtocol.swift */,
-				8CC0F0DF1F0F91C50003AC87 /* URLProtocolAdapter.swift */,
-				5079A91D1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift */,
-			);
-			path = URLProtocolAdapter;
-			sourceTree = "<group>";
-		};
-		8CC0F0DE1F0F91AC0003AC87 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				8CC0F0E11F0F91D70003AC87 /* MemoryStorage.swift */,
-				8CC0F0E91F0FB0F10003AC87 /* PrintStorage.swift */,
-				8C5B53F41F1628EA00AC49BD /* StaticNetworkRecord.swift */,
-			);
-			path = Storage;
-			sourceTree = "<group>";
-		};
-		8CC0F0E31F0F940A0003AC87 /* Specs */ = {
-			isa = PBXGroup;
-			children = (
-				8CC0F0E41F0F94770003AC87 /* CauliSpecs.swift */,
-				50BFE5E01F3AFB110076578F /* RegexFloretSpecs.swift */,
-				50BFE5E11F3AFB110076578F /* URLRewriteFloretSpec.swift */,
-			);
-			path = Specs;
-			sourceTree = "<group>";
-		};
-		8CC0F0EE1F0FBBED0003AC87 /* Florets */ = {
-			isa = PBXGroup;
-			children = (
-				8CC0F0EF1F0FBC090003AC87 /* BlackHoleFloret.swift */,
-				8C6E64491F1906BC00BD98E6 /* FailableFloret.swift */,
-				8C6E644B1F190DC900BD98E6 /* RegexFloret.swift */,
-				8C6E644D1F19116D00BD98E6 /* URLRewriteFloret.swift */,
-			);
-			path = Florets;
-			sourceTree = "<group>";
-		};
-		8CD296ED1F0F8B3A004F7CBC = {
-			isa = PBXGroup;
-			children = (
-				7016BE2676A8DF146D7E8999 /* Frameworks */,
-				851E745C5AA7957716246AB9 /* Pods */,
-				8CD296F71F0F8B3A004F7CBC /* Products */,
-				8CD296F81F0F8B3A004F7CBC /* cauli */,
-				8CD2970D1F0F8B3A004F7CBC /* cauliTests */,
+				1FEBA7351F507C1D00B1D67A /* cauli */,
+				1FEBA7401F507C1D00B1D67A /* cauliTests */,
+				1FEBA7341F507C1D00B1D67A /* Products */,
+				7FA9FC414B3F226F540B663E /* Pods */,
+				CBF1CD5A83B6A786FC98DC2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		8CD296F71F0F8B3A004F7CBC /* Products */ = {
+		1FEBA7341F507C1D00B1D67A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8CD296F61F0F8B3A004F7CBC /* cauli.app */,
-				8CD2970A1F0F8B3A004F7CBC /* cauliTests.xctest */,
+				1FEBA7331F507C1D00B1D67A /* cauli.framework */,
+				1FEBA73C1F507C1D00B1D67A /* cauliTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8CD296F81F0F8B3A004F7CBC /* cauli */ = {
+		1FEBA7351F507C1D00B1D67A /* cauli */ = {
 			isa = PBXGroup;
 			children = (
-				8C30AC001F0F8B920017D962 /* cauli */,
-				8CD296F91F0F8B3A004F7CBC /* AppDelegate.swift */,
-				8CD297001F0F8B3A004F7CBC /* Assets.xcassets */,
-				8CD297051F0F8B3A004F7CBC /* Info.plist */,
-				8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */,
-				8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */,
-				8CD296FB1F0F8B3A004F7CBC /* ViewController.swift */,
+				1FEBA74E1F507C6900B1D67A /* Florets */,
+				1FEBA7531F507C6900B1D67A /* protocols */,
+				1FEBA7581F507C6900B1D67A /* Storage */,
+				1FEBA75C1F507C6900B1D67A /* URLProtocolAdapter */,
+				1FEBA74D1F507C6900B1D67A /* Cauli.swift */,
+				1FEBA7361F507C1D00B1D67A /* cauli.h */,
+				1FEBA7371F507C1D00B1D67A /* Info.plist */,
 			);
 			path = cauli;
 			sourceTree = "<group>";
 		};
-		8CD2970D1F0F8B3A004F7CBC /* cauliTests */ = {
+		1FEBA7401F507C1D00B1D67A /* cauliTests */ = {
 			isa = PBXGroup;
 			children = (
-				8CC0F0E31F0F940A0003AC87 /* Specs */,
-				8CD297101F0F8B3A004F7CBC /* Info.plist */,
+				1FEBA76F1F507C8600B1D67A /* Florets */,
+				1FEBA7721F507C8C00B1D67A /* Specs */,
+				1FEBA7431F507C1D00B1D67A /* Info.plist */,
 			);
 			path = cauliTests;
 			sourceTree = "<group>";
 		};
+		1FEBA74E1F507C6900B1D67A /* Florets */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBA74F1F507C6900B1D67A /* BlackHoleFloret.swift */,
+				1FEBA7501F507C6900B1D67A /* FailableFloret.swift */,
+				1FEBA7511F507C6900B1D67A /* RegexFloret.swift */,
+				1FEBA7521F507C6900B1D67A /* URLRewriteFloret.swift */,
+			);
+			path = Florets;
+			sourceTree = "<group>";
+		};
+		1FEBA7531F507C6900B1D67A /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBA7541F507C6900B1D67A /* Adapter.swift */,
+				1FEBA7551F507C6900B1D67A /* Floret.swift */,
+				1FEBA7561F507C6900B1D67A /* NetworkRecord.swift */,
+				1FEBA7571F507C6900B1D67A /* Storage.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		1FEBA7581F507C6900B1D67A /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBA7591F507C6900B1D67A /* MemoryStorage.swift */,
+				1FEBA75A1F507C6900B1D67A /* PrintStorage.swift */,
+				1FEBA75B1F507C6900B1D67A /* StaticNetworkRecord.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		1FEBA75C1F507C6900B1D67A /* URLProtocolAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBA75D1F507C6900B1D67A /* CauliURLProtocol.swift */,
+				1FEBA75E1F507C6900B1D67A /* URLProtocolAdapter.swift */,
+				1FEBA75F1F507C6900B1D67A /* URLSessionConfigurationExtension.swift */,
+			);
+			path = URLProtocolAdapter;
+			sourceTree = "<group>";
+		};
+		1FEBA76F1F507C8600B1D67A /* Florets */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBA7701F507C8600B1D67A /* ComDomainFloret.swift */,
+			);
+			path = Florets;
+			sourceTree = "<group>";
+		};
+		1FEBA7721F507C8C00B1D67A /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBA7731F507C8C00B1D67A /* CauliSpecs.swift */,
+				1FEBA7741F507C8C00B1D67A /* RegexFloretSpecs.swift */,
+				1FEBA7751F507C8C00B1D67A /* URLRewriteFloretSpec.swift */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		7FA9FC414B3F226F540B663E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F3C42B87F272CB13B7213C2 /* Pods-cauli.debug.xcconfig */,
+				5625247FD7123A3A110B3910 /* Pods-cauli.release.xcconfig */,
+				0037452172F0699B4B491CA4 /* Pods-cauliTests.debug.xcconfig */,
+				D00D29CFEB09E4DD95567559 /* Pods-cauliTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CBF1CD5A83B6A786FC98DC2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77462D9C973C06A250D97C70 /* Pods_cauli.framework */,
+				620546DE984EEE8B82AE5554 /* Pods_cauliTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		1FEBA7301F507C1D00B1D67A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FEBA7441F507C1D00B1D67A /* cauli.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		8CD296F51F0F8B3A004F7CBC /* cauli */ = {
+		1FEBA7321F507C1D00B1D67A /* cauli */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CD297131F0F8B3A004F7CBC /* Build configuration list for PBXNativeTarget "cauli" */;
+			buildConfigurationList = 1FEBA7471F507C1D00B1D67A /* Build configuration list for PBXNativeTarget "cauli" */;
 			buildPhases = (
-				25160E5BC97CB31626EC5D32 /* [CP] Check Pods Manifest.lock */,
-				8CD296F21F0F8B3A004F7CBC /* Sources */,
-				8CD296F31F0F8B3A004F7CBC /* Frameworks */,
-				8CD296F41F0F8B3A004F7CBC /* Resources */,
-				24BCE84CBA626C46E218478C /* [CP] Embed Pods Frameworks */,
-				3AE5575B0569CFA193703E2E /* [CP] Copy Pods Resources */,
+				FDB87554241B2802D533AB79 /* [CP] Check Pods Manifest.lock */,
+				1FEBA72E1F507C1D00B1D67A /* Sources */,
+				1FEBA72F1F507C1D00B1D67A /* Frameworks */,
+				1FEBA7301F507C1D00B1D67A /* Headers */,
+				1FEBA7311F507C1D00B1D67A /* Resources */,
+				586B802F0900C8F361891DC4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,83 +251,78 @@
 			);
 			name = cauli;
 			productName = cauli;
-			productReference = 8CD296F61F0F8B3A004F7CBC /* cauli.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 1FEBA7331F507C1D00B1D67A /* cauli.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		8CD297091F0F8B3A004F7CBC /* cauliTests */ = {
+		1FEBA73B1F507C1D00B1D67A /* cauliTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CD297161F0F8B3A004F7CBC /* Build configuration list for PBXNativeTarget "cauliTests" */;
+			buildConfigurationList = 1FEBA74A1F507C1D00B1D67A /* Build configuration list for PBXNativeTarget "cauliTests" */;
 			buildPhases = (
-				18E1359BD32A15D29E1279EF /* [CP] Check Pods Manifest.lock */,
-				8CD297061F0F8B3A004F7CBC /* Sources */,
-				8CD297071F0F8B3A004F7CBC /* Frameworks */,
-				8CD297081F0F8B3A004F7CBC /* Resources */,
-				0091FA974B7884762FD1D123 /* [CP] Embed Pods Frameworks */,
-				8140E648983699D673B2DA24 /* [CP] Copy Pods Resources */,
+				FB0D417A51CB387C186EC352 /* [CP] Check Pods Manifest.lock */,
+				1FEBA7381F507C1D00B1D67A /* Sources */,
+				1FEBA7391F507C1D00B1D67A /* Frameworks */,
+				1FEBA73A1F507C1D00B1D67A /* Resources */,
+				7317E68D3FC67E3293895DDD /* [CP] Embed Pods Frameworks */,
+				3ECF09D4329D8B8B146D2BAB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8CD2970C1F0F8B3A004F7CBC /* PBXTargetDependency */,
+				1FEBA73F1F507C1D00B1D67A /* PBXTargetDependency */,
 			);
 			name = cauliTests;
 			productName = cauliTests;
-			productReference = 8CD2970A1F0F8B3A004F7CBC /* cauliTests.xctest */;
+			productReference = 1FEBA73C1F507C1D00B1D67A /* cauliTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8CD296EE1F0F8B3A004F7CBC /* Project object */ = {
+		1FEBA72A1F507C1D00B1D67A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "TBO Interactive GmbH & Co KG";
+				ORGANIZATIONNAME = "TBO Interactive GmbH & CO KG";
 				TargetAttributes = {
-					8CD296F51F0F8B3A004F7CBC = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-					};
-					8CD297091F0F8B3A004F7CBC = {
+					1FEBA7321F507C1D00B1D67A = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 8CD296F51F0F8B3A004F7CBC;
+					};
+					1FEBA73B1F507C1D00B1D67A = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 8CD296F11F0F8B3A004F7CBC /* Build configuration list for PBXProject "cauli" */;
+			buildConfigurationList = 1FEBA72D1F507C1D00B1D67A /* Build configuration list for PBXProject "cauli" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = 8CD296ED1F0F8B3A004F7CBC;
-			productRefGroup = 8CD296F71F0F8B3A004F7CBC /* Products */;
+			mainGroup = 1FEBA7291F507C1D00B1D67A;
+			productRefGroup = 1FEBA7341F507C1D00B1D67A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8CD296F51F0F8B3A004F7CBC /* cauli */,
-				8CD297091F0F8B3A004F7CBC /* cauliTests */,
+				1FEBA7321F507C1D00B1D67A /* cauli */,
+				1FEBA73B1F507C1D00B1D67A /* cauliTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8CD296F41F0F8B3A004F7CBC /* Resources */ = {
+		1FEBA7311F507C1D00B1D67A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD297041F0F8B3A004F7CBC /* LaunchScreen.storyboard in Resources */,
-				8CD297011F0F8B3A004F7CBC /* Assets.xcassets in Resources */,
-				8CD296FF1F0F8B3A004F7CBC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CD297081F0F8B3A004F7CBC /* Resources */ = {
+		1FEBA73A1F507C1D00B1D67A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -333,82 +332,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0091FA974B7884762FD1D123 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		18E1359BD32A15D29E1279EF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		24BCE84CBA626C46E218478C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli/Pods-cauli-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		25160E5BC97CB31626EC5D32 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		3AE5575B0569CFA193703E2E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli/Pods-cauli-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8140E648983699D673B2DA24 /* [CP] Copy Pods Resources */ = {
+		3ECF09D4329D8B8B146D2BAB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -423,76 +347,129 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		586B802F0900C8F361891DC4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli/Pods-cauli-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7317E68D3FC67E3293895DDD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB0D417A51CB387C186EC352 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cauliTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDB87554241B2802D533AB79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cauli-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8CD296F21F0F8B3A004F7CBC /* Sources */ = {
+		1FEBA72E1F507C1D00B1D67A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C30AC081F0F8D400017D962 /* Cauli.swift in Sources */,
-				5079A91E1F124DD2004BBB4F /* URLSessionConfigurationExtension.swift in Sources */,
-				8C6E644E1F19116D00BD98E6 /* URLRewriteFloret.swift in Sources */,
-				8CC0F0DD1F0F90B40003AC87 /* Adapter.swift in Sources */,
-				8C6E644C1F190DC900BD98E6 /* RegexFloret.swift in Sources */,
-				8CD296FC1F0F8B3A004F7CBC /* ViewController.swift in Sources */,
-				8CC0F0F01F0FBC090003AC87 /* BlackHoleFloret.swift in Sources */,
-				8C5B53F51F1628EA00AC49BD /* StaticNetworkRecord.swift in Sources */,
-				8CC0F0EA1F0FB0F10003AC87 /* PrintStorage.swift in Sources */,
-				8CC0F0EC1F0FB3450003AC87 /* CauliURLProtocol.swift in Sources */,
-				8C5B53F31F16285700AC49BD /* NetworkRecord.swift in Sources */,
-				8CD296FA1F0F8B3A004F7CBC /* AppDelegate.swift in Sources */,
-				8CC0F0E21F0F91D70003AC87 /* MemoryStorage.swift in Sources */,
-				8CC0F0D91F0F8F210003AC87 /* Floret.swift in Sources */,
-				8CC0F0DB1F0F90900003AC87 /* Storage.swift in Sources */,
-				8C6E644A1F1906BC00BD98E6 /* FailableFloret.swift in Sources */,
-				8CC0F0E01F0F91C50003AC87 /* URLProtocolAdapter.swift in Sources */,
+				1FEBA7601F507C6900B1D67A /* Cauli.swift in Sources */,
+				1FEBA7661F507C6900B1D67A /* Floret.swift in Sources */,
+				1FEBA76A1F507C6900B1D67A /* PrintStorage.swift in Sources */,
+				1FEBA7651F507C6900B1D67A /* Adapter.swift in Sources */,
+				1FEBA7621F507C6900B1D67A /* FailableFloret.swift in Sources */,
+				1FEBA7691F507C6900B1D67A /* MemoryStorage.swift in Sources */,
+				1FEBA76C1F507C6900B1D67A /* CauliURLProtocol.swift in Sources */,
+				1FEBA7641F507C6900B1D67A /* URLRewriteFloret.swift in Sources */,
+				1FEBA7681F507C6900B1D67A /* Storage.swift in Sources */,
+				1FEBA7611F507C6900B1D67A /* BlackHoleFloret.swift in Sources */,
+				1FEBA76E1F507C6900B1D67A /* URLSessionConfigurationExtension.swift in Sources */,
+				1FEBA76B1F507C6900B1D67A /* StaticNetworkRecord.swift in Sources */,
+				1FEBA7631F507C6900B1D67A /* RegexFloret.swift in Sources */,
+				1FEBA7671F507C6900B1D67A /* NetworkRecord.swift in Sources */,
+				1FEBA76D1F507C6900B1D67A /* URLProtocolAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CD297061F0F8B3A004F7CBC /* Sources */ = {
+		1FEBA7381F507C1D00B1D67A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50BFE5E21F3AFB110076578F /* RegexFloretSpecs.swift in Sources */,
-				50BFE5E31F3AFB110076578F /* URLRewriteFloretSpec.swift in Sources */,
-				8CC0F0E51F0F94770003AC87 /* CauliSpecs.swift in Sources */,
+				1FEBA7771F507C8C00B1D67A /* RegexFloretSpecs.swift in Sources */,
+				1FEBA7781F507C8C00B1D67A /* URLRewriteFloretSpec.swift in Sources */,
+				1FEBA7711F507C8600B1D67A /* ComDomainFloret.swift in Sources */,
+				1FEBA7761F507C8C00B1D67A /* CauliSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8CD2970C1F0F8B3A004F7CBC /* PBXTargetDependency */ = {
+		1FEBA73F1F507C1D00B1D67A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8CD296F51F0F8B3A004F7CBC /* cauli */;
-			targetProxy = 8CD2970B1F0F8B3A004F7CBC /* PBXContainerItemProxy */;
+			target = 1FEBA7321F507C1D00B1D67A /* cauli */;
+			targetProxy = 1FEBA73E1F507C1D00B1D67A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		8CD296FD1F0F8B3A004F7CBC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CD296FE1F0F8B3A004F7CBC /* Base */,
-			);
-			name = Main.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-		8CD297021F0F8B3A004F7CBC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CD297031F0F8B3A004F7CBC /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		8CD297111F0F8B3A004F7CBC /* Debug */ = {
+		1FEBA7451F507C1D00B1D67A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -516,6 +493,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -540,10 +518,12 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		8CD297121F0F8B3A004F7CBC /* Release */ = {
+		1FEBA7461F507C1D00B1D67A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -567,6 +547,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -584,101 +565,109 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		8CD297141F0F8B3A004F7CBC /* Debug */ = {
+		1FEBA7481F507C1D00B1D67A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24B0192165EEDFFF03A486AD /* Pods-cauli.debug.xcconfig */;
+			baseConfigurationReference = 7F3C42B87F272CB13B7213C2 /* Pods-cauli.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = cauli/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauli;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		8CD297151F0F8B3A004F7CBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 817C66952BBC76B781974240 /* Pods-cauli.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = cauli/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauli;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		8CD297171F0F8B3A004F7CBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DA15D4A6124A76BE7E32376 /* Pods-cauliTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = cauliTests/Info.plist;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = cauli/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauliTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cauli.app/cauli";
 			};
 			name = Debug;
 		};
-		8CD297181F0F8B3A004F7CBC /* Release */ = {
+		1FEBA7491F507C1D00B1D67A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3EC3C9129FD5D527F9D6B6D1 /* Pods-cauliTests.release.xcconfig */;
+			baseConfigurationReference = 5625247FD7123A3A110B3910 /* Pods-cauli.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = cauli/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauli;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		1FEBA74B1F507C1D00B1D67A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0037452172F0699B4B491CA4 /* Pods-cauliTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = cauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauliTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cauli.app/cauli";
+			};
+			name = Debug;
+		};
+		1FEBA74C1F507C1D00B1D67A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D00D29CFEB09E4DD95567559 /* Pods-cauliTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = cauliTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbointeractive.cauliTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8CD296F11F0F8B3A004F7CBC /* Build configuration list for PBXProject "cauli" */ = {
+		1FEBA72D1F507C1D00B1D67A /* Build configuration list for PBXProject "cauli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8CD297111F0F8B3A004F7CBC /* Debug */,
-				8CD297121F0F8B3A004F7CBC /* Release */,
+				1FEBA7451F507C1D00B1D67A /* Debug */,
+				1FEBA7461F507C1D00B1D67A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CD297131F0F8B3A004F7CBC /* Build configuration list for PBXNativeTarget "cauli" */ = {
+		1FEBA7471F507C1D00B1D67A /* Build configuration list for PBXNativeTarget "cauli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8CD297141F0F8B3A004F7CBC /* Debug */,
-				8CD297151F0F8B3A004F7CBC /* Release */,
+				1FEBA7481F507C1D00B1D67A /* Debug */,
+				1FEBA7491F507C1D00B1D67A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CD297161F0F8B3A004F7CBC /* Build configuration list for PBXNativeTarget "cauliTests" */ = {
+		1FEBA74A1F507C1D00B1D67A /* Build configuration list for PBXNativeTarget "cauliTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8CD297171F0F8B3A004F7CBC /* Debug */,
-				8CD297181F0F8B3A004F7CBC /* Release */,
+				1FEBA74B1F507C1D00B1D67A /* Debug */,
+				1FEBA74C1F507C1D00B1D67A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8CD296EE1F0F8B3A004F7CBC /* Project object */;
+	rootObject = 1FEBA72A1F507C1D00B1D67A /* Project object */;
 }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-  s.name         = "cauli"
+  s.name         = "Cauli"
   s.version      = "0.1"
   s.summary      = "Stay health. Eat cauli."
 
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "git@bitbucket.org:Achelsmar/cauli.git", :branch => 'develop' }
 
-  s.source_files = "cauli/cauli/**/*.swift"
+  s.source_files = "cauli/**/*.swift"
 end
