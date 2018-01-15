@@ -31,4 +31,8 @@ public class BlackHoleFloret: Floret {
     public func error(for request: URLRequest) -> Error? {
         return nil
     }
+    
+    public func error(for error: Error, request: URLRequest) -> Error {
+        return error
+    }
 }

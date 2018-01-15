@@ -39,4 +39,8 @@ public class FailableFloret: Floret {
     public func data(for data: Data?, request: URLRequest) -> Data? {
         return data
     }
+    
+    public func error(for error: Error, request: URLRequest) -> Error {
+        return error
+    }
 }
