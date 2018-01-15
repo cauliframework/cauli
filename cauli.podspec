@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.version      = "0.1"
   s.summary      = "Stay health. Eat cauli."
 
-  s.homepage     = "https://bitbucket.org/Achelsmar/cauli"
+  s.homepage     = "https://bitbucket.org/tbointeractive/cauli"
 
   s.description  = <<-DESC
                     cauli is a tool for recording and manipulating network traffic.
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "git@bitbucket.org:Achelsmar/cauli.git", :branch => 'develop' }
+  s.source       = { :git => "git@bitbucket.org:tbointeractive/cauli.git", :branch => 'develop' }
 
   s.source_files = "cauli/**/*.swift"
 end
