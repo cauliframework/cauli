@@ -60,8 +60,12 @@ public class Cauli {
     }
     
     func error(for error: Error, request: URLRequest) -> Error {
-        storage.store(error, for: request)
-        return error
+        let designatedError = florets.reduce(error, {
+            return $1.error(for: $0, request: request)
+        })
+        
+        storage.store(designatedError, for: request)
+        return designatedError
     }
     
     func error(for request: URLRequest) -> Error? {

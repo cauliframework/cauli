@@ -47,4 +47,12 @@ public protocol Floret {
     /// - Parameter request: URLRequest to process
     /// - Returns: designated Error for the processed request
     func error(for request: URLRequest) -> Error?
+    
+    /// Can be used for inspecting or modifing a specific error
+    ///
+    /// - Parameters:
+    ///   - error: occured error
+    ///   - request: underlaying request
+    /// - Returns: designated error
+    func error(for error: Error, request: URLRequest) -> Error
 }
