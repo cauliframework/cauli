@@ -1,5 +1,5 @@
 //
-//  URLProtocolAdapter.swift
+//  SwizzledURLProtocolAdapter.swift
 //  cauli
 //
 //  Created by Pascal Stüdlein on 07.07.17.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class URLProtocolAdapter:  NSObject, Adapter {
+public class SwizzledURLProtocolAdapter: NSObject, Adapter {
     
-    let cauli: Cauli
-    private(set) var urlSession: URLSession!
-    fileprivate var urlProtocols: [Int:CauliURLProtocol] = [:]
+    internal let cauli: Cauli
+    internal var urlSession: URLSession!
+    internal var urlProtocols: [Int:CauliURLProtocol] = [:]
     
     required public init(cauli: Cauli) {
         self.cauli = cauli
@@ -24,11 +24,24 @@ public class URLProtocolAdapter:  NSObject, Adapter {
         CauliURLProtocol.adapter = self
     }
     
-    func canInit(_ request: URLRequest) -> Bool {
-        return cauli.canHandle(request)
+    public var isEnabled: Bool = false
+    
+    public func enable() {
+        guard !isEnabled else { return }
+        isEnabled = true
+        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
     }
     
-    func startLoading(_ request: URLRequest, urlProtocol:CauliURLProtocol) -> URLSessionDataTask {
+    public func disable() {
+        guard isEnabled else { return }
+        isEnabled = false
+    }
+    
+    func canInit(_ request: URLRequest) -> Bool {
+        return isEnabled && cauli.canHandle(request)
+    }
+    
+    func startLoading(_ request: URLRequest, urlProtocol: CauliURLProtocol) -> URLSessionDataTask {
         let networkRequest = cauli.request(for: request)
         let dataTask = urlSession.dataTask(with: networkRequest)
         
@@ -47,7 +60,7 @@ public class URLProtocolAdapter:  NSObject, Adapter {
     }
 }
 
-extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
+extension SwizzledURLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
         
@@ -86,20 +99,21 @@ extension URLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     }
 }
 
-extension URLProtocolAdapter {
-    public class func register() {
-        URLProtocol.registerClass(CauliURLProtocol.self)
-    }
+// This extension performes all the swizzling logic
+// to replace the `URLSessionConfiguration.default` with one, where
+// the `protocolClasses` contain the `CauliURLProtocol`
+extension URLSessionConfiguration {
+    internal static let cauliDefaultSessionConfigurationGetterMethod = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))
+    internal static let cauliSwizzledSessionConfigurationGetterMethod = class_getClassMethod(URLSessionConfiguration.self, #selector(URLSessionConfiguration.cauliDefaultSessionConfiguration))
     
-    public class func register(for configuration: URLSessionConfiguration) {
+    internal class func cauliDefaultSessionConfiguration() -> URLSessionConfiguration {
+        let configuration = cauliDefaultSessionConfiguration() // since it is swizzled, this will call the original implementation
         let protocolClasses = configuration.protocolClasses ?? []
-        configuration.protocolClasses = ([CauliURLProtocol.self] + protocolClasses)
+        configuration.protocolClasses = [CauliURLProtocol.self] + protocolClasses
+        return configuration
     }
     
-    public class func swizzle() {
-        let defaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))
-        let cauliDefaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(URLSessionConfiguration.cauliDefaultSessionConfiguration))
-        method_exchangeImplementations(defaultSessionConfiguration, cauliDefaultSessionConfiguration)
-        
+    internal class func cauliSwizzleDefaultSessionConfigurationGetter() {
+        method_exchangeImplementations(cauliDefaultSessionConfigurationGetterMethod, cauliSwizzledSessionConfigurationGetterMethod)
     }
 }

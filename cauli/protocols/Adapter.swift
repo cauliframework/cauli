@@ -16,4 +16,15 @@ public protocol Adapter {
     ///
     /// - Parameter cauli: reference to store for passing network traffic later on
     init(cauli: Cauli)
+    
+    /// Returns if the adapter is currently enabled.
+    /// When instantiating a new `Adapter` it should always be disabled.
+    var isEnabled: Bool { get }
+    
+    /// Enables the adapter
+    func enable()
+    
+    /// Disables the adapter. When an adapter disabled, it should behave as if it is not instantiated at all.
+    /// Especially it should not have any impact on any network request or its performance.
+    func disable()
 }

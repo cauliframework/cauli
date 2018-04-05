@@ -21,16 +21,8 @@ class FakeJSONFloret: Floret {
         return canHandle(request: request) ? request : nil
     }
     
-    func response(for response: URLResponse) -> URLResponse? {
-        return nil
-    }
-    
     func data(for data: Data?, request: URLRequest) -> Data? {
         return data == nil && canHandle(request: request) ? fakeJson : nil
-    }
-    
-    func error(for request: URLRequest) -> Error? {
-        return nil
     }
     
     func response(for request: URLRequest) -> URLResponse? {

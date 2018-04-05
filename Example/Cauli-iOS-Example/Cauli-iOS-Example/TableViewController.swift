@@ -38,13 +38,7 @@ class TableViewController: UITableViewController {
             if let s = _session {
                 return s
             }
-            
-            let config = URLSessionConfiguration.default
-            if self.useCauli {
-                URLProtocolAdapter.register(for: config)
-            }
-            
-            _session = URLSession(configuration: config)
+            _session = URLSession(configuration: URLSessionConfiguration.default)
             return _session!
         }
     }
@@ -129,8 +123,12 @@ class TableViewController: UITableViewController {
             if let cell = cell as? SwitchTableViewCell {
                 cell.titleLabel.text = "Enable Prototyp"
                 cell.switchTriggered = { on in
-                    self.useCauli = on
-                    self._session = nil
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    if (on) {
+                        appDelegate.cauli.adapter.enable()
+                    } else {
+                        appDelegate.cauli.adapter.disable()
+                    }
                 }
             }
             return cell

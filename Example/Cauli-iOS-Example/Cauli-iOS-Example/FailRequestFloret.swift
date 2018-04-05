@@ -27,20 +27,8 @@ class FailRequestFloret: Floret {
         return request
     }
     
-    func data(for data: Data?, request: URLRequest) -> Data? {
-        return nil
-    }
-    
     func error(for request: URLRequest) -> Error? {
         guard let url = request.url, url.absoluteString == self.urlToFail else { return nil }
         return "Cauli Error"
-    }
-    
-    func response(for request: URLRequest) -> URLResponse? {
-        return nil
-    }
-    
-    func response(for response: URLResponse) -> URLResponse? {
-        return nil
     }
 }
