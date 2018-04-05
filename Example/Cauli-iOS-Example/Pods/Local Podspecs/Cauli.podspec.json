@@ -2,7 +2,7 @@
   "name": "Cauli",
   "version": "0.1",
   "summary": "Stay health. Eat cauli.",
-  "homepage": "https://bitbucket.org/Achelsmar/cauli",
+  "homepage": "https://bitbucket.org/tbointeractive/cauli",
   "description": "cauli is a tool for recording and manipulating network traffic.",
   "license": "MIT",
   "authors": {
@@ -12,7 +12,7 @@
     "ios": "8.0"
   },
   "source": {
-    "git": "git@bitbucket.org:Achelsmar/cauli.git",
+    "git": "git@bitbucket.org:tbointeractive/cauli.git",
     "branch": "develop"
   },
   "source_files": "cauli/**/*.swift"
