@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FB8447C209B3CF9004D2684 /* SwizzledURLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8447B209B3CF9004D2684 /* SwizzledURLProtocolAdapter.swift */; };
+		1FB8447E209B3D26004D2684 /* SingleSessionURLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB8447D209B3D26004D2684 /* SingleSessionURLProtocolAdapter.swift */; };
 		1FEBA73D1F507C1D00B1D67A /* cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEBA7331F507C1D00B1D67A /* cauli.framework */; };
 		1FEBA7441F507C1D00B1D67A /* cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FEBA7361F507C1D00B1D67A /* cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FEBA7601F507C6900B1D67A /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA74D1F507C6900B1D67A /* Cauli.swift */; };
@@ -22,8 +24,6 @@
 		1FEBA76A1F507C6900B1D67A /* PrintStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75A1F507C6900B1D67A /* PrintStorage.swift */; };
 		1FEBA76B1F507C6900B1D67A /* StaticNetworkRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75B1F507C6900B1D67A /* StaticNetworkRecord.swift */; };
 		1FEBA76C1F507C6900B1D67A /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75D1F507C6900B1D67A /* CauliURLProtocol.swift */; };
-		1FEBA76D1F507C6900B1D67A /* URLProtocolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75E1F507C6900B1D67A /* URLProtocolAdapter.swift */; };
-		1FEBA76E1F507C6900B1D67A /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA75F1F507C6900B1D67A /* URLSessionConfigurationExtension.swift */; };
 		1FEBA7711F507C8600B1D67A /* ComDomainFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7701F507C8600B1D67A /* ComDomainFloret.swift */; };
 		1FEBA7761F507C8C00B1D67A /* CauliSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7731F507C8C00B1D67A /* CauliSpecs.swift */; };
 		1FEBA7771F507C8C00B1D67A /* RegexFloretSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA7741F507C8C00B1D67A /* RegexFloretSpecs.swift */; };
@@ -44,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		0037452172F0699B4B491CA4 /* Pods-cauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1FB8447B209B3CF9004D2684 /* SwizzledURLProtocolAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzledURLProtocolAdapter.swift; sourceTree = "<group>"; };
+		1FB8447D209B3D26004D2684 /* SingleSessionURLProtocolAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSessionURLProtocolAdapter.swift; sourceTree = "<group>"; };
 		1FEBA7331F507C1D00B1D67A /* cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEBA7361F507C1D00B1D67A /* cauli.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cauli.h; sourceTree = "<group>"; };
 		1FEBA7371F507C1D00B1D67A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,8 +64,6 @@
 		1FEBA75A1F507C6900B1D67A /* PrintStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintStorage.swift; sourceTree = "<group>"; };
 		1FEBA75B1F507C6900B1D67A /* StaticNetworkRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNetworkRecord.swift; sourceTree = "<group>"; };
 		1FEBA75D1F507C6900B1D67A /* CauliURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
-		1FEBA75E1F507C6900B1D67A /* URLProtocolAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLProtocolAdapter.swift; sourceTree = "<group>"; };
-		1FEBA75F1F507C6900B1D67A /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		1FEBA7701F507C8600B1D67A /* ComDomainFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComDomainFloret.swift; sourceTree = "<group>"; };
 		1FEBA7731F507C8C00B1D67A /* CauliSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliSpecs.swift; sourceTree = "<group>"; };
 		1FEBA7741F507C8C00B1D67A /* RegexFloretSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexFloretSpecs.swift; sourceTree = "<group>"; };
@@ -175,9 +175,9 @@
 		1FEBA75C1F507C6900B1D67A /* URLProtocolAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				1FB8447B209B3CF9004D2684 /* SwizzledURLProtocolAdapter.swift */,
 				1FEBA75D1F507C6900B1D67A /* CauliURLProtocol.swift */,
-				1FEBA75E1F507C6900B1D67A /* URLProtocolAdapter.swift */,
-				1FEBA75F1F507C6900B1D67A /* URLSessionConfigurationExtension.swift */,
+				1FB8447D209B3D26004D2684 /* SingleSessionURLProtocolAdapter.swift */,
 			);
 			path = URLProtocolAdapter;
 			sourceTree = "<group>";
@@ -243,7 +243,6 @@
 				1FEBA72F1F507C1D00B1D67A /* Frameworks */,
 				1FEBA7301F507C1D00B1D67A /* Headers */,
 				1FEBA7311F507C1D00B1D67A /* Resources */,
-				586B802F0900C8F361891DC4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,7 +262,6 @@
 				1FEBA7391F507C1D00B1D67A /* Frameworks */,
 				1FEBA73A1F507C1D00B1D67A /* Resources */,
 				7317E68D3FC67E3293895DDD /* [CP] Embed Pods Frameworks */,
-				3ECF09D4329D8B8B146D2BAB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,36 +330,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3ECF09D4329D8B8B146D2BAB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauliTests/Pods-cauliTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		586B802F0900C8F361891DC4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli/Pods-cauli-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7317E68D3FC67E3293895DDD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,11 +407,11 @@
 				1FEBA7641F507C6900B1D67A /* URLRewriteFloret.swift in Sources */,
 				1FEBA7681F507C6900B1D67A /* Storage.swift in Sources */,
 				1FEBA7611F507C6900B1D67A /* BlackHoleFloret.swift in Sources */,
-				1FEBA76E1F507C6900B1D67A /* URLSessionConfigurationExtension.swift in Sources */,
+				1FB8447C209B3CF9004D2684 /* SwizzledURLProtocolAdapter.swift in Sources */,
 				1FEBA76B1F507C6900B1D67A /* StaticNetworkRecord.swift in Sources */,
+				1FB8447E209B3D26004D2684 /* SingleSessionURLProtocolAdapter.swift in Sources */,
 				1FEBA7631F507C6900B1D67A /* RegexFloret.swift in Sources */,
 				1FEBA7671F507C6900B1D67A /* NetworkRecord.swift in Sources */,
-				1FEBA76D1F507C6900B1D67A /* URLProtocolAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

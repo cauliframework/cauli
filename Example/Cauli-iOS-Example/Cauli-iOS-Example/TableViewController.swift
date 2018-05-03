@@ -30,29 +30,17 @@ class TableViewController: UITableViewController {
         }()
     ]
     
-    var useCauli = true
-    
-    var _session: URLSession?
     var session: URLSession {
         get {
-            if let s = _session {
-                return s
-            }
-            _session = URLSession(configuration: URLSessionConfiguration.default)
-            return _session!
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            return appDelegate.urlSession
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Test Applikation"
         // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -125,9 +113,9 @@ class TableViewController: UITableViewController {
                 cell.switchTriggered = { on in
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     if (on) {
-                        appDelegate.cauli.adapter.enable()
+                        appDelegate.cauli.enable()
                     } else {
-                        appDelegate.cauli.adapter.disable()
+                        appDelegate.cauli.disable()
                     }
                 }
             }

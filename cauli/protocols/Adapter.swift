@@ -28,3 +28,11 @@ public protocol Adapter {
     /// Especially it should not have any impact on any network request or its performance.
     func disable()
 }
+
+internal protocol URLProtocolAdapter: Adapter {
+    
+    func canInit(_ request: URLRequest) -> Bool;
+    
+    func startLoading(_ request: URLRequest, urlProtocol: CauliURLProtocol) -> URLSessionDataTask;
+    
+}
