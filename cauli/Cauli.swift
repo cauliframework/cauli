@@ -20,10 +20,12 @@ struct MockedResponse {
 /// In the end the (modified) traffic is stored in a Storage instance.
 public class Cauli {
     public var florets: [Floret] = []
-    let storage: Storage
+    public let storage: Storage
+    public private(set) var adapter: Adapter!
     
-    public init(storage: Storage = PrintStorage()) {
+    public init(storage: Storage = PrintStorage(), adapter: Adapter.Type = SwizzledURLProtocolAdapter.self) {
         self.storage = storage
+        self.adapter = adapter.init(cauli: self)
     }
     
     func canHandle(_ request: URLRequest) -> Bool {

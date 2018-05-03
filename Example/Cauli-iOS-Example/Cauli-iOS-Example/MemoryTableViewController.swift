@@ -11,9 +11,9 @@ import Cauli
 
 class MemoryTableViewController: UITableViewController {
     
-    var memoryStorage: MemoryStorage? {
+    var memoryStorage: Storage? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
-        return appDelegate.memoryStorage
+        return appDelegate.cauli.storage
     }
     
     var records: [NetworkRecord] {
