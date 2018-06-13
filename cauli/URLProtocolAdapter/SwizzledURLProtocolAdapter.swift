@@ -10,14 +10,14 @@ import Foundation
 
 public class SwizzledURLProtocolAdapter: SingleSessionURLProtocolAdapter {
     
-    required public init(cauli: Cauli) {
+    required public init() {
         let sessionConfiguration = URLSessionConfiguration.default
         sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
-        super.init(cauli: cauli, sessionConfiguration: sessionConfiguration)
+        super.init(sessionConfiguration: sessionConfiguration)
     }
     
-    required public init(cauli: Cauli, sessionConfiguration: URLSessionConfiguration?) {
-        super.init(cauli: cauli, sessionConfiguration: sessionConfiguration)
+    required public init(sessionConfiguration: URLSessionConfiguration?) {
+        super.init(sessionConfiguration: sessionConfiguration)
     }
     
     public override func enable() {

@@ -18,12 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        cauli = Cauli(storage: MemoryStorage(), adapter: SingleSessionURLProtocolAdapter.self)
-        if let singleSessionAdapter = cauli.adapter as? SingleSessionURLProtocolAdapter {
-            self.urlSession = singleSessionAdapter.urlSession;
-        } else {
-            self.urlSession = URLSession.shared
-        }
+        let adapter = SingleSessionURLProtocolAdapter()
+        cauli = Cauli(storage: MemoryStorage(), adapter: adapter)
+        self.urlSession = adapter.urlSession;
         cauli.florets = newFlorets()
         cauli.enable()
 

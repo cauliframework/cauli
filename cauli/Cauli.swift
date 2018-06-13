@@ -23,9 +23,10 @@ public class Cauli {
     public let storage: Storage
     public private(set) var adapter: Adapter!
     
-    public init(storage: Storage = PrintStorage(), adapter: Adapter.Type = SwizzledURLProtocolAdapter.self) {
+    public init(storage: Storage = PrintStorage(), adapter: Adapter = SwizzledURLProtocolAdapter()) {
         self.storage = storage
-        self.adapter = adapter.init(cauli: self)
+        self.adapter = adapter
+        self.adapter.cauli = self
     }
     
     public func enable() {

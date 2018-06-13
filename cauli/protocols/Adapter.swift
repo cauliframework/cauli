@@ -12,10 +12,8 @@ import Foundation
 /// It passes the data to an Cauli instance.
 public protocol Adapter {
     
-    /// On initialization an Adapter should store a reference to a cauli instance.
-    ///
-    /// - Parameter cauli: reference to store for passing network traffic later on
-    init(cauli: Cauli)
+    /// A reference to the cauli object to store for passing network traffic later on. This will be set by cauli when creating it with an adapter. This property should be weak, because cauli has a strong reference to the adapter.
+    var cauli: Cauli? { get set }
     
     /// Returns if the adapter is currently enabled.
     /// When instantiating a new `Adapter` it should always be disabled.

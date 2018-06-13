@@ -13,12 +13,11 @@ public class SingleSessionURLProtocolAdapter: NSObject {
     public var urlSession: URLSession!
     public var isEnabled: Bool = false
     
-    internal let cauli: Cauli
+    public weak var cauli: Cauli?
     internal var executingURLSession: URLSession!
     internal var urlProtocols: [Int:CauliURLProtocol] = [:]
     
-    required public init(cauli: Cauli, sessionConfiguration originalSessionConfiguration: URLSessionConfiguration?) {
-        self.cauli = cauli
+    required public init(sessionConfiguration originalSessionConfiguration: URLSessionConfiguration?) {
         super.init()
         let sessionConfiguration = SingleSessionURLProtocolAdapter.sessionConfiguration(with: originalSessionConfiguration)
         self.urlSession = URLSession(configuration: sessionConfiguration)
@@ -26,8 +25,8 @@ public class SingleSessionURLProtocolAdapter: NSObject {
         CauliURLProtocol.adapter = self
     }
     
-    required convenience public init(cauli: Cauli) {
-        self.init(cauli: cauli, sessionConfiguration: nil)
+    required convenience public override init() {
+        self.init(sessionConfiguration: nil)
     }
     
     private static func sessionConfiguration(with sessionConfiguration: URLSessionConfiguration?) -> URLSessionConfiguration {
@@ -40,10 +39,12 @@ public class SingleSessionURLProtocolAdapter: NSObject {
 extension SingleSessionURLProtocolAdapter: URLProtocolAdapter {
     
     func canInit(_ request: URLRequest) -> Bool {
+        guard let cauli = cauli else { return false }
         return isEnabled && cauli.canHandle(request)
     }
     
     func startLoading(_ request: URLRequest, urlProtocol: CauliURLProtocol) -> URLSessionDataTask {
+        guard let cauli = cauli else { fatalError("find a better solution then a fatalError") }
         let networkRequest = cauli.request(for: request)
         let dataTask = executingURLSession.dataTask(with: networkRequest)
         
@@ -72,6 +73,7 @@ extension SingleSessionURLProtocolAdapter: URLProtocolAdapter {
 
 extension SingleSessionURLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        guard let cauli = cauli else { return completionHandler(.cancel) }
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
         
         if let originalRequest = dataTask.originalRequest {
@@ -83,6 +85,7 @@ extension SingleSessionURLProtocolAdapter: URLSessionDelegate, URLSessionDataDel
     }
     
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        guard let cauli = cauli else { return }
         guard let urlProtocol = urlProtocols[dataTask.taskIdentifier],
             let originalRequest = dataTask.originalRequest else { return }
         
@@ -90,6 +93,7 @@ extension SingleSessionURLProtocolAdapter: URLSessionDelegate, URLSessionDataDel
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        guard let cauli = cauli else { return }
         guard let urlProtocol = urlProtocols[task.taskIdentifier] else { return }
         
         if let error = error, let originalRequest = task.originalRequest {
@@ -106,6 +110,6 @@ extension SingleSessionURLProtocolAdapter: URLSessionDelegate, URLSessionDataDel
     @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         guard let originalRequest = task.originalRequest else { return }
-        cauli.collected(metrics, for: originalRequest)
+        cauli?.collected(metrics, for: originalRequest)
     }
 }
