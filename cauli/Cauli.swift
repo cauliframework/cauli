@@ -23,17 +23,26 @@ public class Cauli {
     public let storage: Storage
     public private(set) var adapter: Adapter!
     
-    public init(storage: Storage = PrintStorage(), adapter: Adapter.Type = SwizzledURLProtocolAdapter.self) {
+    public init(storage: Storage = PrintStorage(), adapter: Adapter = SwizzledURLProtocolAdapter()) {
         self.storage = storage
-        self.adapter = adapter.init(cauli: self)
+        self.adapter = adapter
+        self.adapter.cauli = self
     }
     
-    func canHandle(_ request: URLRequest) -> Bool {
+    public func enable() {
+        adapter.enable()
+    }
+    
+    public func disable() {
+        adapter.disable()
+    }
+    
+    internal func canHandle(_ request: URLRequest) -> Bool {
         guard florets.count > 0 else { return false }
         return florets.contains(where: { $0.request(for: request) != nil })
     }
     
-    func request(for request: URLRequest) -> URLRequest {
+    internal func request(for request: URLRequest) -> URLRequest {
         var designatedRequest = florets.reduce(request, {
             return $1.request(for: $0) ?? $0
         })
@@ -44,7 +53,7 @@ public class Cauli {
         return designatedRequest
     }
     
-    func response(for request: URLRequest) -> MockedResponse? {
+    internal func response(for request: URLRequest) -> MockedResponse? {
         let result = florets.reduce(nil) { (result, floret) -> (response: URLResponse, data: Data)? in
             if let result = result {
                 return result
@@ -61,7 +70,7 @@ public class Cauli {
         return MockedResponse(data: data, response: response)
     }
     
-    func error(for error: Error, request: URLRequest) -> Error {
+    internal func error(for error: Error, request: URLRequest) -> Error {
         let designatedError = florets.reduce(error, {
             return $1.error(for: $0, request: request)
         })
@@ -70,7 +79,7 @@ public class Cauli {
         return designatedError
     }
     
-    func error(for request: URLRequest) -> Error? {
+    internal func error(for request: URLRequest) -> Error? {
         guard let error = florets.reduce(nil, { (error, floret) -> Error? in
             if let error = error {
                 return error
@@ -84,7 +93,7 @@ public class Cauli {
         return error
     }
     
-    func response(for response: URLResponse, request: URLRequest) -> URLResponse {
+    internal func response(for response: URLResponse, request: URLRequest) -> URLResponse {
         let designatedResponse = florets.reduce(response, { $1.response(for: $0) ?? response })
         
         storage.store(designatedResponse, for: request)
@@ -92,7 +101,7 @@ public class Cauli {
         return designatedResponse
     }
     
-    func data(for data: Data, request: URLRequest) -> Data {
+    internal func data(for data: Data, request: URLRequest) -> Data {
         let designatedData = florets.reduce(data, {
             return $1.data(for: $0, request: request) ?? $0
         })
@@ -102,7 +111,7 @@ public class Cauli {
     }
     
     @available(iOS 10.0, *)
-    func collected(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
+    internal func collected(_ metrics: URLSessionTaskMetrics, for request: URLRequest) {
         storage.store(metrics, for: request)
     }
 }

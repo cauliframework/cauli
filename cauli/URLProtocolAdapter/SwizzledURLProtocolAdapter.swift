@@ -8,96 +8,33 @@
 
 import Foundation
 
-public class SwizzledURLProtocolAdapter: NSObject, Adapter {
+public class SwizzledURLProtocolAdapter: SingleSessionURLProtocolAdapter {
     
-    internal let cauli: Cauli
-    internal var urlSession: URLSession!
-    internal var urlProtocols: [Int:CauliURLProtocol] = [:]
-    
-    required public init(cauli: Cauli) {
-        self.cauli = cauli
-        super.init()
-        let defaultC = URLSessionConfiguration.default
-        defaultC.protocolClasses = defaultC.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
-        self.urlSession = URLSession(configuration: defaultC, delegate: self, delegateQueue: nil)
-        
-        CauliURLProtocol.adapter = self
+    required public init() {
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
+        super.init(sessionConfiguration: sessionConfiguration)
     }
     
-    public var isEnabled: Bool = false
-    
-    public func enable() {
-        guard !isEnabled else { return }
-        isEnabled = true
-        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
+    required public init(sessionConfiguration: URLSessionConfiguration?) {
+        super.init(sessionConfiguration: sessionConfiguration)
     }
     
-    public func disable() {
-        guard isEnabled else { return }
-        isEnabled = false
-    }
-    
-    func canInit(_ request: URLRequest) -> Bool {
-        return isEnabled && cauli.canHandle(request)
-    }
-    
-    func startLoading(_ request: URLRequest, urlProtocol: CauliURLProtocol) -> URLSessionDataTask {
-        let networkRequest = cauli.request(for: request)
-        let dataTask = urlSession.dataTask(with: networkRequest)
-        
-        if let mockedResponse = cauli.response(for: networkRequest) {
-            urlProtocol.client?.urlProtocol(urlProtocol, didReceive: mockedResponse.response, cacheStoragePolicy: .allowed)
-            urlProtocol.client?.urlProtocol(urlProtocol, didLoad: mockedResponse.data)
-            urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
-        } else if let error = cauli.error(for: networkRequest) {
-            urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: error)
-        } else {
-            urlProtocols[dataTask.taskIdentifier] = urlProtocol
-            dataTask.resume()
+    public override func enable() {
+        if !isEnabled {
+            URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
         }
-        
-        return dataTask
+        super.enable()
+    }
+    
+    public override func disable() {
+        if isEnabled {
+            URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
+        }
+        super.disable()
     }
 }
 
-extension SwizzledURLProtocolAdapter: URLSessionDelegate, URLSessionDataDelegate {
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        guard let urlProtocol = urlProtocols[dataTask.taskIdentifier] else { return completionHandler(.cancel) }
-        
-        if let originalRequest = dataTask.originalRequest {
-            let newResponse = cauli.response(for: response, request: originalRequest)
-            urlProtocol.client?.urlProtocol(urlProtocol, didReceive: newResponse, cacheStoragePolicy: .allowed)
-        }
-        
-        completionHandler(.allow)
-    }
-    
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        guard let urlProtocol = urlProtocols[dataTask.taskIdentifier],
-            let originalRequest = dataTask.originalRequest else { return }
-        
-        urlProtocol.client?.urlProtocol(urlProtocol, didLoad: cauli.data(for: data, request: originalRequest))
-    }
-    
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let urlProtocol = urlProtocols[task.taskIdentifier] else { return }
-        
-        if let error = error, let originalRequest = task.originalRequest {
-            let designatedError = cauli.error(for: error, request: originalRequest)
-            urlProtocol.client?.urlProtocol(urlProtocol, didFailWithError: designatedError)
-        } else {
-            urlProtocol.client?.urlProtocolDidFinishLoading(urlProtocol)
-        }
-        
-        urlProtocols.removeValue(forKey: task.taskIdentifier)
-    }
-    
-    @available(iOS 10.0, *)
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        guard let originalRequest = task.originalRequest else { return }
-        cauli.collected(metrics, for: originalRequest)
-    }
-}
 
 // This extension performes all the swizzling logic
 // to replace the `URLSessionConfiguration.default` with one, where

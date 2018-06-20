@@ -14,12 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var cauli: Cauli!
+    var urlSession: URLSession!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        cauli = Cauli(storage: MemoryStorage())
+        let adapter = SingleSessionURLProtocolAdapter()
+        cauli = Cauli(storage: MemoryStorage(), adapter: adapter)
+        self.urlSession = adapter.urlSession;
         cauli.florets = newFlorets()
-        cauli.adapter.enable()
+        cauli.enable()
 
         return true
     }

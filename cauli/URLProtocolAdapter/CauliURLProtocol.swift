@@ -10,7 +10,7 @@ import Foundation
 
 class CauliURLProtocol: URLProtocol {
     
-    static var adapter: SwizzledURLProtocolAdapter?
+    static var adapter: URLProtocolAdapter?
     var networkDataTask: URLSessionDataTask?
     
     override class func canInit(with request: URLRequest) -> Bool {
