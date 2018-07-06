@@ -1,6 +1,0 @@
-framework module Pods_Cauli_iOS_Example {
-  umbrella header "Pods-Cauli-iOS-Example-umbrella.h"
-
-  export *
-  module * { export * }
-}

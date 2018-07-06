@@ -1,6 +1,0 @@
-framework module Pods_cauliTests {
-  umbrella header "Pods-cauliTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
