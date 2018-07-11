@@ -10,6 +10,9 @@
 		1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauli.framework */; };
 		1FE3F73420F64A2B00233C7C /* CauliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73320F64A2B00233C7C /* CauliTests.swift */; };
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
+		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
+		1FE3F74420F64C9B00233C7C /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74320F64C9B00233C7C /* Weak.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE3F73320F64A2B00233C7C /* CauliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliTests.swift; sourceTree = "<group>"; };
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
+		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		1FE3F74320F64C9B00233C7C /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				1FE3F72820F64A2B00233C7C /* Cauli.h */,
 				1FE3F72920F64A2B00233C7C /* Info.plist */,
+				1FE3F73F20F64AA000233C7C /* Cauli.swift */,
+				1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */,
+				1FE3F74320F64C9B00233C7C /* Weak.swift */,
 			);
 			path = Cauli;
 			sourceTree = "<group>";
@@ -148,6 +157,7 @@
 				TargetAttributes = {
 					1FE3F72420F64A2B00233C7C = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					1FE3F72D20F64A2B00233C7C = {
 						CreatedOnToolsVersion = 10.0;
@@ -194,6 +204,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
+				1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */,
+				1FE3F74420F64C9B00233C7C /* Weak.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +352,7 @@
 		1FE3F73A20F64A2B00233C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -355,6 +369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.brototyp.Cauli;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -363,6 +378,7 @@
 		1FE3F73B20F64A2B00233C7C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -387,6 +403,7 @@
 		1FE3F73D20F64A2B00233C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -404,6 +421,7 @@
 		1FE3F73E20F64A2B00233C7C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
