@@ -12,22 +12,17 @@ internal class CauliURLProtocol: URLProtocol {
     
     private var executingURLSession: URLSession!
     
-    // create an executing URLSession in which every request is actually being performed and make sure it doesn't contain the CauliURLProtocol
+    private static var delegates: [CauliURLProtocolDelegate] = []
     
-    internal static var cauliInstances: [Weak<Cauli>] = []
-    private static var existingCauliInstances: [Cauli] {
-        return cauliInstances.compactMap { $0.value }
-    }
-    private var networkDataTask: URLSessionDataTask?
+    private var record: Record?
+    private var dataTask: URLSessionDataTask?
     
-    override class func canInit(with request: URLRequest) -> Bool {
-        return existingCauliInstances.reduce(false, { (current, cauli) -> Bool in
-            current || cauli.canInit(with: request)
-        })
+    internal static func add(delegate: CauliURLProtocolDelegate) {
+        delegates.append(delegate)
     }
     
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        return request
+    internal static func remove(delegate: CauliURLProtocolDelegate) {
+        delegates = delegates.filter { $0 !== delegate}
     }
     
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
@@ -36,54 +31,76 @@ internal class CauliURLProtocol: URLProtocol {
         super.init(request: request, cachedResponse: cachedResponse, client: client)
         executingURLSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
+}
+
+// Overriding URLProtocol functions
+extension CauliURLProtocol {
+    override class func canInit(with request: URLRequest) -> Bool {
+        for delegate in delegates where delegate.canHandle(request) {
+            return true
+        }
+        return false
+    }
+    
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
+    }
     
     override func startLoading() {
-        let networkRequest = request
-        // TODO: check all cauli instances if they want to change the request
-        // TODO: check all cauli instances if they want to set the response (maybe this is the same as the first todo)
+        var record = Record(request)
+        record = CauliURLProtocol.delegates.reduce(record) { (record, delegate) in
+            delegate.willRequest(record)
+        }
         
         let dataTask: URLSessionDataTask = executingURLSession.dataTask(with: request)
-        let response: URLResponse? = nil // record.response
-        let error: Error? = nil // record.error
-        let data: Data? = nil // record.data
-        if let response = response {
+        if let result = record.result, case let .result(response, data) = result {
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
             if let data = data {
                 client?.urlProtocol(self, didLoad: data)
             }
             client?.urlProtocolDidFinishLoading(self)
-        } else if let error = error {
+        } else if let result = record.result, case let .error(error) = result {
             client?.urlProtocol(self, didFailWithError: error)
         } else {
             dataTask.resume()
         }
-        networkDataTask = dataTask
+        self.record = record
+        self.dataTask = dataTask
     }
     
     override func stopLoading() {
-        networkDataTask?.cancel()
+        dataTask?.cancel()
     }
 }
 
+extension CauliURLProtocol {
+    // Through this static property we ensure the session configuration will be swizzled exacly once
+    static var swizzle: Void = {
+        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
+        return
+    }()
+}
 
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        // TOOD: implement me
-        
+        record?.result = .result((response, nil))
         completionHandler(.allow)
     }
     
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        // TOOD: implement me
+        if let result = record?.result, case let .result(response, _) = result {
+            record?.result = .result((response, data))
+        }
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        // TOOD: implement me
+        if let error = error {
+            record?.result = .error(error)
+        }
     }
-    
     
     @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        // TOOD: implement me
+        // possibly add the metrics to the record in the future
     }
 }

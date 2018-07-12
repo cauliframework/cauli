@@ -8,20 +8,32 @@
 
 import Foundation
 
-public class Cauli{
+public class Cauli {
+    
+    deinit {
+        CauliURLProtocol.remove(delegate: self)
+    }
     
     init() {
-        // swizzle the URLSessionConfiguration.default getter and add the CauliURLProtocol to it
-        // make sure the CauliURLProtocol passes every call to Cauli
+        CauliURLProtocol.add(delegate: self)
     }
     
 }
 
-// CauliURLProtocolDelegate
-extension Cauli {
-    func canInit(with request: URLRequest) -> Bool {
+// For now we don't add any custom implementation here
+extension Cauli: CauliURLProtocolDelegate {
+    func canHandle(_ request: URLRequest) -> Bool {
         // TODO: implement me
         return false
     }
     
+    func willRequest(_ record: Record) -> Record {
+        // TODO: implement me
+        return record
+    }
+    
+    func didRespond(_ record: Record) -> Record {
+        // TODO: implement me
+        return record
+    }
 }

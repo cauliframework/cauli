@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */; };
+		1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22D20F77B6C0023D219 /* Record.swift */; };
+		1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */; };
 		1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauli.framework */; };
 		1FE3F73420F64A2B00233C7C /* CauliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73320F64A2B00233C7C /* CauliTests.swift */; };
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
-		1FE3F74420F64C9B00233C7C /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74320F64C9B00233C7C /* Weak.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
+		1F7BF22D20F77B6C0023D219 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
 		1FE3F72520F64A2B00233C7C /* Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE3F72820F64A2B00233C7C /* Cauli.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cauli.h; sourceTree = "<group>"; };
 		1FE3F72920F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,7 +39,6 @@
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
-		1FE3F74320F64C9B00233C7C /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +85,9 @@
 				1FE3F72920F64A2B00233C7C /* Info.plist */,
 				1FE3F73F20F64AA000233C7C /* Cauli.swift */,
 				1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */,
-				1FE3F74320F64C9B00233C7C /* Weak.swift */,
+				1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */,
+				1F7BF22D20F77B6C0023D219 /* Record.swift */,
+				1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */,
 			);
 			path = Cauli;
 			sourceTree = "<group>";
@@ -206,7 +212,9 @@
 			files = (
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
 				1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */,
-				1FE3F74420F64C9B00233C7C /* Weak.swift in Sources */,
+				1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */,
+				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,
+				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
