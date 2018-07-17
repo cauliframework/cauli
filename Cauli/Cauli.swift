@@ -9,6 +9,18 @@
 import Foundation
 
 public class Cauli {
+    /// This will hook Cauli into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system)
+    /// by register a custom [URLProtocol](https://developer.apple.com/documentation/foundation/urlprotocol)
+    /// and swizzling the [URLSessionConfiguration.default](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/1411560-default) with one,
+    /// where the [protocolClasses](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/1411050-protocolclasses)
+    /// contain the custom [URLProtocol](https://developer.apple.com/documentation/foundation/urlprotocol).
+    /// - Attention: It is recommended to call `Cauli.setup()` as soon as possible.
+    /// Otherwise there might already exist a custom [URLSessionConfiguration](https://developer.apple.com/documentation/foundation/urlsessionconfiguration)
+    /// which does not consider our custom [URLProtocol](https://developer.apple.com/documentation/foundation/urlprotocol).
+    public func setup() {
+        URLProtocol.registerClass(CauliURLProtocol.self)
+        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
+    }
     
     deinit {
         CauliURLProtocol.remove(delegate: self)
