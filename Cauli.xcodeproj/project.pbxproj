@@ -15,6 +15,7 @@
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
+		50576BBA210E173C0085DF5E /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50576BB9210E173C0085DF5E /* Floret.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		50576BB9210E173C0085DF5E /* Floret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				1FE3F73F20F64AA000233C7C /* Cauli.swift */,
 				1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */,
 				1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */,
+				50576BB9210E173C0085DF5E /* Floret.swift */,
 				1F7BF22D20F77B6C0023D219 /* Record.swift */,
 				1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */,
 			);
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
+				50576BBA210E173C0085DF5E /* Floret.swift in Sources */,
 				1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */,
 				1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */,
 				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,

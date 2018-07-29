@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum Result<Type> {
+public enum Result<Type> {
     case error(Error)
     case result(Type)
 }
 
-struct Record {
+public struct Record {
     var identifier: UUID
     var originalRequest: URLRequest
     var designatedRequest: URLRequest
