@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A2210EF9F500CEDD42 /* Storage.swift */; };
+		1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */; };
 		1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */; };
 		1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22D20F77B6C0023D219 /* Record.swift */; };
 		1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F18B1A2210EF9F500CEDD42 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
 		1F7BF22D20F77B6C0023D219 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				50576BB9210E173C0085DF5E /* Floret.swift */,
 				1F7BF22D20F77B6C0023D219 /* Record.swift */,
 				1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */,
+				1F18B1A2210EF9F500CEDD42 /* Storage.swift */,
+				1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */,
 			);
 			path = Cauli;
 			sourceTree = "<group>";
@@ -214,8 +220,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
+				1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */,
 				50576BBA210E173C0085DF5E /* Floret.swift in Sources */,
 				1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */,
+				1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */,
 				1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */,
 				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
