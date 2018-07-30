@@ -36,10 +36,7 @@ internal class CauliURLProtocol: URLProtocol {
 // Overriding URLProtocol functions
 extension CauliURLProtocol {
     override class func canInit(with request: URLRequest) -> Bool {
-        for delegate in delegates where delegate.canHandle(request) {
-            return true
-        }
-        return false
+        return delegates.count > 0
     }
     
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {

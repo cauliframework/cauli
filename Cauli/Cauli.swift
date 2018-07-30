@@ -9,6 +9,8 @@
 import Foundation
 
 public class Cauli {
+  
+    public let florets: [Floret]
     
     /// Performs initial Cauli setup and hooks itself into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system).
     ///
@@ -24,7 +26,8 @@ public class Cauli {
         CauliURLProtocol.remove(delegate: self)
     }
     
-    init() {
+    init(florets: [Floret]) {
+        self.florets = florets
         CauliURLProtocol.add(delegate: self)
     }
     
@@ -32,18 +35,17 @@ public class Cauli {
 
 // For now we don't add any custom implementation here
 extension Cauli: CauliURLProtocolDelegate {
-    func canHandle(_ request: URLRequest) -> Bool {
-        // TODO: implement me
-        return false
-    }
     
     func willRequest(_ record: Record) -> Record {
-        // TODO: implement me
-        return record
+        return florets.reduce(record) { (record, floret) -> Record in
+            floret.willRequest(record)
+        }
     }
     
     func didRespond(_ record: Record) -> Record {
-        // TODO: implement me
-        return record
+        return florets.reduce(record) { (record, floret) -> Record in
+            floret.didRespond(record)
+        }
     }
+    
 }

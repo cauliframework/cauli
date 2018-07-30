@@ -1,14 +1,14 @@
 //
-//  CauliURLProtocolDelegate.swift
+//  FloretProtocol.swift
 //  Cauli
 //
-//  Created by Cornelius Horstmann on 12.07.18.
+//  Created by Pascal Stüdlein on 29.07.18.
 //  Copyright © 2018 brototyp.de. All rights reserved.
 //
 
 import Foundation
 
-protocol CauliURLProtocolDelegate: AnyObject {
+public protocol Floret {
     func willRequest(_ record: Record) -> Record
     func didRespond(_ record: Record) -> Record
 }
