@@ -70,14 +70,6 @@ extension CauliURLProtocol {
     }
 }
 
-extension CauliURLProtocol {
-    // Through this static property we ensure the session configuration will be swizzled exacly once
-    static var swizzle: Void = {
-        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
-        return
-    }()
-}
-
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         record?.result = .result((response, nil))
