@@ -76,9 +76,11 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         completionHandler(.allow)
     }
     
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        if let result = record?.result, case let .result(response, _) = result {
-            record?.result = .result((response, data))
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
+        if let result = record?.result, case let .result(response, data) = result {
+            var currentData = data ?? Data()
+            currentData.append(receivedData)
+            record?.result = .result((response, currentData))
         }
     }
     
