@@ -90,6 +90,21 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         }
     }
     
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, willCacheResponse proposedResponse: CachedURLResponse, completionHandler: @escaping (CachedURLResponse?) -> Void) {
+        guard let existingRecord = self.record else { return completionHandler(proposedResponse) }
+        let record = CauliURLProtocol.delegates.reduce(existingRecord) { (record, delegate) in
+            delegate.didRespond(record)
+        }
+        self.record = record
+        if let result = record.result,
+            case let .result(response, data) = result,
+            let unwrappedData = data {
+            completionHandler(CachedURLResponse(response: response, data: unwrappedData))
+        } else {
+            completionHandler(proposedResponse)
+        }
+    }
+    
     @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         // possibly add the metrics to the record in the future
