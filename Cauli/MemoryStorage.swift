@@ -12,23 +12,20 @@ final class MemoryStorage: Storage {
     
     let capacity: Int
     var records: [Record] = []
-    var memoryWarningObserver: NSObjectProtocol?
     
     init(capacity: Int = 30) {
         self.capacity = capacity
-        memoryWarningObserver = NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: UIApplication.shared, queue: nil) { [weak self] notification in
-            guard let strongself = self else { return }
-            let index = max(0, strongself.records.count - capacity)
-            strongself.records = Array(strongself.records[index..<(index+capacity)])
-        }
     }
     
     func store(_ record: Record) {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-        if records.contains(where: { $0.identifier == record.identifier }) {
-            records = records.cauli_replacing(with: record, where: { $0.identifier == record.identifier })
+        if let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
+            records[recordIndex] = record
         } else {
             records.append(record)
+            if records.count > capacity {
+                records.remove(at: 0)
+            }
         }
     }
     
@@ -42,17 +39,5 @@ final class MemoryStorage: Storage {
         }
         let maxCount = max(count, records.count - index)
         return Array(records[index..<(index+maxCount)])
-    }
-}
-
-internal extension Array {
-    func cauli_replacing(with replacement: Element, where predicate: (Element) throws -> Bool) rethrows -> [Element] {
-        return try map {
-            if try predicate($0) {
-                return replacement
-            } else {
-                return $0
-            }
-        }
     }
 }
