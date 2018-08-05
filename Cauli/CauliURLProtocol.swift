@@ -14,7 +14,7 @@ internal class CauliURLProtocol: URLProtocol {
     
     private static var delegates: [CauliURLProtocolDelegate] = []
     
-    private var record: Record?
+    private var record: Record
     private var dataTask: URLSessionDataTask?
     
     internal static func add(delegate: CauliURLProtocolDelegate) {
@@ -26,6 +26,7 @@ internal class CauliURLProtocol: URLProtocol {
     }
     
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
+        record = Record(request)
         let sessionConfiguration = URLSessionConfiguration.default
         sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
         super.init(request: request, cachedResponse: cachedResponse, client: client)
@@ -35,6 +36,11 @@ internal class CauliURLProtocol: URLProtocol {
 
 // Overriding URLProtocol functions
 extension CauliURLProtocol {
+    
+    override class func canInit(with task: URLSessionTask) -> Bool {
+        return task is URLSessionDataTask && delegates.count > 0
+    }
+    
     override class func canInit(with request: URLRequest) -> Bool {
         return delegates.count > 0
     }
@@ -44,25 +50,22 @@ extension CauliURLProtocol {
     }
     
     override func startLoading() {
-        var record = Record(request)
         record = CauliURLProtocol.delegates.reduce(record) { (record, delegate) in
             delegate.willRequest(record)
         }
         
-        let dataTask: URLSessionDataTask = executingURLSession.dataTask(with: request)
-        if let result = record.result, case let .result(response, data) = result {
+        if case let .result(response, data) = record.result {
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
             if let data = data {
                 client?.urlProtocol(self, didLoad: data)
             }
             client?.urlProtocolDidFinishLoading(self)
-        } else if let result = record.result, case let .error(error) = result {
+        } else if case let .error(error) = record.result {
             client?.urlProtocol(self, didFailWithError: error)
         } else {
-            dataTask.resume()
+            dataTask = executingURLSession.dataTask(with: request)
+            dataTask?.resume()
         }
-        self.record = record
-        self.dataTask = dataTask
     }
     
     override func stopLoading() {
@@ -72,19 +75,33 @@ extension CauliURLProtocol {
 
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        record?.result = .result((response, nil))
+        record.result = .result((response, nil))
         completionHandler(.allow)
     }
     
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        if let result = record?.result, case let .result(response, _) = result {
-            record?.result = .result((response, data))
-        }
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
+        try? record.append(receivedData)
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
-            record?.result = .error(error)
+            record.result = .error(error)
+        }
+        record = CauliURLProtocol.delegates.reduce(record) { (record, delegate) in
+            delegate.didRespond(record)
+        }
+        
+        switch record.result {
+        case .result((let response, let data)):
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
+            if let data = data {
+                client?.urlProtocol(self, didLoad: data)
+            }
+            client?.urlProtocolDidFinishLoading(self)
+        case .error(let error):
+            client?.urlProtocol(self, didFailWithError: error)
+        case .none:
+            client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
         }
     }
     
