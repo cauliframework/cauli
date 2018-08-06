@@ -13,16 +13,6 @@ public class Cauli {
     private let storage: Storage = MemoryStorage()
     public let florets: [Floret]
     
-    /// Performs initial Cauli setup and hooks itself into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system).
-    ///
-    /// Call this as early as possible, preferred in the [application:didFinishLaunchingWithOptions:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application).
-    static let setup: Void = {
-        URLProtocol.registerClass(CauliURLProtocol.self)
-        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
-        
-        return
-    }()
-    
     deinit {
         CauliURLProtocol.remove(delegate: self)
     }
@@ -31,7 +21,23 @@ public class Cauli {
         self.florets = florets
         CauliURLProtocol.add(delegate: self)
     }
+}
+
+extension Cauli {
+    // We use this static property here to ensure the actual setup
+    // is performed only once
+    private static let setup: Void = {
+        URLProtocol.registerClass(CauliURLProtocol.self)
+        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
+        return
+    }()
     
+    /// Performs initial Cauli setup and hooks itself into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system).
+    ///
+    /// Call this as early as possible, preferred in the [application:didFinishLaunchingWithOptions:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application).
+    public func setup() {
+        _ = setup
+    }
 }
 
 // For now we don't add any custom implementation here
