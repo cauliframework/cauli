@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal protocol Storage {
+public protocol Storage {
     
     /// Adds a record to the storage. Updates a possibly existing record.
     /// A record is the same if it's identifier is the same.

@@ -10,14 +10,14 @@ import Foundation
 
 public class Cauli {
   
-    private let storage: Storage = MemoryStorage()
+    public let storage: Storage = MemoryStorage()
     public let florets: [Floret]
     
     deinit {
         CauliURLProtocol.remove(delegate: self)
     }
     
-    init(florets: [Floret]) {
+    public init(florets: [Floret]) {
         self.florets = florets
         CauliURLProtocol.add(delegate: self)
     }
