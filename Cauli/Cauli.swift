@@ -41,7 +41,9 @@ extension Cauli: CauliURLProtocolDelegate {
         let modifiedRecord = florets.reduce(record) { (record, floret) -> Record in
             floret.willRequest(record)
         }
-        storage.store(modifiedRecord)
+        DispatchQueue.main.sync {
+            storage.store(modifiedRecord)
+        }
         return modifiedRecord
     }
     
@@ -49,7 +51,9 @@ extension Cauli: CauliURLProtocolDelegate {
         let modifiedRecord =  florets.reduce(record) { (record, floret) -> Record in
             floret.didRespond(record)
         }
-        storage.store(modifiedRecord)
+        DispatchQueue.main.sync {
+            storage.store(modifiedRecord)
+        }
         return modifiedRecord
     }
     
