@@ -10,7 +10,7 @@ import Foundation
 
 public class Cauli {
   
-    public let storage: Storage = MemoryStorage()
+    private let storage: Storage = MemoryStorage()
     public let florets: [Floret]
     
     deinit {
