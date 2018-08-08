@@ -12,17 +12,20 @@ internal class CauliURLProtocol: URLProtocol {
     
     private var executingURLSession: URLSession!
     
-    private static var delegates: [CauliURLProtocolDelegate] = []
+    private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
+    private static var delegates: [CauliURLProtocolDelegate] {
+        return weakDelegates.filter({ $0.value != nil }).compactMap({ $0.value as? CauliURLProtocolDelegate })
+    }
     
     private var record: Record
     private var dataTask: URLSessionDataTask?
     
     internal static func add(delegate: CauliURLProtocolDelegate) {
-        delegates.append(delegate)
+        weakDelegates.append(WeakReference(delegate))
     }
     
     internal static func remove(delegate: CauliURLProtocolDelegate) {
-        delegates = delegates.filter { $0 !== delegate}
+        weakDelegates = weakDelegates.filter { $0.value !== delegate}
     }
     
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
