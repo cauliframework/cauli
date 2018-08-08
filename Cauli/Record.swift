@@ -15,10 +15,10 @@ public enum Result<Type> {
 }
 
 public struct Record {
-    var identifier: UUID
-    var originalRequest: URLRequest
-    var designatedRequest: URLRequest
-    var result: Result<(URLResponse, Data?)>
+    public var identifier: UUID
+    public var originalRequest: URLRequest
+    public var designatedRequest: URLRequest
+    public var result: Result<(URLResponse, Data?)>
 }
 
 extension Record {

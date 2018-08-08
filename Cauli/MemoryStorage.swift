@@ -33,7 +33,7 @@ final class MemoryStorage: Storage {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
         let index: Int
         if let record = record {
-            index = records.firstIndex { $0.identifier == record.identifier } ?? 0
+            index = records.index { $0.identifier == record.identifier } ?? 0
         } else {
             index = 0
         }
