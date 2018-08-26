@@ -9,17 +9,22 @@
 import Foundation
 
 //public enum Result<Type: Codable> {
-public enum Result<Type> {
+public enum Result<Type: Codable> {
     case none
     case error(Error)
     case result(Type)
 }
 
-public struct CauliResponse {
+public struct CauliResponse: Codable {
     public let data: Data?
     public var response: URLResponse {
         get {
-            fatalError()
+            switch urlResponseRepresentable {
+            case .httpURLResponse(let httpURLResponse):
+                return httpURLResponse
+            case .urlResponse(let response):
+                return response
+            }
         }
         set {
             if let httpRespnose = newValue as? HTTPURLResponse {

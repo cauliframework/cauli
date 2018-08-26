@@ -13,7 +13,7 @@ enum URLResponseRepresentable {
     case httpURLResponse(HTTPURLResponse)
 }
 
-extension URLResponseRepresentable: Decodable {
+extension URLResponseRepresentable: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -26,24 +26,34 @@ extension URLResponseRepresentable: Decodable {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️")
         }
     }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .httpURLResponse(let httpURLResponse):
+            try container.encode(httpURLResponse.internalHTTPURLResponse)
+        case .urlResponse(let urlResponse):
+            try container.encode(urlResponse.internalURLResponse)
+        }
+    }
 
 }
 
-private struct InternalURLResponse: Codable {
+struct InternalURLResponse: Codable {
     let url: URL
     let mimeType: String?
     let expectedContentLength: Int
     let textEncodingName: String?
 }
 
-private struct InternalHTTPURLResponse: Codable {
+struct InternalHTTPURLResponse: Codable {
     let url: URL
     let statusCode: Int
     let httpVersion: String?
     let headerFields: [String : String]?
 }
 
-private extension URLResponse {
+extension URLResponse {
     var internalURLResponse: InternalURLResponse {
         guard let url = url else { fatalError() }
         return InternalURLResponse(url: url, mimeType: mimeType, expectedContentLength: Int(expectedContentLength), textEncodingName: textEncodingName)
@@ -54,7 +64,7 @@ private extension URLResponse {
     }
 }
 
-private extension HTTPURLResponse {
+extension HTTPURLResponse {
     var internalHTTPURLResponse: InternalHTTPURLResponse {
         guard let url = url else { fatalError() }
         
