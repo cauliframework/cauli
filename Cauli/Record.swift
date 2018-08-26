@@ -8,6 +8,7 @@
 
 import Foundation
 
+//public enum Result<Type: Codable> {
 public enum Result<Type> {
     case none
     case error(Error)
@@ -15,8 +16,30 @@ public enum Result<Type> {
 }
 
 public struct CauliResponse {
-    let response: URLResponse
-    let data: Data?
+    public let data: Data?
+    public var response: URLResponse {
+        get {
+            fatalError()
+        }
+        set {
+            if let httpRespnose = newValue as? HTTPURLResponse {
+                urlResponseRepresentable = .httpURLResponse(httpRespnose)
+            } else {
+                urlResponseRepresentable = .urlResponse(newValue)
+            }
+        }
+    }
+    
+    init(response: URLResponse, data: Data?) {
+        self.data = data
+        if let httpRespnose = response as? HTTPURLResponse {
+            urlResponseRepresentable = .httpURLResponse(httpRespnose)
+        } else {
+            urlResponseRepresentable = .urlResponse(response)
+        }
+    }
+    
+    private var urlResponseRepresentable: URLResponseRepresentable
 }
 
 public struct Record {
