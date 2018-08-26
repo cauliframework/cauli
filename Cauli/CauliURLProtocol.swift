@@ -92,7 +92,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
-            record.result = .error(error)
+            record.result = .error(error as NSError)
         }
         record = CauliURLProtocol.delegates.reduce(record) { record, delegate in
             delegate.didRespond(record)
