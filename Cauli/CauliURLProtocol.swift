@@ -61,9 +61,9 @@ extension CauliURLProtocol {
             delegate.willRequest(record)
         }
 
-        if case let .result(response, data) = record.result {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
-            if let data = data {
+        if case let .result(result) = record.result {
+            client?.urlProtocol(self, didReceive: result.response, cacheStoragePolicy: .allowed)
+            if let data = result.data {
                 client?.urlProtocol(self, didLoad: data)
             }
             client?.urlProtocolDidFinishLoading(self)
@@ -82,7 +82,7 @@ extension CauliURLProtocol {
 
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        record.result = .result((response, nil))
+        record.result = .result(CauliResponse(response: response, data: nil))
         completionHandler(.allow)
     }
 
@@ -99,9 +99,9 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         }
 
         switch record.result {
-        case .result((let response, let data)):
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
-            if let data = data {
+        case .result(let result):
+            client?.urlProtocol(self, didReceive: result.response, cacheStoragePolicy: .allowed)
+            if let data = result.data {
                 client?.urlProtocol(self, didLoad: data)
             }
             client?.urlProtocolDidFinishLoading(self)

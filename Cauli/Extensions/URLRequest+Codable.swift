@@ -25,11 +25,11 @@ extension URLRequest: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let url = try container.decodeIfPresent(URL.self, forKey: .url)
+        let url = try container.decode(URL.self, forKey: .url)
         let cachePolicy = try container.decode(URLRequest.CachePolicy.self, forKey: .cachePolicy)
         let timeoutInterval = try container.decode(TimeInterval.self, forKey: .timeoutInterval)
         
-        var urlRequest = URLRequest(url: url!, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+        var urlRequest = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         urlRequest.mainDocumentURL = try container.decodeIfPresent(URL.self, forKey: .mainDocumentURL)
         urlRequest.allowsCellularAccess = try container.decode(Bool.self, forKey: .allowsCelluarAccess)
         urlRequest.httpMethod = try container.decodeIfPresent(String.self, forKey: .httpMethod)

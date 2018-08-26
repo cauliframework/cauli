@@ -14,11 +14,16 @@ public enum Result<Type> {
     case result(Type)
 }
 
+public struct CauliResponse {
+    let response: URLResponse
+    let data: Data?
+}
+
 public struct Record {
     public var identifier: UUID
     public var originalRequest: URLRequest
     public var designatedRequest: URLRequest
-    public var result: Result<(URLResponse, Data?)>
+    public var result: Result<CauliResponse>
 }
 
 extension Record {
@@ -32,12 +37,12 @@ extension Record {
 
 extension Record {
     mutating func append(_ receivedData: Data) throws {
-        guard case let .result(response, data) = result else {
+        guard case let .result(result) = result else {
             // TODO: use a proper error here
             throw NSError(domain: "FIXME", code: 0, userInfo: [:])
         }
-        var currentData = data ?? Data()
+        var currentData = result.data ?? Data()
         currentData.append(receivedData)
-        self.result = .result((response, currentData))
+        self.result = .result(CauliResponse(response: result.response, data: result.data))
     }
 }
