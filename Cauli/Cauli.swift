@@ -9,14 +9,14 @@
 import Foundation
 
 public class Cauli {
-  
+
     private let storage: Storage = MemoryStorage()
     public let florets: [Floret]
-    
+
     deinit {
         CauliURLProtocol.remove(delegate: self)
     }
-    
+
     public init(florets: [Floret]) {
         self.florets = florets
         CauliURLProtocol.add(delegate: self)
@@ -31,7 +31,7 @@ extension Cauli {
         URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
         return
     }()
-    
+
     /// Performs initial Cauli setup and hooks itself into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system).
     ///
     /// Call this as early as possible, preferred in the [application:didFinishLaunchingWithOptions:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application).
@@ -42,9 +42,9 @@ extension Cauli {
 
 // For now we don't add any custom implementation here
 extension Cauli: CauliURLProtocolDelegate {
-    
+
     func willRequest(_ record: Record) -> Record {
-        let modifiedRecord = florets.reduce(record) { (record, floret) -> Record in
+        let modifiedRecord = florets.reduce(record) { record, floret -> Record in
             floret.willRequest(record)
         }
         DispatchQueue.main.sync {
@@ -52,9 +52,9 @@ extension Cauli: CauliURLProtocolDelegate {
         }
         return modifiedRecord
     }
-    
+
     func didRespond(_ record: Record) -> Record {
-        let modifiedRecord =  florets.reduce(record) { (record, floret) -> Record in
+        let modifiedRecord = florets.reduce(record) { record, floret -> Record in
             floret.didRespond(record)
         }
         DispatchQueue.main.sync {
@@ -62,5 +62,5 @@ extension Cauli: CauliURLProtocolDelegate {
         }
         return modifiedRecord
     }
-    
+
 }

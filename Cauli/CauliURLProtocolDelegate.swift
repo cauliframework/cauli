@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CauliURLProtocolDelegate: AnyObject {
+internal protocol CauliURLProtocolDelegate: AnyObject {
     func willRequest(_ record: Record) -> Record
     func didRespond(_ record: Record) -> Record
 }

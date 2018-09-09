@@ -10,7 +10,7 @@ import Foundation
 
 internal class WeakReference<T> {
     weak var value: AnyObject?
-    
+
     init(_ value: T?) {
         self.value = value as AnyObject
     }

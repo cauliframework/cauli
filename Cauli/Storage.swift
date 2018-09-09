@@ -9,13 +9,13 @@
 import Foundation
 
 public protocol Storage {
-    
+
     /// Adds a record to the storage. Updates a possibly existing record.
     /// A record is the same if it's identifier is the same.
     ///
     /// - Parameter record: The record to add to the storage.
     func store(_ record: Record)
-    
+
     /// Returns a number of records after the referenced record.
     /// Records are sorted by order there were added to the storage,
     /// Might return less than `count` if there are no more records.
