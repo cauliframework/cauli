@@ -11,6 +11,21 @@ import Foundation
 enum URLResponseRepresentable {
     case urlResponse(URLResponse)
     case httpURLResponse(HTTPURLResponse)
+    
+    public var urlResponse: URLResponse {
+        switch self {
+        case .urlResponse(let urlResponse): return urlResponse
+        case .httpURLResponse(let httpURLResponse): return httpURLResponse as URLResponse
+        }
+    }
+    
+    init(_ urlResponse: URLResponse) {
+        if let urlResponse = urlResponse as? HTTPURLResponse {
+            self = .httpURLResponse(urlResponse)
+        } else {
+            self = .urlResponse(urlResponse)
+        }
+    }
 }
 
 extension URLResponseRepresentable: Codable {

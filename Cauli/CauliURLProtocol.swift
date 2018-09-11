@@ -62,7 +62,7 @@ extension CauliURLProtocol {
         }
 
         if case let .result(result) = record.result {
-            client?.urlProtocol(self, didReceive: result.response, cacheStoragePolicy: .allowed)
+            client?.urlProtocol(self, didReceive: result.urlResponse, cacheStoragePolicy: .allowed)
             if let data = result.data {
                 client?.urlProtocol(self, didLoad: data)
             }
@@ -82,7 +82,7 @@ extension CauliURLProtocol {
 
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        record.result = .result(CauliResponse(response: response, data: nil))
+        record.result = .result(Response(response, data: nil))
         completionHandler(.allow)
     }
 
@@ -100,7 +100,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
         switch record.result {
         case .result(let result):
-            client?.urlProtocol(self, didReceive: result.response, cacheStoragePolicy: .allowed)
+            client?.urlProtocol(self, didReceive: result.urlResponse, cacheStoragePolicy: .allowed)
             if let data = result.data {
                 client?.urlProtocol(self, didLoad: data)
             }

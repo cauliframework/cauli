@@ -49,33 +49,20 @@ extension Result: Codable {
     
 }
 
-public struct CauliResponse: Codable {
+public struct Response: Codable {
     public let data: Data?
-    public var response: URLResponse {
+    public var urlResponse: URLResponse {
         get {
-            switch urlResponseRepresentable {
-            case .httpURLResponse(let httpURLResponse):
-                return httpURLResponse
-            case .urlResponse(let response):
-                return response
-            }
+            return urlResponseRepresentable.urlResponse
         }
         set {
-            if let httpRespnose = newValue as? HTTPURLResponse {
-                urlResponseRepresentable = .httpURLResponse(httpRespnose)
-            } else {
-                urlResponseRepresentable = .urlResponse(newValue)
-            }
+            urlResponseRepresentable = URLResponseRepresentable(newValue)
         }
     }
     
-    init(response: URLResponse, data: Data?) {
+    init(_ urlResponse: URLResponse, data: Data?) {
         self.data = data
-        if let httpRespnose = response as? HTTPURLResponse {
-            urlResponseRepresentable = .httpURLResponse(httpRespnose)
-        } else {
-            urlResponseRepresentable = .urlResponse(response)
-        }
+        urlResponseRepresentable = URLResponseRepresentable(urlResponse)
     }
     
     private var urlResponseRepresentable: URLResponseRepresentable
@@ -85,7 +72,7 @@ public struct Record: Codable {
     public var identifier: UUID
     public var originalRequest: URLRequest
     public var designatedRequest: URLRequest
-    public var result: Result<CauliResponse>
+    public var result: Result<Response>
 }
 
 extension Record {
@@ -105,6 +92,6 @@ extension Record {
         }
         var currentData = result.data ?? Data()
         currentData.append(receivedData)
-        self.result = .result(CauliResponse(response: result.response, data: result.data))
+        self.result = .result(Response(result.urlResponse, data: result.data))
     }
 }
