@@ -8,15 +8,15 @@
 
 import Foundation
 
-final class MemoryStorage: Storage {
-    
+internal final class MemoryStorage: Storage {
+
     let capacity: Int
     var records: [Record] = []
-    
+
     init(capacity: Int = 30) {
         self.capacity = capacity
     }
-    
+
     func store(_ record: Record) {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
         if let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
@@ -28,7 +28,7 @@ final class MemoryStorage: Storage {
             }
         }
     }
-    
+
     func records(_ count: Int, after record: Record?) -> [Record] {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
         let index: Int
@@ -38,6 +38,6 @@ final class MemoryStorage: Storage {
             index = 0
         }
         let maxCount = max(count, records.count - index)
-        return Array(records[index..<(index+maxCount)])
+        return Array(records[index..<(index + maxCount)])
     }
 }

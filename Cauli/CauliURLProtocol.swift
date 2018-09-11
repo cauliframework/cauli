@@ -9,29 +9,33 @@
 import Foundation
 
 internal class CauliURLProtocol: URLProtocol {
-    
+    // We are keeping this as implicitly unwrapped optional so we can initialize it
+    // right after the super.init with self as the delegate
+    // swiftlint:disable implicitly_unwrapped_optional
     private var executingURLSession: URLSession!
-    
+    // swiftlint:enable implicitly_unwrapped_optional
+
     private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
     private static var delegates: [CauliURLProtocolDelegate] {
-        return weakDelegates.filter({ $0.value != nil }).compactMap({ $0.value as? CauliURLProtocolDelegate })
+        let nonNilDelegates = weakDelegates.filter { $0.value != nil }
+        return nonNilDelegates.compactMap { $0.value as? CauliURLProtocolDelegate }
     }
-    
+
     private var record: Record
     private var dataTask: URLSessionDataTask?
-    
+
     internal static func add(delegate: CauliURLProtocolDelegate) {
         weakDelegates.append(WeakReference(delegate))
     }
-    
+
     internal static func remove(delegate: CauliURLProtocolDelegate) {
-        weakDelegates = weakDelegates.filter { $0.value !== delegate}
+        weakDelegates = weakDelegates.filter { $0.value !== delegate }
     }
-    
+
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
         record = Record(request)
         let sessionConfiguration = URLSessionConfiguration.default
-        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter({ $0 != CauliURLProtocol.self })
+        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
         super.init(request: request, cachedResponse: cachedResponse, client: client)
         executingURLSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
@@ -39,24 +43,24 @@ internal class CauliURLProtocol: URLProtocol {
 
 // Overriding URLProtocol functions
 extension CauliURLProtocol {
-    
+
     override class func canInit(with task: URLSessionTask) -> Bool {
-        return task is URLSessionDataTask && delegates.count > 0
+        return task is URLSessionDataTask && !delegates.isEmpty
     }
-    
+
     override class func canInit(with request: URLRequest) -> Bool {
-        return delegates.count > 0
+        return !delegates.isEmpty
     }
-    
+
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
-    
+
     override func startLoading() {
-        record = CauliURLProtocol.delegates.reduce(record) { (record, delegate) in
+        record = CauliURLProtocol.delegates.reduce(record) { record, delegate in
             delegate.willRequest(record)
         }
-        
+
         if case let .result(response, data) = record.result {
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
             if let data = data {
@@ -70,7 +74,7 @@ extension CauliURLProtocol {
             dataTask?.resume()
         }
     }
-    
+
     override func stopLoading() {
         dataTask?.cancel()
     }
@@ -81,19 +85,19 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         record.result = .result((response, nil))
         completionHandler(.allow)
     }
-    
+
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
         try? record.append(receivedData)
     }
-    
+
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
             record.result = .error(error)
         }
-        record = CauliURLProtocol.delegates.reduce(record) { (record, delegate) in
+        record = CauliURLProtocol.delegates.reduce(record) { record, delegate in
             delegate.didRespond(record)
         }
-        
+
         switch record.result {
         case .result((let response, let data)):
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowed)
@@ -107,7 +111,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
             client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
         }
     }
-    
+
     @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         // possibly add the metrics to the record in the future
