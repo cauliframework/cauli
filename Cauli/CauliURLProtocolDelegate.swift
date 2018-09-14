@@ -9,6 +9,6 @@
 import Foundation
 
 internal protocol CauliURLProtocolDelegate: AnyObject {
-    func willRequest(_ record: Record) -> Record
-    func didRespond(_ record: Record) -> Record
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
 }

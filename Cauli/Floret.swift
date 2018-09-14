@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol Floret {
-    func willRequest(_ record: Record) -> Record
-    func didRespond(_ record: Record) -> Record
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void)
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void)
 }

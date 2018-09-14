@@ -40,27 +40,31 @@ extension Cauli {
     }
 }
 
-// For now we don't add any custom implementation here
 extension Cauli: CauliURLProtocolDelegate {
-
-    func willRequest(_ record: Record) -> Record {
-        let modifiedRecord = florets.reduce(record) { record, floret -> Record in
-            floret.willRequest(record)
-        }
-        DispatchQueue.main.sync {
-            storage.store(modifiedRecord)
-        }
-        return modifiedRecord
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        florets.cauli_reduceAsync(record, transform: { record, floret, completion in
+            floret.willRequest(record) { record in
+                completion(record)
+            }
+        }, completion: { record in
+            DispatchQueue.main.sync {
+                self.storage.store(record)
+            }
+            completionHandler(record)
+        })
     }
 
-    func didRespond(_ record: Record) -> Record {
-        let modifiedRecord = florets.reduce(record) { record, floret -> Record in
-            floret.didRespond(record)
-        }
-        DispatchQueue.main.sync {
-            storage.store(modifiedRecord)
-        }
-        return modifiedRecord
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        florets.cauli_reduceAsync(record, transform: { record, floret, completion in
+            floret.didRespond(record) { record in
+                completion(record)
+            }
+        }, completion: { record in
+            DispatchQueue.main.sync {
+                self.storage.store(record)
+            }
+            completionHandler(record)
+        })
     }
 
 }
