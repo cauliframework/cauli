@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct InternalError: Codable {
+internal struct InternalError: Codable {
     let domain: String
     let code: Int
     let userInfo: [String: String]
@@ -19,7 +19,7 @@ extension NSError {
         return self.userInfo.reduce([:]) { (result, keyValuePair: (key: String, value: Any)) -> [String: String] in
             var newResult = result
             let keyString = keyValuePair.key
-            
+
             if let valueString = keyValuePair.value as? String {
                 newResult[keyString] = valueString
             }

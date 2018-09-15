@@ -18,11 +18,11 @@ public struct Response: Codable {
             urlResponseRepresentable = URLResponseRepresentable(newValue)
         }
     }
-    
+
     init(_ urlResponse: URLResponse, data: Data?) {
         self.data = data
         urlResponseRepresentable = URLResponseRepresentable(urlResponse)
     }
-    
+
     private var urlResponseRepresentable: URLResponseRepresentable
 }

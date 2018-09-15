@@ -15,13 +15,13 @@ public enum Result<Type: Codable> {
 }
 
 extension Result: Codable {
-    
+
     private enum CodingKeys: CodingKey {
         case none
         case error
         case result
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let decodedType = try? container.decode(Type.self) {
@@ -32,18 +32,18 @@ extension Result: Codable {
             self = .none
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .none:
             try container.encodeNil()
         case .error(let error):
-            
+
             try container.encode(InternalError(domain: error.domain, code: error.code, userInfo: error.compatibleUserInfo))
         case .result(let type):
             try container.encode(type)
         }
     }
-    
+
 }
