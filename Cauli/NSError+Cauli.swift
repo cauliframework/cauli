@@ -8,15 +8,29 @@
 
 import Foundation
 
-// All errors with code <=100<200 represent internal errors
+// swiftlint:disable nesting
 extension NSError {
-
-    static var internalError: NSError {
-        return NSError(domain: "de.brototyp.Cauli", code: 100, userInfo: [:])
+    public struct Cauli {
+        public let domain = "de.brototyp.cauli"
+        public enum Code {}
+        public enum UserInfoKey {}
     }
 
-    static func onAppendingDataToRecord(with receivedData: Data) -> NSError {
-        return NSError(domain: "de.brototyp.Cauli", code: 110, userInfo: ["receivedData": receivedData])
-    }
+    internal struct CauliInternal {
+        internal static let domain = "de.brototyp.cauli.internal"
+        internal enum Code: Int {
+            case failedToAppendData
+        }
 
+        internal enum UserInfoKey: String {
+            case data
+            case record
+        }
+
+        internal static func failedToAppendData(_ data: Data, record: Record) -> NSError {
+            return NSError(domain: domain,
+                           code: Code.failedToAppendData.rawValue,
+                           userInfo: [UserInfoKey.data.rawValue: data, UserInfoKey.record.rawValue: record])
+        }
+    }
 }
