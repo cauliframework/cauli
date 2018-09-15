@@ -18,7 +18,9 @@ extension NSError {
     var compatibleUserInfo: [String: String] {
         return self.userInfo.reduce([:]) { (result, keyValuePair: (key: String, value: Any)) -> [String: String] in
             var newResult = result
-            if let keyString = keyValuePair.key as? String, let valueString = keyValuePair.value as? String { // improve
+            let keyString = keyValuePair.key
+            
+            if let valueString = keyValuePair.value as? String {
                 newResult[keyString] = valueString
             }
 

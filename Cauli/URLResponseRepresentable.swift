@@ -29,74 +29,23 @@ enum URLResponseRepresentable {
 }
 
 extension URLResponseRepresentable: Codable {
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let internalHTTPURLResponse = try? container.decode(InternalHTTPURLResponse.self),
-            let httpURLResponse = HTTPURLResponse(internalHTTPURLResponse: internalHTTPURLResponse) {
-            self = .httpURLResponse(httpURLResponse)
-        } else if let internalURLResponse = try? container.decode(InternalURLResponse.self) {
-            self = .urlResponse(URLResponse(internalURLResponse: internalURLResponse))
-        } else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️")
-        }
+        let decodedData = try container.decode(Data.self)
+        let unarchiver = try NSKeyedUnarchiver(forReadingFrom: decodedData)
+        
+        guard let httpURLResponse = unarchiver.decodeObject(of: [HTTPURLResponse.self, URLResponse.self], forKey: "URLResponseRepresentable") as? URLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️") }
+        unarchiver.finishDecoding()
+        
+        self.init(httpURLResponse)
     }
     
     func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .httpURLResponse(let httpURLResponse):
-            try container.encode(httpURLResponse.internalHTTPURLResponse)
-        case .urlResponse(let urlResponse):
-            try container.encode(urlResponse.internalURLResponse)
-        }
-    }
-
-}
-
-struct InternalURLResponse: Codable {
-    let url: URL
-    let mimeType: String?
-    let expectedContentLength: Int
-    let textEncodingName: String?
-}
-
-struct InternalHTTPURLResponse: Codable {
-    let url: URL
-    let statusCode: Int
-    let httpVersion: String?
-    let headerFields: [String : String]?
-}
-
-extension URLResponse {
-    var internalURLResponse: InternalURLResponse {
-        guard let url = url else { fatalError() }
-        return InternalURLResponse(url: url, mimeType: mimeType, expectedContentLength: Int(expectedContentLength), textEncodingName: textEncodingName)
-    }
-    
-    convenience init(internalURLResponse: InternalURLResponse) {
-        self.init(url: internalURLResponse.url, mimeType: internalURLResponse.mimeType, expectedContentLength: internalURLResponse.expectedContentLength, textEncodingName: internalURLResponse.textEncodingName)
-    }
-}
-
-extension HTTPURLResponse {
-    var internalHTTPURLResponse: InternalHTTPURLResponse {
-        guard let url = url else { fatalError() }
+        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+        archiver.encode(urlResponse, forKey: "URLResponseRepresentable")
+        archiver.finishEncoding()
         
-        let compatibleHeaderFields: [String: String] = allHeaderFields.reduce([:]) { (result, keyValuePair: (key: AnyHashable, value: Any)) -> [String: String] in
-            
-            var newResult = result
-            if let keyString = keyValuePair.key as? String, let valueString = keyValuePair.value as? String { // improve
-                newResult[keyString] = valueString
-            }
-            
-            return newResult
-        }
-
-        return InternalHTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: compatibleHeaderFields)
-    }
-    
-    convenience init?(internalHTTPURLResponse: InternalHTTPURLResponse) {
-        self.init(url: internalHTTPURLResponse.url, statusCode: internalHTTPURLResponse.statusCode, httpVersion: internalHTTPURLResponse.httpVersion, headerFields: internalHTTPURLResponse.headerFields)
+        var container = encoder.singleValueContainer()
+        try container.encode(archiver.encodedData)
     }
 }
