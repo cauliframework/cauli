@@ -8,17 +8,11 @@
 
 import Foundation
 
-public enum Result<Type> {
-    case none
-    case error(Error)
-    case result(Type)
-}
-
-public struct Record {
+public struct Record: Codable {
     public var identifier: UUID
     public var originalRequest: URLRequest
     public var designatedRequest: URLRequest
-    public var result: Result<(URLResponse, Data?)>
+    public var result: Result<Response>
 }
 
 extension Record {
@@ -32,12 +26,12 @@ extension Record {
 
 extension Record {
     mutating func append(_ receivedData: Data) throws {
-        guard case let .result(response, data) = result else {
+        guard case let .result(result) = result else {
             // TODO: use a proper error here
             throw NSError(domain: "FIXME", code: 0, userInfo: [:])
         }
-        var currentData = data ?? Data()
+        var currentData = result.data ?? Data()
         currentData.append(receivedData)
-        self.result = .result((response, currentData))
+        self.result = .result(Response(result.urlResponse, data: result.data))
     }
 }
