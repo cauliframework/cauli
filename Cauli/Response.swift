@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Response: Codable {
-    public let data: Data?
+    public var data: Data?
     public var urlResponse: URLResponse {
         get {
             return urlResponseRepresentable.urlResponse
