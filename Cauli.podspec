@@ -29,10 +29,10 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/brototyp/cauli"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.authors            = { "Cornelius Horstmann" => "cornelius@brototyp.de", "Pascal Stüdlein" => "mail@pascal-stuedlein.de" }
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "11.0"
   s.watchos.deployment_target = "3.0"
-  s.tvos.deployment_target = "10.0"
+  s.tvos.deployment_target = "11.0"
   s.source       = { :git => "https://github.com/brototyp/cauli.git", :branch => "#{s.version}" }
-  s.source_files  = "Cauli", "Cauli/**/*.{h,m}"
+  s.source_files  = "Cauli", "Cauli/**/*.swift"
 
 end
