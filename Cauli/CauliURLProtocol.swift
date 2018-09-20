@@ -57,22 +57,24 @@ extension CauliURLProtocol {
     }
 
     override func startLoading() {
-        record = CauliURLProtocol.delegates.reduce(record) { record, delegate in
-            delegate.willRequest(record)
-        }
-
-        if case let .result(result) = record.result {
-            client?.urlProtocol(self, didReceive: result.urlResponse, cacheStoragePolicy: .allowed)
-            if let data = result.data {
-                client?.urlProtocol(self, didLoad: data)
+        CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
+            delegate.willRequest(record) { record in
+                completion(record)
             }
-            client?.urlProtocolDidFinishLoading(self)
-        } else if case let .error(error) = record.result {
-            client?.urlProtocol(self, didFailWithError: error)
-        } else {
-            dataTask = executingURLSession.dataTask(with: request)
-            dataTask?.resume()
-        }
+        }, completion: { record in
+            if case let .result(response) = record.result {
+                self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
+                if let data = response.data {
+                    self.client?.urlProtocol(self, didLoad: data)
+                }
+                self.client?.urlProtocolDidFinishLoading(self)
+            } else if case let .error(error) = record.result {
+                self.client?.urlProtocol(self, didFailWithError: error)
+            } else {
+                self.dataTask = self.executingURLSession.dataTask(with: self.request)
+                self.dataTask?.resume()
+            }
+        })
     }
 
     override func stopLoading() {
@@ -94,22 +96,25 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         if let error = error {
             record.result = .error(error as NSError)
         }
-        record = CauliURLProtocol.delegates.reduce(record) { record, delegate in
-            delegate.didRespond(record)
-        }
 
-        switch record.result {
-        case .result(let result):
-            client?.urlProtocol(self, didReceive: result.urlResponse, cacheStoragePolicy: .allowed)
-            if let data = result.data {
-                client?.urlProtocol(self, didLoad: data)
+        CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
+            delegate.didRespond(record) { record in
+                completion(record)
             }
-            client?.urlProtocolDidFinishLoading(self)
-        case .error(let error):
-            client?.urlProtocol(self, didFailWithError: error)
-        case .none:
-            client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
-        }
+        }, completion: { record in
+            switch record.result {
+            case let .result(response):
+                self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
+                if let data = response.data {
+                    self.client?.urlProtocol(self, didLoad: data)
+                }
+                self.client?.urlProtocolDidFinishLoading(self)
+            case .error(let error):
+                self.client?.urlProtocol(self, didFailWithError: error)
+            case .none:
+                self.client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
+            }
+        })
     }
 
     @available(iOS 10.0, *)
