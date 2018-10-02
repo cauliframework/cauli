@@ -46,6 +46,6 @@ extension Record {
         }
         var currentData = result.data ?? Data()
         currentData.append(receivedData)
-        self.result = .result(Response(result.urlResponse, data: result.data))
+        self.result = .result(Response(result.urlResponse, data: currentData))
     }
 }
