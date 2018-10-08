@@ -13,6 +13,7 @@
 		1F6BB4562163609100D56F4F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BB4552163609100D56F4F /* Configuration.swift */; };
 		1F7001C1216B8128007A9355 /* CauliURLProtocolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7001C0216B8128007A9355 /* CauliURLProtocolSpec.swift */; };
 		1F7001C4216B8250007A9355 /* CauliURLProtocolDelegateStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7001C3216B8250007A9355 /* CauliURLProtocolDelegateStub.swift */; };
+		1F7001C6216B955A007A9355 /* CauliURLProtocolDelegateMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7001C5216B955A007A9355 /* CauliURLProtocolDelegateMocker.swift */; };
 		1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */; };
 		1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22D20F77B6C0023D219 /* Record.swift */; };
 		1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */; };
@@ -51,6 +52,7 @@
 		1F6BB4552163609100D56F4F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1F7001C0216B8128007A9355 /* CauliURLProtocolSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolSpec.swift; sourceTree = "<group>"; };
 		1F7001C3216B8250007A9355 /* CauliURLProtocolDelegateStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegateStub.swift; sourceTree = "<group>"; };
+		1F7001C5216B955A007A9355 /* CauliURLProtocolDelegateMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegateMocker.swift; sourceTree = "<group>"; };
 		1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
 		1F7BF22D20F77B6C0023D219 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				1F7001C3216B8250007A9355 /* CauliURLProtocolDelegateStub.swift */,
+				1F7001C5216B955A007A9355 /* CauliURLProtocolDelegateMocker.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			files = (
 				1FE3F73420F64A2B00233C7C /* CauliTests.swift in Sources */,
 				1F7001C4216B8250007A9355 /* CauliURLProtocolDelegateStub.swift in Sources */,
+				1F7001C6216B955A007A9355 /* CauliURLProtocolDelegateMocker.swift in Sources */,
 				1F7001C1216B8128007A9355 /* CauliURLProtocolSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

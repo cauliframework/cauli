@@ -20,32 +20,21 @@
 //  THE SOFTWARE.
 //
 
-@testable import Cauli
 import Foundation
+@testable import Cauli
 
-class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {
-    
-    var willRequestClosure: ((inout Record) -> Void)?
-    var didRespondClosure: ((inout Record) -> Void)?
+class CauliURLProtocolDelegateMocker: CauliURLProtocolDelegate {
     
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        if let willRequestClosure = willRequestClosure {
-            var updatedRecord = record
-            willRequestClosure(&updatedRecord)
-            completionHandler(updatedRecord)
-        } else {
-            completionHandler(record)
-        }
+        let data = "{\"response\":\"ok\"}".data(using: .utf8)!
+        let urlResponse = URLResponse(url: record.designatedRequest.url!, mimeType: "application/json", expectedContentLength: data.count, textEncodingName: nil)
+        let response = Response(urlResponse, data: data)
+        var modifiedRecord = record
+        modifiedRecord.result = .result(response)
+        completionHandler(modifiedRecord)
     }
     
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        if let didRespondClosure = didRespondClosure {
-            var updatedRecord = record
-            didRespondClosure(&updatedRecord)
-            completionHandler(updatedRecord)
-        } else {
-            completionHandler(record)
-        }
+        completionHandler(record)
     }
-    
 }

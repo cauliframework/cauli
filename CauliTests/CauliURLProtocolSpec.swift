@@ -27,18 +27,23 @@ import Nimble
 
 class CauliURLProtocolSpec: QuickSpec {
     
+    let mocker = CauliURLProtocolDelegateMocker()
+    
     override func setUp() {
         super.setUp()
+        CauliURLProtocol.add(delegate: mocker)
         URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
         URLProtocol.registerClass(CauliURLProtocol.self)
     }
     
     override func tearDown() {
         super.tearDown()
+        CauliURLProtocol.remove(delegate: mocker)
         URLProtocol.unregisterClass(CauliURLProtocol.self)
         URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
     }
     
+    // TODO: add a mocking delegate/floret for all these requests
     override func spec() {
         describe("addDelegate") {
             it("calls the willRequest function on the delegate once a network request is performed") {
@@ -46,19 +51,17 @@ class CauliURLProtocolSpec: QuickSpec {
                 var willRequestRecord: Record?
                 delegate.willRequestClosure = { record in
                     willRequestRecord = record
-                    return record
                 }
                 CauliURLProtocol.add(delegate: delegate)
                 let task = URLSession.shared.dataTask(with: URL(string: "https://cauli.works")!) { (data, response, error) in }
                 task.resume()
                 expect(willRequestRecord).toEventuallyNot(beNil())
             }
-            it("calls the didRespomd function on the delegate once a network request is performed") {
+            it("calls the didRespond function on the delegate once a network request is performed") {
                 let delegate = CauliURLProtocolDelegateStub()
                 var didRespondRecord: Record?
                 delegate.didRespondClosure = { record in
                     didRespondRecord = record
-                    return record
                 }
                 CauliURLProtocol.add(delegate: delegate)
                 let task = URLSession.shared.dataTask(with: URL(string: "https://cauli.works")!) { (data, response, error) in }
@@ -73,11 +76,9 @@ class CauliURLProtocolSpec: QuickSpec {
                 var didFinishNetworkRequest = false
                 delegate.willRequestClosure = { record in
                     didCallDelegateFunction = true
-                    return record
                 }
                 delegate.didRespondClosure = { record in
                     didCallDelegateFunction = true
-                    return record
                 }
                 CauliURLProtocol.add(delegate: delegate)
                 CauliURLProtocol.remove(delegate: delegate)
@@ -89,13 +90,39 @@ class CauliURLProtocolSpec: QuickSpec {
             }
         }
         describe("willRequest") {
-            it("uses the original and designated request") {}
-            it("enables to change the designatedRequest") {}
+            // I am not to sure about this spec
+            // In the end it is just testing the mocked delegate
+            // I am not sure what would be the best way to test this implementation
+            // and have a mocked response (since we don't want to rely on the network)
+            it("enables to change the designatedRequest") {
+                let delegate = CauliURLProtocolDelegateStub()
+                var didRespondRecord: Record?
+                delegate.willRequestClosure = { record in
+                    record.designatedRequest = URLRequest(url: URL(string: "https://cauli.works/modified")!)
+                }
+                delegate.didRespondClosure = { record in
+                    didRespondRecord = record
+                }
+                
+                CauliURLProtocol.add(delegate: delegate)
+                // The mocker has do be added after the tested delegate
+                // otherwise it will not use the changed url
+                CauliURLProtocol.remove(delegate: self.mocker)
+                CauliURLProtocol.add(delegate: self.mocker)
+                let task = URLSession.shared.dataTask(with: URL(string: "https://cauli.works")!) { (data, response, error) in }
+                task.resume()
+                expect(didRespondRecord?.originalRequest.url?.absoluteString).toEventually(equal("https://cauli.works"))
+                expect(didRespondRecord?.designatedRequest.url?.absoluteString).toEventually(equal("https://cauli.works/modified"))
+                if case let .result(response)? = didRespondRecord?.result {
+                    expect(response.urlResponse.url?.absoluteString) == "https://cauli.works/modified"
+                } else {
+                    fail("Expected a result")
+                }
+            }
             it("enables to set the result") {}
             it("enables to set an error result") {}
         }
         describe("didRespond") {
-            // I think for this we should use an additional mocking delegate/floret
             it("calls with a correct result") {}
             it("enables to update the result") {}
         }
