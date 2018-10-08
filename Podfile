@@ -13,6 +13,7 @@ target 'Cauli' do
 
   	pod 'Quick', '~> 1.2'
   	pod 'Nimble', '~> 7.0'
+  	pod 'OHHTTPStubs/Swift'
   end
 
 end
