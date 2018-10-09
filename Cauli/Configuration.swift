@@ -22,20 +22,6 @@
 
 import Foundation
 
-internal extension Collection {
+public struct Configuration {
 
-    typealias AsynchTransformation<Product> = (Product, Element, @escaping (Product) -> Void) -> Void
-
-    func cauli_reduceAsync<Product>(_ initial: Product, transform: @escaping AsynchTransformation<Product>, completion: @escaping (Product) -> Void) {
-        cauli_reduceAsync(initial, transform: transform, completion: completion, index: startIndex)
-    }
-
-    fileprivate func cauli_reduceAsync<Product>(_ initial: Product, transform: @escaping AsynchTransformation<Product>, completion: @escaping (Product) -> Void, index: Index) {
-        guard index < endIndex else { return completion(initial) }
-        let element = self[index]
-        transform(initial, element) { result in
-            let nextIndex = self.index(after: index)
-            self.cauli_reduceAsync(result, transform: transform, completion: completion, index: nextIndex)
-        }
-    }
 }

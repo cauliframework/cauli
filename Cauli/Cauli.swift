@@ -24,17 +24,40 @@ import Foundation
 
 public class Cauli {
 
-    private let storage: Storage = MemoryStorage()
-    public let florets: [Floret]
+    public static let shared = Cauli([], configuration: Configuration())
+
+    public let storage: Storage = MemoryStorage()
+    internal let florets: [Floret]
+    private var enabledFlores: [Floret] {
+        return florets.filter { $0.enabled }
+    }
+    private let configuration: Configuration
+    private var enabled: Bool = false
 
     deinit {
         CauliURLProtocol.remove(delegate: self)
     }
 
-    public init(florets: [Floret]) {
+    public init(_ florets: [Floret], configuration: Configuration) {
+        Cauli.setup()
         self.florets = florets
+        self.configuration = configuration
         CauliURLProtocol.add(delegate: self)
     }
+
+    public func run() {
+        enabled = true
+    }
+
+    public func pause() {
+        enabled = false
+    }
+
+    // Once we add any UI
+//    public func viewController() -> UIViewController {
+//        return UIViewController()
+//    }
+
 }
 
 extension Cauli {
@@ -49,14 +72,15 @@ extension Cauli {
     /// Performs initial Cauli setup and hooks itself into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system).
     ///
     /// Call this as early as possible, preferred in the [application:didFinishLaunchingWithOptions:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application).
-    public static func setup() {
+    private static func setup() {
         _ = _setup
     }
 }
 
 extension Cauli: CauliURLProtocolDelegate {
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        florets.cauli_reduceAsync(record, transform: { record, floret, completion in
+        guard enabled else { completionHandler(record); return }
+        enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.willRequest(record) { record in
                 completion(record)
             }
@@ -69,7 +93,8 @@ extension Cauli: CauliURLProtocolDelegate {
     }
 
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        florets.cauli_reduceAsync(record, transform: { record, floret, completion in
+        guard enabled else { completionHandler(record); return }
+        enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.didRespond(record) { record in
                 completion(record)
             }

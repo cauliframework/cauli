@@ -23,6 +23,59 @@
 import Foundation
 
 public protocol Floret {
+
+    /// The name of the Floret. This will be used to identify the floret in the UI.
+    /// If not implemented, the type will be used per default.
+    var name: String { get }
+
+    /// If a Floret is disabled the both functions `willRequest` and `didRespond` will
+    ///not be called anymore. A Floret doesn't need to perform any specific action.
+    var enabled: Bool { get set }
+
+    /// This function is called whenever the Cauli UI will be displayed.
+    /// If a Floret needs any UI for configuration or to display data you
+    /// can return a ViewController here.
+    ///
+    /// The default implementation returns nil.
+    ///
+    /// - Parameter cauli: The Cauli instance this floret will be displayed in. Use this
+    ///     instance to access the storage for example.
+    /// - Returns: Return a Floret specific ViewController or `nil` if there is none.
+    func viewController(_ cauli: Cauli) -> UIViewController?
+
+    /// This function will be called before a request is performed. The Florets will be
+    /// called in the order the Cauli instance got initialized with.
+    ///
+    /// Using this function you can:
+    /// - inspect the request
+    /// - modify the request (update the `designatedRequest`)
+    /// - fail the request (set the `result` to `.error()`)
+    /// - return a cached or pre-calculated response (set the `result` to `.result()`)
+    ///
+    /// - Parameters:
+    ///   - record: The `Record` that represents the request before it was performed.
+    ///   - completionHandler: Call this completion handler exactly once with the
+    ///     original or modified `Record`.
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void)
+
+    /// This function will be called after a request is performed and the response arrived.
+    /// The Florets will be called in the order the Cauli instance got initialized with.
+    ///
+    /// Using this function you can:
+    /// - modify the request
+    ///
+    /// - Parameters:
+    ///   - record: The `Record` that represents the request after it was performed.
+    ///   - completionHandler: Call this completion handler exactly once with the
+    ///     original or modified `Record`.
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void)
+}
+
+public extension Floret {
+    func viewController(_ cauli: Cauli) -> UIViewController? {
+        return nil
+    }
+    var name: String {
+        return String(describing: Self.self)
+    }
 }
