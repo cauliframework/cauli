@@ -46,20 +46,34 @@ extension URLResponseRepresentable: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let decodedData = try container.decode(Data.self)
-        let unarchiver = try NSKeyedUnarchiver(forReadingFrom: decodedData)
+        let unarchivedObject: Any?
 
-        guard let httpURLResponse = unarchiver.decodeObject(of: [HTTPURLResponse.self, URLResponse.self], forKey: "URLResponseRepresentable") as? URLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️") }
-        unarchiver.finishDecoding()
+        if #available(iOS 11, *) {
+            let unarchiver = try NSKeyedUnarchiver(forReadingFrom: decodedData)
+            unarchivedObject = unarchiver.decodeObject(of: [HTTPURLResponse.self, URLResponse.self], forKey: "URLResponseRepresentable")
+            unarchiver.finishDecoding()
+        } else {
+            unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: decodedData)
+        }
+
+        guard let httpURLResponse = unarchivedObject as? URLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️") }
 
         self.init(httpURLResponse)
     }
 
     func encode(to encoder: Encoder) throws {
-        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
-        archiver.encode(urlResponse, forKey: "URLResponseRepresentable")
-        archiver.finishEncoding()
+        let encodedData: Data
+
+        if #available(iOS 11, *) {
+            let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+            archiver.encode(urlResponse, forKey: "URLResponseRepresentable")
+            archiver.finishEncoding()
+            encodedData = archiver.encodedData
+        } else {
+            encodedData = NSKeyedArchiver.archivedData(withRootObject: urlResponse)
+        }
 
         var container = encoder.singleValueContainer()
-        try container.encode(archiver.encodedData)
+        try container.encode(encodedData)
     }
 }
