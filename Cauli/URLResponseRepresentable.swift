@@ -56,7 +56,7 @@ extension URLResponseRepresentable: Codable {
             unarchivedObject = NSKeyedUnarchiver.unarchiveObject(with: decodedData)
         }
 
-        guard let httpURLResponse = unarchivedObject as? URLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️") }
+        guard let httpURLResponse = unarchivedObject as? URLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not unarchive decodedData as URLResponse") }
 
         self.init(httpURLResponse)
     }
