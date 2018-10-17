@@ -20,21 +20,22 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+#if os(iOS)
 
-public struct Configuration {
-//<<<<<<< HEAD
-    public static let standard = Configuration(
-        recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
-        enableShakeGesture: true)
+import UIKit
 
-    /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
-    public let recordSelector: RecordSelector
+internal struct Notification {
+    static let shakeMotionDidEnd = NSNotification.Name(rawValue: "cauli_shakeMotionDidEnd")
+}
 
-    public let enableShakeGesture: Bool
-
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool) {
-        self.recordSelector = recordSelector
-        self.enableShakeGesture = enableShakeGesture
+extension UIWindow {
+    override open func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if let event = event,
+            event.type == .motion,
+            event.subtype == .motionShake {
+            NotificationCenter.default.post(name: Notification.shakeMotionDidEnd, object: self)
+        }
+        super.motionEnded(motion, with: event)
     }
 }
+#endif
