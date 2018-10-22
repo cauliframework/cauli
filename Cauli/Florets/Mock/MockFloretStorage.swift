@@ -33,8 +33,8 @@ internal class MockFloretStorage {
     }
 
     func store(_ record: Record) {
-        guard let data = MockRecordSerializer.data(for: record) else { return }
-        let filename = MockFloretStorage.filename(for: data)
+        guard let data = MockRecordSerializer.data(for: record),
+            let filename = MockFloretStorage.filename(for: record) else { return }
         let path = recordPath(for: record, with: filename)
         try? data.write(to: path)
     }
@@ -62,8 +62,22 @@ internal class MockFloretStorage {
         return path.appendingPathComponent(foldername, isDirectory: true)
     }
 
-    private static func filename(for data: Data) -> String {
-        return data.md5.description
+    private static func filename(for record: Record) -> String? {
+        guard case let .result(response) = record.result,
+            let httpurlresponse = response.urlResponse as? HTTPURLResponse else {
+                return nil
+        }
+        if let etag = httpurlresponse.allHeaderFields["ETag"] as? String {
+            return etag.utf8.md5.description
+        } else {
+            let codeHash = "\(httpurlresponse.statusCode)".utf8.md5.description
+            if let data = response.data {
+                let dataHash = data.md5.description
+                return "\(codeHash)\(dataHash)".utf8.md5.description
+            } else {
+                return codeHash
+            }
+        }
     }
 
     private static func foldername(for record: Record) -> String {

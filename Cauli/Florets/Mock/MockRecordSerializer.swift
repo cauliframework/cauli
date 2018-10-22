@@ -24,11 +24,6 @@ import Foundation
 
 internal class MockRecordSerializer {
 
-    // We could use such a blacklist to remove HTTP Headers before serializing the data
-    // I guess these fields should only affect the path, not the actual serialized data, right?
-    // Maybe we should only hash the actual content of a request?
-    // static let headersBlacklist: [AnyHashable] = ["Date"]
-
     static func data(for record: Record) -> Data? {
         let encoder = JSONEncoder()
         guard let data = try? encoder.encode(record) else { return nil }
