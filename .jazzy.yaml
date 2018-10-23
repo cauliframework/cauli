@@ -1,0 +1,6 @@
+module: Cauli
+author_url: https://cauli.works
+github_url: https://github.com/cauliframework/cauli
+output: docs/generated
+theme: fullwidth
+documentation: docs/guides/*.md
