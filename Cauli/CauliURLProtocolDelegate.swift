@@ -23,6 +23,12 @@
 import Foundation
 
 internal protocol CauliURLProtocolDelegate: AnyObject {
+    /// This function will be called to determine if a Record should be handled by this Cauli instance.
+    /// This function is called multiple times for a request and in different states of being processed.
+    ///
+    /// - Parameter record: The Record that should be checked.
+    /// - Returns: Return yes if this Record should be handled.
+    func handles(_ record: Record) -> Bool
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
 }

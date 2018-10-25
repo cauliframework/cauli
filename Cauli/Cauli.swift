@@ -24,7 +24,7 @@ import Foundation
 
 public class Cauli {
 
-    public static let shared = Cauli([], configuration: Configuration())
+    public static let shared = Cauli([], configuration: Configuration.standard)
 
     public let storage: Storage = MemoryStorage()
     internal let florets: [Floret]
@@ -43,6 +43,10 @@ public class Cauli {
         self.florets = florets
         self.configuration = configuration
         CauliURLProtocol.add(delegate: self)
+        loadConfiguration(configuration)
+    }
+
+    private func loadConfiguration(_ configuration: Configuration) {
     }
 
     public func run() {
@@ -78,6 +82,10 @@ extension Cauli {
 }
 
 extension Cauli: CauliURLProtocolDelegate {
+    func handles(_ record: Record) -> Bool {
+        return configuration.recordSelector.selects(record)
+    }
+
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         guard enabled else { completionHandler(record); return }
         enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
