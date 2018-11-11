@@ -170,3 +170,4 @@ playground.xcworkspace
 /*.gcno
 
 # End of https://www.gitignore.io/api/osx,swift,xcode,objective-c
+/docs/generated
