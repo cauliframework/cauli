@@ -72,13 +72,13 @@ extension CauliURLProtocol {
 
     override func startLoading() {
         willRequest(record) { record in
-            let dataTask = self.executingURLSession.dataTask(with: self.request)
-            self.dataTask = dataTask
+            self.record = record
             if case .result(_) = record.result {
-                self.urlSession(self.executingURLSession, task: dataTask, didCompleteWithError: nil)
+                self.urlSession(didCompleteWithError: nil)
             } else if case let .error(error) = record.result {
-                self.urlSession(self.executingURLSession, task: dataTask, didCompleteWithError: error)
+                self.urlSession(didCompleteWithError: error)
             } else {
+                self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
                 self.dataTask?.resume()
             }
         }
@@ -100,11 +100,16 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        urlSession(didCompleteWithError: error)
+    }
+
+    private func urlSession(didCompleteWithError error: Error?) {
         if let error = error {
             record.result = .error(error as NSError)
         }
 
         didRespond(record) { record in
+            self.record = record
             switch record.result {
             case let .result(response):
                 self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
