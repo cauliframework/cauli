@@ -32,7 +32,7 @@ public class Cauli {
         return florets.filter { $0.enabled }
     }
     private let configuration: Configuration
-    private var viewControllerManager: ViewControllerManager?
+    private var viewControllerManager: ViewControllerShakePresenter?
     private var enabled: Bool = false
 
     deinit {
@@ -44,14 +44,13 @@ public class Cauli {
         self.florets = florets
         self.configuration = configuration
         CauliURLProtocol.add(delegate: self)
-        viewControllerManager = ViewControllerManager { [unowned self] in
-            self.viewController()
-        }
         loadConfiguration(configuration)
     }
 
     private func loadConfiguration(_ configuration: Configuration) {
-        viewControllerManager?.enableShakeGesture = configuration.enableShakeGesture
+        if configuration.enableShakeGesture {
+            viewControllerManager = ViewControllerShakePresenter(self.viewController())
+        }
     }
 
     public func viewController() -> UIViewController {

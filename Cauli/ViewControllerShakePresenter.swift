@@ -22,27 +22,18 @@
 
 import Foundation
 
-internal class ViewControllerManager {
-
-    var enableShakeGesture: Bool = false {
-        didSet {
-            if enableShakeGesture {
-                self.shakeMotionDidEndObserver = NotificationCenter.default.addObserver(forName: Notification.shakeMotionDidEnd, object: nil, queue: nil) { [weak self] _ in
-                    self?.toggleViewController()
-                }
-            } else {
-                self.shakeMotionDidEndObserver = nil
-            }
-        }
-    }
+internal class ViewControllerShakePresenter {
 
     private var viewController: (() -> (UIViewController))
 
-    init(_ viewController: @escaping () -> (UIViewController)) {
+    init(_ viewController: @autoclosure @escaping () -> (UIViewController)) {
         self.viewController = viewController
+
+        self.shakeMotionDidEndObserver = NotificationCenter.default.addObserver(forName: Notification.shakeMotionDidEnd, object: nil, queue: nil) { [weak self] _ in
+            self?.toggleViewController()
+        }
     }
 
-    private var isDisplayed: Bool = false
     private var shakeMotionDidEndObserver: NSObjectProtocol?
 
     private func presentingViewController() -> UIViewController? {
@@ -53,15 +44,15 @@ internal class ViewControllerManager {
         return presentingViewController
     }
 
+    weak var presentedViewController: UIViewController?
     private func toggleViewController() {
         let presentingViewController = self.presentingViewController()
-        if isDisplayed {
-            presentingViewController?.dismiss(animated: true) {
-                self.isDisplayed = false
-            }
+        if let presentedViewController = presentedViewController,
+            presentedViewController.presentingViewController != nil {
+            presentedViewController.dismiss(animated: true, completion: nil)
         } else {
-            isDisplayed = true
             let viewController = self.viewController()
+            presentedViewController = viewController
             presentingViewController?.present(viewController, animated: true, completion: nil)
         }
     }

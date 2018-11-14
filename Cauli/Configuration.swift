@@ -23,7 +23,6 @@
 import Foundation
 
 public struct Configuration {
-//<<<<<<< HEAD
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
         enableShakeGesture: true)
