@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0EB9DF219DB32300060F28 /* MockFloretStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */; };
+		1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9DC219DB32300060F28 /* MockFloret.swift */; };
+		1F0EB9E1219DB32300060F28 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9DD219DB32300060F28 /* MD5Digest.swift */; };
+		1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */; };
 		1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A2210EF9F500CEDD42 /* Storage.swift */; };
 		1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */; };
 		1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F644F49211B620B004C4271 /* WeakReference.swift */; };
@@ -44,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		1B96940CA29D46F2252C5462 /* Pods-Cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.release.xcconfig"; sourceTree = "<group>"; };
+		1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFloretStorage.swift; sourceTree = "<group>"; };
+		1F0EB9DC219DB32300060F28 /* MockFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFloret.swift; sourceTree = "<group>"; };
+		1F0EB9DD219DB32300060F28 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
+		1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRecordSerializer.swift; sourceTree = "<group>"; };
 		1F18B1A2210EF9F500CEDD42 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		1F644F49211B620B004C4271 /* WeakReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
@@ -96,6 +104,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0EB9D8219DB32300060F28 /* Florets */ = {
+			isa = PBXGroup;
+			children = (
+				1F0EB9D9219DB32300060F28 /* Mock */,
+			);
+			path = Florets;
+			sourceTree = "<group>";
+		};
+		1F0EB9D9219DB32300060F28 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */,
+				1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */,
+				1F0EB9DC219DB32300060F28 /* MockFloret.swift */,
+				1F0EB9DD219DB32300060F28 /* MD5Digest.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		1F7001C2216B8242007A9355 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +154,7 @@
 		1FE3F72720F64A2B00233C7C /* Cauli */ = {
 			isa = PBXGroup;
 			children = (
+				1F0EB9D8219DB32300060F28 /* Florets */,
 				50A6CFB621178E1100FC57E7 /* Extensions */,
 				1FE3F72820F64A2B00233C7C /* Cauli.h */,
 				1FE3F72920F64A2B00233C7C /* Info.plist */,
@@ -388,13 +416,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0EB9DF219DB32300060F28 /* MockFloretStorage.swift in Sources */,
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
 				1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */,
+				1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */,
 				50A6CFB821178E2200FC57E7 /* URLRequest+Codable.swift in Sources */,
 				50576BBA210E173C0085DF5E /* Floret.swift in Sources */,
 				1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */,
 				50616E4C214D130C00C8092D /* Result.swift in Sources */,
 				5087DE9E21331041005B7080 /* NSError+Codable.swift in Sources */,
+				1F0EB9E1219DB32300060F28 /* MD5Digest.swift in Sources */,
 				1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */,
 				50616E4A214D12C100C8092D /* Response.swift in Sources */,
 				1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */,
@@ -403,6 +434,7 @@
 				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,
+				1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
 				5087DE9C21330018005B7080 /* URLResponseRepresentable.swift in Sources */,
 			);

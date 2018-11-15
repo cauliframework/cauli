@@ -29,7 +29,7 @@ public protocol Floret {
     var name: String { get }
 
     /// If a Floret is disabled the both functions `willRequest` and `didRespond` will
-    ///not be called anymore. A Floret doesn't need to perform any specific action.
+    /// not be called anymore. A Floret doesn't need to perform any specific action.
     var enabled: Bool { get set }
 
     /// This function is called whenever the Cauli UI will be displayed.
