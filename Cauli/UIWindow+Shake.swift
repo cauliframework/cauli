@@ -20,25 +20,25 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+#if os(iOS)
 
-public struct Configuration {
-    public static let standard = Configuration(
-        recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
-        enableShakeGesture: true)
+import UIKit
 
-    /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
-    public let recordSelector: RecordSelector
-    
-    /// If `enableShakeGesture` is set to true, Cauli will try to hook into the
-    /// `UIWindow.motionEnded(:UIEvent.EventSubtype, with: UIEvent?)` function
-    /// to display the Cauli UI whenever the device is shaken.
-    /// If that function is overridden the Cauli automatism doesn't work. In that case, you can
-    /// use the `Cauli.viewController()` function to display that ViewController manually.
-    public let enableShakeGesture: Bool
+internal struct Notification {
+    static let shakeMotionDidEnd = NSNotification.Name(rawValue: "cauli_shakeMotionDidEnd")
+}
 
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool) {
-        self.recordSelector = recordSelector
-        self.enableShakeGesture = enableShakeGesture
+extension UIWindow {
+    /// We hook into this function to post a Notification whenever the device is shaken
+    /// and subsequentially display the Cauli UI. If this function is overridden in the client
+    /// application, the notification is not posted and the UI hast to be displayed manually.
+    override open func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if let event = event,
+            event.type == .motion,
+            event.subtype == .motionShake {
+            NotificationCenter.default.post(name: Notification.shakeMotionDidEnd, object: self)
+        }
+        super.motionEnded(motion, with: event)
     }
 }
+#endif

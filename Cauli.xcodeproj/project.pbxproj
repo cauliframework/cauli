@@ -20,6 +20,9 @@
 		1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */; };
 		1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22D20F77B6C0023D219 /* Record.swift */; };
 		1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */; };
+		1FB1FF57219DB75E0021B4F4 /* CauliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF54219DB75E0021B4F4 /* CauliViewController.swift */; };
+		1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */; };
+		1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */; };
 		1FB3296F2181CBCD001CA03D /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3296E2181CBCD001CA03D /* RecordSelector.swift */; };
 		1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */; };
 		1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauli.framework */; };
@@ -62,6 +65,9 @@
 		1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
 		1F7BF22D20F77B6C0023D219 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
+		1FB1FF54219DB75E0021B4F4 /* CauliViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliViewController.swift; sourceTree = "<group>"; };
+		1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Shake.swift"; sourceTree = "<group>"; };
+		1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShakePresenter.swift; sourceTree = "<group>"; };
 		1FB3296E2181CBCD001CA03D /* RecordSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
 		1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
 		1FE3F72520F64A2B00233C7C /* Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +182,9 @@
 				1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */,
 				1F6BB4552163609100D56F4F /* Configuration.swift */,
 				1FB3296E2181CBCD001CA03D /* RecordSelector.swift */,
+				1FB1FF54219DB75E0021B4F4 /* CauliViewController.swift */,
+				1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */,
+				1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */,
 			);
 			path = Cauli;
 			sourceTree = "<group>";
@@ -421,12 +430,15 @@
 			files = (
 				1F0EB9DF219DB32300060F28 /* MockFloretStorage.swift in Sources */,
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
+				1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */,
 				1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */,
 				1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */,
 				50A6CFB821178E2200FC57E7 /* URLRequest+Codable.swift in Sources */,
 				1FB3296F2181CBCD001CA03D /* RecordSelector.swift in Sources */,
 				50576BBA210E173C0085DF5E /* Floret.swift in Sources */,
 				1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */,
+				1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */,
+				1FB1FF57219DB75E0021B4F4 /* CauliViewController.swift in Sources */,
 				50616E4C214D130C00C8092D /* Result.swift in Sources */,
 				5087DE9E21331041005B7080 /* NSError+Codable.swift in Sources */,
 				1F0EB9E1219DB32300060F28 /* MD5Digest.swift in Sources */,

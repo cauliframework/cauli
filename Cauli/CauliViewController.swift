@@ -20,25 +20,37 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public struct Configuration {
-    public static let standard = Configuration(
-        recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
-        enableShakeGesture: true)
+internal class CauliViewController: UITableViewController {
 
-    /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
-    public let recordSelector: RecordSelector
-    
-    /// If `enableShakeGesture` is set to true, Cauli will try to hook into the
-    /// `UIWindow.motionEnded(:UIEvent.EventSubtype, with: UIEvent?)` function
-    /// to display the Cauli UI whenever the device is shaken.
-    /// If that function is overridden the Cauli automatism doesn't work. In that case, you can
-    /// use the `Cauli.viewController()` function to display that ViewController manually.
-    public let enableShakeGesture: Bool
+    private let cauli: Cauli
 
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool) {
-        self.recordSelector = recordSelector
-        self.enableShakeGesture = enableShakeGesture
+    init(cauli: Cauli) {
+        self.cauli = cauli
+        super.init(style: .plain)
+        title = "Cauli"
     }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cauli.florets.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let floret = cauli.florets[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = floret.name
+        return cell
+    }
+
 }

@@ -32,6 +32,7 @@ public class Cauli {
         return florets.filter { $0.enabled }
     }
     private let configuration: Configuration
+    private var viewControllerManager: ViewControllerShakePresenter?
     private var enabled: Bool = false
 
     deinit {
@@ -47,6 +48,15 @@ public class Cauli {
     }
 
     private func loadConfiguration(_ configuration: Configuration) {
+        if configuration.enableShakeGesture {
+            viewControllerManager = ViewControllerShakePresenter(self.viewController())
+        }
+    }
+
+    public func viewController() -> UIViewController {
+        let cauliViewController = CauliViewController(cauli: self)
+        let navigationController = UINavigationController(rootViewController: cauliViewController)
+        return navigationController
     }
 
     public func run() {
@@ -56,12 +66,6 @@ public class Cauli {
     public func pause() {
         enabled = false
     }
-
-    // Once we add any UI
-//    public func viewController() -> UIViewController {
-//        return UIViewController()
-//    }
-
 }
 
 extension Cauli {
