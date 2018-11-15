@@ -59,11 +59,15 @@ internal class CauliURLProtocol: URLProtocol {
 extension CauliURLProtocol {
 
     override class func canInit(with task: URLSessionTask) -> Bool {
-        return task is URLSessionDataTask && !delegates.isEmpty
+        var handles = false
+        if let request = task.currentRequest ?? task.originalRequest {
+            handles = self.handles(Record(request))
+        }
+        return task is URLSessionDataTask && !delegates.isEmpty && handles
     }
 
     override class func canInit(with request: URLRequest) -> Bool {
-        return !delegates.isEmpty
+        return !delegates.isEmpty && handles(Record(request))
     }
 
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
@@ -96,7 +100,14 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
-        try? record.append(receivedData)
+        if CauliURLProtocol.handles(record) {
+            try? record.append(receivedData)
+        } else {
+            if case let .result(response) = record.result, let data = response.data {
+                self.client?.urlProtocol(self, didLoad: data)
+            }
+            client?.urlProtocol(self, didLoad: receivedData)
+        }
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -132,9 +143,19 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 }
 
 extension CauliURLProtocol {
+    private class func handles(_ record: Record) -> Bool {
+        return delegates.reduce(false) { result, delegate in
+            result || delegate.handles(record)
+        }
+    }
+
     private func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
-            delegate.willRequest(record) { record in
+            if delegate.handles(record) {
+                delegate.willRequest(record) { record in
+                    completion(record)
+                }
+            } else {
                 completion(record)
             }
         }, completion: { record in
@@ -144,7 +165,11 @@ extension CauliURLProtocol {
 
     private func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
-            delegate.didRespond(record) { record in
+            if delegate.handles(record) {
+                delegate.didRespond(record) { record in
+                    completion(record)
+                }
+            } else {
                 completion(record)
             }
         }, completion: { record in

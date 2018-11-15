@@ -23,5 +23,12 @@
 import Foundation
 
 public struct Configuration {
+    public static let standard = Configuration(recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024))
 
+    /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
+    public let recordSelector: RecordSelector
+
+    public init(recordSelector: RecordSelector) {
+        self.recordSelector = recordSelector
+    }
 }
