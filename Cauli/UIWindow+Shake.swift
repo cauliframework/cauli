@@ -29,6 +29,9 @@ internal struct Notification {
 }
 
 extension UIWindow {
+    /// We hook into this function to post a Notification whenever the device is shaken
+    /// and subsequentially display the Cauli UI. If this function is overridden in the client
+    /// application, the notification is not posted and the UI hast to be displayed manually.
     override open func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if let event = event,
             event.type == .motion,
