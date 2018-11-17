@@ -54,10 +54,11 @@ extension RecordSelector {
                 if let data = response.data {
                     return data.count <= bytesize
                 } else if let urlResponse = response.urlResponse as? HTTPURLResponse,
-                    let contentLength = urlResponse.allHeaderFields["Content-Length"] as? Int {
+                    let contentLengthString = urlResponse.allHeaderFields["Content-Length"] as? String,
+                    let contentLength = Int(contentLengthString) {
                     return contentLength <= bytesize
                 }
-                return false
+                return true
             }
         }
     }

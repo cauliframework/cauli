@@ -30,7 +30,15 @@ public class MockFloret: Floret {
     }
 
     public var enabled: Bool = true
-    public var mode: Mode = .mock
+    public var mode: Mode = .mock {
+        didSet {
+            if mode == .record {
+                print("recording to \(recordStorage.path)")
+            }
+        }
+    }
+    
+    public init() {}
 
     private lazy var recordStorage: MockFloretStorage = {
         MockFloretStorage.recorder()
@@ -66,9 +74,9 @@ extension MockFloret {
 
     private func notFoundResponse(for request: URLRequest) -> Response {
         let url = request.url ?? URL(string: "http://example.com")!
-        let mimeType = request.value(forHTTPHeaderField: "accepts")
+
         let body = "<html><head></head><body><h1>404 - No Mock found</h1></body></html>".data(using: .utf8)!
-        let urlResponse = URLResponse(url: url, mimeType: mimeType, expectedContentLength: body.count, textEncodingName: "utf-8")
+        let urlResponse = HTTPURLResponse(url: url, statusCode: 404, httpVersion: "1.1", headerFields: nil)!
         return Response(urlResponse, data: body)
     }
 }

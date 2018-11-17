@@ -1,0 +1,28 @@
+{
+  "name": "Cauli",
+  "version": "1.0.0",
+  "summary": "Helps you to intercept network requests. (under development)",
+  "description": "under development",
+  "homepage": "https://github.com/brototyp/cauli",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Cornelius Horstmann": "cornelius@brototyp.de",
+    "Pascal Stüdlein": "mail@pascal-stuedlein.de"
+  },
+  "platforms": {
+    "ios": "11.0",
+    "watchos": "3.0",
+    "tvos": "11.0"
+  },
+  "source": {
+    "git": "https://github.com/brototyp/cauli.git",
+    "branch": "1.0.0"
+  },
+  "source_files": [
+    "Cauli",
+    "Cauli/**/*.swift"
+  ]
+}
