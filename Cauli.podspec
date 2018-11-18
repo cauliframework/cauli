@@ -35,4 +35,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/brototyp/cauli.git", :branch => "#{s.version}" }
   s.source_files  = "Cauli", "Cauli/**/*.swift"
 
+  s.resources = 'Cauli/**/*.xib'
+
 end

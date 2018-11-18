@@ -20,38 +20,23 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-internal final class MemoryStorage: Storage {
+public class InspectorFloret: Floret {
+    public var enabled: Bool = true
 
-    let capacity: Int
-    var records: [Record] = []
+    public init() {}
 
-    init(capacity: Int = 30) {
-        self.capacity = capacity
+    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+        try? completionHandler(record)
     }
 
-    func store(_ record: Record) {
-        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-        if let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
-            records[recordIndex] = record
-        } else {
-            records.append(record)
-            if records.count > capacity {
-                records.remove(at: 0)
-            }
-        }
+    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+        try? completionHandler(record)
     }
 
-    func records(_ count: Int, after record: Record?) -> [Record] {
-        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-        let index: Int
-        if let record = record {
-            index = records.index { $0.identifier == record.identifier } ?? 0
-        } else {
-            index = 0
-        }
-        let maxCount = min(count, records.count - index)
-        return Array(records[index..<(index + maxCount)])
+    public func viewController(_ cauli: Cauli) -> UIViewController? {
+        return InspectorTableViewController(cauli)
     }
+
 }

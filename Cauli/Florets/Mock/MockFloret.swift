@@ -37,7 +37,7 @@ public class MockFloret: Floret {
             }
         }
     }
-    
+
     public init() {}
 
     private lazy var recordStorage: MockFloretStorage = {

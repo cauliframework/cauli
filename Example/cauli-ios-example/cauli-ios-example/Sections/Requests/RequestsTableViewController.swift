@@ -14,6 +14,7 @@ class RequestsTableViewController: UITableViewController {
     let requestModels: [RequestModel] = [
         RequestModel(name: "httpstat.us/200", url: URL(string: "https://httpstat.us/200")!),
         RequestModel(name: "httpstat.us/301", url: URL(string: "https://httpstat.us/301")!),
+        RequestModel(name: "httpstat.us/304", url: URL(string: "https://httpstat.us/304")!),
         RequestModel(name: "httpstat.us/404", url: URL(string: "https://httpstat.us/404")!),
         RequestModel(name: "ip.jsontest.com", url: URL(string: "http://ip.jsontest.com/")!),
     ]
@@ -41,7 +42,7 @@ class RequestsTableViewController: UITableViewController {
         let requestModel = requestModels[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         cell?.detailTextLabel?.text = nil
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         cell?.accessoryView = activityIndicator
