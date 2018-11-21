@@ -49,8 +49,15 @@ internal class CauliViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let floret = cauli.florets[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = floret.name
+        let enabled = floret.enabled ? "✔️" : "" // ✔️☑️
+        cell.textLabel?.text = floret.name + " " + enabled
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var floret = cauli.florets[indexPath.row]
+        floret.enabled = !floret.enabled
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
 }
