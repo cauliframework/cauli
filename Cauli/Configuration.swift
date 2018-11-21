@@ -29,7 +29,7 @@ public struct Configuration {
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
     public let recordSelector: RecordSelector
-    
+
     /// If `enableShakeGesture` is set to true, Cauli will try to hook into the
     /// `UIWindow.motionEnded(:UIEvent.EventSubtype, with: UIEvent?)` function
     /// to display the Cauli UI whenever the device is shaken.

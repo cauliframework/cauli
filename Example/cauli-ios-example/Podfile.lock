@@ -1,0 +1,16 @@
+PODS:
+  - Cauli (1.0.0)
+
+DEPENDENCIES:
+  - Cauli (from `../../`)
+
+EXTERNAL SOURCES:
+  Cauli:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  Cauli: de26561dcc546510d4f52965f73663b6d7dc06cf
+
+PODFILE CHECKSUM: ab6fdecfb2896a1f2b0d6ca73f91352e4a97ac78
+
+COCOAPODS: 1.5.3
