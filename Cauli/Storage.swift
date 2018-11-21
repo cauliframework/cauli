@@ -37,6 +37,6 @@ public protocol Storage {
     /// - Parameters:
     ///   - count: The number of records that should be returned.
     ///   - after: The record after which there should be new records returned.
-    /// - Returns: The records after the referenced record.
+    /// - Returns: The records after the referenced record, sorted from latest to oldest.
     func records(_ count: Int, after: Record?) -> [Record]
 }

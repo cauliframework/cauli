@@ -24,10 +24,13 @@ import UIKit
 
 class InspectorTableViewController: UITableViewController {
 
-    let records: [Record]
+    private static let recordPageSize = 20
+    
+    var cauli: Cauli
+    var records: [Record] = []
 
     init(_ cauli: Cauli) {
-        records = cauli.storage.records(20, after: nil)
+        self.cauli = cauli
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,6 +41,7 @@ class InspectorTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
         title = "Records"
         let bundle = Bundle(for: InspectorTableViewController.self)
         let nib = UINib(nibName: "InsectorRecordTableViewCell", bundle: bundle)
@@ -56,6 +60,28 @@ class InspectorTableViewController: UITableViewController {
         cell.record = record
         cell.accessoryType = .disclosureIndicator
         return cell
+    }
+    
+    private var scrolledToEnd = false
+    private var isLoading = false
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let distanceToBottom = scrollView.contentSize.height - scrollView.frame.height - scrollView.contentOffset.y
+        guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
+        isLoading = true
+        let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: records.last)
+        if newRecords.count > 0 {
+            tableView.performBatchUpdates({
+                let indexPaths = (records.count..<(records.count + newRecords.count)).map{ return IndexPath(row: $0, section: 0)
+                }
+                tableView.insertRows(at: indexPaths, with: .bottom)
+                records.append(contentsOf: newRecords)
+            }, completion: { [weak self] _ in
+                self?.isLoading = false
+            })
+        } else {
+            isLoading = false
+            scrolledToEnd = true
+        }
     }
 
 }
