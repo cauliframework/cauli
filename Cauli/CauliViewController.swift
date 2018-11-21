@@ -52,6 +52,11 @@ internal class CauliViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let enabled = floret.enabled ? "✔️" : "" // ✔️☑️
         cell.textLabel?.text = floret.name + " " + enabled
+        if viewController(for: floret, at: indexPath) == nil {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .disclosureIndicator
+        }
         return cell
     }
     
