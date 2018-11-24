@@ -42,13 +42,18 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
     }
 
     private func load(from record: Record) {
+        timeLabel.text = "" // add the correct time once we record it
         methodLabel.text = record.designatedRequest.httpMethod
         pathLabel.text = record.designatedRequest.url?.absoluteString
         switch record.result {
         case .none:
-            break
+            contentTypeLabel.text = ""
+            statusCodeLabel.text = "no Response"
+            statusCodeLabel.borderColor = .black
         case .error(let error):
-            break
+            contentTypeLabel.text = error.localizedDescription
+            statusCodeLabel.text = "Error"
+            statusCodeLabel.borderColor = InspectorRecordTableViewCell.redColor
         case .result(let response):
             if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
                 contentTypeLabel.text = httpUrlResponse.allHeaderFields["Content-Type"] as? String
@@ -58,16 +63,15 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         }
     }
 
-    // green: UIColor(displayP3Red: 126/255.0, green: 211/255.0, blue: 33/255.0, alpha: 1)
-    // blue: UIColor(displayP3Red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1)
-    // red: UIColor(displayP3Red: 208/255.0, green: 2/255.0, blue: 27/255.0, alpha: 1)
+    static let greenColor = UIColor(displayP3Red: 126/255.0, green: 211/255.0, blue: 33/255.0, alpha: 1)
+    static let blueColor = UIColor(displayP3Red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1)
+    static let redColor = UIColor(displayP3Red: 208/255.0, green: 2/255.0, blue: 27/255.0, alpha: 1)
     private func colorForHTTPStatusCode(_ statusCode: Int) -> UIColor {
         switch statusCode {
-        case 0..<300: return UIColor(displayP3Red: 126 / 255.0, green: 211 / 255.0, blue: 33 / 255.0, alpha: 1)
-        case 300..<400: return UIColor(displayP3Red: 74 / 255.0, green: 144 / 255.0, blue: 226 / 255.0, alpha: 1)
-        case 400..<600: return UIColor(displayP3Red: 208 / 255.0, green: 2 / 255.0, blue: 27 / 255.0, alpha: 1)
+        case 0..<300: return InspectorRecordTableViewCell.greenColor
+        case 300..<400: return InspectorRecordTableViewCell.blueColor
+        case 400..<600: return InspectorRecordTableViewCell.redColor
         default: return UIColor.black
         }
     }
-
 }
