@@ -26,11 +26,11 @@ class InspectorRecordTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "InsectorRecordTableViewCell"
 
-    @IBOutlet weak var methodLabel: TagLabel!
-    @IBOutlet weak var pathLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var contentTypeLabel: UILabel!
-    @IBOutlet weak var statusCodeLabel: TagLabel!
+    @IBOutlet private weak var methodLabel: TagLabel!
+    @IBOutlet private weak var pathLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+    @IBOutlet private weak var contentTypeLabel: UILabel!
+    @IBOutlet private weak var statusCodeLabel: TagLabel!
 
     public var record: Record? {
         didSet {
