@@ -41,11 +41,15 @@ class InspectorTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
         title = "Records"
         let bundle = Bundle(for: InspectorTableViewController.self)
         let nib = UINib(nibName: "InspectorRecordTableViewCell", bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
