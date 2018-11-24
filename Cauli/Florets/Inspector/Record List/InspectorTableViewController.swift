@@ -66,6 +66,12 @@ internal class InspectorTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let record = records[indexPath.row]
+        let recordTableViewController = RecordTableViewController(record)
+        navigationController?.pushViewController(recordTableViewController, animated: true)
+    }
+
     private var scrolledToEnd = false
     private var isLoading = false
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
