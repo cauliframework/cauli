@@ -24,7 +24,8 @@ import UIKit
 
 internal class InspectorRecordTableViewCell: UITableViewCell {
 
-    static let reuseIdentifier = "InsectorRecordTableViewCell"
+    static let reuseIdentifier = "InspectorRecordTableViewCell"
+    static let nibName = "InspectorRecordTableViewCell"
 
     @IBOutlet private weak var methodLabel: TagLabel!
     @IBOutlet private weak var pathLabel: UILabel!

@@ -43,7 +43,7 @@ internal class InspectorTableViewController: UITableViewController {
         super.viewDidLoad()
         title = "Records"
         let bundle = Bundle(for: InspectorTableViewController.self)
-        let nib = UINib(nibName: "InspectorRecordTableViewCell", bundle: bundle)
+        let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
     }
 
