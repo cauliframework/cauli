@@ -22,7 +22,7 @@
 
 import UIKit
 
-class InsectorRecordTableViewCell: UITableViewCell {
+class InspectorRecordTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "InsectorRecordTableViewCell"
 

@@ -44,8 +44,8 @@ class InspectorTableViewController: UITableViewController {
         records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
         title = "Records"
         let bundle = Bundle(for: InspectorTableViewController.self)
-        let nib = UINib(nibName: "InsectorRecordTableViewCell", bundle: bundle)
-        tableView.register(nib, forCellReuseIdentifier: InsectorRecordTableViewCell.reuseIdentifier)
+        let nib = UINib(nibName: "InspectorRecordTableViewCell", bundle: bundle)
+        tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +53,7 @@ class InspectorTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InsectorRecordTableViewCell.reuseIdentifier, for: indexPath) as? InsectorRecordTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: InspectorRecordTableViewCell.reuseIdentifier, for: indexPath) as? InspectorRecordTableViewCell else {
             fatalError("Unable to dequeue a cell")
         }
         let record = records[indexPath.row]
