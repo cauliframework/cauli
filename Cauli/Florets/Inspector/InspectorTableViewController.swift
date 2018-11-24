@@ -22,10 +22,10 @@
 
 import UIKit
 
-class InspectorTableViewController: UITableViewController {
+internal class InspectorTableViewController: UITableViewController {
 
     private static let recordPageSize = 20
-    
+
     var cauli: Cauli
     var records: [Record] = []
 
@@ -46,7 +46,7 @@ class InspectorTableViewController: UITableViewController {
         let nib = UINib(nibName: "InspectorRecordTableViewCell", bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
@@ -65,7 +65,7 @@ class InspectorTableViewController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
+
     private var scrolledToEnd = false
     private var isLoading = false
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -73,18 +73,18 @@ class InspectorTableViewController: UITableViewController {
         guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
         isLoading = true
         let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: records.last)
-        if newRecords.count > 0 {
+        if newRecords.isEmpty {
+            isLoading = false
+            scrolledToEnd = true
+        } else {
             tableView.performBatchUpdates({
-                let indexPaths = (records.count..<(records.count + newRecords.count)).map{ return IndexPath(row: $0, section: 0)
+                let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0)
                 }
                 tableView.insertRows(at: indexPaths, with: .bottom)
                 records.append(contentsOf: newRecords)
             }, completion: { [weak self] _ in
                 self?.isLoading = false
             })
-        } else {
-            isLoading = false
-            scrolledToEnd = true
         }
     }
 

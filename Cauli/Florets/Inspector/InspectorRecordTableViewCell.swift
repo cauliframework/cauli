@@ -22,7 +22,7 @@
 
 import UIKit
 
-class InspectorRecordTableViewCell: UITableViewCell {
+internal class InspectorRecordTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "InsectorRecordTableViewCell"
 
@@ -32,7 +32,7 @@ class InspectorRecordTableViewCell: UITableViewCell {
     @IBOutlet private weak var contentTypeLabel: UILabel!
     @IBOutlet private weak var statusCodeLabel: TagLabel!
 
-    public var record: Record? {
+    var record: Record? {
         didSet {
             if let record = record {
                 load(from: record)

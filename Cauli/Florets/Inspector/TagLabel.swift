@@ -23,7 +23,7 @@
 import UIKit
 
 @IBDesignable
-class TagLabel: UILabel {
+internal class TagLabel: UILabel {
 
     @IBInspectable
     var borderColor = UIColor.green {
@@ -45,7 +45,6 @@ class TagLabel: UILabel {
     private func commonInit() {
         layer.borderWidth = 1
         layer.cornerRadius = 6
-
     }
 
     static let edgeInsets = UIEdgeInsets.init(top: 5, left: 8, bottom: 5, right: 8)
