@@ -41,8 +41,7 @@ extension Record {
 extension Record {
     mutating func append(_ receivedData: Data) throws {
         guard case let .result(result) = result else {
-            // TODO: use a proper error here
-            throw NSError(domain: "FIXME", code: 0, userInfo: [:])
+            throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
         }
         var currentData = result.data ?? Data()
         currentData.append(receivedData)
