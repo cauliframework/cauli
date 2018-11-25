@@ -20,31 +20,20 @@
 //  THE SOFTWARE.
 //
 
-import XCTest
+import Foundation
 @testable import Cauli
 
-class CauliTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+extension Record {
+    static func fake() -> Record {
+        return fake(with: URL(string: "spec_fake_url")!)
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    static func fake(with url: URL) -> Record {
+        return Record(URLRequest(url: url))
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func setting(identifier: UUID) -> Record {
+        return Record(identifier: identifier, originalRequest: originalRequest, designatedRequest: designatedRequest, result: result, requestStarted: nil, responseRecieved: nil)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func setting(originalRequestUrl url: URL) -> Record {
+        return Record(identifier: identifier, originalRequest: URLRequest(url: url), designatedRequest: designatedRequest, result: result, requestStarted: requestStarted, responseRecieved: responseRecieved)
     }
-    
 }

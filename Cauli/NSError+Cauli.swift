@@ -47,7 +47,7 @@ extension NSError {
                            code: Code.failedToAppendData.rawValue,
                            userInfo: [UserInfoKey.data.rawValue: data, UserInfoKey.record.rawValue: record])
         }
-        
+
         internal static func appendingDataWithoutResponse(_ data: Data, record: Record) -> NSError {
             return NSError(domain: domain,
                            code: Code.appendingDataWithoutResponse.rawValue,

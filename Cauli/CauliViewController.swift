@@ -59,14 +59,14 @@ internal class CauliViewController: UITableViewController {
         }
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let floret = cauli.florets[indexPath.row]
         if let viewController = viewController(for: floret, at: indexPath) {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let floret = cauli.florets[indexPath.row]
         let actionTitle: String
@@ -75,17 +75,17 @@ internal class CauliViewController: UITableViewController {
         } else {
             actionTitle = "Enable"
         }
-        
-        let toggleAction = UITableViewRowAction(style: .normal, title: actionTitle) { [weak self] (action, indexPath) in
+
+        let toggleAction = UITableViewRowAction(style: .normal, title: actionTitle) { [weak self] _, indexPath in
             guard let strongSelf = self else { return }
             var floret = strongSelf.cauli.florets[indexPath.row]
             floret.enabled = !floret.enabled
             strongSelf.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
-        
+
         return [toggleAction]
     }
-    
+
     private func viewController(for floret: Floret, at indexPath: IndexPath) -> UIViewController? {
         if let cachedViewController = viewControllers[indexPath] {
             return cachedViewController
