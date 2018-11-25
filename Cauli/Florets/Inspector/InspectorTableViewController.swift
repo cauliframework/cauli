@@ -48,7 +48,7 @@ internal class InspectorTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
     }
 
