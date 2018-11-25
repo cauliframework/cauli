@@ -27,6 +27,8 @@ public struct Record: Codable {
     public var originalRequest: URLRequest
     public var designatedRequest: URLRequest
     public var result: Result<Response>
+    public var requestStarted: Date?
+    public var responseRecieved: Date?
 }
 
 extension Record {

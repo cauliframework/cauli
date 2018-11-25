@@ -23,6 +23,13 @@
 import UIKit
 
 internal class InspectorRecordTableViewCell: UITableViewCell {
+    
+    static let timeFormatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
+        return timeFormatter
+    }()
 
     static let reuseIdentifier = "InspectorRecordTableViewCell"
     static let nibName = "InspectorRecordTableViewCell"
@@ -42,7 +49,11 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
     }
 
     private func load(from record: Record) {
-        timeLabel.text = "" // add the correct time once we record it
+        if let requestStarted = record.requestStarted {
+            timeLabel.text = InspectorRecordTableViewCell.timeFormatter.string(from: requestStarted)
+        } else {
+            timeLabel.text = ""
+        }
         methodLabel.text = record.designatedRequest.httpMethod
         pathLabel.text = record.designatedRequest.url?.absoluteString
         switch record.result {
