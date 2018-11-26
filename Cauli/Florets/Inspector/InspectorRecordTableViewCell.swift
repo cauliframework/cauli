@@ -23,7 +23,7 @@
 import UIKit
 
 internal class InspectorRecordTableViewCell: UITableViewCell {
-    
+
     static let timeFormatter: DateFormatter = {
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle = .none
@@ -74,9 +74,9 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         }
     }
 
-    static let greenColor = UIColor(displayP3Red: 126/255.0, green: 211/255.0, blue: 33/255.0, alpha: 1)
-    static let blueColor = UIColor(displayP3Red: 74/255.0, green: 144/255.0, blue: 226/255.0, alpha: 1)
-    static let redColor = UIColor(displayP3Red: 208/255.0, green: 2/255.0, blue: 27/255.0, alpha: 1)
+    static let greenColor = UIColor(displayP3Red: 126 / 255.0, green: 211 / 255.0, blue: 33 / 255.0, alpha: 1)
+    static let blueColor = UIColor(displayP3Red: 74 / 255.0, green: 144 / 255.0, blue: 226 / 255.0, alpha: 1)
+    static let redColor = UIColor(displayP3Red: 208 / 255.0, green: 2 / 255.0, blue: 27 / 255.0, alpha: 1)
     private func colorForHTTPStatusCode(_ statusCode: Int) -> UIColor {
         switch statusCode {
         case 0..<300: return InspectorRecordTableViewCell.greenColor

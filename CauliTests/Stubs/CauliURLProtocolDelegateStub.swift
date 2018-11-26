@@ -28,6 +28,10 @@ class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {
     var willRequestClosure: ((inout Record) -> Void)?
     var didRespondClosure: ((inout Record) -> Void)?
     
+    func handles(_ record: Record) -> Bool {
+        return true
+    }
+    
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         if let willRequestClosure = willRequestClosure {
             var updatedRecord = record
