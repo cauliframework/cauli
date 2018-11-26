@@ -34,6 +34,7 @@ extension NSError {
         internal static let domain = "de.brototyp.cauli.internal"
         internal enum Code: Int {
             case failedToAppendData
+            case appendingDataWithoutResponse
         }
 
         internal enum UserInfoKey: String {
@@ -44,6 +45,12 @@ extension NSError {
         internal static func failedToAppendData(_ data: Data, record: Record) -> NSError {
             return NSError(domain: domain,
                            code: Code.failedToAppendData.rawValue,
+                           userInfo: [UserInfoKey.data.rawValue: data, UserInfoKey.record.rawValue: record])
+        }
+        
+        internal static func appendingDataWithoutResponse(_ data: Data, record: Record) -> NSError {
+            return NSError(domain: domain,
+                           code: Code.appendingDataWithoutResponse.rawValue,
                            userInfo: [UserInfoKey.data.rawValue: data, UserInfoKey.record.rawValue: record])
         }
     }

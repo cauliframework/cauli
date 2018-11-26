@@ -77,6 +77,7 @@ extension CauliURLProtocol {
     override func startLoading() {
         willRequest(record) { record in
             self.record = record
+            self.record.requestStarted = Date()
             if case .result(_) = record.result {
                 self.urlSession(didCompleteWithError: nil)
             } else if case let .error(error) = record.result {
@@ -121,6 +122,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
         didRespond(record) { record in
             self.record = record
+            self.record.responseRecieved = Date()
             switch record.result {
             case let .result(response):
                 self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
@@ -136,7 +138,6 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         }
     }
 
-    @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         // possibly add the metrics to the record in the future
     }

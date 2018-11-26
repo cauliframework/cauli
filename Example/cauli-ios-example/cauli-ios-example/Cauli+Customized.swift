@@ -17,5 +17,6 @@ internal extension Cauli {
         return FindReplaceFloret(replacements: [])
     }()
     static let mockFloret = MockFloret()
-    static let customShared = Cauli([anonymizeIPFloret, findReplaceFloret, mockFloret], configuration: Configuration.standard)
+    static let inspectorFloret = InspectorFloret()
+    static let customShared = Cauli([anonymizeIPFloret, findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
 }

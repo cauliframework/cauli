@@ -14,8 +14,10 @@ class RequestsTableViewController: UITableViewController {
     let requestModels: [RequestModel] = [
         RequestModel(name: "httpstat.us/200", url: URL(string: "https://httpstat.us/200")!),
         RequestModel(name: "httpstat.us/301", url: URL(string: "https://httpstat.us/301")!),
+        RequestModel(name: "httpstat.us/304", url: URL(string: "https://httpstat.us/304")!),
         RequestModel(name: "httpstat.us/404", url: URL(string: "https://httpstat.us/404")!),
         RequestModel(name: "ip.jsontest.com", url: URL(string: "http://ip.jsontest.com/")!),
+        RequestModel(name: "invalidurl.invalid", url: URL(string: "https://invalidurl.invalid/")!),
     ]
     
     override func viewDidLoad() {
@@ -41,20 +43,23 @@ class RequestsTableViewController: UITableViewController {
         let requestModel = requestModels[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         cell?.detailTextLabel?.text = nil
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         cell?.accessoryView = activityIndicator
 
         let dataTask = URLSession.shared.dataTask(with: requestModel.url) { (data, response, error) in
-            guard let httpUrlResponse = response as? HTTPURLResponse else { return }
             DispatchQueue.main.sync {
-                let label = UILabel()
-                label.text = "\(httpUrlResponse.statusCode)"
-                label.sizeToFit()
-                cell?.accessoryView = label
-                if let data = data {
-                    cell?.detailTextLabel?.text = String(bytes: data, encoding: .utf8)
+                if let httpUrlResponse = response as? HTTPURLResponse {
+                    let label = UILabel()
+                    label.text = "\(httpUrlResponse.statusCode)"
+                    label.sizeToFit()
+                    cell?.accessoryView = label
+                    if let data = data {
+                        cell?.detailTextLabel?.text = String(bytes: data, encoding: .utf8)
+                    }
+                } else {
+                    cell?.accessoryView = nil
                 }
             }
         }

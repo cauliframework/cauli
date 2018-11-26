@@ -35,7 +35,7 @@ internal class MockFloretStorage {
     func store(_ record: Record) {
         guard let data = MockRecordSerializer.data(for: record),
             let filename = MockFloretStorage.filename(for: record) else { return }
-        let path = recordPath(for: record, with: filename)        
+        let path = recordPath(for: record, with: filename)
         try? FileManager.default.createDirectory(at: path.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
         try? data.write(to: path)
     }

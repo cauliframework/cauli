@@ -20,23 +20,23 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public protocol Storage {
+public class InspectorFloret: Floret {
+    public var enabled: Bool = true
 
-    /// Adds a record to the storage. Updates a possibly existing record.
-    /// A record is the same if it's identifier is the same.
-    ///
-    /// - Parameter record: The record to add to the storage.
-    func store(_ record: Record)
+    public init() {}
 
-    /// Returns a number of records after the referenced record.
-    /// Records are sorted by order there were added to the storage,
-    /// Might return less than `count` if there are no more records.
-    ///
-    /// - Parameters:
-    ///   - count: The number of records that should be returned.
-    ///   - after: The record after which there should be new records returned.
-    /// - Returns: The records after the referenced record, sorted from latest to oldest.
-    func records(_ count: Int, after: Record?) -> [Record]
+    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+        try? completionHandler(record)
+    }
+
+    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+        try? completionHandler(record)
+    }
+
+    public func viewController(_ cauli: Cauli) -> UIViewController? {
+        return InspectorTableViewController(cauli)
+    }
+
 }

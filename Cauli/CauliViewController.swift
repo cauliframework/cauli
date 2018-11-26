@@ -25,6 +25,7 @@ import UIKit
 internal class CauliViewController: UITableViewController {
 
     private let cauli: Cauli
+    private var viewControllers: [IndexPath: UIViewController] = [:]
 
     init(cauli: Cauli) {
         self.cauli = cauli
@@ -51,13 +52,47 @@ internal class CauliViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let enabled = floret.enabled ? "✔️" : "" // ✔️☑️
         cell.textLabel?.text = floret.name + " " + enabled
+        if viewController(for: floret, at: indexPath) == nil {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .disclosureIndicator
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var floret = cauli.florets[indexPath.row]
-        floret.enabled = !floret.enabled
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        let floret = cauli.florets[indexPath.row]
+        if let viewController = viewController(for: floret, at: indexPath) {
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let floret = cauli.florets[indexPath.row]
+        let actionTitle: String
+        if floret.enabled {
+            actionTitle = "Disable"
+        } else {
+            actionTitle = "Enable"
+        }
+        
+        let toggleAction = UITableViewRowAction(style: .normal, title: actionTitle) { [weak self] (action, indexPath) in
+            guard let strongSelf = self else { return }
+            var floret = strongSelf.cauli.florets[indexPath.row]
+            floret.enabled = !floret.enabled
+            strongSelf.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
+        return [toggleAction]
+    }
+    
+    private func viewController(for floret: Floret, at indexPath: IndexPath) -> UIViewController? {
+        if let cachedViewController = viewControllers[indexPath] {
+            return cachedViewController
+        }
+        let newViewController = floret.viewController(cauli)
+        viewControllers[indexPath] = newViewController
+        return newViewController
     }
 
 }

@@ -36,9 +36,9 @@ internal final class MemoryStorage: Storage {
         if let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
             records[recordIndex] = record
         } else {
-            records.append(record)
+            records.insert(record, at: 0)
             if records.count > capacity {
-                records.remove(at: 0)
+                records.remove(at: records.count - 1)
             }
         }
     }
@@ -46,12 +46,13 @@ internal final class MemoryStorage: Storage {
     func records(_ count: Int, after record: Record?) -> [Record] {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
         let index: Int
-        if let record = record {
-            index = records.index { $0.identifier == record.identifier } ?? 0
+        if let record = record,
+            let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
+            index = recordIndex + 1
         } else {
             index = 0
         }
-        let maxCount = max(count, records.count - index)
+        let maxCount = min(count, records.count - index)
         return Array(records[index..<(index + maxCount)])
     }
 }
