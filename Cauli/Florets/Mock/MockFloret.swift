@@ -51,8 +51,10 @@ public class MockFloret: Floret {
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         guard mode == .mock,
             let storage = mockStorage else { completionHandler(record); return }
-        let storedRecord = storage.mockedRecord(record)
-        let record = storedRecord ?? notFoundRecord(for: record)
+        let storedResult = storage.mockedResult(for: record.designatedRequest)
+        let result = storedResult ?? notFoundResult(for: record.designatedRequest)
+        var record = record
+        record.result = result
         completionHandler(record)
     }
 
@@ -65,11 +67,9 @@ public class MockFloret: Floret {
 }
 
 extension MockFloret {
-    private func notFoundRecord(for record: Record) -> Record {
-        var record = record
-        let response = notFoundResponse(for: record.designatedRequest)
-        record.result = .result(response)
-        return record
+    private func notFoundResult(for request: URLRequest) -> Result<Response> {
+        let response = notFoundResponse(for: request)
+        return .result(response)
     }
 
     private func notFoundResponse(for request: URLRequest) -> Response {
