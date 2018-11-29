@@ -16,7 +16,18 @@ internal extension Cauli {
 //        return FindReplaceFloret(replacements: [sslUrl])
         return FindReplaceFloret(replacements: [])
     }()
-    static let mockFloret = MockFloret()
+    static let mockFloret: MockFloret = {
+        let floret = MockFloret()
+        floret.addMapping({ request, floret in
+            if let host = request.url?.host,
+                host == "invalidurl.invalid" {
+                return floret.resultForPath("2e018ce0e517c39e2717efb0151e3b65/97f6f69543dd9e669ee47a0cabbb40b8")
+            } else {
+                return nil
+            }
+        })
+        return floret
+    }()
     static let inspectorFloret = InspectorFloret()
     static let customShared = Cauli([anonymizeIPFloret, findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
 }
