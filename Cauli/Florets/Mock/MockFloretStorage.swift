@@ -52,6 +52,15 @@ internal class MockFloretStorage {
         }
     }
 
+    func resultForPath(_ path: String) -> Result<Response>? {
+        let absolutePath = self.path.appendingPathComponent(path, isDirectory: true)
+        if let data = try? Data(contentsOf: absolutePath),
+            let record = MockRecordSerializer.record(with: data) {
+            return record.result
+        }
+        return nil
+    }
+
     private func recordPath(for request: URLRequest, with filename: String) -> URL {
         let requestPath = self.requestPath(for: request)
         return requestPath.appendingPathComponent(filename, isDirectory: false)

@@ -49,13 +49,21 @@ public class MockFloret: Floret {
     }()
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard mode == .mock,
-            let storage = mockStorage else { completionHandler(record); return }
-        let storedResult = storage.mockedResult(for: record.designatedRequest)
-        let result = storedResult ?? notFoundResult(for: record.designatedRequest)
+        guard mode == .mock else { completionHandler(record); return }
+        let result = resultForRequest(record.designatedRequest) ?? notFoundResult(for: record.designatedRequest)
         var record = record
         record.result = result
         completionHandler(record)
+    }
+
+    private func resultForRequest(_ request: URLRequest) -> Result<Response>? {
+        guard let storage = mockStorage else {
+            return nil
+        }
+        let manuallyMappedResponse: Result<Response>? = mappings.reduce(nil) { mappedRecord, mapping in
+            mappedRecord ?? mapping(request, self)
+        }
+        return manuallyMappedResponse ?? storage.mockedResult(for: request)
     }
 
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
@@ -64,6 +72,17 @@ public class MockFloret: Floret {
         }
         completionHandler(record)
     }
+
+    public func resultForPath(_ path: String) -> Result<Response>? {
+        return mockStorage?.resultForPath(path)
+    }
+
+    private var mappings: [Mapping] = []
+    public typealias Mapping = (URLRequest, MockFloret) -> Result<Response>?
+    public func addMapping(_ mapping: @escaping Mapping) {
+        mappings.append(mapping)
+    }
+
 }
 
 extension MockFloret {
