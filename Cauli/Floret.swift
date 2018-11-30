@@ -56,7 +56,7 @@ public protocol Floret {
     ///   - record: The `Record` that represents the request before it was performed.
     ///   - completionHandler: Call this completion handler exactly once with the
     ///     original or modified `Record`.
-    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void)
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
 
     /// This function will be called after a request is performed and the response arrived.
     /// The Florets will be called in the order the Cauli instance got initialized with.
@@ -68,7 +68,7 @@ public protocol Floret {
     ///   - record: The `Record` that represents the request after it was performed.
     ///   - completionHandler: Call this completion handler exactly once with the
     ///     original or modified `Record`.
-    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void)
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
 }
 
 public extension Floret {

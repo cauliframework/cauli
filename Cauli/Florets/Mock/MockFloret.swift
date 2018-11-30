@@ -48,19 +48,19 @@ public class MockFloret: Floret {
         MockFloretStorage.mocker()
     }()
 
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         guard mode == .mock,
-            let storage = mockStorage else { try? completionHandler(record); return }
+            let storage = mockStorage else { completionHandler(record); return }
         let storedRecord = storage.mockedRecord(record)
         let record = storedRecord ?? notFoundRecord(for: record)
-        try? completionHandler(record)
+        completionHandler(record)
     }
 
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         if mode == .record {
             recordStorage.store(record)
         }
-        try? completionHandler(record)
+        completionHandler(record)
     }
 }
 
