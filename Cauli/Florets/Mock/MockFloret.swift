@@ -61,7 +61,7 @@ public class MockFloret: Floret {
             return nil
         }
         let manuallyMappedResponse: Result<Response>? = mappings.reduce(nil) { mappedRecord, mapping in
-            mappedRecord ?? mapping(request, self)
+            mappedRecord ?? mapping.closure(request, self)
         }
         return manuallyMappedResponse ?? storage.mockedResult(for: request)
     }
@@ -78,11 +78,44 @@ public class MockFloret: Floret {
     }
 
     private var mappings: [Mapping] = []
-    public typealias Mapping = (URLRequest, MockFloret) -> Result<Response>?
-    public func addMapping(_ mapping: @escaping Mapping) {
+    public typealias MappingClosure = (URLRequest, MockFloret) -> Result<Response>?
+
+    @discardableResult
+    public func addMapping(with closure: @escaping MappingClosure) -> Mapping {
+        let mapping = Mapping(closure: closure)
         mappings.append(mapping)
+        return mapping
     }
 
+    @discardableResult
+    public func addMapping(forUrlPath urlPath: String, with closure: @escaping MappingClosure) -> Mapping {
+        return addMapping { request, floret in
+            guard let path = request.url?.path,
+                path == urlPath else { return nil }
+            return closure(request, floret)
+        }
+    }
+
+    @discardableResult
+    public func addMapping(forUrl url: URL, with closure: @escaping MappingClosure) -> Mapping {
+        return addMapping { request, floret in
+            guard let requestUrl = request.url,
+                requestUrl == url else { return nil }
+            return closure(request, floret)
+        }
+    }
+
+    public func removeMapping(_ mapping: Mapping) {
+        mappings = mappings.filter { $0.uuid != mapping.uuid }
+    }
+
+}
+
+extension MockFloret {
+    public struct Mapping {
+        internal let uuid = UUID()
+        internal let closure: MappingClosure
+    }
 }
 
 extension MockFloret {
