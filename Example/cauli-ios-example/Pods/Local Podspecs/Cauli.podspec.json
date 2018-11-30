@@ -13,9 +13,9 @@
     "Pascal Stüdlein": "mail@pascal-stuedlein.de"
   },
   "platforms": {
-    "ios": "11.0",
+    "ios": "10.0",
     "watchos": "3.0",
-    "tvos": "11.0"
+    "tvos": "10.0"
   },
   "source": {
     "git": "https://github.com/brototyp/cauli.git",

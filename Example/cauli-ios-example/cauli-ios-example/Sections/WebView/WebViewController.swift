@@ -10,10 +10,13 @@ import UIKit
 import WebKit
 
 class WebViewController: UIViewController {
-    @IBOutlet weak var webView: WKWebView!
+    private let webView: WKWebView = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(webView)
+        webView.frame = view.bounds
+        
         webView.load(URLRequest(url: URL(string: "https://cauli.works")!))
     }
 }

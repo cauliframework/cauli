@@ -46,20 +46,42 @@ extension URLResponseRepresentable: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let decodedData = try container.decode(Data.self)
-        let unarchiver = try NSKeyedUnarchiver(forReadingFrom: decodedData)
 
-        guard let httpURLResponse = unarchiver.decodeObject(of: [HTTPURLResponse.self, URLResponse.self], forKey: "URLResponseRepresentable") as? URLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "🤷‍♂️") }
-        unarchiver.finishDecoding()
+        let decodedURLResponse: URLResponse? = try URLResponseRepresentable.decodeURLResponse(from: decodedData) ?? URLResponseRepresentable.unarchiveURLResponse(with: decodedData)
 
-        self.init(httpURLResponse)
+        guard let urlResponse = decodedURLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not unarchive decodedData as URLResponse") }
+
+        self.init(urlResponse)
     }
 
     func encode(to encoder: Encoder) throws {
-        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
-        archiver.encode(urlResponse, forKey: "URLResponseRepresentable")
-        archiver.finishEncoding()
+        let encodedData: Data
+
+        if #available(iOS 11, *) {
+            let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+            archiver.encode(urlResponse, forKey: "URLResponseRepresentable")
+            archiver.finishEncoding()
+            encodedData = archiver.encodedData
+        } else {
+            encodedData = NSKeyedArchiver.archivedData(withRootObject: urlResponse)
+        }
 
         var container = encoder.singleValueContainer()
-        try container.encode(archiver.encodedData)
+        try container.encode(encodedData)
+    }
+
+    private static func decodeURLResponse(from data: Data) throws -> URLResponse? {
+        guard #available(iOS 11, *) else { return nil }
+
+        let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
+        let unarchivedObject = unarchiver.decodeObject(of: [HTTPURLResponse.self, URLResponse.self], forKey: "URLResponseRepresentable")
+        unarchiver.finishDecoding()
+
+        return unarchivedObject as? URLResponse
+    }
+
+    @available(iOS, deprecated: 11)
+    private static func unarchiveURLResponse(with data: Data) -> URLResponse? {
+        return NSKeyedUnarchiver.unarchiveObject(with: data) as? URLResponse
     }
 }

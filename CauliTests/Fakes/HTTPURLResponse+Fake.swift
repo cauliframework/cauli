@@ -20,35 +20,15 @@
 //  THE SOFTWARE.
 //
 
-@testable import Cauli
 import Foundation
 
-class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {
-    var willRequestClosure: ((inout Record) -> Void)?
-    var didRespondClosure: ((inout Record) -> Void)?
+extension HTTPURLResponse {
     
-    func handles(_ record: Record) -> Bool {
-        return true
-    }
-    
-    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        if let willRequestClosure = willRequestClosure {
-            var updatedRecord = record
-            willRequestClosure(&updatedRecord)
-            completionHandler(updatedRecord)
-        } else {
-            completionHandler(record)
-        }
-    }
-    
-    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        if let didRespondClosure = didRespondClosure {
-            var updatedRecord = record
-            didRespondClosure(&updatedRecord)
-            completionHandler(updatedRecord)
-        } else {
-            completionHandler(record)
-        }
+    class override var fake: HTTPURLResponse {
+        return HTTPURLResponse(url: URL(string: "https://cauli.works/fake")!,
+                               statusCode: 200,
+                               httpVersion: nil,
+                               headerFields: ["fake":"fake"])!
     }
     
 }

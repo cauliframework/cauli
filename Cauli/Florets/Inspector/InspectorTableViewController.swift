@@ -76,15 +76,21 @@ internal class InspectorTableViewController: UITableViewController {
         if newRecords.isEmpty {
             isLoading = false
             scrolledToEnd = true
-        } else {
+        } else if #available(iOS 11, *) {
             tableView.performBatchUpdates({
-                let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0)
-                }
+                let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0) }
                 tableView.insertRows(at: indexPaths, with: .bottom)
                 records.append(contentsOf: newRecords)
             }, completion: { [weak self] _ in
                 self?.isLoading = false
             })
+        } else {
+            let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0) }
+            tableView.beginUpdates()
+            tableView.insertRows(at: indexPaths, with: .bottom)
+            records.append(contentsOf: newRecords)
+            tableView.endUpdates()
+            self.isLoading = false
         }
     }
 
