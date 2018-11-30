@@ -24,9 +24,17 @@ import Foundation
 
 // swiftlint:disable nesting
 extension NSError {
+
+    /// All Cauli related Errors.
     public struct Cauli {
+
+        /// The Cauli NSErrorDomain.
         public let domain = "de.brototyp.cauli"
+
+        /// All Cauli Error Codes.
         public enum Code {}
+
+        /// All keys used in Cauli Errors.
         public enum UserInfoKey {}
     }
 

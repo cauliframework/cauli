@@ -78,9 +78,9 @@ extension CauliURLProtocol {
         willRequest(record) { record in
             self.record = record
             self.record.requestStarted = Date()
-            if case .result(_) = record.result {
+            if case .result(_)? = record.result {
                 self.urlSession(didCompleteWithError: nil)
-            } else if case let .error(error) = record.result {
+            } else if case let .error(error)? = record.result {
                 self.urlSession(didCompleteWithError: error)
             } else {
                 self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
@@ -104,7 +104,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         if CauliURLProtocol.handles(record) {
             try? record.append(receivedData)
         } else {
-            if case let .result(response) = record.result, let data = response.data {
+            if case let .result(response)? = record.result, let data = response.data {
                 self.client?.urlProtocol(self, didLoad: data)
             }
             client?.urlProtocol(self, didLoad: receivedData)
@@ -124,15 +124,15 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
             self.record = record
             self.record.responseRecieved = Date()
             switch record.result {
-            case let .result(response):
+            case let .result(response)?:
                 self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
                 if let data = response.data {
                     self.client?.urlProtocol(self, didLoad: data)
                 }
                 self.client?.urlProtocolDidFinishLoading(self)
-            case .error(let error):
+            case .error(let error)?:
                 self.client?.urlProtocol(self, didFailWithError: error)
-            case .none:
+            case nil:
                 self.client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
             }
         }

@@ -22,10 +22,17 @@
 
 import Foundation
 
+/// The Cauli class is the starting point of the Cauli framework.
+/// Use the perconfigured `Cauli.shared` or create your own instance.
+/// Please check the Readme.md for more information.
 public class Cauli {
 
+    /// The shared Cauli instance. This instance is fully configured with the default
+    /// Florets. Make sure to call the `run()` function to start the instance.
+    /// You can create a new Cauli instance with your own Configuration and Florets.
     public static let shared = Cauli([], configuration: Configuration.standard)
 
+    /// The Storage used by this instance to store all Records.
     public let storage: Storage = MemoryStorage()
     internal let florets: [Floret]
     private var enabledFlores: [Floret] {
@@ -39,6 +46,11 @@ public class Cauli {
         CauliURLProtocol.remove(delegate: self)
     }
 
+    /// Creates and returns a new Cauli instance.
+    ///
+    /// - Parameters:
+    ///   - florets: The florets that should be used.
+    ///   - configuration: The configuration.
     public init(_ florets: [Floret], configuration: Configuration) {
         Cauli.setup()
         self.florets = florets
@@ -53,16 +65,24 @@ public class Cauli {
         }
     }
 
+    /// The ViewController for the Cauli UI. For the shared Cauli instance,
+    /// and if `enableShakeGesture` in the `Configuration` is set to true
+    /// this ViewController will be shown when shaking the device.
+    /// You can use this function to create a new ViewController and display it manually.
+    ///
+    /// - Returns: A new, unretained ViewController.
     public func viewController() -> UIViewController {
         let cauliViewController = CauliViewController(cauli: self)
         let navigationController = UINavigationController(rootViewController: cauliViewController)
         return navigationController
     }
 
+    /// Starts this Cauli instance.
     public func run() {
         enabled = true
     }
 
+    /// Stops this Cauli instance.
     public func pause() {
         enabled = false
     }

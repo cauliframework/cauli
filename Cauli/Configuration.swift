@@ -23,6 +23,7 @@
 import Foundation
 
 public struct Configuration {
+    /// The default Configuration.
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
         enableShakeGesture: true)
@@ -37,6 +38,8 @@ public struct Configuration {
     /// use the `Cauli.viewController()` function to display that ViewController manually.
     public let enableShakeGesture: Bool
 
+    /// Creates a new `Configuration` with the given parameters. Please check the
+    /// properties of a `Configuration` for their meaning.
     public init(recordSelector: RecordSelector, enableShakeGesture: Bool) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture

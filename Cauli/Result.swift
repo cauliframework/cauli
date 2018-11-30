@@ -22,8 +22,11 @@
 
 import Foundation
 
+/// The Result represents a possible result expecting any given type.
+///
+/// - error: An error occured.
+/// - result: The successful result itself
 public enum Result<Type: Codable> {
-    case none
     case error(NSError)
     case result(Type)
 }
@@ -31,7 +34,6 @@ public enum Result<Type: Codable> {
 extension Result: Codable {
 
     private enum CodingKeys: CodingKey {
-        case none
         case error
         case result
     }
@@ -43,17 +45,15 @@ extension Result: Codable {
         } else if let internalError = try? container.decode(InternalError.self) {
             self = .error(NSError(domain: internalError.domain, code: internalError.code, userInfo: internalError.userInfo))
         } else {
-            self = .none
+            let context = DecodingError.Context.init(codingPath: decoder.codingPath, debugDescription: "Could not create Result")
+            throw DecodingError.dataCorrupted(context)
         }
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .none:
-            try container.encodeNil()
         case .error(let error):
-
             try container.encode(InternalError(domain: error.domain, code: error.code, userInfo: error.compatibleUserInfo))
         case .result(let type):
             try container.encode(type)

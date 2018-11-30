@@ -57,15 +57,15 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         methodLabel.text = record.designatedRequest.httpMethod
         pathLabel.text = record.designatedRequest.url?.absoluteString
         switch record.result {
-        case .none:
+        case nil:
             contentTypeLabel.text = ""
             statusCodeLabel.text = "no Response"
             statusCodeLabel.borderColor = .black
-        case .error(let error):
+        case .error(let error)?:
             contentTypeLabel.text = error.localizedDescription
             statusCodeLabel.text = "Error"
             statusCodeLabel.borderColor = InspectorRecordTableViewCell.redColor
-        case .result(let response):
+        case .result(let response)?:
             if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
                 contentTypeLabel.text = httpUrlResponse.allHeaderFields["Content-Type"] as? String
                 statusCodeLabel.text = "\(httpUrlResponse.statusCode)"
