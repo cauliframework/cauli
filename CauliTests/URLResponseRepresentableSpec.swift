@@ -42,19 +42,17 @@ class URLResponseRepresentableSpec: QuickSpec {
             }
             
             it("should initialize with a HTTPURLResponse") {
-                let urlResponseRepresentable = URLResponseRepresentable(HTTPURLResponse.fake)
+                let fakeHTTPURLRespone = HTTPURLResponse.fake
+                let urlResponseRepresentable = URLResponseRepresentable(fakeHTTPURLRespone)
                 
-                expect({
-                    guard case .httpURLResponse(let httpURLResponse) = urlResponseRepresentable else {
-                        return .failed(reason: "expect the enum case to equal `httpURLResponse(HTTPURLResponse)`")
-                    }
-                    
-                    expect(httpURLResponse.url?.absoluteString) == "https://cauli.works/fake"
-                    expect(httpURLResponse.statusCode) == 200
-                    expect(httpURLResponse.allHeaderFields["fake"] as? String) == "fake"
-                    
-                    return .succeeded
-                }).to(succeed())
+                guard case .httpURLResponse(let httpURLResponse) = urlResponseRepresentable else {
+                    fail("expect the enum case to equal `httpURLResponse(HTTPURLResponse)`")
+                    return
+                }
+                
+                expect(httpURLResponse.url) == fakeHTTPURLRespone.url
+                expect(httpURLResponse.statusCode) == fakeHTTPURLRespone.statusCode
+                expect(httpURLResponse.allHeaderFields["fake"] as? String) == fakeHTTPURLRespone.allHeaderFields["fake"] as? String
             }
         }
         
