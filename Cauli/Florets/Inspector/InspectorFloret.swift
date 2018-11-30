@@ -27,12 +27,12 @@ public class InspectorFloret: Floret {
 
     public init() {}
 
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
-        try? completionHandler(record)
+    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        completionHandler(record)
     }
 
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
-        try? completionHandler(record)
+    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        completionHandler(record)
     }
 
     public func viewController(_ cauli: Cauli) -> UIViewController? {

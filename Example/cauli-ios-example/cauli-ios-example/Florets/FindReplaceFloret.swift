@@ -36,7 +36,7 @@ final class FindReplaceFloret: Floret {
         self.replacements = replacements
     }
     
-    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         let record = replacements.reduce(record, { (record, replacement) -> Record in
             var newRecord = record
             let oldValue = record[keyPath: replacement.keyPath]
@@ -44,10 +44,10 @@ final class FindReplaceFloret: Floret {
             newRecord[keyPath: replacement.keyPath] = modifiedValue
             return newRecord
         })
-        try? completionHandler(record)
+        completionHandler(record)
     }
     
-    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) throws -> Void) {
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         let record = replacements.reduce(record, { (record, replacement) -> Record in
             var newRecord = record
             let oldValue = record[keyPath: replacement.keyPath]
@@ -55,6 +55,6 @@ final class FindReplaceFloret: Floret {
             newRecord[keyPath: replacement.keyPath] = modifiedValue
             return newRecord
         })
-        try? completionHandler(record)
+        completionHandler(record)
     }
 }
