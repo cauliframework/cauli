@@ -73,7 +73,7 @@ public struct MD5Digest: Hashable, RawRepresentable, CustomStringConvertible, Co
     public var rawValue: String { return self.description }
 
     public var description: String {
-        return String(format: "%016lx%016lx",
+        return String(format: "%016llx%016llx",
                       _digest_0.byteSwapped,
                       _digest_1.byteSwapped)
     }
@@ -98,10 +98,10 @@ public struct MD5Digest: Hashable, RawRepresentable, CustomStringConvertible, Co
 /// Pure Swift implementation of the MD5 algorithm.
 private struct MD5State {
 
-    var a = UInt32(0x67452301)
-    var b = UInt32(0xefcdab89)
-    var c = UInt32(0x98badcfe)
-    var d = UInt32(0x10325476)
+    var a: UInt32 = 0x67452301
+    var b: UInt32 = 0xefcdab89
+    var c: UInt32 = 0x98badcfe
+    var d: UInt32 = 0x10325476
 
     static let chunkSize = 64
     static let endOfMessageMarker: UInt8 = 0x80
