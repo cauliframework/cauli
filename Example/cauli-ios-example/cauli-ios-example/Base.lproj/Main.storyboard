@@ -17,30 +17,11 @@
                     <view key="view" contentMode="scaleToFill" id="r6n-eF-eRM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-CH-9VX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Zbw-CH-9VX" firstAttribute="top" secondItem="uAY-gE-i9t" secondAttribute="top" id="2sg-Vr-6NW"/>
-                            <constraint firstItem="uAY-gE-i9t" firstAttribute="trailing" secondItem="Zbw-CH-9VX" secondAttribute="trailing" id="4Wz-y1-qJP"/>
-                            <constraint firstItem="Zbw-CH-9VX" firstAttribute="leading" secondItem="uAY-gE-i9t" secondAttribute="leading" id="5Y0-Pp-bzb"/>
-                            <constraint firstItem="uAY-gE-i9t" firstAttribute="bottom" secondItem="Zbw-CH-9VX" secondAttribute="bottom" id="e8U-3o-sOO"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uAY-gE-i9t"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="WKWebView" id="wzV-Jl-CHD"/>
                     <navigationItem key="navigationItem" title="WKWebView" id="DUQ-Sy-bvV"/>
-                    <connections>
-                        <outlet property="webView" destination="Zbw-CH-9VX" id="rbp-9o-187"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VEd-0O-DsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
