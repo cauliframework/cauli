@@ -22,45 +22,28 @@
 
 import UIKit
 
-@IBDesignable
-internal class TagLabel: UILabel {
+class RecordItemTableViewCell: UITableViewCell {
 
-    @IBInspectable
-    var borderColor = UIColor.green {
-        didSet {
-            layer.borderColor = borderColor.cgColor
-        }
-    }
+    static let reuseIdentifier = "RecordItemTableViewCell"
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .value2, reuseIdentifier: reuseIdentifier)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
     }
 
-    private func commonInit() {
-        layer.borderWidth = 1
-        layer.cornerRadius = 6
-
-    }
-
-    static let edgeInsets = UIEdgeInsets.init(top: 5, left: 8, bottom: 5, right: 8)
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: TagLabel.edgeInsets))
-    }
-
-    override var intrinsicContentSize: CGSize {
-        let size = super.intrinsicContentSize
-        return CGSize(width: size.width + TagLabel.edgeInsets.left + TagLabel.edgeInsets.right, height: size.height + TagLabel.edgeInsets.top + TagLabel.edgeInsets.bottom)
-    }
-
-    override var firstBaselineAnchor: NSLayoutYAxisAnchor {
-        let anchor = super.firstBaselineAnchor
-        return anchor // is there any way to move this anchor down by `TagLabel.edgeInsets.top`?
+    static let textPadding = UIEdgeInsets(top: 14, left: 0, bottom: 14, right: 0)
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        var size = super.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
+        guard let textLabel = self.textLabel, let detailTextLabel = self.detailTextLabel else {
+            return size
+        }
+        self.layoutIfNeeded()
+        let textHeight = max(detailTextLabel.frame.size.height, textLabel.frame.size.height)
+        size.height = textHeight + RecordItemTableViewCell.textPadding.top + RecordItemTableViewCell.textPadding.bottom
+        return size
     }
 
 }

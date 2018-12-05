@@ -22,45 +22,27 @@
 
 import UIKit
 
-@IBDesignable
-internal class TagLabel: UILabel {
+class RecordTableViewController: UITableViewController {
 
-    @IBInspectable
-    var borderColor = UIColor.green {
-        didSet {
-            layer.borderColor = borderColor.cgColor
-        }
+    let record: Record
+    let datasource: RecordTableViewDatasource
+
+    init(_ record: Record) {
+        self.record = record
+        self.datasource = RecordTableViewDatasource(record)
+        super.init(nibName: nil, bundle: nil)
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
     }
 
-    private func commonInit() {
-        layer.borderWidth = 1
-        layer.cornerRadius = 6
-
-    }
-
-    static let edgeInsets = UIEdgeInsets.init(top: 5, left: 8, bottom: 5, right: 8)
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: TagLabel.edgeInsets))
-    }
-
-    override var intrinsicContentSize: CGSize {
-        let size = super.intrinsicContentSize
-        return CGSize(width: size.width + TagLabel.edgeInsets.left + TagLabel.edgeInsets.right, height: size.height + TagLabel.edgeInsets.top + TagLabel.edgeInsets.bottom)
-    }
-
-    override var firstBaselineAnchor: NSLayoutYAxisAnchor {
-        let anchor = super.firstBaselineAnchor
-        return anchor // is there any way to move this anchor down by `TagLabel.edgeInsets.top`?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Record"
+        datasource.setup(tableView)
+        tableView.dataSource = datasource
     }
 
 }
