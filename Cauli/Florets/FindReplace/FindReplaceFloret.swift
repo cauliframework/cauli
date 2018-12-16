@@ -28,7 +28,7 @@ public final class FindReplaceFloret: Floret {
 
     let replacements: [ReplaceDefinition]
 
-    init(replacements: [ReplaceDefinition]) {
+    public init(replacements: [ReplaceDefinition]) {
         self.replacements = replacements
     }
 
