@@ -16,7 +16,7 @@ class RequestsTableViewController: UITableViewController {
         RequestModel(name: "httpstat.us/301", url: URL(string: "https://httpstat.us/301")!),
         RequestModel(name: "httpstat.us/304", url: URL(string: "https://httpstat.us/304")!),
         RequestModel(name: "httpstat.us/404", url: URL(string: "https://httpstat.us/404")!),
-        RequestModel(name: "ip.jsontest.com", url: URL(string: "http://ip.jsontest.com/")!),
+        RequestModel(name: "http://api.ipify.org", url: URL(string: "http://api.ipify.org/?format=json")!),
         RequestModel(name: "invalidurl.invalid", url: URL(string: "https://invalidurl.invalid/")!),
     ]
     
