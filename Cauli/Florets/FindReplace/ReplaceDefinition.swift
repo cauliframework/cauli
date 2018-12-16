@@ -22,29 +22,48 @@
 
 import Foundation
 
-public struct ReplaceDefinition {
-    let modifier: (Record) -> (Record)
+extension FindReplaceFloret {
+    /// A ReplaceDefinition defines the replacement of a Record
+    public struct ReplaceDefinition {
+        /// This closures is called when a Record can be modified.
+        /// It can return a modified Record or the original Record.
+        let modifier: (Record) -> (Record)
+    }
 }
 
-extension ReplaceDefinition {
-    public init<Type>(keyPath: WritableKeyPath<Record, Type>, replacer: @escaping (Type) -> (Type)) {
+extension FindReplaceFloret.ReplaceDefinition {
+    /// This init is based on a Records keyPath and allows just to modify
+    /// a specific property of a Record.
+    ///
+    /// - Parameters:
+    ///   - keyPath: The keyPath describing which property of a Record should be modified.
+    ///   - modifier: A closure used to modify the property defined by the keyPath.
+    /// - Returns: A ReplaceDefinition modifying a specific property of a Record.
+    ///            Use this to initalize a FindReplaceFloret.
+    public init<Type>(keyPath: WritableKeyPath<Record, Type>, modifier: @escaping (Type) -> (Type)) {
         self.init { record in
             var newRecord = record
             let oldValue = record[keyPath: keyPath]
-            let modifiedValue = replacer(oldValue)
+            let modifiedValue = modifier(oldValue)
             newRecord[keyPath: keyPath] = modifiedValue
             return newRecord
         }
     }
 }
 
-extension ReplaceDefinition {
-    public static func modifyUrl(expression: NSRegularExpression, replacement: String) -> ReplaceDefinition {
+extension FindReplaceFloret.ReplaceDefinition {
+    /// This init will modify the Requests URL.
+    ///
+    /// - Parameters:
+    ///   - expression: A RegularExpression describing the part of the Requets URL to modify.
+    ///   - replacement: The replacement string used to replace matches of the RegularExpression.
+    /// - Returns: A ReplaceDefinition modifying the RequestURL. Use this to initalize a FindReplaceFloret.
+    public static func modifyUrl(expression: NSRegularExpression, replacement: String) -> FindReplaceFloret.ReplaceDefinition {
         let keyPath = \Record.designatedRequest.url
-        let replacer: (URL?) -> (URL?) = { url in
+        let modifier: (URL?) -> (URL?) = { url in
             guard let oldURL = url else { return url }
             return URL(string: oldURL.absoluteString.replacingOcurrences(of: expression, with: replacement))
         }
-        return ReplaceDefinition(keyPath: keyPath, replacer: replacer)
+        return FindReplaceFloret.ReplaceDefinition(keyPath: keyPath, modifier: modifier)
     }
 }

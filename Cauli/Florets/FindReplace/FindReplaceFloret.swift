@@ -28,6 +28,9 @@ public final class FindReplaceFloret: Floret {
 
     let replacements: [ReplaceDefinition]
 
+    /// This init will create a FindReplaceFloret with ReplaceDefinitions to modify Records.
+    ///
+    /// - Parameter replacements: The ReplaceDefinitions used to modify records
     public init(replacements: [ReplaceDefinition]) {
         self.replacements = replacements
     }
