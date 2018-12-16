@@ -12,8 +12,7 @@ import Cauli
 internal extension Cauli {
     static let anonymizeIPFloret = AnonymizeIPFloret()
     static let findReplaceFloret: FindReplaceFloret = {
-//        let sslUrl = ReplaceDefinition<Any>.modifyUrl(expression: try! NSRegularExpression(pattern: "http[^s]", options: []), replacement: "$1s") as! ReplaceDefinition<Any>
-//        return FindReplaceFloret(replacements: [sslUrl])
+
         return FindReplaceFloret(replacements: [])
     }()
     static let mockFloret = MockFloret()
