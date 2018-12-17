@@ -49,11 +49,21 @@ public class MockFloret: Floret {
     }()
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard mode == .mock,
-            let storage = mockStorage else { completionHandler(record); return }
-        let storedRecord = storage.mockedRecord(record)
-        let record = storedRecord ?? notFoundRecord(for: record)
+        guard mode == .mock else { completionHandler(record); return }
+        let result = resultForRequest(record.designatedRequest) ?? notFoundResult(for: record.designatedRequest)
+        var record = record
+        record.result = result
         completionHandler(record)
+    }
+
+    private func resultForRequest(_ request: URLRequest) -> Result<Response>? {
+        guard let storage = mockStorage else {
+            return nil
+        }
+        let manuallyMappedResponse: Result<Response>? = mappings.reduce(nil) { mappedRecord, mapping in
+            mappedRecord ?? mapping.closure(request, self)
+        }
+        return manuallyMappedResponse ?? storage.mockedResult(for: request)
     }
 
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
@@ -62,14 +72,89 @@ public class MockFloret: Floret {
         }
         completionHandler(record)
     }
+
+    /// This function will try to use the mocking storage (from within the
+    /// bundle) to decode a Result by a given path.
+    ///
+    /// - Parameter path: The path of a record relative to the "MockFloret" folder.
+    /// - Returns: A Result or nil if no decodable Record at that path.
+    public func resultForPath(_ path: String) -> Result<Response>? {
+        return mockStorage?.resultForPath(path)
+    }
+
+    private var mappings: [Mapping] = []
+    public typealias MappingClosure = (URLRequest, MockFloret) -> Result<Response>?
+
+    /// Adds a manual mapping defining which Result to use for a certain Request.
+    ///
+    /// - Parameter closure: A closure mapping a Request to a Result.
+    /// - Returns: The Mapping. Use this object to remove the mapping at a later time.
+    @discardableResult
+    public func addMapping(with closure: @escaping MappingClosure) -> Mapping {
+        let mapping = Mapping(closure: closure)
+        mappings.append(mapping)
+        return mapping
+    }
+
+    /// Adds a manual mapping defining which Result to use for a certain Request.
+    /// The closure will only be applied if the path of the Requests url matches
+    /// the given path.
+    ///
+    /// - Parameters:
+    ///   - urlPath: The expected path of the requests url.
+    ///   - closure: A closure mapping a Request to a Result.
+    /// - Returns: The Mapping. Use this object to remove the mapping at a later time.
+    @discardableResult
+    public func addMapping(forUrlPath urlPath: String, with closure: @escaping MappingClosure) -> Mapping {
+        return addMapping { request, floret in
+            guard let path = request.url?.path,
+                path == urlPath else { return nil }
+            return closure(request, floret)
+        }
+    }
+
+    /// Adds a manual mapping defining which Result to use for a certain Request.
+    /// The closure will only be applied if the url of the Requests matches
+    /// the given url.
+    ///
+    /// - Parameters:
+    ///   - url: The expected url of the Request.
+    ///   - closure: A closure mapping a Request to a Result.
+    /// - Returns: The Mapping. Use this object to remove the mapping at a later time.
+    @discardableResult
+    public func addMapping(forUrl url: URL, with closure: @escaping MappingClosure) -> Mapping {
+        return addMapping { request, floret in
+            guard let requestUrl = request.url,
+                requestUrl == url else { return nil }
+            return closure(request, floret)
+        }
+    }
+
+    /// Removes a manual Mapping. If the mapping is currently not configured
+    /// it does nothing.
+    ///
+    /// - Parameter mapping: The mapping to remove.
+    public func removeMapping(_ mapping: Mapping) {
+        mappings = mappings.filter { $0.uuid != mapping.uuid }
+    }
+
 }
 
 extension MockFloret {
-    private func notFoundRecord(for record: Record) -> Record {
-        var record = record
-        let response = notFoundResponse(for: record.designatedRequest)
-        record.result = .result(response)
-        return record
+    /// A MockFloret.Mapping is an internal representation of a mapping from a
+    /// URLRequest to a Result for a Response (`(URLRequest, MockFloret) -> Result<Response>?`).
+    /// This Mapping will be returned when using the `addMapping` function and can be
+    /// used to remove a Mapping via `removeMapping`.
+    public struct Mapping {
+        internal let uuid = UUID()
+        internal let closure: MappingClosure
+    }
+}
+
+extension MockFloret {
+    private func notFoundResult(for request: URLRequest) -> Result<Response> {
+        let response = notFoundResponse(for: request)
+        return .result(response)
     }
 
     private func notFoundResponse(for request: URLRequest) -> Response {
