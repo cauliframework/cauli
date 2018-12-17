@@ -22,21 +22,32 @@
 
 import Foundation
 
-public final class FindReplaceFloret: Floret {
+/// A `FindReplaceFloret` uses `ReplaceDefinition`s to modify a `Record`
+/// before sending a request and after receiving a respond. Use multiple
+/// instances of the `FindReplaceFloret`s to group certain ReplaceDefinitions
+/// under a given name.
+public class FindReplaceFloret: Floret {
 
     public var enabled: Bool = true
+    public let name: String
 
-    let replacements: [ReplaceDefinition]
+    let willRequestReplacements: [ReplaceDefinition]
+    let didRespondReplacements: [ReplaceDefinition]
 
     /// This init will create a FindReplaceFloret with ReplaceDefinitions to modify Records.
     ///
-    /// - Parameter replacements: The ReplaceDefinitions used to modify records
-    public init(replacements: [ReplaceDefinition]) {
-        self.replacements = replacements
+    /// - Parameters:
+    ///   - willRequestReplacements: The ReplaceDefinitions used to modify a Record before sending a request.
+    ///   - didRespondReplacements: The ReplaceDefinitions used to modify a Record after receiving a respond.
+    ///   - name: Can be used to describe the set of choosen ReplaceDefinitions. The default name is `FindReplaceFloret`.
+    public init(willRequestReplacements: [ReplaceDefinition], didRespondReplacements: [ReplaceDefinition] = [], name: String = "FindReplaceFloret") {
+        self.willRequestReplacements = willRequestReplacements
+        self.didRespondReplacements = didRespondReplacements
+        self.name = name
     }
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        let record = replacements.reduce(record) { record, replacement -> Record in
+        let record = willRequestReplacements.reduce(record) { record, replacement -> Record in
             replacement.modifier(record)
         }
 
@@ -44,7 +55,7 @@ public final class FindReplaceFloret: Floret {
     }
 
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        let record = replacements.reduce(record) { record, replacement -> Record in
+        let record = didRespondReplacements.reduce(record) { record, replacement -> Record in
             replacement.modifier(record)
         }
 
