@@ -108,13 +108,12 @@ extension RecordTableViewDatasource.Section {
         self.init(title: "Request", items: requestItems)
     }
 
-    init(_ result: Result<Response>) {
+    init(_ result: Result<Response>?) {
         var resultItems: [RecordTableViewDatasource.Item] = []
         switch result {
-        case .none: break
-        case .error(let error):
+        case .error(let error)?:
             resultItems.append(RecordTableViewDatasource.Item(title: "Error", description: error.localizedDescription))
-        case .result(let response):
+        case .result(let response)?:
             resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-"))
             if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
                 resultItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: httpUrlResponse.allHeaderFields.compactMap { key, value in
@@ -123,6 +122,7 @@ extension RecordTableViewDatasource.Section {
                 resultItems.append(RecordTableViewDatasource.Item(title: "Status Code", description: "\(httpUrlResponse.statusCode)"))
             }
             resultItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: response.data))
+        case .none: break
         }
         self.init(title: "Response", items: resultItems)
     }

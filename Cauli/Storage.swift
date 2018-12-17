@@ -22,6 +22,7 @@
 
 import Foundation
 
+/// A Storage is used to store and retrieve Records. It can be either in memory or on disk.
 public protocol Storage {
 
     /// Adds a record to the storage. Updates a possibly existing record.

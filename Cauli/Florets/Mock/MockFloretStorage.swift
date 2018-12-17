@@ -72,7 +72,7 @@ internal class MockFloretStorage {
     }
 
     private static func filename(for record: Record) -> String? {
-        guard case let .result(response) = record.result,
+        guard case let .result(response)? = record.result,
             let httpurlresponse = response.urlResponse as? HTTPURLResponse else {
                 return nil
         }
