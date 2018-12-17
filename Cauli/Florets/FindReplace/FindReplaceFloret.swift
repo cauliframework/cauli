@@ -40,7 +40,7 @@ public class FindReplaceFloret: Floret {
     ///   - willRequestReplacements: The ReplaceDefinitions used to modify a Record before sending a request.
     ///   - didRespondReplacements: The ReplaceDefinitions used to modify a Record after receiving a respond.
     ///   - name: Can be used to describe the set of choosen ReplaceDefinitions. The default name is `FindReplaceFloret`.
-    public init(willRequestReplacements: [ReplaceDefinition], didRespondReplacements: [ReplaceDefinition] = [], name: String = "FindReplaceFloret") {
+    public init(willRequestReplacements: [ReplaceDefinition] = [], didRespondReplacements: [ReplaceDefinition] = [], name: String = "FindReplaceFloret") {
         self.willRequestReplacements = willRequestReplacements
         self.didRespondReplacements = didRespondReplacements
         self.name = name

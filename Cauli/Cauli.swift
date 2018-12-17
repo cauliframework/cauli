@@ -113,6 +113,7 @@ extension Cauli: CauliURLProtocolDelegate {
     }
 
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        assert(!Thread.current.isMainThread, "should never be called on the MainThread")
         guard enabled else { completionHandler(record); return }
         enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.willRequest(record) { record in
@@ -127,6 +128,7 @@ extension Cauli: CauliURLProtocolDelegate {
     }
 
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        assert(!Thread.current.isMainThread, "should never be called on the MainThread")
         guard enabled else { completionHandler(record); return }
         enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.didRespond(record) { record in

@@ -67,10 +67,9 @@ extension FindReplaceFloret.ReplaceDefinition {
         }
         return FindReplaceFloret.ReplaceDefinition(keyPath: keyPath, modifier: modifier)
     }
-    
+
     static func replacingOcurrences(of expression: NSRegularExpression, in string: String, with template: String) -> String {
         let range = NSRange(string.startIndex..., in: string)
         return expression.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: template)
     }
 }
-
