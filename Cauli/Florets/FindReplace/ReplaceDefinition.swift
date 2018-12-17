@@ -62,8 +62,15 @@ extension FindReplaceFloret.ReplaceDefinition {
         let keyPath = \Record.designatedRequest.url
         let modifier: (URL?) -> (URL?) = { url in
             guard let oldURL = url else { return url }
-            return URL(string: oldURL.absoluteString.replacingOcurrences(of: expression, with: replacement))
+            let urlWithReplacements = replacingOcurrences(of: expression, in: oldURL.absoluteString, with: replacement)
+            return URL(string: urlWithReplacements)
         }
         return FindReplaceFloret.ReplaceDefinition(keyPath: keyPath, modifier: modifier)
     }
+    
+    static func replacingOcurrences(of expression: NSRegularExpression, in string: String, with template: String) -> String {
+        let range = NSRange(string.startIndex..., in: string)
+        return expression.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: template)
+    }
 }
+
