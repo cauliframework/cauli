@@ -104,7 +104,7 @@ public class MockFloret: Floret {
         let manuallyMappedResponse: Result<Response>? = mappings.reduce(nil) { mappedRecord, mapping in
             mappedRecord ?? mapping.closure(request, self)
         }
-        return manuallyMappedResponse ?? storage.mockedResult(for: request)
+        return manuallyMappedResponse ?? storage.results(for: request).randomElement()
     }
 
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {

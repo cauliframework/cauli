@@ -40,16 +40,17 @@ internal class MockFloretStorage {
         try? data.write(to: path)
     }
 
-    func mockedResult(for request: URLRequest) -> Result<Response>? {
+    func results(for request: URLRequest) -> [Result<Response>] {
         let path = requestPath(for: request)
         let storedResponseUrls = try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: [], options: [])
-        if let url = storedResponseUrls?.randomElement(),
-            let data = try? Data(contentsOf: url),
-            let record = MockRecordSerializer.record(with: data) {
-            return record.result
-        } else {
-            return nil
-        }
+        return storedResponseUrls?.lazy.compactMap { url in
+            if let data = try? Data(contentsOf: url),
+                let record = MockRecordSerializer.record(with: data) {
+                return record.result
+            } else {
+                return nil
+            }
+        } ?? []
     }
 
     func resultForPath(_ path: String) -> Result<Response>? {
