@@ -33,67 +33,36 @@ internal class MockFloretStorage {
     }
 
     func store(_ record: Record) {
-        guard case .result(let response)? = record.result,
-            let data = MockRecordSerializer.data(for: record) else { return }
+        guard case .result(let response)? = record.result else { return }
         let requestFoldername = MockFloretStorage.foldername(for: record.designatedRequest)
         let responseFoldername = MockFloretStorage.foldername(for: response)
         let folder = path
             .appendingPathComponent(requestFoldername, isDirectory: true)
             .appendingPathComponent(responseFoldername, isDirectory: true)
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
-        let filepath = folder.appendingPathComponent("record.json")
-        try? data.write(to: filepath)
+        MockRecordSerializer.write(record: record, to: folder)
     }
 
     func results(for request: URLRequest) -> [Result<Response>] {
         let path = requestPath(for: request)
         let storedResponseUrls = try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: [], options: [])
         return storedResponseUrls?.lazy.compactMap { url in
-            if let data = try? Data(contentsOf: url),
-                let record = MockRecordSerializer.record(with: data) {
-                return record.result
-            } else {
-                return nil
-            }
+            MockRecordSerializer.record(from: url)?.result
         } ?? []
     }
 
     func resultForPath(_ path: String) -> Result<Response>? {
         let absolutePath = self.path.appendingPathComponent(path, isDirectory: true)
-        if let data = try? Data(contentsOf: absolutePath),
-            let record = MockRecordSerializer.record(with: data) {
+        if let record = MockRecordSerializer.record(from: absolutePath) {
             return record.result
         }
         return nil
     }
 
-//    private func recordPath(for request: URLRequest, with filename: String) -> URL {
-//        let requestPath = self.requestPath(for: request)
-//        return requestPath.appendingPathComponent(filename, isDirectory: false)
-//    }
-
     private func requestPath(for request: URLRequest) -> URL {
         let foldername = MockFloretStorage.foldername(for: request)
         return path.appendingPathComponent(foldername, isDirectory: true)
     }
-
-//    private static func filename(for record: Record) -> String? {
-//        guard case let .result(response)? = record.result,
-//            let httpurlresponse = response.urlResponse as? HTTPURLResponse else {
-//                return nil
-//        }
-//        if let etag = httpurlresponse.allHeaderFields["ETag"] as? String {
-//            return etag.utf8.md5.description
-//        } else {
-//            let codeHash = "\(httpurlresponse.statusCode)".utf8.md5.description
-//            if let data = response.data {
-//                let dataHash = data.md5.description
-//                return "\(codeHash)\(dataHash)".utf8.md5.description
-//            } else {
-//                return codeHash
-//            }
-//        }
-//    }
 
     private static func foldername(for response: Response) -> String {
         if let httpurlresponse = response.urlResponse as? HTTPURLResponse,

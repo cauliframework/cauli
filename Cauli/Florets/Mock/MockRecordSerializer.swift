@@ -24,14 +24,30 @@ import Foundation
 
 internal class MockRecordSerializer {
 
-    static func data(for record: Record) -> Data? {
+    static func write(record: Record, to folder: URL) {
+        guard let data = self.data(for: record) else { return }
+        let filepath = folder.appendingPathComponent("record.json")
+        try? data.write(to: filepath)
+    }
+
+    static func record(from folder: URL) -> Record? {
+        let filepath = folder.appendingPathComponent("record.json")
+        if let data = try? Data(contentsOf: filepath),
+            let record = MockRecordSerializer.record(with: data) {
+            return record
+        } else {
+            return nil
+        }
+    }
+
+    private static func data(for record: Record) -> Data? {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         guard let data = try? encoder.encode(record) else { return nil }
         return data
     }
 
-    static func record(with data: Data) -> Record? {
+    private static func record(with data: Data) -> Record? {
         let decoder = JSONDecoder()
         guard let record = try? decoder.decode(Record.self, from: data) else { return nil }
         return record
