@@ -41,6 +41,12 @@ class RecordTableViewDatasource: NSObject {
         tableView.register(RecordItemTableViewCell.self, forCellReuseIdentifier: RecordItemTableViewCell.reuseIdentifier)
     }
 
+    func item(at indexPath: IndexPath) -> Item? {
+        guard indexPath.section < sections.count,
+            indexPath.row < sections[indexPath.section].items.count else { return nil }
+        return sections[indexPath.section].items[indexPath.row]
+    }
+
 }
 
 extension RecordTableViewDatasource: UITableViewDataSource {
@@ -55,16 +61,11 @@ extension RecordTableViewDatasource: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecordItemTableViewCell.reuseIdentifier, for: indexPath) as! RecordItemTableViewCell
-        let item = sections[indexPath.section].items[indexPath.row]
 
-        cell.textLabel?.text = item.title
-        cell.detailTextLabel?.text = item.description
-        cell.detailTextLabel?.numberOfLines = 15
-
-        if item.value == nil {
-            cell.accessoryType = .none
-        } else {
-            cell.accessoryType = .disclosureIndicator
+        if let item = item(at: indexPath) {
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = item.description
+            cell.detailTextLabel?.numberOfLines = 15
         }
 
         return cell
@@ -85,13 +86,30 @@ extension RecordTableViewDatasource {
     struct Item {
         let title: String
         let description: String
-        let value: Any?
+        let value: () -> (Any?)
     }
 }
 
 extension RecordTableViewDatasource.Item {
     init(title: String, description: String) {
-        self.init(title: title, description: description, value: nil)
+        self.init(title: title, description: description, value: { nil })
+    }
+    init(title: String, description: String, value: @autoclosure () -> (Any?)) {
+        self.init(title: title, description: description, value: { nil })
+    }
+    static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
+        return RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
+            guard let data = response.data else { return nil }
+            let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
+            let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
+            let filePath = tmpFolder.appendingPathComponent(fileName)
+            do {
+                try data.write(to: filePath)
+                return filePath
+            } catch {
+                return nil
+            }
+        })
     }
 }
 
@@ -102,7 +120,7 @@ extension RecordTableViewDatasource.Section {
         requestItems.append(RecordTableViewDatasource.Item(title: "Method", description: request.httpMethod ?? "-"))
         requestItems.append(RecordTableViewDatasource.Item(title: "URL", description: request.url?.absoluteString ?? "-"))
         requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in
-            "\(key) : \(value)"
+            "\(key): \(value)"
         }.joined(separator: "\n") ?? "-", value: request.allHTTPHeaderFields))
         requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(request.httpBody?.count ?? 0) bytes", value: request.httpBody))
         self.init(title: "Request", items: requestItems)
@@ -114,14 +132,14 @@ extension RecordTableViewDatasource.Section {
         case .error(let error)?:
             resultItems.append(RecordTableViewDatasource.Item(title: "Error", description: error.localizedDescription))
         case .result(let response)?:
-            resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-"))
+            resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-", value: response.urlResponse.url))
             if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
                 resultItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: httpUrlResponse.allHeaderFields.compactMap { key, value in
-                    "\(key) : \(value)"
+                    "\(key): \(value)"
                 }.joined(separator: "\n"), value: httpUrlResponse.allHeaderFields))
                 resultItems.append(RecordTableViewDatasource.Item(title: "Status Code", description: "\(httpUrlResponse.statusCode)"))
             }
-            resultItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: response.data))
+            resultItems.append(RecordTableViewDatasource.Item.forBody(in: response))
         case .none: break
         }
         self.init(title: "Response", items: resultItems)
