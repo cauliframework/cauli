@@ -5,18 +5,18 @@
         "url" : "http:\/\/ip.jsontest.com\/",
         "statusCode" : 200,
         "headerFields" : {
-          "Access-Control-Allow-Origin" : "*",
-          "X-Cloud-Trace-Context" : "35ed9d894d46e9bf98ce28ddad75166a",
-          "Server" : "Google Frontend",
-          "Date" : "Tue, 18 Dec 2018 13:02:09 GMT",
           "Content-Type" : "application\/json; charset=ISO-8859-1",
-          "Content-Length" : "23"
+          "X-Cloud-Trace-Context" : "25e39a14effdf99d0c5dd8d8db258ac7",
+          "Server" : "Google Frontend",
+          "Date" : "Tue, 18 Dec 2018 13:47:50 GMT",
+          "Content-Length" : "23",
+          "Access-Control-Allow-Origin" : "*"
         }
       }
     },
-    "data" : "eyJpcCI6ICI3Ny4xMS4zOC4wMDAifQo="
+    "dataFilename" : "response.data"
   },
-  "requestStarted" : 566830928.92534697,
+  "requestStarted" : 566833670.01283097,
   "originalRequest" : {
     "httpMethod" : "GET",
     "httpShouldHandleCookies" : true,
@@ -25,11 +25,11 @@
     },
     "url" : "http:\/\/ip.jsontest.com\/",
     "cachePolicy" : 0,
-    "allowsCelluarAccess" : true,
+    "allowsCellularAccess" : true,
     "httpShouldUsePipelining" : false,
     "timeoutInterval" : 60
   },
-  "identifier" : "5770A744-396E-4DAE-99B7-908376B56A20",
+  "identifier" : "AEA4F334-2185-41E5-B024-687FC2F7053F",
   "designatedRequest" : {
     "httpMethod" : "GET",
     "httpShouldHandleCookies" : true,
@@ -38,7 +38,7 @@
     },
     "url" : "http:\/\/ip.jsontest.com\/",
     "cachePolicy" : 0,
-    "allowsCelluarAccess" : true,
+    "allowsCellularAccess" : true,
     "httpShouldUsePipelining" : false,
     "timeoutInterval" : 60
   }

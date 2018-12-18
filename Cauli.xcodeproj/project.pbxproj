@@ -27,6 +27,7 @@
 		1FA4A50D21B7C40100F1CA6B /* InspectorRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50721B7C40100F1CA6B /* InspectorRecordTableViewCell.swift */; };
 		1FA4A50E21B7C40100F1CA6B /* InspectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50821B7C40100F1CA6B /* InspectorTableViewController.swift */; };
 		1FA4A50F21B7C40100F1CA6B /* InspectorRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA4A50921B7C40100F1CA6B /* InspectorRecordTableViewCell.xib */; };
+		1FA4A52321C92A1A00F1CA6B /* SwappedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A52221C92A1A00F1CA6B /* SwappedRecord.swift */; };
 		1FB1FF57219DB75E0021B4F4 /* CauliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF54219DB75E0021B4F4 /* CauliViewController.swift */; };
 		1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */; };
 		1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */; };
@@ -88,6 +89,7 @@
 		1FA4A50721B7C40100F1CA6B /* InspectorRecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorRecordTableViewCell.swift; sourceTree = "<group>"; };
 		1FA4A50821B7C40100F1CA6B /* InspectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTableViewController.swift; sourceTree = "<group>"; };
 		1FA4A50921B7C40100F1CA6B /* InspectorRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InspectorRecordTableViewCell.xib; sourceTree = "<group>"; };
+		1FA4A52221C92A1A00F1CA6B /* SwappedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwappedRecord.swift; sourceTree = "<group>"; };
 		1FB1FF54219DB75E0021B4F4 /* CauliViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliViewController.swift; sourceTree = "<group>"; };
 		1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Shake.swift"; sourceTree = "<group>"; };
 		1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShakePresenter.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */,
 				1F0EB9DC219DB32300060F28 /* MockFloret.swift */,
 				1F0EB9DD219DB32300060F28 /* MD5Digest.swift */,
+				1FA4A52221C92A1A00F1CA6B /* SwappedRecord.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				5087DE9E21331041005B7080 /* NSError+Codable.swift in Sources */,
 				1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */,
 				1F0EB9E1219DB32300060F28 /* MD5Digest.swift in Sources */,
+				1FA4A52321C92A1A00F1CA6B /* SwappedRecord.swift in Sources */,
 				1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */,
 				50616E4A214D12C100C8092D /* Response.swift in Sources */,
 				1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */,

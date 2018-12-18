@@ -25,7 +25,8 @@ import Foundation
 internal class MockRecordSerializer {
 
     static func write(record: Record, to folder: URL) {
-        guard let data = self.data(for: record) else { return }
+        let swappedRecord = SwappedRecord(record, folder: folder)
+        guard let data = self.data(for: swappedRecord) else { return }
         let filepath = folder.appendingPathComponent("record.json")
         try? data.write(to: filepath)
     }
@@ -33,23 +34,23 @@ internal class MockRecordSerializer {
     static func record(from folder: URL) -> Record? {
         let filepath = folder.appendingPathComponent("record.json")
         if let data = try? Data(contentsOf: filepath),
-            let record = MockRecordSerializer.record(with: data) {
-            return record
+            let swappedRecord = MockRecordSerializer.record(with: data) {
+            return swappedRecord.record(in: folder)
         } else {
             return nil
         }
     }
 
-    private static func data(for record: Record) -> Data? {
+    private static func data(for record: SwappedRecord) -> Data? {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         guard let data = try? encoder.encode(record) else { return nil }
         return data
     }
 
-    private static func record(with data: Data) -> Record? {
+    private static func record(with data: Data) -> SwappedRecord? {
         let decoder = JSONDecoder()
-        guard let record = try? decoder.decode(Record.self, from: data) else { return nil }
+        guard let record = try? decoder.decode(SwappedRecord.self, from: data) else { return nil }
         return record
     }
 
