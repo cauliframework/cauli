@@ -93,7 +93,9 @@ internal class MockFloretStorage {
     private static func foldername(for request: URLRequest) -> String {
         guard let method = request.httpMethod,
             let url = request.url else { return "unknown" }
-        return MD5Digest(from: Data("\(method)\(url)".utf8)).description
+        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z0-9_]+", options: [])
+        let foldername = "\(method)_\(url)"
+        return regex.stringByReplacingMatches(in: foldername, options: [], range: NSRange(location: 0, length: foldername.count), withTemplate: "_")
     }
 }
 
