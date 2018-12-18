@@ -42,46 +42,115 @@ internal enum URLResponseRepresentable {
     }
 }
 
-extension URLResponseRepresentable: Codable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let decodedData = try container.decode(Data.self)
-
-        let decodedURLResponse: URLResponse? = try URLResponseRepresentable.decodeURLResponse(from: decodedData) ?? URLResponseRepresentable.unarchiveURLResponse(with: decodedData)
-
-        guard let urlResponse = decodedURLResponse else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not unarchive decodedData as URLResponse") }
-
-        self.init(urlResponse)
+extension URLResponseRepresentable: Encodable {
+    enum CodingKeys: CodingKey {
+        case urlResponse
+        case httpURLResponse
     }
 
     func encode(to encoder: Encoder) throws {
-        let encodedData: Data
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .urlResponse(let urlResponse):
+            try container.encode(urlResponse.codable, forKey: .urlResponse)
+        case .httpURLResponse(let httpURLResponse):
+            try container.encode(httpURLResponse.httpUrlResponseCodable, forKey: .httpURLResponse)
+        }
+    }
+}
 
-        if #available(iOS 11, *) {
-            let archiver = NSKeyedArchiver(requiringSecureCoding: true)
-            archiver.encode(urlResponse, forKey: "URLResponseRepresentable")
-            archiver.finishEncoding()
-            encodedData = archiver.encodedData
-        } else {
-            encodedData = NSKeyedArchiver.archivedData(withRootObject: urlResponse)
+extension URLResponseRepresentable: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            let urlResponse = try container.decode(URLResponse.Codable.self, forKey: .urlResponse)
+            self = .urlResponse(urlResponse.object)
+        } catch {
+            let httpURLResponse = try container.decode(HTTPURLResponse.HTTPURLResponseCodable.self, forKey: .httpURLResponse)
+            self = .httpURLResponse(httpURLResponse.object)
+        }
+    }
+}
+
+extension URLResponse {
+    var codable: Codable {
+        return Codable(object: self)
+    }
+    struct Codable: Swift.Codable {
+        let object: URLResponse
+
+        // swiftlint:disable nesting
+        enum CodingKeys: String, CodingKey {
+            case url
+            case mimeType
+            case expectedContentLength
+            case textEncodingName
+        }
+        // swiftlint:enable nesting
+
+        init(object: URLResponse) {
+            self.object = object
         }
 
-        var container = encoder.singleValueContainer()
-        try container.encode(encodedData)
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let url = try container.decode(URL.self, forKey: .url)
+            let mimeType = try? container.decode(String.self, forKey: .mimeType)
+            let expectedContentLength = try container.decode(Int.self, forKey: .expectedContentLength)
+            let textEncodingName = try? container.decode(String.self, forKey: .textEncodingName)
+
+            object = URLResponse(url: url, mimeType: mimeType, expectedContentLength: expectedContentLength, textEncodingName: textEncodingName)
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(object.url, forKey: .url)
+            try container.encode(object.mimeType, forKey: .mimeType)
+            try container.encode(object.expectedContentLength, forKey: .expectedContentLength)
+            try container.encode(object.textEncodingName, forKey: .textEncodingName)
+        }
     }
+}
 
-    private static func decodeURLResponse(from data: Data) throws -> URLResponse? {
-        guard #available(iOS 11, *) else { return nil }
-
-        let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
-        let unarchivedObject = unarchiver.decodeObject(of: [HTTPURLResponse.self, URLResponse.self], forKey: "URLResponseRepresentable")
-        unarchiver.finishDecoding()
-
-        return unarchivedObject as? URLResponse
+extension HTTPURLResponse {
+    var httpUrlResponseCodable: HTTPURLResponseCodable {
+        return HTTPURLResponseCodable(object: self)
     }
+    struct HTTPURLResponseCodable: Swift.Codable {
+        let object: HTTPURLResponse
 
-    @available(iOS, deprecated: 11)
-    private static func unarchiveURLResponse(with data: Data) -> URLResponse? {
-        return NSKeyedUnarchiver.unarchiveObject(with: data) as? URLResponse
+        // swiftlint:disable nesting
+        enum CodingKeys: String, CodingKey {
+            case url
+            case statusCode
+            case headerFields
+        }
+        // swiftlint:enable nesting
+
+        init(object: HTTPURLResponse) {
+            self.object = object
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let url = try container.decode(URL.self, forKey: .url)
+            let statusCode = try container.decode(Int.self, forKey: .statusCode)
+            let headerFields = try? container.decode([String: String].self, forKey: .headerFields)
+
+            if let object = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: headerFields) {
+                self.object = object
+            } else {
+                let context = DecodingError.Context.init(codingPath: decoder.codingPath, debugDescription: "Could not initialize a HTTPURLResponse with the given data")
+                throw DecodingError.dataCorrupted(context)
+            }
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(object.url, forKey: .url)
+            try container.encode(object.statusCode, forKey: .statusCode)
+            let headerFields = object.allHeaderFields as? [String: String] ?? [:]
+            try container.encode(headerFields, forKey: .headerFields)
+        }
     }
 }

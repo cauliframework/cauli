@@ -26,6 +26,7 @@ internal class MockRecordSerializer {
 
     static func data(for record: Record) -> Data? {
         let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
         guard let data = try? encoder.encode(record) else { return nil }
         return data
     }

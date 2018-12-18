@@ -23,7 +23,7 @@ final class AnonymizeIPFloret: Floret {
     static let ipV6Expression = try! NSRegularExpression(pattern: "([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4}):([0-9a-fA-F]{1,4})", options: [])
 
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard case let .result(response) = record.result,
+        guard case let .result(response)? = record.result,
             let data = response.data,
             let dataString = String(bytes: data, encoding: .utf8) else { completionHandler(record); return }
         let anonymizedString = dataString.replacingOcurrences(of: AnonymizeIPFloret.ipV4Expression, with: "$1.$2.$3.000").replacingOcurrences(of: AnonymizeIPFloret.ipV6Expression, with: "$1:$2:$3:$4:0:0:0:0")
