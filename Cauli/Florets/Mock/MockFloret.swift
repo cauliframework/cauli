@@ -65,20 +65,24 @@ public class MockFloret: Floret {
 
     public var enabled: Bool = true
 
-    /// The `Mode` this MockFloret is currently configured for.
-    public var mode: Mode {
-        didSet {
-            if mode == .record {
-                print("recording to \(recordStorage.path)")
-            }
-        }
-    }
+    private let forceMocking: Bool
+
+    private let mode: Mode
 
     /// Creates a new MockFloret instance and defines it's mode.
     ///
-    /// - Parameter mode: The `Mode` of this MockFloret.
-    public init(mode: Mode = .mock) {
+    /// - Parameters:
+    ///   - mode: The `Mode` of this MockFloret.
+    ///   - forceMocking: Defines the behaviour if no response is found.
+    ///     If false, the request will be ignored by the `MockFloret`.
+    ///     If true, the request will be answered with a 404-not-found response.
+    public init(mode: Mode = .mock, forceMocking: Bool = false) {
         self.mode = mode
+        self.forceMocking = forceMocking
+
+        if mode == .record {
+            print("recording to \(recordStorage.path)")
+        }
     }
 
     private lazy var recordStorage: MockFloretStorage = {
@@ -91,10 +95,17 @@ public class MockFloret: Floret {
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         guard mode == .mock else { completionHandler(record); return }
-        let result = resultForRequest(record.designatedRequest) ?? Result<Response>.notFound(for: record.designatedRequest)
-        var record = record
-        record.result = result
-        completionHandler(record)
+        var result = resultForRequest(record.designatedRequest)
+        if forceMocking && result == nil {
+             result = Result<Response>.notFound(for: record.designatedRequest)
+        }
+        if let result = result {
+            var record = record
+            record.result = result
+            completionHandler(record)
+        } else {
+            completionHandler(record)
+        }
     }
 
     private func resultForRequest(_ request: URLRequest) -> Result<Response>? {
