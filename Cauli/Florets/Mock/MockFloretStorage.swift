@@ -77,12 +77,12 @@ internal class MockFloretStorage {
                 return nil
         }
         if let etag = httpurlresponse.allHeaderFields["ETag"] as? String {
-            return etag.utf8.md5.description
+            return MD5Digest(from: Data(etag.utf8)).description
         } else {
-            let codeHash = "\(httpurlresponse.statusCode)".utf8.md5.description
+            let codeHash = MD5Digest(from: Data("\(httpurlresponse.statusCode)".utf8)).description
             if let data = response.data {
-                let dataHash = data.md5.description
-                return "\(codeHash)\(dataHash)".utf8.md5.description
+                let dataHash = MD5Digest(from: data).description
+                return MD5Digest(from: Data("\(codeHash)\(dataHash)".utf8)).description
             } else {
                 return codeHash
             }
@@ -92,7 +92,7 @@ internal class MockFloretStorage {
     private static func foldername(for request: URLRequest) -> String {
         guard let method = request.httpMethod,
             let url = request.url else { return "unknown" }
-        return "\(method)\(url)".utf8.md5.description
+        return MD5Digest(from: Data("\(method)\(url)".utf8)).description
     }
 }
 

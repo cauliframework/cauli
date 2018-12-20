@@ -5,34 +5,6 @@
 
 import Foundation
 
-public extension Sequence where Element == UInt8 {
-
-    /// Computes md5 digest value of contained bytes.
-    ///
-    /// This extension on `Sequence` is the main API to create `MD5Digest` values.
-    /// It is usable on all collection types that use bytes as elements, for instance
-    /// `Data` or `String.UTF8View`:
-    ///
-    /// ## Example:
-    ///
-    /// Print the md5 of a string's UTF-8 representation
-    ///
-    ///     let string = "The quick brown fox jumps over the lazy dog"
-    ///     print("md5: \(string.utf8.md5)")
-    ///     // prints "md5: 9e107d9d372bb6826bd81d3542a419d6"
-    ///
-    /// Check if a file's contents match a digest
-    ///
-    ///     let expectedDigest = MD5Digest(rawValue: "9e107d9d372bb6826bd81d3542a419d6")!
-    ///     let data = try Data(contentsOf: someFileURL)
-    ///     if data.md5 != expectedDigest {
-    ///         throw .digestMismatchError
-    ///     }
-    var md5: MD5Digest {
-        return MD5Digest(from: Data(self))
-    }
-}
-
 /// MD5Digest represents a 16 byte digest value, created from hashing arbitrary data.
 ///
 /// MD5Digest is an immutable value type—just like the two `UInt64` values used for
@@ -48,7 +20,7 @@ public extension Sequence where Element == UInt8 {
 ///
 /// - Copyright: Copyright (c) 2017 Nikolai Ruhe.
 
-public struct MD5Digest: Hashable, RawRepresentable, CustomStringConvertible, Codable {
+internal struct MD5Digest: Hashable, RawRepresentable, CustomStringConvertible, Codable {
 
     private let _digest_0: UInt64
     private let _digest_1: UInt64

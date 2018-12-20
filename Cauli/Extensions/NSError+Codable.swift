@@ -28,7 +28,7 @@ internal struct InternalError: Codable {
     let userInfo: [String: String]
 }
 
-extension NSError {
+internal extension NSError {
     var compatibleUserInfo: [String: String] {
         return self.userInfo.reduce([:]) { (result, keyValuePair: (key: String, value: Any)) -> [String: String] in
             var newResult = result
