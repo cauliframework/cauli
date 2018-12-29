@@ -13,6 +13,11 @@
 		1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */; };
 		1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A2210EF9F500CEDD42 /* Storage.swift */; };
 		1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */; };
+		1F23D35021EBCBC000D6E316 /* Architecture.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32121EBCBC000D6E316 /* Architecture.md */; };
+		1F23D35121EBCBC000D6E316 /* Configuring Cauli.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */; };
+		1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */; };
+		1F23D35521EBCBD300D6E316 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D35321EBCBD300D6E316 /* CHANGELOG.md */; };
+		1F23D35621EBCBD300D6E316 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D35421EBCBD300D6E316 /* README.md */; };
 		1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F644F49211B620B004C4271 /* WeakReference.swift */; };
 		1F6BB4562163609100D56F4F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BB4552163609100D56F4F /* Configuration.swift */; };
 		1F7001C1216B8128007A9355 /* CauliURLProtocolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7001C0216B8128007A9355 /* CauliURLProtocolSpec.swift */; };
@@ -77,6 +82,11 @@
 		1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRecordSerializer.swift; sourceTree = "<group>"; };
 		1F18B1A2210EF9F500CEDD42 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		1F23D32121EBCBC000D6E316 /* Architecture.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Architecture.md; sourceTree = "<group>"; };
+		1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Configuring Cauli.md"; sourceTree = "<group>"; };
+		1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your Own Plugin.md"; sourceTree = "<group>"; };
+		1F23D35321EBCBD300D6E316 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
+		1F23D35421EBCBD300D6E316 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		1F644F49211B620B004C4271 /* WeakReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
 		1F6BB4552163609100D56F4F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1F7001C0216B8128007A9355 /* CauliURLProtocolSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolSpec.swift; sourceTree = "<group>"; };
@@ -173,6 +183,26 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		1F23D2E621EBCBC000D6E316 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				1F23D35321EBCBD300D6E316 /* CHANGELOG.md */,
+				1F23D35421EBCBD300D6E316 /* README.md */,
+				1F23D32021EBCBC000D6E316 /* guides */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		1F23D32021EBCBC000D6E316 /* guides */ = {
+			isa = PBXGroup;
+			children = (
+				1F23D32121EBCBC000D6E316 /* Architecture.md */,
+				1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */,
+				1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */,
+			);
+			path = guides;
+			sourceTree = "<group>";
+		};
 		1F7001C2216B8242007A9355 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +245,7 @@
 		1FE3F71B20F64A2B00233C7C = {
 			isa = PBXGroup;
 			children = (
+				1F23D2E621EBCBC000D6E316 /* docs */,
 				1FE3F72720F64A2B00233C7C /* Cauli */,
 				1FE3F73220F64A2B00233C7C /* CauliTests */,
 				1FE3F72620F64A2B00233C7C /* Products */,
@@ -421,7 +452,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F23D35621EBCBD300D6E316 /* README.md in Resources */,
+				1F23D35021EBCBC000D6E316 /* Architecture.md in Resources */,
+				1F23D35521EBCBD300D6E316 /* CHANGELOG.md in Resources */,
 				1FA4A50F21B7C40100F1CA6B /* InspectorRecordTableViewCell.xib in Resources */,
+				1F23D35121EBCBC000D6E316 /* Configuring Cauli.md in Resources */,
+				1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
