@@ -20,6 +20,7 @@
 		1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */; };
 		1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22D20F77B6C0023D219 /* Record.swift */; };
 		1F7BF23020F790F50023D219 /* URLSessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */; };
+		1F8C2A1521D794BD009D0382 /* CauliSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C2A1421D794BD009D0382 /* CauliSpec.swift */; };
 		1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */; };
 		1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */; };
 		1FA4A50C21B7C40100F1CA6B /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50521B7C40100F1CA6B /* RecordTableViewController.swift */; };
@@ -81,6 +82,7 @@
 		1F7BF22B20F77B0A0023D219 /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
 		1F7BF22D20F77B6C0023D219 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		1F7BF22F20F790F50023D219 /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
+		1F8C2A1421D794BD009D0382 /* CauliSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliSpec.swift; sourceTree = "<group>"; };
 		1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
 		1FA4A50521B7C40100F1CA6B /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				1F7001C0216B8128007A9355 /* CauliURLProtocolSpec.swift */,
 				1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */,
 				505B4BED21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift */,
+				1F8C2A1421D794BD009D0382 /* CauliSpec.swift */,
 			);
 			path = CauliTests;
 			sourceTree = "<group>";
@@ -447,7 +450,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		22A1E842CEF8945234C5296B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -570,6 +573,7 @@
 				505B4BF321AC5FFF008A9836 /* HTTPURLResponse+Fake.swift in Sources */,
 				1F7001C4216B8250007A9355 /* CauliURLProtocolDelegateStub.swift in Sources */,
 				505B4BF121AC5C91008A9836 /* URLResponse+Fake.swift in Sources */,
+				1F8C2A1521D794BD009D0382 /* CauliSpec.swift in Sources */,
 				505B4BEE21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift in Sources */,
 				1F7001C1216B8128007A9355 /* CauliURLProtocolSpec.swift in Sources */,
 				50A53E4C21B1799000DCB517 /* URLResponse+Fake.swift in Sources */,
