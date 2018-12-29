@@ -30,7 +30,7 @@ public class MockFloret: Floret {
     }
 
     public var enabled: Bool = true
-    public var mode: Mode = .mock {
+    public var mode: Mode {
         didSet {
             if mode == .record {
                 print("recording to \(recordStorage.path)")
@@ -38,7 +38,9 @@ public class MockFloret: Floret {
         }
     }
 
-    public init() {}
+    public init(mode: Mode = .mock) {
+        self.mode = mode
+    }
 
     private lazy var recordStorage: MockFloretStorage = {
         MockFloretStorage.recorder()
