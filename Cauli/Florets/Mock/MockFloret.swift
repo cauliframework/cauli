@@ -22,14 +22,50 @@
 
 import Foundation
 
+/// The MockFloret helps you to easily mock your network requests
+/// for tests or to reproduce a bug.
+///
+/// ## Recording Requests
+/// ```swift
+/// let mockFloret = MockFloret(mode: .record)
+/// ```
+/// If you create your MockFloret in recording mode it will record
+/// all requests and their responses (depending on the Cauli configuration).
+/// They will be serialized and stored in the document directory.
+/// The exact path will be printed in the console as "`recoding to ...`".
+///
+/// ## Mocking Requests
+/// ```swift
+/// let mockFloret = MockFloret(mode: .mock)
+/// ```
+/// If you create your MockFloret in mock mode it will search for a `MockFloret`
+/// folder in the bundle. If you used the record mode you can just copy over the
+/// recorded `MockFloret` folder. Make sure to select "Create folder references" if
+/// you drag the folder to Xcode.
+/// For every request the MockFloret will then search in this folder if there is any
+/// recorded response. If there are multiple it will return a random response.
+///
+/// ## Manual Response Mapping
+/// You can use the `addMapping` functions to manually map a request to a specific response.
+/// ```swift
+/// // Maps all requests for the host cauli.works to the response
+/// // stored in the MockFloret/default/foo path.
+/// addMapping { request, mockFloret in
+///     guard request.url?.host == "cauli.works" else { return nil }
+///     return mockFloret.resultForPath("default/foo")
+/// }
+///
+/// // Maps all requests for the url path /api/florets to
+/// // a Not Found (404) response.
+/// addMapping(forUrlPath: "/api/florets") { request, _ in
+///     Result<Response>.notFound(for: request)
+/// }
+/// ```
 public class MockFloret: Floret {
 
-    public enum Mode {
-        case record
-        case mock
-    }
-
     public var enabled: Bool = true
+
+    /// The `Mode` this MockFloret is currently configured for.
     public var mode: Mode {
         didSet {
             if mode == .record {
@@ -38,6 +74,9 @@ public class MockFloret: Floret {
         }
     }
 
+    /// Creates a new MockFloret instance and defines it's mode.
+    ///
+    /// - Parameter mode: The `Mode` of this MockFloret.
     public init(mode: Mode = .mock) {
         self.mode = mode
     }
@@ -52,7 +91,7 @@ public class MockFloret: Floret {
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         guard mode == .mock else { completionHandler(record); return }
-        let result = resultForRequest(record.designatedRequest) ?? notFoundResult(for: record.designatedRequest)
+        let result = resultForRequest(record.designatedRequest) ?? Result<Response>.notFound(for: record.designatedRequest)
         var record = record
         record.result = result
         completionHandler(record)
@@ -143,6 +182,19 @@ public class MockFloret: Floret {
 }
 
 extension MockFloret {
+    /// All possible modes the MockFloret can be in.
+    ///
+    /// - record: In record mode the MockFloret will record all (depending on the
+    ///     Cauli configuration) requests, serialize and store them in the documents folder.
+    /// - mock: In mock mode the MockFloret will search for a "MockFloret" folder in the Bundle
+    ///     and tries to map all requests to a response stored in that folder.
+    public enum Mode {
+        case record
+        case mock
+    }
+}
+
+extension MockFloret {
     /// A MockFloret.Mapping is an internal representation of a mapping from a
     /// URLRequest to a Result for a Response (`(URLRequest, MockFloret) -> Result<Response>?`).
     /// This Mapping will be returned when using the `addMapping` function and can be
@@ -153,13 +205,19 @@ extension MockFloret {
     }
 }
 
-extension MockFloret {
-    private func notFoundResult(for request: URLRequest) -> Result<Response> {
-        let response = notFoundResponse(for: request)
+extension Result {
+    /// Creates an returns a not-found (404) result for the given request.
+    ///
+    /// - Parameter request: The request.
+    /// - Returns: The not-found `Result` for the given request.
+    public static func notFound(for request: URLRequest) -> Result<Response> {
+        let response = Response.notFound(for: request)
         return .result(response)
     }
+}
 
-    private func notFoundResponse(for request: URLRequest) -> Response {
+internal extension Response {
+    static func notFound(for request: URLRequest) -> Response {
         // swiftlint:disable force_unwrapping
         let url = request.url ?? URL(string: "http://example.com")!
         let body = "<html><head></head><body><h1>404 - No Mock found</h1></body></html>".data(using: .utf8)!
