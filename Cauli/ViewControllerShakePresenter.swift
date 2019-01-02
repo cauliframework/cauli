@@ -24,9 +24,9 @@ import Foundation
 
 internal class ViewControllerShakePresenter {
 
-    private var viewController: (() -> (UIViewController))
+    private var viewController: (() -> (UIViewController?))
 
-    init(_ viewController: @autoclosure @escaping () -> (UIViewController)) {
+    init(_ viewController: @escaping () -> (UIViewController?)) {
         self.viewController = viewController
 
         self.shakeMotionDidEndObserver = NotificationCenter.default.addObserver(forName: Notification.shakeMotionDidEnd, object: nil, queue: nil) { [weak self] _ in
@@ -50,8 +50,7 @@ internal class ViewControllerShakePresenter {
         if let presentedViewController = presentedViewController,
             presentedViewController.presentingViewController != nil {
             presentedViewController.dismiss(animated: true, completion: nil)
-        } else {
-            let viewController = self.viewController()
+        } else if let viewController = self.viewController() {
             presentedViewController = viewController
             presentingViewController?.present(viewController, animated: true, completion: nil)
         }
