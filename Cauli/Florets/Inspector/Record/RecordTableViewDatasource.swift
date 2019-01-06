@@ -104,6 +104,7 @@ extension RecordTableViewDatasource.Section {
         requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in
             "\(key) : \(value)"
         }.joined(separator: "\n") ?? "-", value: request.allHTTPHeaderFields))
+        requestItems.append(RecordTableViewDatasource.Item(title: "Cache Policy", description: String(request.cachePolicy.rawValue)))
         requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(request.httpBody?.count ?? 0) bytes", value: request.httpBody))
         self.init(title: "Request", items: requestItems)
     }

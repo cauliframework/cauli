@@ -17,5 +17,6 @@ internal extension Cauli {
     }()
     static let mockFloret = MockFloret()
     static let inspectorFloret = InspectorFloret()
-    static let customShared = Cauli([findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
+    static let noCacheFloret = NoCacheFloret()
+    static let customShared = Cauli([noCacheFloret, findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
 }
