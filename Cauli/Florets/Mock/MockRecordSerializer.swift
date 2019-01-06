@@ -24,11 +24,19 @@ import Foundation
 
 internal class MockRecordSerializer {
 
-    static func write(record: Record, to folder: URL) {
-        let swappedRecord = SwappedRecord(record, folder: folder)
-        guard let data = self.data(for: swappedRecord) else { return }
-        let filepath = folder.appendingPathComponent("record.json")
+    static func write(record: Record) -> URL? {
+        let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString, isDirectory: true)
+
+        defer {
+            try? FileManager.default.removeItem(at: tempPath)
+        }
+
+        let swappedRecord = record.swapped(to: tempPath)
+        guard let data = self.data(for: swappedRecord) else { return nil }
+        let filepath = tempPath.appendingPathComponent("record.json")
         try? data.write(to: filepath)
+
+        return tempPath
     }
 
     static func record(from folder: URL) -> Record? {

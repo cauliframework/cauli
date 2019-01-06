@@ -49,3 +49,9 @@ extension Record {
         self.result = .result(Response(result.urlResponse, data: currentData))
     }
 }
+
+extension Record {
+    internal func swapped(to path: URL) -> SwappedRecord {
+        return SwappedRecord(self, folder: path)
+    }
+}

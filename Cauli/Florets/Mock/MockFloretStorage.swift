@@ -33,18 +33,20 @@ internal class MockFloretStorage {
     }
 
     func store(_ record: Record) {
-        guard case .result(let response)? = record.result else { return }
+        guard case .result(let response)? = record.result,
+            let responseFoldername = MockFloretStorage.foldername(for: response) else { return }
         let requestFoldername = MockFloretStorage.foldername(for: record.designatedRequest)
-        let responseFoldername = MockFloretStorage.foldername(for: response)
         let requestPath = path.appendingPathComponent(requestFoldername, isDirectory: true)
         let storedResponseUrls = (try? FileManager.default.contentsOfDirectory(atPath: requestPath.path)) ?? []
         if storedResponseUrls.contains(where: { $0.starts(with: responseFoldername) }) {
             // already recorded
             return
         }
-        let responsePath = requestPath.appendingPathComponent(responseFoldername, isDirectory: true)
-        try? FileManager.default.createDirectory(at: responsePath, withIntermediateDirectories: true, attributes: nil)
-        MockRecordSerializer.write(record: record, to: responsePath)
+        if let tempRecordPath = MockRecordSerializer.write(record: record) {
+            let responsePath = requestPath.appendingPathComponent(responseFoldername, isDirectory: true)
+            try? FileManager.default.createDirectory(at: requestPath, withIntermediateDirectories: true, attributes: nil)
+            try? FileManager.default.moveItem(at: tempRecordPath, to: responsePath)
+        }
     }
 
     func results(for request: URLRequest) -> [Result<Response>] {
@@ -64,33 +66,27 @@ internal class MockFloretStorage {
         return nil
     }
 
-    private static func foldername(for response: Response) -> String {
-        if let httpurlresponse = response.urlResponse as? HTTPURLResponse,
-            let etag = httpurlresponse.allHeaderFields["ETag"] as? String {
-            return etag.utf8.md5.description
+    private static func foldername(for response: Response) -> String? {
+        guard let httpurlresponse = response.urlResponse as? HTTPURLResponse else {
+            return nil
+        }
+        if let etag = httpurlresponse.allHeaderFields["ETag"] as? String {
+            return MD5Digest(from: Data(etag.utf8)).description
         } else {
-            let statuscodePrefix: String
-            if let httpurlresponse = response.urlResponse as? HTTPURLResponse {
-                statuscodePrefix = "\(httpurlresponse.statusCode)"
-            } else {
-                statuscodePrefix = ""
-            }
+            let codeHash = MD5Digest(from: Data("\(httpurlresponse.statusCode)".utf8)).description
             if let data = response.data {
-                let dataHash = data.md5.description
-                return "\(statuscodePrefix)\(dataHash)".utf8.md5.description
+                let dataHash = MD5Digest(from: data).description
+                return MD5Digest(from: Data("\(codeHash)\(dataHash)".utf8)).description
             } else {
-                return "empty"
+                return codeHash
             }
         }
     }
 
     private static func foldername(for request: URLRequest) -> String {
         guard let method = request.httpMethod,
-            let url = request.url else { return "unknown" }
-
-        // swiftlint:disable force_try
-        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z0-9_]+", options: [])
-        // swiftlint:enable force_try
+            let url = request.url,
+            let regex = try? NSRegularExpression(pattern: "[^a-zA-Z0-9_]+", options: []) else { return "unknown" }
 
         let foldername = "\(method)_\(url)"
         return regex.stringByReplacingMatches(in: foldername, options: [], range: NSRange(location: 0, length: foldername.count), withTemplate: "_")
