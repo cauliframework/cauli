@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         Cauli.customShared.run()
-        Cauli.mockFloret.mode = .mock
-        Cauli.mockFloret.enabled = false
+        Cauli.mockFloret.mode = .record
+        Cauli.mockFloret.enabled = true
         return true
     }
     

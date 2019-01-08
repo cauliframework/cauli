@@ -33,48 +33,42 @@ internal class MockFloretStorage {
     }
 
     func store(_ record: Record) {
-        guard let data = MockRecordSerializer.data(for: record),
-            let filename = MockFloretStorage.filename(for: record) else { return }
-        let path = recordPath(for: record.designatedRequest, with: filename)
-        try? FileManager.default.createDirectory(at: path.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
-        try? data.write(to: path)
+        guard case .result(let response)? = record.result,
+            let responseFoldername = MockFloretStorage.foldername(for: response) else { return }
+        let requestFoldername = MockFloretStorage.foldername(for: record.designatedRequest)
+        let requestPath = path.appendingPathComponent(requestFoldername, isDirectory: true)
+        let storedResponseUrls = (try? FileManager.default.contentsOfDirectory(atPath: requestPath.path)) ?? []
+        if storedResponseUrls.contains(where: { $0.starts(with: responseFoldername) }) {
+            // already recorded
+            return
+        }
+        if let tempRecordPath = MockRecordSerializer.write(record: record) {
+            let responsePath = requestPath.appendingPathComponent(responseFoldername, isDirectory: true)
+            try? FileManager.default.createDirectory(at: requestPath, withIntermediateDirectories: true, attributes: nil)
+            try? FileManager.default.moveItem(at: tempRecordPath, to: responsePath)
+        }
     }
 
-    func mockedResult(for request: URLRequest) -> Result<Response>? {
-        let path = requestPath(for: request)
-        let storedResponseUrls = try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: [], options: [])
-        if let url = storedResponseUrls?.randomElement(),
-            let data = try? Data(contentsOf: url),
-            let record = MockRecordSerializer.record(with: data) {
-            return record.result
-        } else {
-            return nil
-        }
+    func results(for request: URLRequest) -> [Result<Response>] {
+        let requestFoldername = MockFloretStorage.foldername(for: request)
+        let requestPath = path.appendingPathComponent(requestFoldername, isDirectory: true)
+        let storedResponseUrls = try? FileManager.default.contentsOfDirectory(at: requestPath, includingPropertiesForKeys: [], options: [])
+        return storedResponseUrls?.lazy.compactMap { url in
+            MockRecordSerializer.record(from: url)?.result
+        } ?? []
     }
 
     func resultForPath(_ path: String) -> Result<Response>? {
         let absolutePath = self.path.appendingPathComponent(path, isDirectory: true)
-        if let data = try? Data(contentsOf: absolutePath),
-            let record = MockRecordSerializer.record(with: data) {
+        if let record = MockRecordSerializer.record(from: absolutePath) {
             return record.result
         }
         return nil
     }
 
-    private func recordPath(for request: URLRequest, with filename: String) -> URL {
-        let requestPath = self.requestPath(for: request)
-        return requestPath.appendingPathComponent(filename, isDirectory: false)
-    }
-
-    private func requestPath(for request: URLRequest) -> URL {
-        let foldername = MockFloretStorage.foldername(for: request)
-        return path.appendingPathComponent(foldername, isDirectory: true)
-    }
-
-    private static func filename(for record: Record) -> String? {
-        guard case let .result(response)? = record.result,
-            let httpurlresponse = response.urlResponse as? HTTPURLResponse else {
-                return nil
+    private static func foldername(for response: Response) -> String? {
+        guard let httpurlresponse = response.urlResponse as? HTTPURLResponse else {
+            return nil
         }
         if let etag = httpurlresponse.allHeaderFields["ETag"] as? String {
             return MD5Digest(from: Data(etag.utf8)).description
@@ -91,8 +85,11 @@ internal class MockFloretStorage {
 
     private static func foldername(for request: URLRequest) -> String {
         guard let method = request.httpMethod,
-            let url = request.url else { return "unknown" }
-        return MD5Digest(from: Data("\(method)\(url)".utf8)).description
+            let url = request.url,
+            let regex = try? NSRegularExpression(pattern: "[^a-zA-Z0-9_]+", options: []) else { return "unknown" }
+
+        let foldername = "\(method)_\(url)"
+        return regex.stringByReplacingMatches(in: foldername, options: [], range: NSRange(location: 0, length: foldername.count), withTemplate: "_")
     }
 }
 
