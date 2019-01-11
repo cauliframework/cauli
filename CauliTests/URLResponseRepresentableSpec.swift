@@ -57,32 +57,6 @@ class URLResponseRepresentableSpec: QuickSpec {
         }
         
         describe("codable") {
-            it("decode iOS10 JSON encoded data as httpURLResponse", closure: {
-                let expectedResponse = HTTPURLResponse(url: URL(string: "https://cauli.works/fake")!,
-                                                       statusCode: 200,
-                                                       httpVersion: nil,
-                                                       headerFields: ["fake": "fake"])
-                
-                // The JSON encoded data is an array with a single URLRessponseRepresentable ([URLRessponseRepresentable]),
-                // since the JSONEncoder cannot encode Top-level objects. (https://bugs.swift.org/browse/SR-6163)
-                let decodedData = self.data(for: "iOS10_jsonEncoded_URLResponseRepresentable_case_httpURLResponse")
-                guard let data = decodedData else {
-                    fail("could not read decodedData from file: iOS10_jsonEncoded_URLResponseRepresentable_case_httpURLResponse")
-                    return
-                }
-                
-                guard let decodedValue = try? JSONDecoder().decode([URLResponseRepresentable].self, from: data),
-                    let urlResponseRepresentable = decodedValue.first,
-                    case .httpURLResponse(let httpURLResponse) = urlResponseRepresentable else {
-                        fail("could not decode URLResponseRepresentable from decodedData")
-                        return
-                }
-                
-                expect(httpURLResponse.url) == expectedResponse?.url
-                expect(httpURLResponse.statusCode) == expectedResponse?.statusCode
-                expect(httpURLResponse.allHeaderFields["fake"] as? String) == expectedResponse?.allHeaderFields["fake"] as? String
-            })
-            
             it("should decode an encoded URLResponseRepresentable", closure: {
                 let fakeResponseToEncode = URLResponse.fake
                 let urlResponseRepresentable = URLResponseRepresentable(fakeResponseToEncode)

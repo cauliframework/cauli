@@ -24,15 +24,46 @@ import Foundation
 
 internal class MockRecordSerializer {
 
-    static func data(for record: Record) -> Data? {
+    static func write(record: Record) -> URL? {
+        let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString, isDirectory: true)
+
+        defer {
+            try? FileManager.default.removeItem(at: tempPath)
+        }
+
+        do {
+            try FileManager.default.createDirectory(at: tempPath, withIntermediateDirectories: true, attributes: nil)
+            let swappedRecord = record.swapped(to: tempPath)
+            guard let data = self.data(for: swappedRecord) else { return nil }
+            let filepath = tempPath.appendingPathComponent("record.json")
+            try data.write(to: filepath)
+        } catch {
+            return nil
+        }
+
+        return tempPath
+    }
+
+    static func record(from folder: URL) -> Record? {
+        let filepath = folder.appendingPathComponent("record.json")
+        if let data = try? Data(contentsOf: filepath),
+            let swappedRecord = MockRecordSerializer.record(with: data) {
+            return swappedRecord.record(in: folder)
+        } else {
+            return nil
+        }
+    }
+
+    private static func data(for record: SwappedRecord) -> Data? {
         let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
         guard let data = try? encoder.encode(record) else { return nil }
         return data
     }
 
-    static func record(with data: Data) -> Record? {
+    private static func record(with data: Data) -> SwappedRecord? {
         let decoder = JSONDecoder()
-        guard let record = try? decoder.decode(Record.self, from: data) else { return nil }
+        guard let record = try? decoder.decode(SwappedRecord.self, from: data) else { return nil }
         return record
     }
 
