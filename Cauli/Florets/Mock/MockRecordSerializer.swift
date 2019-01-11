@@ -31,10 +31,15 @@ internal class MockRecordSerializer {
             try? FileManager.default.removeItem(at: tempPath)
         }
 
-        let swappedRecord = record.swapped(to: tempPath)
-        guard let data = self.data(for: swappedRecord) else { return nil }
-        let filepath = tempPath.appendingPathComponent("record.json")
-        try? data.write(to: filepath)
+        do {
+            try FileManager.default.createDirectory(at: tempPath, withIntermediateDirectories: true, attributes: nil)
+            let swappedRecord = record.swapped(to: tempPath)
+            guard let data = self.data(for: swappedRecord) else { return nil }
+            let filepath = tempPath.appendingPathComponent("record.json")
+            try data.write(to: filepath)
+        } catch {
+            return nil
+        }
 
         return tempPath
     }
