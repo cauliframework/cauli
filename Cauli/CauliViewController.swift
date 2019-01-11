@@ -25,10 +25,14 @@ import UIKit
 internal class CauliViewController: UITableViewController {
 
     private let cauli: Cauli
-    private var viewControllers: [IndexPath: UIViewController] = [:]
+    private var viewControllers: [(viewController: UIViewController, floret: Floret)]
 
     init(cauli: Cauli) {
         self.cauli = cauli
+        viewControllers = cauli.florets.compactMap {
+            guard let viewController = $0.viewController(cauli) else { return nil }
+            return (viewController, $0)
+        }
         super.init(style: .plain)
         title = "Cauli"
     }
@@ -42,57 +46,45 @@ internal class CauliViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return viewControllers.count
+        }
+        
         return cauli.florets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0: return self.tableView(tableView, detailCellForRowAt: indexPath)
+        case 1: return self.tableView(tableView, switchCellForRowAt: indexPath)
+        default: fatalError("we shouldn't reach this point")
+        }
+    }
+    
+    private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = viewControllers[indexPath.row].floret.name
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+    private func tableView(_ tableView: UITableView, switchCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let floret = cauli.florets[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let enabled = floret.enabled ? "✔️" : "" // ✔️☑️
-        cell.textLabel?.text = floret.name + " " + enabled
-        if viewController(for: floret, at: indexPath) == nil {
-            cell.accessoryType = .none
-        } else {
-            cell.accessoryType = .disclosureIndicator
-        }
+        cell.textLabel?.text = floret.name
+        cell.selectionStyle = .none
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let floret = cauli.florets[indexPath.row]
-        if let viewController = viewController(for: floret, at: indexPath) {
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let floret = cauli.florets[indexPath.row]
-        let actionTitle: String
-        if floret.enabled {
-            actionTitle = "Disable"
-        } else {
-            actionTitle = "Enable"
-        }
-
-        let toggleAction = UITableViewRowAction(style: .normal, title: actionTitle) { [weak self] _, indexPath in
-            guard let strongSelf = self else { return }
-            var floret = strongSelf.cauli.florets[indexPath.row]
-            floret.enabled = !floret.enabled
-            strongSelf.tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
-
-        return [toggleAction]
-    }
-
-    private func viewController(for floret: Floret, at indexPath: IndexPath) -> UIViewController? {
-        if let cachedViewController = viewControllers[indexPath] {
-            return cachedViewController
-        }
-        let newViewController = floret.viewController(cauli)
-        viewControllers[indexPath] = newViewController
-        return newViewController
+        guard indexPath.section == 0 else { return }
+        navigationController?.pushViewController(viewControllers[indexPath.row].viewController, animated: true)
     }
 
 }
