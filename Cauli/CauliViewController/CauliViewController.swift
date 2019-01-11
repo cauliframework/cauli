@@ -33,7 +33,7 @@ internal class CauliViewController: UITableViewController {
             guard let viewController = $0.viewController(cauli) else { return nil }
             return (viewController, $0)
         }
-        super.init(style: .plain)
+        super.init(style: .grouped)
         title = "Cauli"
     }
 
@@ -45,8 +45,10 @@ internal class CauliViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let bundle = Bundle(for: SwitchTableViewCell.self)
+        tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -55,7 +57,7 @@ internal class CauliViewController: UITableViewController {
         if section == 0 {
             return viewControllers.count
         }
-        
+
         return cauli.florets.count
     }
 
@@ -66,18 +68,23 @@ internal class CauliViewController: UITableViewController {
         default: fatalError("we shouldn't reach this point")
         }
     }
-    
+
     private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = viewControllers[indexPath.row].floret.name
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
+
     private func tableView(_ tableView: UITableView, switchCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let floret = cauli.florets[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = floret.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
+
+        var floret = cauli.florets[indexPath.row]
+        cell.titleLabel?.text = floret.name
+        cell.switch.isOn = floret.enabled
+        cell.switchValueChanged = {
+            floret.enabled = $0
+        }
         cell.selectionStyle = .none
         return cell
     }
