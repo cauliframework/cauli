@@ -34,80 +34,80 @@ class FindReplaceFloretSpec: QuickSpec {
             }
         }
         describe("willRequest(::") {
-            it("should call the willRequestReplacements") {
-                var willRequestReplaceDefinitionCalled = false
-                let replacer = FindReplaceFloret.ReplaceDefinition(modifier: { (record) -> (Record) in
-                    willRequestReplaceDefinitionCalled = true
+            it("should call the willRequestModifiers") {
+                var willRequestRecordModifierCalled = false
+                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                    willRequestRecordModifierCalled = true
                     return record
                 })
                 
-                let findReplaceFloret = FindReplaceFloret(willRequestReplacements: [replacer])
+                let findReplaceFloret = FindReplaceFloret(willRequestModifiers: [modifier])
                 findReplaceFloret.willRequest(Record.fake(), modificationCompletionHandler: { (_) in })
-                expect(willRequestReplaceDefinitionCalled).toEventually(equal(true))
+                expect(willRequestRecordModifierCalled).toEventually(equal(true))
             }
             
-            it("should not call the didRespondReplacements") {
-                var didRespondReplaceDefinitionCalled = false
-                let replacer = FindReplaceFloret.ReplaceDefinition(modifier: { (record) -> (Record) in
-                    didRespondReplaceDefinitionCalled = true
+            it("should not call the didRespondModifiers") {
+                var didRespondRecordModifierCalled = false
+                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                    didRespondRecordModifierCalled = true
                     return record
                 })
                 
-                let findReplaceFloret = FindReplaceFloret(didRespondReplacements: [replacer])
+                let findReplaceFloret = FindReplaceFloret(didRespondModifiers: [modifier])
                 findReplaceFloret.willRequest(Record.fake(), modificationCompletionHandler: { (_) in })
-                expect(didRespondReplaceDefinitionCalled).toEventually(equal(false))
+                expect(didRespondRecordModifierCalled).toEventually(equal(false))
             }
             
-            it("should pass the modified Record of a ReplaceDefinition to the completionHandler") {
-                let replaceDefinitionRecord = Record.fake(with: URL(string: "replace_definition_url")!)
-                let replacer = FindReplaceFloret.ReplaceDefinition(modifier: { (record) -> (Record) in
-                    return replaceDefinitionRecord
+            it("should pass the modified Record of a RecordModifier to the completionHandler") {
+                let recordModifierRecord = Record.fake(with: URL(string: "replace_definition_url")!)
+                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                    return recordModifierRecord
                 })
                 
-                let findReplaceFloret = FindReplaceFloret(willRequestReplacements: [replacer])
+                let findReplaceFloret = FindReplaceFloret(willRequestModifiers: [modifier])
                 waitUntil { done in
                     findReplaceFloret.willRequest(Record.fake(), modificationCompletionHandler: { (record) in
-                        expect(record.identifier) == replaceDefinitionRecord.identifier
+                        expect(record.identifier) == recordModifierRecord.identifier
                         done()
                     })
                 }
             }
         }
         describe("didRespond(::") {
-            it("should call the didRespondReplacements") {
-                var didRespondReplaceDefinitionCalled = false
-                let replacer = FindReplaceFloret.ReplaceDefinition(modifier: { (record) -> (Record) in
-                    didRespondReplaceDefinitionCalled = true
+            it("should call the didRespondModifiers") {
+                var didRespondRecordModifierCalled = false
+                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                    didRespondRecordModifierCalled = true
                     return record
                 })
                 
-                let findReplaceFloret = FindReplaceFloret(didRespondReplacements: [replacer])
+                let findReplaceFloret = FindReplaceFloret(didRespondModifiers: [modifier])
                 findReplaceFloret.didRespond(Record.fake(), modificationCompletionHandler: { (_) in })
-                expect(didRespondReplaceDefinitionCalled).toEventually(equal(true))
+                expect(didRespondRecordModifierCalled).toEventually(equal(true))
             }
             
-            it("should not call the willRequestReplacements") {
-                var willRequestReplaceDefinitionCalled = false
-                let replacer = FindReplaceFloret.ReplaceDefinition(modifier: { (record) -> (Record) in
-                    willRequestReplaceDefinitionCalled = true
+            it("should not call the willRequestModifiers") {
+                var willRequestRecordModifierCalled = false
+                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                    willRequestRecordModifierCalled = true
                     return record
                 })
                 
-                let findReplaceFloret = FindReplaceFloret(willRequestReplacements: [replacer])
+                let findReplaceFloret = FindReplaceFloret(willRequestModifiers: [modifier])
                 findReplaceFloret.didRespond(Record.fake(), modificationCompletionHandler: { (_) in })
-                expect(willRequestReplaceDefinitionCalled).toEventually(equal(false))
+                expect(willRequestRecordModifierCalled).toEventually(equal(false))
             }
             
-            it("should pass the modified Record of a ReplaceDefinition to the completionHandler") {
-                let replaceDefinitionRecord = Record.fake(with: URL(string: "replace_definition_url")!)
-                let replacer = FindReplaceFloret.ReplaceDefinition(modifier: { (record) -> (Record) in
-                    return replaceDefinitionRecord
+            it("should pass the modified Record of a RecordModifier to the completionHandler") {
+                let recordModifierRecord = Record.fake(with: URL(string: "replace_definition_url")!)
+                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                    return recordModifierRecord
                 })
                 
-                let findReplaceFloret = FindReplaceFloret(didRespondReplacements: [replacer])
+                let findReplaceFloret = FindReplaceFloret(didRespondModifiers: [modifier])
                 waitUntil { done in
                     findReplaceFloret.didRespond(Record.fake(), modificationCompletionHandler: { (record) in
-                        expect(record.identifier) == replaceDefinitionRecord.identifier
+                        expect(record.identifier) == recordModifierRecord.identifier
                         done()
                     })
                 }

@@ -56,7 +56,7 @@
 		50ABECFF21C834A5009667E1 /* FindReplaceFloretSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ABECFE21C834A5009667E1 /* FindReplaceFloretSpec.swift */; };
 		50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */; };
 		50E068E821C67E0C00A9DFA8 /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */; };
-		50E068EA21C67E2300A9DFA8 /* ReplaceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E921C67E2300A9DFA8 /* ReplaceDefinition.swift */; };
+		50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E921C67E2300A9DFA8 /* RecordModifier.swift */; };
 		AC30DD398E6EA4B6BE97D62D /* Pods_Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6150F830B00ACA8197E38F4A /* Pods_Cauli.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,7 +124,7 @@
 		50ABECFE21C834A5009667E1 /* FindReplaceFloretSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindReplaceFloretSpec.swift; sourceTree = "<group>"; };
 		50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Cauli.swift"; sourceTree = "<group>"; };
 		50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindReplaceFloret.swift; sourceTree = "<group>"; };
-		50E068E921C67E2300A9DFA8 /* ReplaceDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceDefinition.swift; sourceTree = "<group>"; };
+		50E068E921C67E2300A9DFA8 /* RecordModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModifier.swift; sourceTree = "<group>"; };
 		6150F830B00ACA8197E38F4A /* Pods_Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6BC86272E2B451AA4475E0 /* Pods-CauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FFD4A99E530B7B60FA9DA0 /* Pods-CauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */,
-				50E068E921C67E2300A9DFA8 /* ReplaceDefinition.swift */,
+				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 			);
 			path = FindReplace;
 			sourceTree = "<group>";
@@ -575,7 +575,7 @@
 				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,
 				1FA4A50D21B7C40100F1CA6B /* InspectorRecordTableViewCell.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
-				50E068EA21C67E2300A9DFA8 /* ReplaceDefinition.swift in Sources */,
+				50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,
 				1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
