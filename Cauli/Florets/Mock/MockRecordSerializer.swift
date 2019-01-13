@@ -24,12 +24,12 @@ import Foundation
 
 internal class MockRecordSerializer {
 
+    /// Returns a path to a temporary folder where a record is written to.
+    ///
+    /// - Parameter record: The record to write on disk.
+    /// - Returns: The path to the temporary folder.
     static func write(record: Record) -> URL? {
         let tempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString, isDirectory: true)
-
-        defer {
-            try? FileManager.default.removeItem(at: tempPath)
-        }
 
         do {
             try FileManager.default.createDirectory(at: tempPath, withIntermediateDirectories: true, attributes: nil)
@@ -38,6 +38,7 @@ internal class MockRecordSerializer {
             let filepath = tempPath.appendingPathComponent("record.json")
             try data.write(to: filepath)
         } catch {
+            try? FileManager.default.removeItem(at: tempPath)
             return nil
         }
 
