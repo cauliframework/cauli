@@ -17,9 +17,6 @@
 		1FBA701E2118743E0078F6AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA701C2118743E0078F6AD /* Main.storyboard */; };
 		1FBA70202118743F0078F6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA701F2118743F0078F6AD /* Assets.xcassets */; };
 		1FBA70232118743F0078F6AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA70212118743F0078F6AD /* LaunchScreen.storyboard */; };
-		1FC27D81212C2F1F00361613 /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC27D80212C2F1F00361613 /* FindReplaceFloret.swift */; };
-		1FEA27F2211990640082E4AF /* AnonymizeIPFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA27F1211990640082E4AF /* AnonymizeIPFloret.swift */; };
-		1FEA27F4211992A40082E4AF /* String+Replacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA27F3211992A40082E4AF /* String+Replacements.swift */; };
 		87A207FA1677A8AB0197BDFC /* Pods_cauli_ios_example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6617E2785E9DF18F30ECF5 /* Pods_cauli_ios_example.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +33,6 @@
 		1FBA701F2118743F0078F6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBA70222118743F0078F6AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FBA70242118743F0078F6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FC27D80212C2F1F00361613 /* FindReplaceFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindReplaceFloret.swift; sourceTree = "<group>"; };
-		1FEA27F1211990640082E4AF /* AnonymizeIPFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymizeIPFloret.swift; sourceTree = "<group>"; };
-		1FEA27F3211992A40082E4AF /* String+Replacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Replacements.swift"; sourceTree = "<group>"; };
 		5A4624103340C8B84A69F1F1 /* Pods-cauli-ios-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli-ios-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example.debug.xcconfig"; sourceTree = "<group>"; };
 		6A7A74FEBB6E1A3206B50660 /* Pods-cauli-ios-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli-ios-example.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example.release.xcconfig"; sourceTree = "<group>"; };
 		CA6617E2785E9DF18F30ECF5 /* Pods_cauli_ios_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauli_ios_example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,15 +86,6 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		1F2749EF21A0C1D700A6DD6E /* Florets */ = {
-			isa = PBXGroup;
-			children = (
-				1FC27D80212C2F1F00361613 /* FindReplaceFloret.swift */,
-				1FEA27F1211990640082E4AF /* AnonymizeIPFloret.swift */,
-			);
-			path = Florets;
-			sourceTree = "<group>";
-		};
 		1FBA700C2118743E0078F6AD = {
 			isa = PBXGroup;
 			children = (
@@ -129,8 +114,6 @@
 				1FBA70212118743F0078F6AD /* LaunchScreen.storyboard */,
 				1FBA70242118743F0078F6AD /* Info.plist */,
 				1FA4A52621C93A8700F1CA6B /* MockFloret */,
-				1F2749EF21A0C1D700A6DD6E /* Florets */,
-				1FEA27F3211992A40082E4AF /* String+Replacements.swift */,
 				1F85D9C021664F850077AB81 /* Cauli+Customized.swift */,
 			);
 			path = "cauli-ios-example";
@@ -260,11 +243,8 @@
 				1FBA701B2118743E0078F6AD /* RequestsTableViewController.swift in Sources */,
 				1FBA70192118743E0078F6AD /* AppDelegate.swift in Sources */,
 				1F2749EE21A0C13200A6DD6E /* RequestModelTableViewCell.swift in Sources */,
-				1FEA27F4211992A40082E4AF /* String+Replacements.swift in Sources */,
 				1F85D9C121664F850077AB81 /* Cauli+Customized.swift in Sources */,
 				1F2749E721A0BBD300A6DD6E /* WebViewController.swift in Sources */,
-				1FEA27F2211990640082E4AF /* AnonymizeIPFloret.swift in Sources */,
-				1FC27D81212C2F1F00361613 /* FindReplaceFloret.swift in Sources */,
 				1F2749EC21A0BD3900A6DD6E /* RequestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,11 +10,10 @@ import Foundation
 import Cauli
 
 internal extension Cauli {
-    static let anonymizeIPFloret = AnonymizeIPFloret()
     static let findReplaceFloret: FindReplaceFloret = {
-//        let sslUrl = ReplaceDefinition<Any>.modifyUrl(expression: try! NSRegularExpression(pattern: "http[^s]", options: []), replacement: "$1s") as! ReplaceDefinition<Any>
-//        return FindReplaceFloret(replacements: [sslUrl])
-        return FindReplaceFloret(replacements: [])
+        let expresssion = try! NSRegularExpression(pattern: "^http://", options: [])
+        let httpsUrl = FindReplaceFloret.RecordModifier.modifyUrl(expression: expresssion, template: "https://")
+        return FindReplaceFloret(willRequestModifiers: [httpsUrl], name: "https-ify Floret")
     }()
     static let mockFloret: MockFloret = {
         let floret = MockFloret()
@@ -29,5 +28,5 @@ internal extension Cauli {
         return floret
     }()
     static let inspectorFloret = InspectorFloret()
-    static let customShared = Cauli([anonymizeIPFloret, findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
+    static let customShared = Cauli([findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
 }
