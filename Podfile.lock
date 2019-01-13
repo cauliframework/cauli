@@ -14,23 +14,27 @@ PODS:
   - OHHTTPStubs/Swift (6.1.0):
     - OHHTTPStubs/Default
   - Quick (1.3.2)
+  - SwiftLint (0.29.3)
 
 DEPENDENCIES:
   - Nimble (~> 7.0)
   - OHHTTPStubs/Swift
   - Quick (~> 1.2)
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Nimble
     - OHHTTPStubs
     - Quick
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
 
-PODFILE CHECKSUM: c2dfccb1692c0cdc5a4f12e985f484d6cb39ad25
+PODFILE CHECKSUM: 0b61f30f0838b912a2c61faca4bf2699d685bd50
 
 COCOAPODS: 1.5.3
