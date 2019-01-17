@@ -20,27 +20,19 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-public class InspectorFloret: Floret {
-    public var enabled: Bool = true
-
-    public init() {}
-
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
-    }
-
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
-    }
-
-}
-
-extension InspectorFloret: Displayable {
-
-    public func viewController(_ cauli: Cauli) -> UIViewController {
-        return InspectorTableViewController(cauli)
-    }
-
+/// A Displayable provides a ViewController for settings or to display any information.
+/// It usually is used in combination with a Floret
+public protocol Displayable {
+    /// This function is called whenever the Cauli UI will be displayed.
+    /// If a Floret needs any UI for configuration or to display data you
+    /// can return a ViewController here.
+    ///
+    /// The default implementation returns nil.
+    ///
+    /// - Parameter cauli: The Cauli instance this floret will be displayed in. Use this
+    ///     instance to access the storage for example.
+    /// - Returns: Return a Floret specific ViewController or `nil` if there is none.
+    func viewController(_ cauli: Cauli) -> UIViewController
 }

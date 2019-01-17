@@ -23,8 +23,7 @@
 import Foundation
 
 /// A Floret defines a Cauli plugin. It can be used to intercept and modify
-/// network Requests as well as Responses and to provide a ViewController for
-/// settings or just to display information.
+/// network Requests as well as Responses.
 public protocol Floret {
 
     /// The name of the Floret. This will be used to identify the floret in the UI.
@@ -34,17 +33,6 @@ public protocol Floret {
     /// If a Floret is disabled the both functions `willRequest` and `didRespond` will
     /// not be called anymore. A Floret doesn't need to perform any specific action.
     var enabled: Bool { get set }
-
-    /// This function is called whenever the Cauli UI will be displayed.
-    /// If a Floret needs any UI for configuration or to display data you
-    /// can return a ViewController here.
-    ///
-    /// The default implementation returns nil.
-    ///
-    /// - Parameter cauli: The Cauli instance this floret will be displayed in. Use this
-    ///     instance to access the storage for example.
-    /// - Returns: Return a Floret specific ViewController or `nil` if there is none.
-    func viewController(_ cauli: Cauli) -> UIViewController?
 
     /// This function will be called before a request is performed. The Florets will be
     /// called in the order the Cauli instance got initialized with.
@@ -76,9 +64,6 @@ public protocol Floret {
 
 // swiftlint:disable missing_docs
 public extension Floret {
-    func viewController(_ cauli: Cauli) -> UIViewController? {
-        return nil
-    }
     var name: String {
         return String(describing: Self.self)
     }

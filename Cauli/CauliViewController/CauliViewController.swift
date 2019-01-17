@@ -25,14 +25,11 @@ import UIKit
 internal class CauliViewController: UITableViewController {
 
     private let cauli: Cauli
-    private var viewControllers: [(viewController: UIViewController, floret: Floret)]
+    private var displayableFlorets: [Floret & Displayable]
 
     init(cauli: Cauli) {
         self.cauli = cauli
-        viewControllers = cauli.florets.compactMap {
-            guard let viewController = $0.viewController(cauli) else { return nil }
-            return (viewController, $0)
-        }
+        displayableFlorets = cauli.florets.compactMap { $0 as? (Floret & Displayable) }
         super.init(style: .grouped)
         title = "Cauli"
     }
@@ -55,7 +52,7 @@ internal class CauliViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return viewControllers.count
+            return displayableFlorets.count
         }
 
         return cauli.florets.count
@@ -71,7 +68,7 @@ internal class CauliViewController: UITableViewController {
 
     private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = viewControllers[indexPath.row].floret.name
+        cell.textLabel?.text = displayableFlorets[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -91,7 +88,7 @@ internal class CauliViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 0 else { return }
-        navigationController?.pushViewController(viewControllers[indexPath.row].viewController, animated: true)
+        navigationController?.pushViewController(displayableFlorets[indexPath.row].viewController(cauli), animated: true)
     }
 
 }
