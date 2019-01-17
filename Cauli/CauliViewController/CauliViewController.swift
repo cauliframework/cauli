@@ -24,12 +24,14 @@ import UIKit
 
 internal class CauliViewController: UITableViewController {
 
+    typealias DisplayableFloret = Floret & Displayable
+
     private let cauli: Cauli
-    private var displayableFlorets: [Floret & Displayable]
+    private var displayableFlorets: [DisplayableFloret]
 
     init(cauli: Cauli) {
         self.cauli = cauli
-        displayableFlorets = cauli.florets.compactMap { $0 as? (Floret & Displayable) }
+        displayableFlorets = cauli.florets.compactMap { $0 as? (DisplayableFloret) }
         super.init(style: .grouped)
         title = "Cauli"
     }
