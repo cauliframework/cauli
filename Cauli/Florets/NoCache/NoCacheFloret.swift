@@ -23,7 +23,7 @@
 import Foundation
 
 /// The NoCacheFloret modifies the desigantedRequest and the response of a record
-/// to prevent the caching of any resource.
+/// to prevent returning cached data or writing data to the cache.
 ///
 /// On the designatedRequest it will:
 /// * change the **cachePolicy** to **.reloadIgnoringLocalCacheData**
