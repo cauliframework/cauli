@@ -22,25 +22,16 @@
 
 import UIKit
 
-public class InspectorFloret: Floret {
-    public var enabled: Bool = true
+class SwitchTableViewCell: UITableViewCell {
 
-    public init() {}
+    static let reuseIdentifier = "SwitchTableViewCell"
+    static let nibName = "SwitchTableViewCell"
 
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var `switch`: UISwitch!
+    var switchValueChanged: ((Bool) -> Void)?
+
+    @IBAction private func switchValueChanged(_ sender: UISwitch) {
+        switchValueChanged?(sender.isOn)
     }
-
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
-    }
-
-}
-
-extension InspectorFloret: Displayable {
-
-    public func viewController(_ cauli: Cauli) -> UIViewController {
-        return InspectorTableViewController(cauli)
-    }
-
 }
