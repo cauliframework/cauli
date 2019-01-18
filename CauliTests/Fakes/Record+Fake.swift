@@ -40,7 +40,7 @@ extension Record {
         designatedRequest.allHTTPHeaderFields?.keys.forEach {
             designatedRequest.setValue(nil, forHTTPHeaderField: $0)
         }
-        
+
         headerFields?.forEach {
             designatedRequest.setValue($1, forHTTPHeaderField: $0)
         }

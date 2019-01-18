@@ -22,14 +22,34 @@
 
 import Foundation
 
-public struct Record: Codable {
+/// A record represents a full roundtrip of a URLRequest and it's response.
+public struct Record {
+    /// The identifier of the record. As long as the identifier is the same
+    /// two Records are assumed to be the same.
     public var identifier: UUID
+
+    /// The originalRequest is the request passed on to the URL loading system.
+    /// The originalRequest should not be changed by any floret.
     public var originalRequest: URLRequest
+
+    /// The designatedRequest will initially be the same as the originalRequest
+    /// but can be changed by every Floret. The designatedRequest is the one
+    /// that will be executed in the end.
     public var designatedRequest: URLRequest
+
+    /// The result will be nil until either the URL loading system failed to perform the
+    /// request, or the response is received. The `data` of the `Response` can be incomplete
+    /// while receiving.
     public var result: Result<Response>?
+
+    /// The requestStarted Date is set after all florets finished their `willRequest` function.
     public var requestStarted: Date?
+
+    /// The responseReceived Date is set after all florets finished their `didRespond` function.
     public var responseReceived: Date?
 }
+
+extension Record: Codable {}
 
 extension Record {
     init(_ request: URLRequest) {

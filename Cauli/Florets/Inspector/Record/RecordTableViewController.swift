@@ -22,7 +22,7 @@
 
 import UIKit
 
-class RecordTableViewController: UITableViewController {
+internal class RecordTableViewController: UITableViewController {
 
     let record: Record
     let datasource: RecordTableViewDatasource
@@ -68,6 +68,11 @@ extension RecordTableViewController {
         let activityItem = item.value() ?? item.description
 
         let viewContoller = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
+        viewContoller.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
+        viewContoller.popoverPresentationController?.sourceRect = tableView.cellForRow(at: indexPath)?.bounds ?? .zero
+        viewContoller.popoverPresentationController?.permittedArrowDirections = [.up, .down]
         present(viewContoller, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true
+        )
     }
 }

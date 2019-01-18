@@ -79,8 +79,7 @@ internal class CauliViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
 
         var floret = cauli.florets[indexPath.row]
-        cell.titleLabel?.text = floret.name
-        cell.switch.isOn = floret.enabled
+        cell.set(title: floret.name, switchValue: floret.enabled)
         cell.switchValueChanged = {
             floret.enabled = $0
         }
