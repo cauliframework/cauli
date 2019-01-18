@@ -22,7 +22,7 @@
 
 import UIKit
 
-class RecordTableViewController: UITableViewController {
+internal class RecordTableViewController: UITableViewController {
 
     let record: Record
     let datasource: RecordTableViewDatasource
