@@ -22,6 +22,20 @@
 
 import Foundation
 
+/// The NoCacheFloret modifies the desigantedRequest and the response of a record
+/// to prevent the caching of any resource.
+///
+/// On the designatedRequest it will:
+/// * change the **cachePolicy** to **.reloadIgnoringLocalCacheData**
+/// * **remove** the value for the **If-Modified-Since** key on allHTTPHeaderFields
+/// * **remove** the value for the **If-None-Match** key on allHTTPHeaderFields
+/// * change **Cache-Control** to **no-cache**
+///
+/// On the response it will:
+/// * **remove** the value for the **Last-Modified** key on allHTTPHeaderFields
+/// * **remove** the value for the **ETag** key on allHTTPHeaderFields
+/// * change **Expires** to **0**
+/// * change **Cache-Control** to **no-cache**
 public class NoCacheFloret: FindReplaceFloret {
 
     required public init() {
