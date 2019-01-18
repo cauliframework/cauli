@@ -72,5 +72,7 @@ extension RecordTableViewController {
         viewContoller.popoverPresentationController?.sourceRect = tableView.cellForRow(at: indexPath)?.bounds ?? .zero
         viewContoller.popoverPresentationController?.permittedArrowDirections = [.up, .down]
         present(viewContoller, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true
+        )
     }
 }
