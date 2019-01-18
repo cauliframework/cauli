@@ -24,10 +24,14 @@ import Foundation
 
 internal final class MemoryStorage: Storage {
 
-    let capacity: Int
     var records: [Record] = []
+    var capacity: StorageCapacity {
+        didSet {
+            ensureCapacity()
+        }
+    }
 
-    init(capacity: Int = 30) {
+    init(capacity: StorageCapacity) {
         self.capacity = capacity
     }
 
@@ -37,9 +41,7 @@ internal final class MemoryStorage: Storage {
             records[recordIndex] = record
         } else {
             records.insert(record, at: 0)
-            if records.count > capacity {
-                records.remove(at: records.count - 1)
-            }
+            ensureCapacity()
         }
     }
 
@@ -54,5 +56,13 @@ internal final class MemoryStorage: Storage {
         }
         let maxCount = min(count, records.count - index)
         return Array(records[index..<(index + maxCount)])
+    }
+
+    private func ensureCapacity() {
+        switch capacity {
+        case .unlimited: return
+        case .records(let maximumRecordCount):
+            records = records.suffix(maximumRecordCount)
+        }
     }
 }

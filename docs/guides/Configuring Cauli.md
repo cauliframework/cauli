@@ -8,8 +8,9 @@ Please make sure you create your Cauli instance as early as possible, especially
  
 ```swift
 let configuration = Configuration(
-  recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
-  enableShakeGesture: true)
+  recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
+  enableShakeGesture: true,
+  storageCapacity: .records(50))
 let cauli = Cauli([ InspectorFloret() ], configuration: configuration)
 ```
 
@@ -29,8 +30,9 @@ If you don't want to use the shake gesture you can display the Cauli UI manually
 ```swift
 // Disable the shake gesture using the Configuration
 let configuration = Configuration(
-  recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
-  enableShakeGesture: false)
+  recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
+  enableShakeGesture: false,
+  storageCapacity: .records(50))
 let cauli = Cauli([ InspectorFloret() ], configuration: configuration)
 
 // Create the Cauli ViewController to display it manually

@@ -25,6 +25,9 @@ import Foundation
 /// A Storage is used to store and retrieve Records. It can be either in memory or on disk.
 public protocol Storage {
 
+    /// The `capacity` defines the capacity of the storage.
+    var capacity: StorageCapacity { get set }
+
     /// Adds a record to the storage. Updates a possibly existing record.
     /// A record is the same if it's identifier is the same.
     ///
@@ -40,4 +43,13 @@ public protocol Storage {
     ///   - after: The record after which there should be new records returned.
     /// - Returns: The records after the referenced record, sorted from latest to oldest.
     func records(_ count: Int, after: Record?) -> [Record]
+}
+
+/// Defines the capacity of a storage.
+///
+/// - unlimited: The capacity is unlimited.
+/// - records: The capacity is limited to a certain number of records.
+public enum StorageCapacity: Equatable {
+    case unlimited
+    case records(Int)
 }
