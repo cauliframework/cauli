@@ -36,4 +36,19 @@ extension Record {
     func setting(originalRequestUrl url: URL) -> Record {
         return Record(identifier: identifier, originalRequest: URLRequest(url: url), designatedRequest: designatedRequest, result: result, requestStarted: requestStarted, responseReceived: responseReceived)
     }
+    mutating func setting(designatedRequestsHeaderFields headerFields: [String: String]?) {
+        designatedRequest.allHTTPHeaderFields?.keys.forEach {
+            designatedRequest.setValue(nil, forHTTPHeaderField: $0)
+        }
+
+        headerFields?.forEach {
+            designatedRequest.setValue($1, forHTTPHeaderField: $0)
+        }
+    }
+    mutating func setting(designatedRequestsCachePolicy cachePolicy: [String: String]?) {
+        designatedRequest.cachePolicy = .reloadIgnoringLocalCacheData
+    }
+    mutating func setting(httpURLResponse response: HTTPURLResponse) {
+        result = .result(Response(response, data: nil))
+    }
 }
