@@ -62,7 +62,7 @@ internal final class MemoryStorage: Storage {
         switch capacity {
         case .unlimited: return
         case .records(let maximumRecordCount):
-            records = records.suffix(maximumRecordCount)
+            records = Array(records.prefix(maximumRecordCount))
         }
     }
 }
