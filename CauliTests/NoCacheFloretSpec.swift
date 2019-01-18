@@ -76,7 +76,7 @@ class NoCacheFloretSpec: QuickSpec {
                     var record = Record.fake()
                     record.setting(httpURLResponse: HTTPURLResponse(url: URL(string: "spec_fake_url")!, statusCode: 1337, httpVersion: nil, headerFields: nil)!)
                     noCacheFloret.didRespond(record, modificationCompletionHandler: { (record) in
-                        guard case .result(let response) = record.result,
+                        guard case .result(let response)? = record.result,
                             let httpUrlResponse = response.urlResponse as? HTTPURLResponse else {
                                 fail("We expect a HTTPURLResponse as result of the record")
                                 return
@@ -100,7 +100,7 @@ class NoCacheFloretSpec: QuickSpec {
                                                                          "Cache-Control": "max-age=100"])!
                     record.setting(httpURLResponse: httpURLResponse)
                     noCacheFloret.didRespond(record, modificationCompletionHandler: { (record) in
-                        guard case .result(let response) = record.result,
+                        guard case .result(let response)? = record.result,
                             let httpUrlResponse = response.urlResponse as? HTTPURLResponse else {
                                 fail("We expect a HTTPURLResponse as result of the record")
                                 return

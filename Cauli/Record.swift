@@ -26,9 +26,9 @@ public struct Record: Codable {
     public var identifier: UUID
     public var originalRequest: URLRequest
     public var designatedRequest: URLRequest
-    public var result: Result<Response>
+    public var result: Result<Response>?
     public var requestStarted: Date?
-    public var responseRecieved: Date?
+    public var responseReceived: Date?
 }
 
 extension Record {
@@ -36,17 +36,22 @@ extension Record {
         identifier = UUID()
         originalRequest = request
         designatedRequest = request
-        result = .none
     }
 }
 
 extension Record {
     mutating func append(_ receivedData: Data) throws {
-        guard case let .result(result) = result else {
+        guard case let .result(result)? = result else {
             throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
         }
         var currentData = result.data ?? Data()
         currentData.append(receivedData)
         self.result = .result(Response(result.urlResponse, data: currentData))
+    }
+}
+
+extension Record {
+    internal func swapped(to path: URL) -> SwappedRecord {
+        return SwappedRecord(self, folder: path)
     }
 }

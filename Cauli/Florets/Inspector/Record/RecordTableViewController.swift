@@ -26,6 +26,9 @@ class RecordTableViewController: UITableViewController {
 
     let record: Record
     let datasource: RecordTableViewDatasource
+    lazy var shareButton: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+    }()
 
     init(_ record: Record) {
         self.record = record
@@ -43,6 +46,28 @@ class RecordTableViewController: UITableViewController {
         title = "Record"
         datasource.setup(tableView)
         tableView.dataSource = datasource
+        navigationItem.rightBarButtonItem = shareButton
     }
 
+    @objc func shareButtonTapped() {
+        guard let tempPath = MockRecordSerializer.write(record: record) else { return }
+
+        let allRecordFiles = (try? FileManager.default.contentsOfDirectory(at: tempPath, includingPropertiesForKeys: nil, options: [])) ?? []
+
+        let viewContoller = UIActivityViewController(activityItems: allRecordFiles, applicationActivities: nil)
+        present(viewContoller, animated: true, completion: nil)
+    }
+
+}
+
+// UITableViewDelegate
+extension RecordTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = datasource.item(at: indexPath) else { return }
+
+        let activityItem = item.value() ?? item.description
+
+        let viewContoller = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
+        present(viewContoller, animated: true, completion: nil)
+    }
 }

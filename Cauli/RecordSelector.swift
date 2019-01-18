@@ -27,6 +27,9 @@ import Foundation
 public struct RecordSelector {
     internal let selects: (Record) -> (Bool)
 
+    /// Creates a new RecordSelector.
+    ///
+    /// - Parameter selects: A closure describing if a Record should be selected or not.
     public init(selects: @escaping (Record) -> (Bool)) {
         self.selects = selects
     }
@@ -48,9 +51,9 @@ extension RecordSelector {
     static func max(bytesize: Int) -> RecordSelector {
         return RecordSelector { record in
             switch record.result {
-            case .none: return true
-            case .error: return true
-            case .result(let response):
+            case nil: return true
+            case .error?: return true
+            case .result(let response)?:
                 if let data = response.data {
                     return data.count <= bytesize
                 } else if let urlResponse = response.urlResponse as? HTTPURLResponse,

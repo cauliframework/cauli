@@ -1,0 +1,49 @@
+{
+  "result" : {
+    "urlResponseRepresentable" : {
+      "httpURLResponse" : {
+        "url" : "https:\/\/httpstat.us\/404",
+        "statusCode" : 404,
+        "headerFields" : {
+          "Server" : "Microsoft-IIS\/10.0",
+          "Set-Cookie" : "ARRAffinity=77c477e3e649643e5771873e1a13179fb00983bc73c71e196bf25967fd453df9;Path=\/;HttpOnly;Domain=httpstat.us",
+          "Cache-Control" : "private",
+          "X-Powered-By" : "ASP.NET",
+          "X-AspNetMvc-Version" : "5.1",
+          "Content-Type" : "text\/plain; charset=utf-8",
+          "Content-Length" : "13",
+          "Date" : "Tue, 18 Dec 2018 14:37:42 GMT",
+          "X-AspNet-Version" : "4.0.30319",
+          "Access-Control-Allow-Origin" : "*"
+        }
+      }
+    },
+    "dataFilename" : "response.data"
+  },
+  "requestStarted" : 566836661.78855896,
+  "originalRequest" : {
+    "httpMethod" : "GET",
+    "httpShouldHandleCookies" : true,
+    "allHTTPHeaderFields" : {
+
+    },
+    "url" : "https:\/\/httpstat.us\/404",
+    "cachePolicy" : 0,
+    "allowsCellularAccess" : true,
+    "httpShouldUsePipelining" : false,
+    "timeoutInterval" : 60
+  },
+  "identifier" : "B47A0B34-37DF-41BF-9B6B-A31075AAF237",
+  "designatedRequest" : {
+    "httpMethod" : "GET",
+    "httpShouldHandleCookies" : true,
+    "allHTTPHeaderFields" : {
+
+    },
+    "url" : "https:\/\/httpstat.us\/404",
+    "cachePolicy" : 0,
+    "allowsCellularAccess" : true,
+    "httpShouldUsePipelining" : false,
+    "timeoutInterval" : 60
+  }
+}

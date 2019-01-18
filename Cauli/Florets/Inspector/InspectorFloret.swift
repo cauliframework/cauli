@@ -35,7 +35,11 @@ public class InspectorFloret: Floret {
         completionHandler(record)
     }
 
-    public func viewController(_ cauli: Cauli) -> UIViewController? {
+}
+
+extension InspectorFloret: Displayable {
+
+    public func viewController(_ cauli: Cauli) -> UIViewController {
         return InspectorTableViewController(cauli)
     }
 

@@ -31,10 +31,10 @@ extension Record {
         return Record(URLRequest(url: url))
     }
     func setting(identifier: UUID) -> Record {
-        return Record(identifier: identifier, originalRequest: originalRequest, designatedRequest: designatedRequest, result: result, requestStarted: nil, responseRecieved: nil)
+        return Record(identifier: identifier, originalRequest: originalRequest, designatedRequest: designatedRequest, result: result, requestStarted: nil, responseReceived: nil)
     }
     func setting(originalRequestUrl url: URL) -> Record {
-        return Record(identifier: identifier, originalRequest: URLRequest(url: url), designatedRequest: designatedRequest, result: result, requestStarted: requestStarted, responseRecieved: responseRecieved)
+        return Record(identifier: identifier, originalRequest: URLRequest(url: url), designatedRequest: designatedRequest, result: result, requestStarted: requestStarted, responseReceived: responseReceived)
     }
     mutating func setting(designatedRequestsHeaderFields headerFields: [String: String]?) {
         designatedRequest.allHTTPHeaderFields?.keys.forEach {

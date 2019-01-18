@@ -22,41 +22,41 @@
 
 import Foundation
 
-/// A `FindReplaceFloret` uses `ReplaceDefinition`s to modify a `Record`
-/// before sending a request and after receiving a respond. Use multiple
-/// instances of the `FindReplaceFloret`s to group certain ReplaceDefinitions
+/// A `FindReplaceFloret` uses `RecordModifier`s to modify a `Record`
+/// before sending a request and after receiving a response. Use multiple
+/// instances of the `FindReplaceFloret`s to group certain RecordModifiers
 /// under a given name.
 public class FindReplaceFloret: Floret {
 
     public var enabled: Bool = true
     public let name: String
 
-    let willRequestReplacements: [ReplaceDefinition]
-    let didRespondReplacements: [ReplaceDefinition]
+    private let willRequestModifiers: [RecordModifier]
+    private let didRespondModifiers: [RecordModifier]
 
-    /// This init will create a FindReplaceFloret with ReplaceDefinitions to modify Records.
+    /// This init will create a FindReplaceFloret with RecordModifiers to modify Records.
     ///
     /// - Parameters:
-    ///   - willRequestReplacements: The ReplaceDefinitions used to modify a Record before sending a request.
-    ///   - didRespondReplacements: The ReplaceDefinitions used to modify a Record after receiving a respond.
-    ///   - name: Can be used to describe the set of choosen ReplaceDefinitions. The default name is `FindReplaceFloret`.
-    public init(willRequestReplacements: [ReplaceDefinition] = [], didRespondReplacements: [ReplaceDefinition] = [], name: String = "FindReplaceFloret") {
-        self.willRequestReplacements = willRequestReplacements
-        self.didRespondReplacements = didRespondReplacements
+    ///   - willRequestModifiers: The RecordModifiers used to modify a Record before sending a request.
+    ///   - didRespondModifiers: The RecordModifiers used to modify a Record after receiving a response.
+    ///   - name: Can be used to describe the set of choosen RecordModifiers. The default name is `FindReplaceFloret`.
+    public init(willRequestModifiers: [RecordModifier] = [], didRespondModifiers: [RecordModifier] = [], name: String = "FindReplaceFloret") {
+        self.willRequestModifiers = willRequestModifiers
+        self.didRespondModifiers = didRespondModifiers
         self.name = name
     }
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        let record = willRequestReplacements.reduce(record) { record, replacement -> Record in
-            replacement.modifier(record)
+        let record = willRequestModifiers.reduce(record) { record, recordModifier in
+            recordModifier.modify(record)
         }
 
         completionHandler(record)
     }
 
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        let record = didRespondReplacements.reduce(record) { record, replacement -> Record in
-            replacement.modifier(record)
+        let record = didRespondModifiers.reduce(record) { record, recordModifier in
+            recordModifier.modify(record)
         }
 
         completionHandler(record)

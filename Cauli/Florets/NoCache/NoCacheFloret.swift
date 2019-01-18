@@ -38,8 +38,8 @@ import Foundation
 /// * change **Cache-Control** to **no-cache**
 public class NoCacheFloret: FindReplaceFloret {
 
-    required public init() {
-        let willRequestReplaceDefinition = ReplaceDefinition(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
+    public required init() {
+        let willRequestReplaceDefinition = RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
             var request = designatedRequest
             request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
             request.setValue(nil, forHTTPHeaderField: "If-Modified-Since")
@@ -49,8 +49,8 @@ public class NoCacheFloret: FindReplaceFloret {
             return request
         }
 
-        let didRespondReplaceDefinition = ReplaceDefinition(keyPath: \Record.result) { result -> Result<Response> in
-            guard case .result(let response) = result, let httpURLResponse = response.urlResponse as? HTTPURLResponse, let url = httpURLResponse.url else { return result }
+        let didRespondReplaceDefinition = RecordModifier(keyPath: \Record.result) { result in
+            guard case .result(let response)? = result, let httpURLResponse = response.urlResponse as? HTTPURLResponse, let url = httpURLResponse.url else { return result }
 
             var allHTTPHeaderFields = httpURLResponse.allHeaderFields as? [String: String] ?? [:]
             allHTTPHeaderFields.removeValue(forKey: "Last-Modified")
@@ -63,7 +63,7 @@ public class NoCacheFloret: FindReplaceFloret {
             return Result.result(Response(newHTTPURLRespones, data: response.data))
         }
 
-        super.init(willRequestReplacements: [willRequestReplaceDefinition], didRespondReplacements: [didRespondReplaceDefinition], name: "NoCacheFloret")
+        super.init(willRequestModifiers: [willRequestReplaceDefinition], didRespondModifiers: [didRespondReplaceDefinition], name: "NoCacheFloret")
     }
 
 }

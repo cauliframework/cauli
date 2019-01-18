@@ -1,0 +1,45 @@
+{
+  "result" : {
+    "urlResponseRepresentable" : {
+      "httpURLResponse" : {
+        "url" : "http:\/\/ip.jsontest.com\/",
+        "statusCode" : 200,
+        "headerFields" : {
+          "Content-Type" : "application\/json; charset=ISO-8859-1",
+          "X-Cloud-Trace-Context" : "25e39a14effdf99d0c5dd8d8db258ac7",
+          "Server" : "Google Frontend",
+          "Date" : "Tue, 18 Dec 2018 13:47:50 GMT",
+          "Content-Length" : "23",
+          "Access-Control-Allow-Origin" : "*"
+        }
+      }
+    },
+    "dataFilename" : "response.data"
+  },
+  "requestStarted" : 566833670.01283097,
+  "originalRequest" : {
+    "httpMethod" : "GET",
+    "httpShouldHandleCookies" : true,
+    "allHTTPHeaderFields" : {
+
+    },
+    "url" : "http:\/\/ip.jsontest.com\/",
+    "cachePolicy" : 0,
+    "allowsCellularAccess" : true,
+    "httpShouldUsePipelining" : false,
+    "timeoutInterval" : 60
+  },
+  "identifier" : "AEA4F334-2185-41E5-B024-687FC2F7053F",
+  "designatedRequest" : {
+    "httpMethod" : "GET",
+    "httpShouldHandleCookies" : true,
+    "allHTTPHeaderFields" : {
+
+    },
+    "url" : "http:\/\/ip.jsontest.com\/",
+    "cachePolicy" : 0,
+    "allowsCellularAccess" : true,
+    "httpShouldUsePipelining" : false,
+    "timeoutInterval" : 60
+  }
+}

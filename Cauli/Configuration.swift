@@ -22,12 +22,28 @@
 
 import Foundation
 
+/// The Configuration is used to configure Cauli at initialization time.
+/// The `Configuration.standard` is a sensibly chosen configuration set.
 public struct Configuration {
+    /// The default Configuration.
+    ///
+    /// - Configuration:
+    ///   - recordSelector: Only records to a maximum of 10 MB are considered.
+    ///   - enableShakeGesture: The shake gesture is enabled.
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
         enableShakeGesture: true)
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
+    ///
+    /// ## Examples
+    /// ```swift
+    /// // Only records for the domain cauli.works are selected.
+    /// RecordSelector { $0.originalRequest.url?.host == "cauli.works" }
+    ///
+    /// // Only records with a response body of max 10 MB are selected.
+    /// RecordSelector.max(bytesize: 10 * 1024 * 1024)
+    /// ```
     public let recordSelector: RecordSelector
 
     /// If `enableShakeGesture` is set to true, Cauli will try to hook into the
@@ -37,6 +53,8 @@ public struct Configuration {
     /// use the `Cauli.viewController()` function to display that ViewController manually.
     public let enableShakeGesture: Bool
 
+    /// Creates a new `Configuration` with the given parameters. Please check the
+    /// properties of a `Configuration` for their meaning.
     public init(recordSelector: RecordSelector, enableShakeGesture: Bool) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture
