@@ -41,6 +41,7 @@
 		1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */; };
 		317C396950BAD8931F358E52 /* Pods_CauliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2960DA9051B8F9F9C4A11 /* Pods_CauliTests.framework */; };
 		5020A67221B16DF700E3FCDF /* iOS10_jsonEncoded_URLResponseRepresentable_case_httpURLResponse in Resources */ = {isa = PBXBuildFile; fileRef = 5020A67121B16DF700E3FCDF /* iOS10_jsonEncoded_URLResponseRepresentable_case_httpURLResponse */; };
+		5038380521F26ECF000D2029 /* NoCacheFloretSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038380421F26ECF000D2029 /* NoCacheFloretSpec.swift */; };
 		50576BBA210E173C0085DF5E /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50576BB9210E173C0085DF5E /* Floret.swift */; };
 		505B4BEE21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B4BED21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift */; };
 		505B4BF121AC5C91008A9836 /* URLResponse+Fake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B4BF021AC5C91008A9836 /* URLResponse+Fake.swift */; };
@@ -109,6 +110,7 @@
 		1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorageSpec.swift; sourceTree = "<group>"; };
 		4313259D01CD824F65FBB0E8 /* Pods-Cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.debug.xcconfig"; sourceTree = "<group>"; };
 		5020A67121B16DF700E3FCDF /* iOS10_jsonEncoded_URLResponseRepresentable_case_httpURLResponse */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iOS10_jsonEncoded_URLResponseRepresentable_case_httpURLResponse; sourceTree = "<group>"; };
+		5038380421F26ECF000D2029 /* NoCacheFloretSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheFloretSpec.swift; sourceTree = "<group>"; };
 		50576BB9210E173C0085DF5E /* Floret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floret.swift; sourceTree = "<group>"; };
 		505B4BED21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseRepresentableSpec.swift; sourceTree = "<group>"; };
 		505B4BF021AC5C91008A9836 /* URLResponse+Fake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Fake.swift"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */,
 				505B4BED21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift */,
 				50ABECFE21C834A5009667E1 /* FindReplaceFloretSpec.swift */,
+				5038380421F26ECF000D2029 /* NoCacheFloretSpec.swift */,
 			);
 			path = CauliTests;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				1F7001C4216B8250007A9355 /* CauliURLProtocolDelegateStub.swift in Sources */,
 				505B4BF121AC5C91008A9836 /* URLResponse+Fake.swift in Sources */,
 				505B4BEE21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift in Sources */,
+				5038380521F26ECF000D2029 /* NoCacheFloretSpec.swift in Sources */,
 				1F7001C1216B8128007A9355 /* CauliURLProtocolSpec.swift in Sources */,
 				50A53E4C21B1799000DCB517 /* URLResponse+Fake.swift in Sources */,
 				50ABECFF21C834A5009667E1 /* FindReplaceFloretSpec.swift in Sources */,

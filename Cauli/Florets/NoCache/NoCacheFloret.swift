@@ -42,16 +42,16 @@ public class NoCacheFloret: FindReplaceFloret {
         let willRequestReplaceDefinition = ReplaceDefinition(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
             var request = designatedRequest
             request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
-            request.allHTTPHeaderFields?.removeValue(forKey: "If-Modified-Since")
-            request.allHTTPHeaderFields?.removeValue(forKey: "If-None-Match")
-            request.allHTTPHeaderFields?["Cache-Control"] = "no-cache"
+            request.setValue(nil, forHTTPHeaderField: "If-Modified-Since")
+            request.setValue(nil, forHTTPHeaderField: "If-None-Match")
+            request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
 
             return request
         }
 
         let didRespondReplaceDefinition = ReplaceDefinition(keyPath: \Record.result) { result -> Result<Response> in
             guard case .result(let response) = result, let httpURLResponse = response.urlResponse as? HTTPURLResponse, let url = httpURLResponse.url else { return result }
-            
+
             var allHTTPHeaderFields = httpURLResponse.allHeaderFields as? [String: String] ?? [:]
             allHTTPHeaderFields.removeValue(forKey: "Last-Modified")
             allHTTPHeaderFields.removeValue(forKey: "ETag")
@@ -62,7 +62,7 @@ public class NoCacheFloret: FindReplaceFloret {
 
             return Result.result(Response(newHTTPURLRespones, data: response.data))
         }
-      
+
         super.init(willRequestReplacements: [willRequestReplaceDefinition], didRespondReplacements: [didRespondReplaceDefinition], name: "NoCacheFloret")
     }
 
