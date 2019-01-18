@@ -22,7 +22,7 @@
 
 import UIKit
 
-class RecordItemTableViewCell: UITableViewCell {
+internal class RecordItemTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "RecordItemTableViewCell"
 

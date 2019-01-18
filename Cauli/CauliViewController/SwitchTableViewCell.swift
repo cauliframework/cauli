@@ -22,14 +22,19 @@
 
 import UIKit
 
-class SwitchTableViewCell: UITableViewCell {
+internal class SwitchTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "SwitchTableViewCell"
     static let nibName = "SwitchTableViewCell"
 
-    @IBOutlet private(set) weak var titleLabel: UILabel!
-    @IBOutlet private(set) weak var `switch`: UISwitch!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var `switch`: UISwitch!
     var switchValueChanged: ((Bool) -> Void)?
+
+    func set(title: String, switchValue: Bool) {
+        titleLabel.text = title
+        `switch`.isOn = switchValue
+    }
 
     @IBAction private func switchValueChanged(_ sender: UISwitch) {
         switchValueChanged?(sender.isOn)

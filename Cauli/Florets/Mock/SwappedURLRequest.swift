@@ -37,7 +37,9 @@ internal struct SwappedURLRequest: Codable {
 
 extension SwappedURLRequest {
     init(_ urlRequest: URLRequest, bodyFilepath: URL) {
+        // swiftlint:disable force_unwrapping
         self.url = urlRequest.url ?? URL(string: "unknown")!
+        // swiftlint:enable force_unwrapping
         self.cachePolicy = urlRequest.cachePolicy
         self.timeoutInterval = urlRequest.timeoutInterval
         self.mainDocumentURL = urlRequest.mainDocumentURL
