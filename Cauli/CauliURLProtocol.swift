@@ -122,7 +122,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
         didRespond(record) { record in
             self.record = record
-            self.record.responseRecieved = Date()
+            self.record.responseReceived = Date()
             switch record.result {
             case let .result(response)?:
                 self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
