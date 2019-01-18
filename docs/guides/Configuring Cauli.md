@@ -16,7 +16,7 @@ let cauli = Cauli([ InspectorFloret() ], configuration: configuration)
 
 Please check the [Docs](https://cauli.works/docs/Structs/Configuration.html) for all configuration options.
 
-## Start / Stop Cauli
+## Run / Pause Cauli
 
 ```swift
 cauli.run()
