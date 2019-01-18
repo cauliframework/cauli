@@ -44,7 +44,13 @@ public class AppDelegate: UIApplicationDelegate {
 }
 ```
 
-This will configure Cauli to hook into every request, setup a some plugins (TODO: List the plugins) and configures a shake gesture for the Cauli UI.
+This will configure Cauli to hook into every request, setup the core florets (plugins) ([InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html)) and configures a shake gesture for the Cauli UI.
+
+### Documentation
+
+* [Architecture](https://cauli.works/docs/architecture.html)
+* [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
+* [Writing Your Own Plugin](https://cauli.works/docs/writing-your-own-plugin.html)
 
 ## Contributing
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details.

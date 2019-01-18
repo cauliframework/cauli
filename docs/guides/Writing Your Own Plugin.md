@@ -27,4 +27,4 @@ protocol Floret {
 
 ## Accessing the storage
 
-Cauli manages the storage of `Record`s. Every request and response passing throigh Cauli is recorded with only a few limitations (TODO: List limitations). When displaying your Florets ViewController you have access to the respective Cauli instance and have access to it's `Storage`.
+Cauli manages the storage of `Record`s. Every `Record` selected by the [RecordSelector](https://cauli.works/docs/Structs/RecordSelector.html) is stored in memory. When displaying your Florets ViewController you have access to the respective Cauli instance and thus to it's [Storage](https://cauli.works/docs/Protocols/Storage.html).
