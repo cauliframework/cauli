@@ -35,6 +35,8 @@ let configuration = Configuration(
   storageCapacity: .records(50))
 let cauli = Cauli([ InspectorFloret() ], configuration: configuration)
 
-// Create the Cauli ViewController to display it manually
+// Create the Cauli ViewController to display it manually.
+// This ViewController expects to be displayed in a navigation stack, as it can
+// try to push other ViewControllers to the navigation stack.
 let cauliViewController = cauli.viewController()
 ```

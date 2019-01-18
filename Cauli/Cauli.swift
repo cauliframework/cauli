@@ -63,7 +63,9 @@ public class Cauli {
     private func loadConfiguration(_ configuration: Configuration) {
         if configuration.enableShakeGesture {
             viewControllerManager = ViewControllerShakePresenter { [weak self] in
-                self?.viewController()
+                guard let cauliViewController = self?.viewController() else { return nil }
+                let navigationController = UINavigationController(rootViewController: cauliViewController)
+                return navigationController
             }
         }
     }
@@ -72,12 +74,13 @@ public class Cauli {
     /// and if `enableShakeGesture` in the `Configuration` is set to true
     /// this ViewController will be shown when shaking the device.
     /// You can use this function to create a new ViewController and display it manually.
+    /// **Attention:**
+    /// This ViewController expects to be displayed in a navigation stack, as it can
+    /// try to push other ViewControllers to the navigation stack.
     ///
     /// - Returns: A new, unretained ViewController.
     public func viewController() -> UIViewController {
-        let cauliViewController = CauliViewController(cauli: self)
-        let navigationController = UINavigationController(rootViewController: cauliViewController)
-        return navigationController
+        return CauliViewController(cauli: self)
     }
 
     /// Starts this Cauli instance.
