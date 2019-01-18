@@ -28,7 +28,7 @@ internal struct SwappedRecord: Codable {
     let designatedRequest: SwappedURLRequest
     let result: Result<SwappedResponse>?
     let requestStarted: Date?
-    let responseRecieved: Date?
+    let responseReceived: Date?
 }
 
 extension SwappedRecord {
@@ -49,7 +49,7 @@ extension SwappedRecord {
         }
 
         self.requestStarted = record.requestStarted
-        self.responseRecieved = record.responseRecieved
+        self.responseReceived = record.responseReceived
     }
 
     func record(in folder: URL) -> Record {
@@ -69,7 +69,7 @@ extension SwappedRecord {
             record.result = nil
         }
         record.requestStarted = self.requestStarted
-        record.responseRecieved = self.responseRecieved
+        record.responseReceived = self.responseReceived
 
         return record
     }
