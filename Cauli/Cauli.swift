@@ -33,7 +33,7 @@ public class Cauli {
     public static let shared = Cauli([InspectorFloret(), MockFloret()], configuration: Configuration.standard)
 
     /// The Storage used by this instance to store all Records.
-    public let storage: Storage = MemoryStorage()
+    public let storage: Storage
     internal let florets: [Floret]
     private var enabledFlores: [Floret] {
         return florets.filter { $0.enabled }
@@ -55,6 +55,7 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
+        self.storage = MemoryStorage(capacity: configuration.storageCapacity)
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }

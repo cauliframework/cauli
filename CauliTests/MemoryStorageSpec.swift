@@ -29,20 +29,20 @@ class MemoryStorageSpec: QuickSpec {
     override func spec() {
         describe("init") {
             it("should initialize with the correct capacity") {
-                let storage = MemoryStorage(capacity: 10)
-                expect(storage.capacity) == 10
+                let storage = MemoryStorage(capacity: .records(10))
+                expect(storage.capacity) == .records(10)
             }
         }
         describe("store") {
             it("should store the item in the records") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let record = Record.fake()
                 storage.store(record)
                 expect(storage.records.count) == 1
                 expect(storage.records.first?.identifier) == record.identifier
             }
             it("should replace an existing record with the same uuid") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let record = Record.fake()
                 storage.store(record)
                 let updatedUrl = URL(string: "spec_modified_url")!
@@ -52,7 +52,7 @@ class MemoryStorageSpec: QuickSpec {
                 expect(storage.records.first?.originalRequest.url) == updatedUrl
             }
             it("should remove the oldest record if the limit is exceeded") {
-                let storage = MemoryStorage(capacity: 1)
+                let storage = MemoryStorage(capacity: .records(1))
                 let firstRecord = Record.fake()
                 storage.store(firstRecord)
                 let secondRecord = Record.fake()
@@ -63,7 +63,7 @@ class MemoryStorageSpec: QuickSpec {
         }
         describe("records:after:") {
             it("should return the newest items") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 let secondRecord = Record.fake()
                 storage.store(firstRecord)
@@ -72,13 +72,13 @@ class MemoryStorageSpec: QuickSpec {
                 expect(storage.records(1, after: nil).first!.identifier) == secondRecord.identifier
             }
             it("should not fail if more items requested than existing") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 storage.store(firstRecord)
                 expect(storage.records(10, after: nil).count) == 1
             }
             it("should only return the amount of items requested") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 let secondRecord = Record.fake()
                 storage.store(firstRecord)
@@ -87,7 +87,7 @@ class MemoryStorageSpec: QuickSpec {
                 expect(storage.records(1, after: nil).count) == 1
             }
             it("should not return the after-item") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 let secondRecord = Record.fake()
                 storage.store(firstRecord)
@@ -97,7 +97,7 @@ class MemoryStorageSpec: QuickSpec {
                 expect(storage.records(1, after: secondRecord).first!.identifier) == firstRecord.identifier
             }
             it("should return no item if the after-item is the last") {
-                let storage = MemoryStorage(capacity: 10)
+                let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 storage.store(firstRecord)
                 expect(storage.records(10, after: firstRecord).count) == 0

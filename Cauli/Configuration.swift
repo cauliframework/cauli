@@ -28,11 +28,13 @@ public struct Configuration {
     /// The default Configuration.
     ///
     /// - Configuration:
-    ///   - recordSelector: Only records to a maximum of 10 MB are considered.
+    ///   - recordSelector: Only records to a maximum of 5 MB are considered.
     ///   - enableShakeGesture: The shake gesture is enabled.
+    ///   - storageCapacity: The storage capacity is limited to 50 records,.
     public static let standard = Configuration(
-        recordSelector: RecordSelector.max(bytesize: 10 * 1024 * 1024),
-        enableShakeGesture: true)
+        recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
+        enableShakeGesture: true,
+        storageCapacity: .records(50))
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
     ///
@@ -53,10 +55,14 @@ public struct Configuration {
     /// use the `Cauli.viewController()` function to display that ViewController manually.
     public let enableShakeGesture: Bool
 
+    /// The `storageCapacity` defines the capacity of the storage.
+    public let storageCapacity: StorageCapacity
+
     /// Creates a new `Configuration` with the given parameters. Please check the
     /// properties of a `Configuration` for their meaning.
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool) {
+    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture
+        self.storageCapacity = storageCapacity
     }
 }
