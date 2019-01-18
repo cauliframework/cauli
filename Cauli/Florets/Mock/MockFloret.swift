@@ -65,20 +65,14 @@ public class MockFloret: Floret {
 
     public var enabled: Bool = true
 
-    private let forceMocking: Bool
-
     private let mode: Mode
 
     /// Creates a new MockFloret instance and defines it's mode.
     ///
     /// - Parameters:
     ///   - mode: The `Mode` of this MockFloret.
-    ///   - forceMocking: Defines the behaviour if no response is found.
-    ///     If false, the request will be ignored by the `MockFloret`.
-    ///     If true, the request will be answered with a 404-not-found response.
-    public init(mode: Mode = .mock, forceMocking: Bool = false) {
+    public init(mode: Mode = .mock(forced: false)) {
         self.mode = mode
-        self.forceMocking = forceMocking
 
         if mode == .record {
             print("recording to \(recordStorage.path)")
@@ -94,9 +88,9 @@ public class MockFloret: Floret {
     }()
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard mode == .mock else { completionHandler(record); return }
+        guard case .mock(let forced) = mode else { completionHandler(record); return }
         var result = resultForRequest(record.designatedRequest)
-        if forceMocking && result == nil {
+        if forced && result == nil {
              result = Result<Response>.notFound(for: record.designatedRequest)
         }
         if let result = result {
@@ -199,9 +193,12 @@ extension MockFloret {
     ///     Cauli configuration) requests, serialize and store them in the documents folder.
     /// - mock: In mock mode the MockFloret will search for a "MockFloret" folder in the Bundle
     ///     and tries to map all requests to a response stored in that folder.
-    public enum Mode {
+    ///     Forced defines the behaviour if no response is found.
+    ///     If forced is false, the request will be ignored by the `MockFloret`.
+    ///     If forced is true, the request will be answered with a 404-not-found response.
+    public enum Mode: Equatable {
         case record
-        case mock
+        case mock(forced: Bool)
     }
 }
 
