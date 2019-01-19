@@ -51,6 +51,7 @@ This will configure Cauli to hook into every request, setup the core florets (pl
 * [Architecture](https://cauli.works/docs/architecture.html)
 * [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
 * [Writing Your Own Plugin](https://cauli.works/docs/writing-your-own-plugin.html)
+* [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
 ## Contributing
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details.
