@@ -23,11 +23,7 @@
 import Foundation
 
 internal class CauliURLProtocol: URLProtocol {
-    // We are keeping this as implicitly unwrapped optional so we can initialize it
-    // right after the super.init with self as the delegate
-    // swiftlint:disable implicitly_unwrapped_optional
-    private var executingURLSession: URLSession!
-    // swiftlint:enable implicitly_unwrapped_optional
+    private var executingURLSession: URLSession?
 
     private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
     private static var delegates: [CauliURLProtocolDelegate] {
@@ -83,7 +79,7 @@ extension CauliURLProtocol {
             } else if case let .error(error)? = record.result {
                 self.urlSession(didCompleteWithError: error)
             } else {
-                self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
+                self.dataTask = self.executingURLSession?.dataTask(with: self.record.designatedRequest)
                 self.dataTask?.resume()
             }
         }
@@ -91,6 +87,7 @@ extension CauliURLProtocol {
 
     override func stopLoading() {
         dataTask?.cancel()
+        invalidateURLSession()
     }
 }
 
@@ -116,6 +113,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     private func urlSession(didCompleteWithError error: Error?) {
+        invalidateURLSession()
         if let error = error {
             record.result = .error(error as NSError)
         }
@@ -176,5 +174,12 @@ extension CauliURLProtocol {
         }, completion: { record in
             completionHandler(record)
         })
+    }
+    
+    /// A CauliURLProtocol instance holds a strong reference to its executingURLSession, which
+    /// itself holds a strong reference to its delegate, the CauliURLProtocol instance.
+    /// To break this retain cycle we have to call the `finishTasksAndInvalidate`.
+    private func invalidateURLSession() {
+        self.executingURLSession?.finishTasksAndInvalidate()
     }
 }
