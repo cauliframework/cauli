@@ -37,6 +37,7 @@ internal class CauliURLProtocol: URLProtocol {
 
     private var record: Record
     private var dataTask: URLSessionDataTask?
+    private var authenticationChallengeProxy: CauliAuthenticationChallengeProxy?
 
     internal static func add(delegate: CauliURLProtocolDelegate) {
         weakDelegates.append(WeakReference(delegate))
@@ -139,6 +140,13 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         // possibly add the metrics to the record in the future
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        let authenticationChallengeProxy = CauliAuthenticationChallengeProxy(authChallengeCompletionHandler: completionHandler)
+        let proxiedChallenge = URLAuthenticationChallenge(authenticationChallenge: challenge, sender: authenticationChallengeProxy)
+        self.authenticationChallengeProxy = authenticationChallengeProxy
+        client?.urlProtocol(self, didReceive: proxiedChallenge)
     }
 }
 

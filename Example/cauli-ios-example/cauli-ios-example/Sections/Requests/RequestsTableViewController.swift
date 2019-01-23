@@ -11,6 +11,10 @@ import Cauli
 
 class RequestsTableViewController: UITableViewController {
     
+    lazy var urlSession: URLSession = {
+        return URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+    }()
+    
     let requestModels: [RequestModel] = [
         RequestModel(name: "httpstat.us/200", url: URL(string: "https://httpstat.us/200")!),
         RequestModel(name: "httpstat.us/301", url: URL(string: "https://httpstat.us/301")!),
@@ -18,6 +22,7 @@ class RequestsTableViewController: UITableViewController {
         RequestModel(name: "httpstat.us/404", url: URL(string: "https://httpstat.us/404")!),
         RequestModel(name: "api.ipify.org", url: URL(string: "http://api.ipify.org/?format=json")!),
         RequestModel(name: "invalidurl.invalid", url: URL(string: "https://invalidurl.invalid/")!),
+        RequestModel(name: "HTTP Basic Auth", url: URL(string: "https://jigsaw.w3.org/HTTP/Basic/")!),
     ]
     
     override func viewDidLoad() {
@@ -48,7 +53,7 @@ class RequestsTableViewController: UITableViewController {
         activityIndicator.startAnimating()
         cell?.accessoryView = activityIndicator
 
-        let dataTask = URLSession.shared.dataTask(with: requestModel.url) { (data, response, error) in
+        let dataTask = urlSession.dataTask(with: requestModel.url) { (data, response, error) in
             DispatchQueue.main.sync {
                 if let httpUrlResponse = response as? HTTPURLResponse {
                     let label = UILabel()
@@ -68,3 +73,13 @@ class RequestsTableViewController: UITableViewController {
     
 }
 
+extension RequestsTableViewController: URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic) {
+            let credential = URLCredential(user: "guest", password: "guest", persistence: .forSession)
+            completionHandler(.useCredential, credential)
+        } else {
+            completionHandler(.performDefaultHandling, nil)
+        }
+    }
+}
