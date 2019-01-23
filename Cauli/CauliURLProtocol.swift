@@ -23,11 +23,11 @@
 import Foundation
 
 internal class CauliURLProtocol: URLProtocol {
-    // We are keeping this as implicitly unwrapped optional so we can initialize it
-    // right after the super.init with self as the delegate
-    // swiftlint:disable implicitly_unwrapped_optional
-    private var executingURLSession: URLSession!
-    // swiftlint:enable implicitly_unwrapped_optional
+    private lazy var executingURLSession: URLSession = {
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
+        return URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+    }()
 
     private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
     private static var delegates: [CauliURLProtocolDelegate] {
@@ -48,10 +48,7 @@ internal class CauliURLProtocol: URLProtocol {
 
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
         record = Record(request)
-        let sessionConfiguration = URLSessionConfiguration.default
-        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
         super.init(request: request, cachedResponse: cachedResponse, client: client)
-        executingURLSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
 }
 
@@ -91,6 +88,7 @@ extension CauliURLProtocol {
 
     override func stopLoading() {
         dataTask?.cancel()
+        invalidateURLSession()
     }
 }
 
@@ -116,6 +114,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     private func urlSession(didCompleteWithError error: Error?) {
+        invalidateURLSession()
         if let error = error {
             record.result = .error(error as NSError)
         }
@@ -176,5 +175,12 @@ extension CauliURLProtocol {
         }, completion: { record in
             completionHandler(record)
         })
+    }
+    
+    /// A CauliURLProtocol instance holds a strong reference to its executingURLSession, which
+    /// itself holds a strong reference to its delegate, the CauliURLProtocol instance.
+    /// To break this retain cycle we have to call the `finishTasksAndInvalidate`.
+    private func invalidateURLSession() {
+        self.executingURLSession.finishTasksAndInvalidate()
     }
 }
