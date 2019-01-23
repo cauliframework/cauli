@@ -23,7 +23,11 @@
 import Foundation
 
 internal class CauliURLProtocol: URLProtocol {
-    private var executingURLSession: URLSession?
+    private lazy var executingURLSession: URLSession = {
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
+        return URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+    }()
 
     private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
     private static var delegates: [CauliURLProtocolDelegate] {
@@ -44,10 +48,7 @@ internal class CauliURLProtocol: URLProtocol {
 
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
         record = Record(request)
-        let sessionConfiguration = URLSessionConfiguration.default
-        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
         super.init(request: request, cachedResponse: cachedResponse, client: client)
-        executingURLSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
 }
 
@@ -79,7 +80,7 @@ extension CauliURLProtocol {
             } else if case let .error(error)? = record.result {
                 self.urlSession(didCompleteWithError: error)
             } else {
-                self.dataTask = self.executingURLSession?.dataTask(with: self.record.designatedRequest)
+                self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
                 self.dataTask?.resume()
             }
         }
@@ -180,6 +181,6 @@ extension CauliURLProtocol {
     /// itself holds a strong reference to its delegate, the CauliURLProtocol instance.
     /// To break this retain cycle we have to call the `finishTasksAndInvalidate`.
     private func invalidateURLSession() {
-        self.executingURLSession?.finishTasksAndInvalidate()
+        self.executingURLSession.finishTasksAndInvalidate()
     }
 }
