@@ -7,8 +7,8 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 
 ## Features
 
-* Hook into the URLLoadingSystem via plugins (we call them Florets)
-* Easily use one of our [existing Florets](link_to_florets) to manipulate your network traffic or
+* Hook into the URL Loading System via plugins (we call them Florets)
+* Easily use one of our [existing Florets](https://cauli.works/docs/florets.html) to manipulate your network traffic or
 * [Write your own Floret](https://cauli.works/docs/writing-your-own-plugin.html) to modify requests or responses accordingly to your needs
 * Use our human readable file format to share your network traffic
 
@@ -17,7 +17,7 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 * Use the [InspectorFloret](https://cauli.works/docs/florets.html#InspectorFloret) to browse through your network traffic
 * Suppress the network cache with the [NoCacheFloret](https://cauli.works/docs/florets.html#NoCacheFloret)
 * Mock your UnitTests with the [MockFloret](https://cauli.works/docs/florets.html#MockFloret)
-* Switch between live and staging backends by rewriting your request URLs with out [FindReplaceFloret](https://cauli.works/docs/florets.html#FindReplaceFloret)
+* Switch between live and staging backends by rewriting your request URLs with our [FindReplaceFloret](https://cauli.works/docs/florets.html#FindReplaceFloret)
 
 ## Getting Started
 
