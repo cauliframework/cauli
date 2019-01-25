@@ -1,11 +1,23 @@
 # ![Cauli](https://cauli.works/logo.png)
 
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauli.svg?style=flat-square)](https://cocoapods.org/pods/Cauli) 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauli.svg?style=flat-square)](https://cocoapods.org/pods/Cauli)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/cauliframework/cauli/blob/develop/LICENSE)
 
 Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests.
 
-**Cauli is designed for developing purposes. Even if it doesn't use any private API we recommend against using it in a production environment.**
+## Features
+
+* Hook into the URLLoadingSystem via plugins (we call them Florets)
+* Easily use one of our [existing Florets](link_to_florets) to manipulate your network traffic or
+* [Write your own Floret](https://cauli.works/docs/writing-your-own-plugin.html) to modify requests or responses accordingly to your needs
+* Use our human readable file format to share your network traffic
+
+## Example of usage
+
+* Use the [InspectorFloret](https://cauli.works/docs/florets.html#InspectorFloret) to browse through your network traffic
+* Suppress the network cache with the [NoCacheFloret](https://cauli.works/docs/florets.html#NoCacheFloret)
+* Mock your UnitTests with the [MockFloret](https://cauli.works/docs/florets.html#MockFloret)
+* Switch between live and staging backends by rewriting your request URLs with out [FindReplaceFloret](https://cauli.works/docs/florets.html#FindReplaceFloret)
 
 ## Getting Started
 
@@ -18,7 +30,7 @@ Use the following in your Podfile.
 pod 'Cauli', '~> 1.0'
 ```
 
-Then run `pod install`. 
+Then run `pod install`.
 
 #### Carthage
 
@@ -50,6 +62,7 @@ This will configure Cauli to hook into every request, setup the core florets (pl
 
 * [Architecture](https://cauli.works/docs/architecture.html)
 * [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
+* [Florets](https://cauli.works/docs/florets.html)
 * [Writing Your Own Plugin](https://cauli.works/docs/writing-your-own-plugin.html)
 * [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
