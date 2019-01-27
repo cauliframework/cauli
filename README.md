@@ -15,7 +15,7 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 Use the following in your Podfile.
 
 ```ruby
-pod 'Cauli', '~> 1.0'
+pod 'Cauli', git: 'https://github.com/cauliframework/cauli.git', branch: 'develop'
 ```
 
 Then run `pod install`. 
