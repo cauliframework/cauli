@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
   s.name         = "Cauli"
-  s.version      = "1.0.0"
+  s.version      = "0.9"
   s.summary      = "Helps you to intercept network requests. (under development)"
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
