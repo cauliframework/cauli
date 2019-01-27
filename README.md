@@ -3,21 +3,21 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauli.svg?style=flat-square)](https://cocoapods.org/pods/Cauli)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/cauliframework/cauli/blob/develop/LICENSE)
 
-Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests.
+Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests. It provides a wide range of possibilities. For example from [inspecting](https://cauli.works/docs/florets.html#InspectorFloret) network traffic to [mock](https://cauli.works/docs/florets.html#MockFloret) UnitTests. Missing something fancy? How about [writing your own Plugin](https://cauli.works/docs/writing-your-own-plugin.html).
 
 ## Features
 
-* Hook into the URL Loading System via plugins (we call them Florets)
-* Easily use one of our [existing Florets](https://cauli.works/docs/florets.html) to manipulate your network traffic or
-* [Write your own Floret](https://cauli.works/docs/writing-your-own-plugin.html) to modify requests or responses accordingly to your needs
-* Use our human readable file format to share your network traffic
+🌏 Hooks into the [URL Loading System](https://cauli.works/docs/frequently-asked-questions.html)  
+🧩 [Existing](https://cauli.works/docs/florets.html) set of Plugins (Florets)  
+🔧 [Extensible](https://cauli.works/docs/writing-your-own-plugin.html) Plugin Infrastructure
 
-## Example of usage
+### Documentation
 
-* Use the [InspectorFloret](https://cauli.works/docs/florets.html#InspectorFloret) to browse through your network traffic
-* Suppress the network cache with the [NoCacheFloret](https://cauli.works/docs/florets.html#NoCacheFloret)
-* Mock your UnitTests with the [MockFloret](https://cauli.works/docs/florets.html#MockFloret)
-* Switch between live and staging backends by rewriting your request URLs with our [FindReplaceFloret](https://cauli.works/docs/florets.html#FindReplaceFloret)
+* [Architecture](https://cauli.works/docs/architecture.html)
+* [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
+* [Plugins / Florets](https://cauli.works/docs/florets.html)
+* [Writing Your Own Plugin / Floret](https://cauli.works/docs/writing-your-own-plugin.html)
+* [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
 ## Getting Started
 
@@ -57,14 +57,6 @@ public class AppDelegate: UIApplicationDelegate {
 ```
 
 This will configure Cauli to hook into every request, setup the core florets (plugins) ([InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html)) and configures a shake gesture for the Cauli UI.
-
-### Documentation
-
-* [Architecture](https://cauli.works/docs/architecture.html)
-* [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
-* [Florets](https://cauli.works/docs/florets.html)
-* [Writing Your Own Plugin](https://cauli.works/docs/writing-your-own-plugin.html)
-* [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
 ## Contributing
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details.
