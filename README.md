@@ -1,11 +1,23 @@
 # ![Cauli](https://cauli.works/logo.png)
 
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauli.svg?style=flat-square)](https://cocoapods.org/pods/Cauli) 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauli.svg?style=flat-square)](https://cocoapods.org/pods/Cauli)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/cauliframework/cauli/blob/develop/LICENSE)
 
-Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests.
+Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests. It provides a wide range of possibilities. For example from [inspecting](https://cauli.works/docs/florets.html#InspectorFloret) network traffic to [mock](https://cauli.works/docs/florets.html#MockFloret) UnitTests. Missing something fancy? How about [writing your own Plugin](https://cauli.works/docs/writing-your-own-plugin.html).
 
-**Cauli is designed for developing purposes. Even if it doesn't use any private API we recommend against using it in a production environment.**
+## Features
+
+🌏 Hooks into the [URL Loading System](https://cauli.works/docs/frequently-asked-questions.html)  
+🧩 [Existing](https://cauli.works/docs/florets.html) set of Plugins (Florets)  
+🔧 [Extensible](https://cauli.works/docs/writing-your-own-plugin.html) Plugin Infrastructure
+
+### Documentation
+
+* [Architecture](https://cauli.works/docs/architecture.html)
+* [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
+* [Plugins / Florets](https://cauli.works/docs/florets.html)
+* [Writing Your Own Plugin / Floret](https://cauli.works/docs/writing-your-own-plugin.html)
+* [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
 ## Getting Started
 
@@ -18,7 +30,7 @@ Use the following in your Podfile.
 pod 'Cauli', git: 'https://github.com/cauliframework/cauli.git', branch: 'develop'
 ```
 
-Then run `pod install`. 
+Then run `pod install`.
 
 #### Carthage
 
@@ -45,13 +57,6 @@ public class AppDelegate: UIApplicationDelegate {
 ```
 
 This will configure Cauli to hook into every request, setup the core florets (plugins) ([InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html)) and configures a shake gesture for the Cauli UI.
-
-### Documentation
-
-* [Architecture](https://cauli.works/docs/architecture.html)
-* [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
-* [Writing Your Own Plugin](https://cauli.works/docs/writing-your-own-plugin.html)
-* [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
 ## Contributing
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details.
