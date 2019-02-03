@@ -1,5 +1,5 @@
 PODS:
-  - Cauli (1.0.0)
+  - Cauli (0.9)
 
 DEPENDENCIES:
   - Cauli (from `../../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Cauli: d6afd4690e804fb04093580a82bac941e9f788d4
+  Cauli: 201e4f4bebcd499aff3c40429494e37251f7f709
 
 PODFILE CHECKSUM: 50ca0e49e1eed9464b816e12b566a594c7030d90
 
