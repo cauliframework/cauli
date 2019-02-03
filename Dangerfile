@@ -15,3 +15,9 @@ has_readme_updates = git.modified_files.include?("README.md")
 if has_pod_changes && !has_readme_updates && !declared_trivial
   warn("Are there any changes that should be explained in the `README.md`?")
 end
+
+
+# Perform swiftlint and comment violations inline
+swiftlint.config_file = '.swiftlint.yml'
+swiftlint.verbose = true
+swiftlint.lint_files inline_mode: true
