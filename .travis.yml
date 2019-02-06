@@ -1,0 +1,22 @@
+language: objective-c
+osx_image: xcode10.1
+
+before_install:
+  - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
+
+install:
+  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install danger
+  - cd $TRAVIS_BUILD_DIR
+
+script:
+  # These exports are a workaround for a cocoapod issue: https://github.com/CocoaPods/CocoaPods/issues/7708
+  - export EXPANDED_CODE_SIGN_IDENTITY=""
+  - export EXPANDED_CODE_SIGN_IDENTITY_NAME=""
+  - export EXPANDED_PROVISIONING_PROFILE=""
+  - rake test
+
+before_script:
+  - export LANG=en_US.UTF-8
+  - danger
