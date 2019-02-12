@@ -18,6 +18,7 @@
 		1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */; };
 		1F23D35521EBCBD300D6E316 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D35321EBCBD300D6E316 /* CHANGELOG.md */; };
 		1F23D35621EBCBD300D6E316 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D35421EBCBD300D6E316 /* README.md */; };
+		1F45CF1D221338D500DA929D /* InspectorTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45CF1C221338D500DA929D /* InspectorTableViewDatasource.swift */; };
 		1F4AE5B021F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4AE5AF21F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift */; };
 		1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F644F49211B620B004C4271 /* WeakReference.swift */; };
 		1F6BB4562163609100D56F4F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BB4552163609100D56F4F /* Configuration.swift */; };
@@ -94,6 +95,7 @@
 		1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your Own Plugin.md"; sourceTree = "<group>"; };
 		1F23D35321EBCBD300D6E316 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		1F23D35421EBCBD300D6E316 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		1F45CF1C221338D500DA929D /* InspectorTableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorTableViewDatasource.swift; sourceTree = "<group>"; };
 		1F4AE5AF21F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliAuthenticationChallengeProxy.swift; sourceTree = "<group>"; };
 		1F644F49211B620B004C4271 /* WeakReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
 		1F6BB4552163609100D56F4F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		1FA4A50621B7C40100F1CA6B /* Record List */ = {
 			isa = PBXGroup;
 			children = (
+				1F45CF1C221338D500DA929D /* InspectorTableViewDatasource.swift */,
 				1FA4A50721B7C40100F1CA6B /* InspectorRecordTableViewCell.swift */,
 				1FA4A50821B7C40100F1CA6B /* InspectorTableViewController.swift */,
 				1FA4A50921B7C40100F1CA6B /* InspectorRecordTableViewCell.xib */,
@@ -671,6 +674,7 @@
 				5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
 				1F4AE5B021F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift in Sources */,
+				1F45CF1D221338D500DA929D /* InspectorTableViewDatasource.swift in Sources */,
 				50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */,
 				1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,

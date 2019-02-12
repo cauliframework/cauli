@@ -27,10 +27,9 @@ internal class InspectorTableViewController: UITableViewController {
     private static let recordPageSize = 20
 
     var cauli: Cauli
-    var records: [Record] = []
+    let dataSource = InspectorTableViewDatasource()
 
     let searchController = UISearchController(searchResultsController: nil)
-    var filteredRecords: [Record]?
 
     init(_ cauli: Cauli) {
         self.cauli = cauli
@@ -45,9 +44,7 @@ internal class InspectorTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Records"
-        let bundle = Bundle(for: InspectorTableViewController.self)
-        let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
-        tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
+        dataSource.setup(tableView: tableView)
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -64,7 +61,8 @@ internal class InspectorTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
+        let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
+        dataSource.append(records: records)
         searchController.searchBar.isHidden = false
     }
 
@@ -73,35 +71,8 @@ internal class InspectorTableViewController: UITableViewController {
         searchController.searchBar.isHidden = true
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let filteredRecords = filteredRecords {
-            return filteredRecords.count
-        }
-        return records.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InspectorRecordTableViewCell.reuseIdentifier, for: indexPath) as? InspectorRecordTableViewCell else {
-            fatalError("Unable to dequeue a cell")
-        }
-        let record: Record
-        if let filteredRecords = filteredRecords {
-            record = filteredRecords[indexPath.row]
-        } else {
-            record = records[indexPath.row]
-        }
-        cell.record = record
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record: Record
-        if let filteredRecords = filteredRecords {
-            record = filteredRecords[indexPath.row]
-        } else {
-            record = records[indexPath.row]
-        }
+        let record = dataSource.record(at: indexPath)
         let recordTableViewController = RecordTableViewController(record)
         navigationController?.pushViewController(recordTableViewController, animated: true)
     }
@@ -110,25 +81,29 @@ internal class InspectorTableViewController: UITableViewController {
     private var isLoading = false
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let distanceToBottom = scrollView.contentSize.height - scrollView.frame.height - scrollView.contentOffset.y
-        guard !scrolledToEnd, !isLoading, distanceToBottom < 100, filteredRecords == nil else { return }
+        guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
         isLoading = true
-        let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: records.last)
+        let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
         if newRecords.isEmpty {
             isLoading = false
             scrolledToEnd = true
         } else if #available(iOS 11, *) {
             tableView.performBatchUpdates({
-                let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0) }
+                let numberOfExistingRecords = dataSource.filteredItems.count
+                let numberOfAddedRecords = dataSource.filter(records: newRecords).count
+                let indexPaths = (numberOfExistingRecords..<(numberOfExistingRecords + numberOfAddedRecords)).map { IndexPath(row: $0, section: 0) }
                 tableView.insertRows(at: indexPaths, with: .bottom)
-                records.append(contentsOf: newRecords)
+                dataSource.append(records: newRecords)
             }, completion: { [weak self] _ in
                 self?.isLoading = false
             })
         } else {
-            let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0) }
+            let numberOfExistingRecords = dataSource.filteredItems.count
+            let numberOfAddedRecords = dataSource.filter(records: newRecords).count
+            let indexPaths = (numberOfExistingRecords..<(numberOfExistingRecords + numberOfAddedRecords)).map { IndexPath(row: $0, section: 0) }
             tableView.beginUpdates()
             tableView.insertRows(at: indexPaths, with: .bottom)
-            records.append(contentsOf: newRecords)
+            dataSource.append(records: newRecords)
             tableView.endUpdates()
             self.isLoading = false
         }
@@ -141,24 +116,27 @@ internal class InspectorTableViewController: UITableViewController {
 extension InspectorTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
-        let strippedSearch = searchController.searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
-        let searchItems = strippedSearch.components(separatedBy: " ") as [String]
-        guard searchItems.first?.isEmpty == false else {
-            filteredRecords = nil
-            return
+        let searchString = searchController.searchBar.text ?? ""
+        let searchTerms = searchString.trimmingCharacters(in: CharacterSet.whitespaces).components(separatedBy: " ")
+        dataSource.filter = filterFor(searchTerms: searchTerms)
+        tableView.reloadData()
+    }
+
+    private func filterFor(searchTerms: [String]) -> InspectorTableViewDatasource.Filter? {
+        if searchTerms.first?.isEmpty ?? true {
+            return nil
         }
-        filteredRecords = records.filter { record in
+        return { record in
             guard let urlString = record.designatedRequest.url?.absoluteString else {
                 return false
             }
-            for item in searchItems {
-                if urlString.range(of: item, options: String.CompareOptions.caseInsensitive) != nil {
+            for term in searchTerms {
+                if urlString.range(of: term, options: String.CompareOptions.caseInsensitive) != nil {
                     return true
                 }
             }
             return false
         }
-        tableView.reloadData()
     }
 
 }
@@ -172,7 +150,7 @@ extension InspectorTableViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        filteredRecords = nil
+        dataSource.filter = nil
         tableView.reloadData()
     }
 
