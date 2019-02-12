@@ -136,6 +136,8 @@ internal class InspectorTableViewController: UITableViewController {
 
 }
 
+// MARK: - UISearchResultsUpdating
+
 extension InspectorTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -160,6 +162,8 @@ extension InspectorTableViewController: UISearchResultsUpdating {
     }
 
 }
+
+// MARK: - UISearchBarDelegate
 
 extension InspectorTableViewController: UISearchBarDelegate {
 
