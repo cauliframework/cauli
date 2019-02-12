@@ -63,6 +63,11 @@ internal class InspectorTableViewController: UITableViewController {
         searchController.searchBar.isHidden = false
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.searchBar.isHidden = true
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let filteredRecords = filteredRecords {
             return filteredRecords.count
@@ -89,7 +94,6 @@ internal class InspectorTableViewController: UITableViewController {
         let record: Record
         if let filteredRecords = filteredRecords {
             record = filteredRecords[indexPath.row]
-            searchController.searchBar.isHidden = true
         } else {
             record = records[indexPath.row]
         }
