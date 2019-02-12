@@ -22,16 +22,16 @@
 
 import UIKit
 
-class InspectorTableViewDatasource: NSObject {
+internal class InspectorTableViewDatasource: NSObject {
 
-    typealias Filter = (Record) -> (Bool)
+    internal typealias Filter = (Record) -> (Bool)
 
-    public private(set) var items: [Record] = [] {
+    internal private(set) var items: [Record] = [] {
         didSet {
             filteredItems = self.filteredItems(in: items, with: filter)
         }
     }
-    public private(set) var filteredItems: [Record] = []
+    internal private(set) var filteredItems: [Record] = []
     var filter: Filter? {
         didSet {
             filteredItems = self.filteredItems(in: items, with: filter)
@@ -43,25 +43,25 @@ class InspectorTableViewDatasource: NSObject {
         return array.filter(filter)
     }
 
-    public func filter(records: [Record]) -> [Record] {
+    internal func filter(records: [Record]) -> [Record] {
         return filteredItems(in: records, with: filter)
     }
 
-    public func append(records: [Record]) {
+    internal func append(records: [Record]) {
         items += records
     }
 
 }
 
 extension InspectorTableViewDatasource: UITableViewDataSource {
-    public func setup(tableView: UITableView) {
+    internal func setup(tableView: UITableView) {
         tableView.dataSource = self
         let bundle = Bundle(for: InspectorTableViewController.self)
         let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
     }
 
-    public func record(at indexPath: IndexPath) -> Record {
+    internal func record(at indexPath: IndexPath) -> Record {
         return filteredItems[indexPath.row]
     }
 
