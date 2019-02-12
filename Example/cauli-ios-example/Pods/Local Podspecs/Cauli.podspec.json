@@ -1,6 +1,6 @@
 {
   "name": "Cauli",
-  "version": "1.0.0",
+  "version": "0.9",
   "summary": "Helps you to intercept network requests. (under development)",
   "description": "under development",
   "homepage": "https://github.com/brototyp/cauli",
@@ -19,7 +19,7 @@
   },
   "source": {
     "git": "https://github.com/brototyp/cauli.git",
-    "branch": "1.0.0"
+    "branch": "0.9"
   },
   "source_files": [
     "Cauli",
