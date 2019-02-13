@@ -20,7 +20,7 @@
 //  THE SOFTWARE.
 //
 
-@testable import Cauli
+@testable import Cauliframework
 import Foundation
 
 class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {

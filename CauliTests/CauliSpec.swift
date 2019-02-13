@@ -20,7 +20,7 @@
 //  THE SOFTWARE.
 //
 
-import Cauli
+import Cauliframework
 import Foundation
 import Quick
 import Nimble
