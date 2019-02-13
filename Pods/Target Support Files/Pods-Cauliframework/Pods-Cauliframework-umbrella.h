@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CauliTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CauliTestsVersionString[];
+FOUNDATION_EXPORT double Pods_CauliframeworkVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_CauliframeworkVersionString[];
 

@@ -1,0 +1,6 @@
+framework module Pods_Cauliframework {
+  umbrella header "Pods-Cauliframework-umbrella.h"
+
+  export *
+  module * { export * }
+}
