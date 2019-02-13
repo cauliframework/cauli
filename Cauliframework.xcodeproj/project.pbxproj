@@ -42,7 +42,7 @@
 		1FBE790521A1A271004C81A7 /* InspectorFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790421A1A271004C81A7 /* InspectorFloret.swift */; };
 		1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790C21A1A572004C81A7 /* TagLabel.swift */; };
 		1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */; };
-		1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauli.framework */; };
+		1FE3F72F20F64A2B00233C7C /* Cauliframework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauliframework.framework */; };
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
@@ -118,10 +118,10 @@
 		1FBE790421A1A271004C81A7 /* InspectorFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorFloret.swift; sourceTree = "<group>"; };
 		1FBE790C21A1A572004C81A7 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
-		1FE3F72520F64A2B00233C7C /* Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FE3F72520F64A2B00233C7C /* Cauliframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cauliframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE3F72820F64A2B00233C7C /* Cauli.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cauli.h; sourceTree = "<group>"; };
 		1FE3F72920F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FE3F72E20F64A2B00233C7C /* CauliframeworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CauliframeworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */,
+				1FE3F72F20F64A2B00233C7C /* Cauliframework.framework in Frameworks */,
 				317C396950BAD8931F358E52 /* Pods_CauliTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,8 +275,8 @@
 		1FE3F72620F64A2B00233C7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1FE3F72520F64A2B00233C7C /* Cauli.framework */,
-				1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */,
+				1FE3F72520F64A2B00233C7C /* Cauliframework.framework */,
+				1FE3F72E20F64A2B00233C7C /* CauliframeworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -443,9 +443,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1FE3F72420F64A2B00233C7C /* Cauli */ = {
+		1FE3F72420F64A2B00233C7C /* Cauliframework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauli" */;
+			buildConfigurationList = 1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauliframework" */;
 			buildPhases = (
 				716A9A1650321B129CC47DC2 /* [CP] Check Pods Manifest.lock */,
 				1FE3F72020F64A2B00233C7C /* Headers */,
@@ -458,14 +458,14 @@
 			);
 			dependencies = (
 			);
-			name = Cauli;
+			name = Cauliframework;
 			productName = Cauli;
-			productReference = 1FE3F72520F64A2B00233C7C /* Cauli.framework */;
+			productReference = 1FE3F72520F64A2B00233C7C /* Cauliframework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		1FE3F72D20F64A2B00233C7C /* CauliTests */ = {
+		1FE3F72D20F64A2B00233C7C /* CauliframeworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliTests" */;
+			buildConfigurationList = 1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliframeworkTests" */;
 			buildPhases = (
 				22A1E842CEF8945234C5296B /* [CP] Check Pods Manifest.lock */,
 				1FE3F72A20F64A2B00233C7C /* Sources */,
@@ -478,9 +478,9 @@
 			dependencies = (
 				1FE3F73120F64A2B00233C7C /* PBXTargetDependency */,
 			);
-			name = CauliTests;
+			name = CauliframeworkTests;
 			productName = CauliTests;
-			productReference = 1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */;
+			productReference = 1FE3F72E20F64A2B00233C7C /* CauliframeworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -502,7 +502,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauli" */;
+			buildConfigurationList = 1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauliframework" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -514,8 +514,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1FE3F72420F64A2B00233C7C /* Cauli */,
-				1FE3F72D20F64A2B00233C7C /* CauliTests */,
+				1FE3F72420F64A2B00233C7C /* Cauliframework */,
+				1FE3F72D20F64A2B00233C7C /* CauliframeworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -702,7 +702,7 @@
 /* Begin PBXTargetDependency section */
 		1FE3F73120F64A2B00233C7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1FE3F72420F64A2B00233C7C /* Cauli */;
+			target = 1FE3F72420F64A2B00233C7C /* Cauliframework */;
 			targetProxy = 1FE3F73020F64A2B00233C7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -922,7 +922,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauli" */ = {
+		1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauliframework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1FE3F73720F64A2B00233C7C /* Debug */,
@@ -931,7 +931,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauli" */ = {
+		1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauliframework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1FE3F73A20F64A2B00233C7C /* Debug */,
@@ -940,7 +940,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliTests" */ = {
+		1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliframeworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1FE3F73D20F64A2B00233C7C /* Debug */,

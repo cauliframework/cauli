@@ -20,7 +20,7 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
 /// A Displayable provides a ViewController for settings or to display any information.
 /// It usually is used in combination with a Floret

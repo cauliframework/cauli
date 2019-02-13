@@ -20,7 +20,7 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
 /// The Cauli class is the starting point of the Cauli framework.
 /// Use the perconfigured `Cauli.shared` or create your own instance.

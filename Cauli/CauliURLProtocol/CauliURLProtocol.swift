@@ -184,7 +184,7 @@ extension CauliURLProtocol {
             completionHandler(record)
         })
     }
-    
+
     /// A CauliURLProtocol instance holds a strong reference to its executingURLSession, which
     /// itself holds a strong reference to its delegate, the CauliURLProtocol instance.
     /// To break this retain cycle we have to call the `finishTasksAndInvalidate`.
