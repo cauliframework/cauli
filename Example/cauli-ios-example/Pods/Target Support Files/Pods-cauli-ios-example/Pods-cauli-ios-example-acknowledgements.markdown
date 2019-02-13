@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## Cauli
+## Cauliframework
 
 Copyright 2018 Corenlius Horstmann and Pascal Stüdlein
 

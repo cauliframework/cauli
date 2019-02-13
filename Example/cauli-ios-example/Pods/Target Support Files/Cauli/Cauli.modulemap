@@ -1,6 +1,0 @@
-framework module Cauli {
-  umbrella header "Cauli-umbrella.h"
-
-  export *
-  module * { export * }
-}

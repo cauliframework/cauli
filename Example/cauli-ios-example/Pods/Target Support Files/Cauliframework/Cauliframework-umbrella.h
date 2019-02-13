@@ -12,6 +12,6 @@
 
 #import "Cauli.h"
 
-FOUNDATION_EXPORT double CauliVersionNumber;
-FOUNDATION_EXPORT const unsigned char CauliVersionString[];
+FOUNDATION_EXPORT double CauliframeworkVersionNumber;
+FOUNDATION_EXPORT const unsigned char CauliframeworkVersionString[];
 

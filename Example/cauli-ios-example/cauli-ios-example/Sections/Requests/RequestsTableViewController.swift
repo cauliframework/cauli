@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cauli
+import Cauliframework
 
 class RequestsTableViewController: UITableViewController {
     

@@ -222,11 +222,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Cauli/Cauli.framework",
+				"${BUILT_PRODUCTS_DIR}/Cauliframework/Cauliframework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cauli.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cauliframework.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
