@@ -27,7 +27,7 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 Use the following in your Podfile.
 
 ```ruby
-pod 'Cauli', git: 'https://github.com/cauliframework/cauli.git', branch: 'develop'
+pod 'Cauliframework', git: 'https://github.com/cauliframework/cauli.git', branch: 'develop'
 ```
 
 Then run `pod install`.
@@ -42,10 +42,10 @@ github "cauliframework/cauli"
 
 ### Setup
 
-Add an `import Cauli` to your `AppDelegate` and call the `run` function on the shared instace in the `application(:, didFinishLaunchingWithOptions:)`.
+Add an `import Cauliframework` to your `AppDelegate` and call the `run` function on the shared instace in the `application(:, didFinishLaunchingWithOptions:)`.
 
 ```swift
-import Cauli
+import Cauliframework
 
 public class AppDelegate: UIApplicationDelegate {
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
