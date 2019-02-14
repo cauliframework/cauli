@@ -103,20 +103,8 @@ extension InspectorTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""
-        dataSource.filter = filterFor(searchString: searchString)
+        dataSource.filterString = searchString
         tableView.reloadData()
-    }
-
-    private func filterFor(searchString: String) -> InspectorTableViewDatasource.Filter? {
-        if searchString.isEmpty {
-            return nil
-        }
-        return { record in
-            guard let urlString = record.designatedRequest.url?.absoluteString else {
-                return false
-            }
-            return urlString.range(of: searchString, options: String.CompareOptions.caseInsensitive) != nil
-        }
     }
 
 }
@@ -130,7 +118,7 @@ extension InspectorTableViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        dataSource.filter = nil
+        dataSource.filterString = nil
         tableView.reloadData()
     }
 
