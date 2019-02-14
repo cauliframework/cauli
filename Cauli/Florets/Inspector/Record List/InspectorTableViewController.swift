@@ -29,7 +29,16 @@ internal class InspectorTableViewController: UITableViewController {
     var cauli: Cauli
     let dataSource = InspectorTableViewDatasource()
 
-    let searchController = UISearchController(searchResultsController: nil)
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.autocorrectionType = .no
+        return searchController
+    }()
 
     init(_ cauli: Cauli) {
         self.cauli = cauli
@@ -46,12 +55,6 @@ internal class InspectorTableViewController: UITableViewController {
         title = "Records"
         dataSource.setup(tableView: tableView)
         definesPresentationContext = true
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.autocorrectionType = .no
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         } else {
