@@ -24,15 +24,13 @@ import UIKit
 
 internal class InspectorTableViewDatasource: NSObject {
 
-    private typealias Filter = (Record) -> (Bool)
-
     internal private(set) var items: [Record] = [] {
         didSet {
             filteredItems = self.filteredItems(in: items, with: filter)
         }
     }
     internal private(set) var filteredItems: [Record] = []
-    private var filter: Filter? {
+    private var filter: RecordSelector? {
         didSet {
             filteredItems = self.filteredItems(in: items, with: filter)
         }
@@ -43,9 +41,9 @@ internal class InspectorTableViewDatasource: NSObject {
         }
     }
 
-    private func filteredItems(in array: [Record], with filter: Filter?) -> [Record] {
+    private func filteredItems(in array: [Record], with filter: RecordSelector?) -> [Record] {
         guard let filter = filter else { return array }
-        return array.filter(filter)
+        return array.filter(filter.selects)
     }
     
     private func updateFilter(with filterString: String?) {
@@ -53,12 +51,12 @@ internal class InspectorTableViewDatasource: NSObject {
             filter = nil
             return
         }
-        filter = { record in
+        filter = RecordSelector(selects: { record in
             guard let urlString = record.designatedRequest.url?.absoluteString else {
                 return false
             }
             return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil
-        }
+        })
     }
 
     private func filter(records: [Record]) -> [Record] {
