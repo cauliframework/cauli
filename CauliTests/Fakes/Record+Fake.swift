@@ -21,7 +21,7 @@
 //
 
 import Foundation
-@testable import Cauli
+@testable import Cauliframework
 
 extension Record {
     static func fake() -> Record {

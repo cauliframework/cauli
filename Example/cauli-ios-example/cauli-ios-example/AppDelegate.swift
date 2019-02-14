@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cauli
+import Cauliframework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

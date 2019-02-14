@@ -1,4 +1,4 @@
-module: Cauli
+module: Cauliframework
 author_url: https://cauli.works
 github_url: https://github.com/cauliframework/cauli
 output: docs/generated

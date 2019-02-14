@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "Cauli.h"
 
-FOUNDATION_EXPORT double CauliVersionNumber;
-FOUNDATION_EXPORT const unsigned char CauliVersionString[];
+FOUNDATION_EXPORT double Pods_CauliframeworkTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_CauliframeworkTestsVersionString[];
 

@@ -1,16 +1,16 @@
 PODS:
-  - Cauli (0.9)
+  - Cauliframework (0.9)
 
 DEPENDENCIES:
-  - Cauli (from `../../`)
+  - Cauliframework (from `../../`)
 
 EXTERNAL SOURCES:
-  Cauli:
+  Cauliframework:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Cauli: 201e4f4bebcd499aff3c40429494e37251f7f709
+  Cauliframework: 8e69d2c1608cc061acf050891d15c40b9e8c0a6c
 
-PODFILE CHECKSUM: 50ca0e49e1eed9464b816e12b566a594c7030d90
+PODFILE CHECKSUM: 6aa874b392e490b17f77e20dbd808153ee0fbd15
 
 COCOAPODS: 1.5.3

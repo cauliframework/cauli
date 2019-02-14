@@ -25,7 +25,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>Cauli</string>
+			<string>Cauliframework</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
