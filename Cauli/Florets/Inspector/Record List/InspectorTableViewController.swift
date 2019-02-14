@@ -62,7 +62,7 @@ internal class InspectorTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
-        dataSource.append(records: records)
+        dataSource.append(records: records, to: tableView)
         searchController.searchBar.isHidden = false
     }
 
@@ -84,29 +84,15 @@ internal class InspectorTableViewController: UITableViewController {
         guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
         isLoading = true
         let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
-        if newRecords.isEmpty {
+        guard !newRecords.isEmpty  else {
             isLoading = false
             scrolledToEnd = true
-        } else if #available(iOS 11, *) {
-            tableView.performBatchUpdates({
-                let numberOfExistingRecords = dataSource.filteredItems.count
-                let numberOfAddedRecords = dataSource.filter(records: newRecords).count
-                let indexPaths = (numberOfExistingRecords..<(numberOfExistingRecords + numberOfAddedRecords)).map { IndexPath(row: $0, section: 0) }
-                tableView.insertRows(at: indexPaths, with: .bottom)
-                dataSource.append(records: newRecords)
-            }, completion: { [weak self] _ in
-                self?.isLoading = false
-            })
-        } else {
-            let numberOfExistingRecords = dataSource.filteredItems.count
-            let numberOfAddedRecords = dataSource.filter(records: newRecords).count
-            let indexPaths = (numberOfExistingRecords..<(numberOfExistingRecords + numberOfAddedRecords)).map { IndexPath(row: $0, section: 0) }
-            tableView.beginUpdates()
-            tableView.insertRows(at: indexPaths, with: .bottom)
-            dataSource.append(records: newRecords)
-            tableView.endUpdates()
-            self.isLoading = false
+            return
         }
+        
+        dataSource.append(records: newRecords, to: tableView, completion: { [weak self] _ in
+            self?.isLoading = false
+        })
     }
 
 }
