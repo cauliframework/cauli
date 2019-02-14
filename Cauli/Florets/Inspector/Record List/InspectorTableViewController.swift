@@ -103,25 +103,19 @@ extension InspectorTableViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""
-        let searchTerms = searchString.trimmingCharacters(in: CharacterSet.whitespaces).components(separatedBy: " ")
-        dataSource.filter = filterFor(searchTerms: searchTerms)
+        dataSource.filter = filterFor(searchString: searchString)
         tableView.reloadData()
     }
 
-    private func filterFor(searchTerms: [String]) -> InspectorTableViewDatasource.Filter? {
-        if searchTerms.first?.isEmpty ?? true {
+    private func filterFor(searchString: String) -> InspectorTableViewDatasource.Filter? {
+        if searchString.isEmpty {
             return nil
         }
         return { record in
             guard let urlString = record.designatedRequest.url?.absoluteString else {
                 return false
             }
-            for term in searchTerms {
-                if urlString.range(of: term, options: String.CompareOptions.caseInsensitive) != nil {
-                    return true
-                }
-            }
-            return false
+            return urlString.range(of: searchString, options: String.CompareOptions.caseInsensitive) != nil
         }
     }
 
