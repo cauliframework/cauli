@@ -112,7 +112,7 @@ extension InspectorTableViewDatasource: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: InspectorRecordTableViewCell.reuseIdentifier, for: indexPath) as? InspectorRecordTableViewCell else {
             fatalError("Unable to dequeue a cell")
         }
-        cell.record = record(at: indexPath)
+        cell.configure(with: record(at: indexPath), stringToHighlight: filterString)
         cell.accessoryType = .disclosureIndicator
         return cell
     }

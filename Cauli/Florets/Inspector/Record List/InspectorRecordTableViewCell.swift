@@ -40,22 +40,23 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
     @IBOutlet private weak var contentTypeLabel: UILabel!
     @IBOutlet private weak var statusCodeLabel: TagLabel!
 
-    var record: Record? {
-        didSet {
-            if let record = record {
-                load(from: record)
-            }
-        }
-    }
-
-    private func load(from record: Record) {
+    internal func configure(with record: Record, stringToHighlight: String?) {
         if let requestStarted = record.requestStarted {
             timeLabel.text = InspectorRecordTableViewCell.timeFormatter.string(from: requestStarted)
         } else {
             timeLabel.text = ""
         }
         methodLabel.text = record.designatedRequest.httpMethod
-        pathLabel.text = record.designatedRequest.url?.absoluteString
+        let pathString = record.designatedRequest.url?.absoluteString ?? ""
+        let pathAttributedString = NSMutableAttributedString(string: pathString)
+        if let stringToHighlight = stringToHighlight {
+            var rangeToSearch = pathString.startIndex..<pathString.endIndex
+            while let matchingRange = pathString.range(of: stringToHighlight, options: String.CompareOptions.caseInsensitive, range: rangeToSearch) {
+                pathAttributedString.addAttributes([.backgroundColor: UIColor.gray, .foregroundColor: UIColor.white], range: NSRange(matchingRange, in: pathString))
+                rangeToSearch = matchingRange.upperBound..<pathString.endIndex
+            }
+        }
+        pathLabel.attributedText = pathAttributedString
         switch record.result {
         case nil:
             contentTypeLabel.text = ""
