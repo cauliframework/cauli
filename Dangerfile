@@ -8,16 +8,28 @@ warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]" or
 
 has_changelog_updates = git.modified_files.include?("CHANGELOG.md")
 if has_pod_changes && !has_changelog_updates && !declared_trivial
-  fail("Please add a line to the `CHANGELOG.md` since you changed the SDK.")
-  message("You can declare this PR as trivial by adding `\#trivial` to the PR's title.")
+  fail("Please include a CHANGELOG entry to credit yourself! \nYou can find it at /CHANGELOG.md.", :sticky => false)
+  markdown <<-MARKDOWN
+### Example CHANGELOG entry
+
+```markdown
+* **feature/improvement/bugfix** #{github.pr_title}\s\s
+  [#issue_number](https://github.com/cauliframework/cauli/issues/issue_number) by @#{github.pr_author}  
+```
+
+  MARKDOWN
+
+  markdown <<-MARKDOWN
+### Trivial PR?
+
+If you think you PR is trivial and neither a CHANGELOG entry nor a README update is necessary, you can add a `#trivial` to your PR title. The bot will pick that up and will not warn about a missing CHANGELOG or README entry.
+  MARKDOWN
 end
 
 has_readme_updates = git.modified_files.include?("README.md")
 if has_pod_changes && !has_readme_updates && !declared_trivial
   warn("Are there any changes that should be explained in the `README.md`?")
-  message("You can declare this PR as trivial by adding `\#trivial` to the PR's title.")
 end
-
 
 # Perform swiftlint and comment violations inline
 swiftlint.config_file = '.swiftlint.yml'
