@@ -22,7 +22,7 @@ if has_pod_changes && !has_changelog_updates && !declared_trivial
   markdown <<-MARKDOWN
 ### Trivial PR?
 
-If you think you PR is trivial and neither a CHANGELOG entry nor a README update is necessary, you can add a `#trivial` to your PR title. The bot will pick that up and will not warn about a missing CHANGELOG or README entry.
+If you think your PR is trivial and neither a CHANGELOG entry nor a README update is necessary, you can add a `#trivial` to your PR title. The bot will pick that up and will not warn about a missing CHANGELOG or README entry.
   MARKDOWN
 end
 
