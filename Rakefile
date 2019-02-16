@@ -7,11 +7,11 @@ namespace :test do
 
   desc 'Run the Cauli Unit tests'
   task ios: :prepare do
-    run_tests('Cauli', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=12.1')
+    run_tests('Cauliframework', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=12.1')
     build_failed('iPhone 6, iOS 12.0') unless $?.success?
-    run_tests('Cauli', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=11.4')
+    run_tests('Cauliframework', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=11.4')
     build_failed('iPhone 6, iOS 11.4') unless $?.success?
-    run_tests('Cauli', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=10.3.1')
+    run_tests('Cauliframework', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=10.3.1')
     build_failed('iPhone 6, iOS 10.3.1') unless $?.success?
   end
 
@@ -39,7 +39,7 @@ def run_build(scheme, sdk, destination = 'platform=iOS Simulator,name=iPhone 6,O
 end
 
 def run_tests(scheme, sdk, destination = 'platform=iOS Simulator,name=iPhone 6,OS=12.1')
-  sh("xcodebuild -workspace Cauli.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -destination '#{destination}' -configuration Debug clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
+  sh("xcodebuild -workspace Cauliframework.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -destination '#{destination}' -configuration Debug clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
 end
 
 def build_failed(platform)

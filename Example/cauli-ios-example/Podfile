@@ -6,5 +6,5 @@ target 'cauli-ios-example' do
   use_frameworks!
 
   # Pods for cauli-ios-example
-  pod 'Cauli', path: '../../'
+  pod 'Cauliframework', path: '../../'
 end

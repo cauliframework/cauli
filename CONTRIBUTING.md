@@ -29,5 +29,5 @@ Somebody will add two eyes to your code and might give some feedback. Got some c
 Checked out the repository and would like some guidance to find your way?
 
 * We are using Cocoapods to manage our two testing dependencies, [Quick](https://github.com/Quick/Quick) and [Nimble](https://github.com/Quick/Nimble).
-* Just open the `Cauli.xcworkspace`. Here you can find all the code that make up Cauli.
+* Just open the `Cauliframework.xcworkspace`. Here you can find all the code that make up Cauli.
 * Have you seen the `Example` folder? In there we added an iOS example application. Open the `cauli-ios-example.xcworkspace` and have a look. You can use the example app to play around, test your changes or sketch out a new idea for a Floret.

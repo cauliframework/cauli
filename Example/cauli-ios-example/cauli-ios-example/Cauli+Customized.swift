@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Cauli
+import Cauliframework
 
 internal extension Cauli {
     static let findReplaceFloret: FindReplaceFloret = {

@@ -35,7 +35,7 @@ public struct RecordSelector {
     }
 }
 
-extension RecordSelector {
+public extension RecordSelector {
     /// Selects every Record.
     ///
     /// - Returns: Returns a RecordSelector where every Record is selected.

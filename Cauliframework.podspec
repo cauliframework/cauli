@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   #  can feel like a chore to fill in it's definitely to your advantage. The
   #  summary should be tweet-length, and the description more in depth.
   #
-  s.name         = "Cauli"
+  s.name         = "Cauliframework"
   s.version      = "0.9"
   s.summary      = "Helps you to intercept network requests. (under development)"
   # This description is used to generate tags and improve search results.

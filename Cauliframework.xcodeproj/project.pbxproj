@@ -43,13 +43,12 @@
 		1FBE790521A1A271004C81A7 /* InspectorFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790421A1A271004C81A7 /* InspectorFloret.swift */; };
 		1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790C21A1A572004C81A7 /* TagLabel.swift */; };
 		1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */; };
-		1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauli.framework */; };
+		1FE3F72F20F64A2B00233C7C /* Cauliframework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE3F72520F64A2B00233C7C /* Cauliframework.framework */; };
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
 		1FFFE7D621AC7C080040B805 /* Record+Fake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D121AC7C080040B805 /* Record+Fake.swift */; };
 		1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */; };
-		317C396950BAD8931F358E52 /* Pods_CauliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2960DA9051B8F9F9C4A11 /* Pods_CauliTests.framework */; };
 		500CE35121F0CE8D00479B98 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CE35021F0CE8D00479B98 /* Displayable.swift */; };
 		5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042C4CF21EBE1B500652AC6 /* CauliViewController.swift */; };
 		5042C4D321EBE1B500652AC6 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5042C4D021EBE1B500652AC6 /* SwitchTableViewCell.xib */; };
@@ -69,7 +68,8 @@
 		50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */; };
 		50E068E821C67E0C00A9DFA8 /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */; };
 		50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E921C67E2300A9DFA8 /* RecordModifier.swift */; };
-		AC30DD398E6EA4B6BE97D62D /* Pods_Cauli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6150F830B00ACA8197E38F4A /* Pods_Cauli.framework */; };
+		6267C31F023357615618E5CD /* Pods_Cauliframework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E132CF77DE7DED9DD5287C2E /* Pods_Cauliframework.framework */; };
+		81AD3C64AE14F4903F0F31DA /* Pods_CauliframeworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE3642FFEA70C12D702093E /* Pods_CauliframeworkTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050B9B8E9B59CC9EA6894B34 /* Pods-CauliframeworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliframeworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauliframeworkTests/Pods-CauliframeworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0A31BB5AF4F25CEDA830FD0E /* Pods-Cauliframework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauliframework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cauliframework/Pods-Cauliframework.debug.xcconfig"; sourceTree = "<group>"; };
 		1B96940CA29D46F2252C5462 /* Pods-Cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.release.xcconfig"; sourceTree = "<group>"; };
 		1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFloretStorage.swift; sourceTree = "<group>"; };
 		1F0EB9DC219DB32300060F28 /* MockFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFloret.swift; sourceTree = "<group>"; };
@@ -120,16 +122,17 @@
 		1FBE790421A1A271004C81A7 /* InspectorFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorFloret.swift; sourceTree = "<group>"; };
 		1FBE790C21A1A572004C81A7 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
-		1FE3F72520F64A2B00233C7C /* Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FE3F72520F64A2B00233C7C /* Cauliframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cauliframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE3F72820F64A2B00233C7C /* Cauli.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cauli.h; sourceTree = "<group>"; };
 		1FE3F72920F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CauliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FE3F72E20F64A2B00233C7C /* CauliframeworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CauliframeworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
 		1FFFE7D121AC7C080040B805 /* Record+Fake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+Fake.swift"; sourceTree = "<group>"; };
 		1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorageSpec.swift; sourceTree = "<group>"; };
 		4313259D01CD824F65FBB0E8 /* Pods-Cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.debug.xcconfig"; sourceTree = "<group>"; };
+		4FE3642FFEA70C12D702093E /* Pods_CauliframeworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauliframeworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500CE35021F0CE8D00479B98 /* Displayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayable.swift; sourceTree = "<group>"; };
 		5042C4CF21EBE1B500652AC6 /* CauliViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliViewController.swift; sourceTree = "<group>"; };
 		5042C4D021EBE1B500652AC6 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -154,7 +157,10 @@
 		6150F830B00ACA8197E38F4A /* Pods_Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6BC86272E2B451AA4475E0 /* Pods-CauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FFD4A99E530B7B60FA9DA0 /* Pods-CauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests.release.xcconfig"; sourceTree = "<group>"; };
+		A50D744C98BA76E64D08C808 /* Pods-Cauliframework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauliframework.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cauliframework/Pods-Cauliframework.release.xcconfig"; sourceTree = "<group>"; };
 		B1B2960DA9051B8F9F9C4A11 /* Pods_CauliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2C8A7A7631197F710F58ED1 /* Pods-CauliframeworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliframeworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauliframeworkTests/Pods-CauliframeworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		E132CF77DE7DED9DD5287C2E /* Pods_Cauliframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cauliframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC30DD398E6EA4B6BE97D62D /* Pods_Cauli.framework in Frameworks */,
+				6267C31F023357615618E5CD /* Pods_Cauliframework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,8 +176,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE3F72F20F64A2B00233C7C /* Cauli.framework in Frameworks */,
-				317C396950BAD8931F358E52 /* Pods_CauliTests.framework in Frameworks */,
+				1FE3F72F20F64A2B00233C7C /* Cauliframework.framework in Frameworks */,
+				81AD3C64AE14F4903F0F31DA /* Pods_CauliframeworkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +284,8 @@
 		1FE3F72620F64A2B00233C7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1FE3F72520F64A2B00233C7C /* Cauli.framework */,
-				1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */,
+				1FE3F72520F64A2B00233C7C /* Cauliframework.framework */,
+				1FE3F72E20F64A2B00233C7C /* CauliframeworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -339,6 +345,10 @@
 				1B96940CA29D46F2252C5462 /* Pods-Cauli.release.xcconfig */,
 				8C6BC86272E2B451AA4475E0 /* Pods-CauliTests.debug.xcconfig */,
 				A3FFD4A99E530B7B60FA9DA0 /* Pods-CauliTests.release.xcconfig */,
+				0A31BB5AF4F25CEDA830FD0E /* Pods-Cauliframework.debug.xcconfig */,
+				A50D744C98BA76E64D08C808 /* Pods-Cauliframework.release.xcconfig */,
+				050B9B8E9B59CC9EA6894B34 /* Pods-CauliframeworkTests.debug.xcconfig */,
+				C2C8A7A7631197F710F58ED1 /* Pods-CauliframeworkTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -428,6 +438,8 @@
 			children = (
 				6150F830B00ACA8197E38F4A /* Pods_Cauli.framework */,
 				B1B2960DA9051B8F9F9C4A11 /* Pods_CauliTests.framework */,
+				E132CF77DE7DED9DD5287C2E /* Pods_Cauliframework.framework */,
+				4FE3642FFEA70C12D702093E /* Pods_CauliframeworkTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -446,9 +458,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1FE3F72420F64A2B00233C7C /* Cauli */ = {
+		1FE3F72420F64A2B00233C7C /* Cauliframework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauli" */;
+			buildConfigurationList = 1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauliframework" */;
 			buildPhases = (
 				716A9A1650321B129CC47DC2 /* [CP] Check Pods Manifest.lock */,
 				1FE3F72020F64A2B00233C7C /* Headers */,
@@ -461,14 +473,14 @@
 			);
 			dependencies = (
 			);
-			name = Cauli;
+			name = Cauliframework;
 			productName = Cauli;
-			productReference = 1FE3F72520F64A2B00233C7C /* Cauli.framework */;
+			productReference = 1FE3F72520F64A2B00233C7C /* Cauliframework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		1FE3F72D20F64A2B00233C7C /* CauliTests */ = {
+		1FE3F72D20F64A2B00233C7C /* CauliframeworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliTests" */;
+			buildConfigurationList = 1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliframeworkTests" */;
 			buildPhases = (
 				22A1E842CEF8945234C5296B /* [CP] Check Pods Manifest.lock */,
 				1FE3F72A20F64A2B00233C7C /* Sources */,
@@ -481,9 +493,9 @@
 			dependencies = (
 				1FE3F73120F64A2B00233C7C /* PBXTargetDependency */,
 			);
-			name = CauliTests;
+			name = CauliframeworkTests;
 			productName = CauliTests;
-			productReference = 1FE3F72E20F64A2B00233C7C /* CauliTests.xctest */;
+			productReference = 1FE3F72E20F64A2B00233C7C /* CauliframeworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -494,7 +506,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = brototyp.de;
+				ORGANIZATIONNAME = cauli.works;
 				TargetAttributes = {
 					1FE3F72420F64A2B00233C7C = {
 						CreatedOnToolsVersion = 10.0;
@@ -505,7 +517,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauli" */;
+			buildConfigurationList = 1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauliframework" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -517,8 +529,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1FE3F72420F64A2B00233C7C /* Cauli */,
-				1FE3F72D20F64A2B00233C7C /* CauliTests */,
+				1FE3F72420F64A2B00233C7C /* Cauliframework */,
+				1FE3F72D20F64A2B00233C7C /* CauliframeworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -577,7 +589,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CauliTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CauliframeworkTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -599,7 +611,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cauli-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Cauliframework-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -614,7 +626,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CauliframeworkTests/Pods-CauliframeworkTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -629,7 +641,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CauliframeworkTests/Pods-CauliframeworkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -706,7 +718,7 @@
 /* Begin PBXTargetDependency section */
 		1FE3F73120F64A2B00233C7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1FE3F72420F64A2B00233C7C /* Cauli */;
+			target = 1FE3F72420F64A2B00233C7C /* Cauliframework */;
 			targetProxy = 1FE3F73020F64A2B00233C7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -834,7 +846,7 @@
 		};
 		1FE3F73A20F64A2B00233C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4313259D01CD824F65FBB0E8 /* Pods-Cauli.debug.xcconfig */;
+			baseConfigurationReference = 0A31BB5AF4F25CEDA830FD0E /* Pods-Cauliframework.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -850,7 +862,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.brototyp.Cauli;
+				PRODUCT_BUNDLE_IDENTIFIER = works.cauli.cauliframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -861,7 +873,7 @@
 		};
 		1FE3F73B20F64A2B00233C7C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B96940CA29D46F2252C5462 /* Pods-Cauli.release.xcconfig */;
+			baseConfigurationReference = A50D744C98BA76E64D08C808 /* Pods-Cauliframework.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -877,7 +889,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.brototyp.Cauli;
+				PRODUCT_BUNDLE_IDENTIFIER = works.cauli.cauliframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -887,7 +899,7 @@
 		};
 		1FE3F73D20F64A2B00233C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C6BC86272E2B451AA4475E0 /* Pods-CauliTests.debug.xcconfig */;
+			baseConfigurationReference = 050B9B8E9B59CC9EA6894B34 /* Pods-CauliframeworkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -897,7 +909,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.brototyp.CauliTests;
+				PRODUCT_BUNDLE_IDENTIFIER = works.cauli.CauliframeworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -906,7 +918,7 @@
 		};
 		1FE3F73E20F64A2B00233C7C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3FFD4A99E530B7B60FA9DA0 /* Pods-CauliTests.release.xcconfig */;
+			baseConfigurationReference = C2C8A7A7631197F710F58ED1 /* Pods-CauliframeworkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -916,7 +928,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.brototyp.CauliTests;
+				PRODUCT_BUNDLE_IDENTIFIER = works.cauli.CauliframeworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -926,7 +938,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauli" */ = {
+		1FE3F71F20F64A2B00233C7C /* Build configuration list for PBXProject "Cauliframework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1FE3F73720F64A2B00233C7C /* Debug */,
@@ -935,7 +947,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauli" */ = {
+		1FE3F73920F64A2B00233C7C /* Build configuration list for PBXNativeTarget "Cauliframework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1FE3F73A20F64A2B00233C7C /* Debug */,
@@ -944,7 +956,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliTests" */ = {
+		1FE3F73C20F64A2B00233C7C /* Build configuration list for PBXNativeTarget "CauliframeworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1FE3F73D20F64A2B00233C7C /* Debug */,
