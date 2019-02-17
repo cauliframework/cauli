@@ -74,17 +74,13 @@ internal class InspectorTableViewDatasource: NSObject {
         }
     }
 
-    private func append(records: [Record]) {
-        items += records
-    }
-    
     internal func append(records: [Record], to tableView: UITableView, completion: ((_ finished: Bool)->Void)? = nil) {
         performBatchUpdate(in: tableView, updates: {
             let numberOfExistingRecords = filteredItems.count
             let numberOfAddedRecords = filter(records: records).count
             let indexPaths = (numberOfExistingRecords..<(numberOfExistingRecords + numberOfAddedRecords)).map { IndexPath(row: $0, section: 0) }
             tableView.insertRows(at: indexPaths, with: .bottom)
-            append(records: records)
+            items += records
         }, completion: completion)
     }
 
