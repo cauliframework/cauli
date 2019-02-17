@@ -24,11 +24,10 @@ import UIKit
 
 internal class ViewControllerShakePresenter {
 
-    private var viewController: (() -> (UIViewController?))
+    private var viewController: ((_ doneBarButtonItem: UIBarButtonItem) -> (UIViewController?))
 
-    init(_ viewController: @escaping () -> (UIViewController?)) {
+    init(_ viewController: @escaping (_ doneBarButtonItem: UIBarButtonItem) -> (UIViewController?)) {
         self.viewController = viewController
-
         self.shakeMotionDidEndObserver = NotificationCenter.default.addObserver(forName: Notification.shakeMotionDidEnd, object: nil, queue: nil) { [weak self] _ in
             self?.toggleViewController()
         }
@@ -50,10 +49,17 @@ internal class ViewControllerShakePresenter {
         if let presentedViewController = presentedViewController,
             presentedViewController.presentingViewController != nil {
             presentedViewController.dismiss(animated: true, completion: nil)
-        } else if let viewController = self.viewController() {
+        } else if let viewController = self.viewController(doneBarButtonItem) {
             presentedViewController = viewController
             presentingViewController?.present(viewController, animated: true, completion: nil)
         }
     }
+    
+    var doneBarButtonItem: UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissPresentedViewController))
+    }
 
+    @objc private func dismissPresentedViewController() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
 }

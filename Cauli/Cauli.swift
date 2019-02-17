@@ -62,8 +62,9 @@ public class Cauli {
 
     private func loadConfiguration(_ configuration: Configuration) {
         if configuration.enableShakeGesture {
-            viewControllerManager = ViewControllerShakePresenter { [weak self] in
+            viewControllerManager = ViewControllerShakePresenter { [weak self] doneBarButtonItem in
                 guard let cauliViewController = self?.viewController() else { return nil }
+                cauliViewController.navigationItem.rightBarButtonItem = doneBarButtonItem
                 let navigationController = UINavigationController(rootViewController: cauliViewController)
                 return navigationController
             }
