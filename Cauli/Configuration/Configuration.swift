@@ -73,7 +73,7 @@ public struct Configuration {
 
     /// Creates a new `Configuration` with the given parameters. Please check the
     /// properties of a `Configuration` for their meaning.
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity, prePersistHook: PrePersistHook?) {
+    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity, prePersistHook: PrePersistHook? = nil) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture
         self.storageCapacity = storageCapacity
