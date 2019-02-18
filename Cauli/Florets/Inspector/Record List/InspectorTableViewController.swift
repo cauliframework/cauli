@@ -27,7 +27,18 @@ internal class InspectorTableViewController: UITableViewController {
     private static let recordPageSize = 20
 
     var cauli: Cauli
-    var records: [Record] = []
+    let dataSource = InspectorTableViewDatasource()
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.autocorrectionType = .no
+        return searchController
+    }()
 
     init(_ cauli: Cauli) {
         self.cauli = cauli
@@ -42,32 +53,29 @@ internal class InspectorTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Records"
-        let bundle = Bundle(for: InspectorTableViewController.self)
-        let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
-        tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
+        dataSource.setup(tableView: tableView)
+        definesPresentationContext = true
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
+        let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
+        dataSource.append(records: records, to: tableView)
+        searchController.searchBar.isHidden = false
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return records.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: InspectorRecordTableViewCell.reuseIdentifier, for: indexPath) as? InspectorRecordTableViewCell else {
-            fatalError("Unable to dequeue a cell")
-        }
-        let record = records[indexPath.row]
-        cell.record = record
-        cell.accessoryType = .disclosureIndicator
-        return cell
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.searchBar.isHidden = true
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let record = records[indexPath.row]
+        let record = dataSource.record(at: indexPath)
         let recordTableViewController = RecordTableViewController(record)
         navigationController?.pushViewController(recordTableViewController, animated: true)
     }
@@ -78,26 +86,43 @@ internal class InspectorTableViewController: UITableViewController {
         let distanceToBottom = scrollView.contentSize.height - scrollView.frame.height - scrollView.contentOffset.y
         guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
         isLoading = true
-        let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: records.last)
-        if newRecords.isEmpty {
+        let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
+        guard !newRecords.isEmpty  else {
             isLoading = false
             scrolledToEnd = true
-        } else if #available(iOS 11, *) {
-            tableView.performBatchUpdates({
-                let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0) }
-                tableView.insertRows(at: indexPaths, with: .bottom)
-                records.append(contentsOf: newRecords)
-            }, completion: { [weak self] _ in
-                self?.isLoading = false
-            })
-        } else {
-            let indexPaths = (records.count..<(records.count + newRecords.count)).map { IndexPath(row: $0, section: 0) }
-            tableView.beginUpdates()
-            tableView.insertRows(at: indexPaths, with: .bottom)
-            records.append(contentsOf: newRecords)
-            tableView.endUpdates()
-            self.isLoading = false
+            return
         }
+        
+        dataSource.append(records: newRecords, to: tableView, completion: { [weak self] _ in
+            self?.isLoading = false
+        })
+    }
+
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension InspectorTableViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchString = searchController.searchBar.text ?? ""
+        dataSource.filterString = searchString
+        tableView.reloadData()
+    }
+
+}
+
+// MARK: - UISearchBarDelegate
+
+extension InspectorTableViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        dataSource.filterString = nil
+        tableView.reloadData()
     }
 
 }
