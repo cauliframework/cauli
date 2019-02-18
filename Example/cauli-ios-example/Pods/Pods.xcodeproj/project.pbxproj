@@ -7,57 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		016CCE1738C150EF84867BBE13BF7FC2 /* UIWindow+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3631D5DD9571DB139DFC5A6D3A4EA /* UIWindow+Shake.swift */; };
-		0AC45E4A31A7C8F6D9865742B16068C3 /* ReplaceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55393F2D89C8D32DCDE5D148445798F /* ReplaceDefinition.swift */; };
-		0C694A629BCBF85D6F04B5B1ECA0711C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C336E49315B6952C7B65301D55D3EF6 /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0D790D5E66C1A9A86CA7EB29119BF30D /* URLResponseRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3B045A26C9D53A9BF354887706EE0 /* URLResponseRepresentable.swift */; };
-		0F475BAD7EE14D4AD6F0B5AFC37D3D0A /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CD6154A0E52AE204B674B3650C1337 /* FindReplaceFloret.swift */; };
-		11E772E905524B7C82A37D65D335000B /* MockFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E7FF0B72120DCD8F1438FA105C420 /* MockFloret.swift */; };
-		1DEB12218F48F4E05DE4F083FE79A893 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B72C6AB326B0BD76D66D9BE4B3E2A44 /* TagLabel.swift */; };
-		20E630F0DE9356C658979DD21613533C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B06FE97AF7F96F917CD61C94196FEB1 /* Record.swift */; };
-		231EC343BFAEF17B00469E1F97A935BE /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8EB240BCC6146C842A7B970EBFC9D3 /* Collection+ReduceAsnyc.swift */; };
-		2377E0660D2A71253FB952BAA9D5E94C /* InspectorFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB58907E7BCEE8C7472C9F696BA60431 /* InspectorFloret.swift */; };
-		301C59F592E3F9E39654B1E24D168877 /* MockRecordSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF68323B751B94951B9DD0BE5ABBC8AD /* MockRecordSerializer.swift */; };
-		31DBC3A23CCB6C5ABAA264408DA433E8 /* InspectorRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF55BFD6285B0AC866DC93E10E02E5 /* InspectorRecordTableViewCell.xib */; };
-		4540FA84579D99E9B93AC9C7675BCCBE /* CauliAuthenticationChallengeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED079A8F8291BE12F9C7E675355534 /* CauliAuthenticationChallengeProxy.swift */; };
-		4636CFEA0263978A27141BABBAD4A454 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFBB1DBD9B080FF6B1952433FD8817 /* CauliURLProtocolDelegate.swift */; };
-		4AE570D89FCEE6F395410392B01D7AF8 /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBEFF66529D2612753656A9B21F97E /* RecordSelector.swift */; };
-		4B2B0335CBD777B5EACF0F6E73F12F1C /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0D737CC40BC8BDBC9602734E7B4327 /* RecordTableViewDatasource.swift */; };
-		4CBC51B01E539018C2D505392D9CAB01 /* SwappedURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CC34A7158EC233AB04573BFC128F0D /* SwappedURLRequest.swift */; };
-		4D970F0F194E00F2EFE5B5CD89C6D564 /* NoCacheFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB69444EBB92BE8D51D7D124C661E5 /* NoCacheFloret.swift */; };
-		546765CD984F109F3D6C112C738770CA /* SwappedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3021C4F98D700120CB8657C2D6A617B /* SwappedResponse.swift */; };
-		5EEA820C7E891D88D7B930BC922A2D47 /* InspectorRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5891DBD72297056242BDD6F2B9D65 /* InspectorRecordTableViewCell.swift */; };
-		66C853ABCB5E0DDBFF9EA438045C9515 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE57B4D33FF746899966FF0BC1EDE26 /* Result.swift */; };
-		66DAB26172A03BEBC1179366A1D1375C /* InspectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2FB9E1E0C50794C9E076ADE65AF98 /* InspectorTableViewController.swift */; };
-		8524DA07A380320B3A0887719BB08101 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3795ED798729869ECB86B37BAE4B0A43 /* WeakReference.swift */; };
+		02A802DE82C644A7F4306CFD519989D8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259F9CC069B564406AB0150EFB280BEF /* Response.swift */; };
+		04E15ECB7664FF3F12E2D54965CDBC54 /* SwappedURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D14CF6ECF477F3451EF5FE773E23A0 /* SwappedURLRequest.swift */; };
+		0C22531915A966AE206EF346C142875A /* InspectorTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6D4F7BE9ACCDBF3D33028F186F6924 /* InspectorTableViewDatasource.swift */; };
+		1201E28BBB2FF5E1C3B2D8A3B8AD8F9D /* CauliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D264757C565552476D0E5931297931 /* CauliViewController.swift */; };
+		1817EB370B530D15EE3B7FAF14239945 /* NSError+Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FB91CE80C9F9AD3ABF980987B6AB2C /* NSError+Cauli.swift */; };
+		2114EC41985A324FE0FD447246562E51 /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE7A264BE162A00A8A2793E6F22AE7 /* CauliURLProtocol.swift */; };
+		23680D7E86C37207B36DC486D4DF69AE /* ViewControllerShakePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E88AEAA045FA7919D6109B6FB0F14F2 /* ViewControllerShakePresenter.swift */; };
+		25E9CBA180CC681663F0A15EABF82B57 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721B56CF34D442F9E8FE8864F1BB153D /* Displayable.swift */; };
+		2863834D232534637F549178E364A468 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33C692ED1D52ACC6558525659DE2DF /* RecordTableViewController.swift */; };
+		28E2A176DA5C83A1DE7DA697446FB2F6 /* UIWindow+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200E3F963F010CE76382878A578FEF0A /* UIWindow+Shake.swift */; };
+		28F0D0997D3F5538A9657986211D3285 /* InspectorFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44847713D20EC9707C95F8E0B6D4268 /* InspectorFloret.swift */; };
+		292153876835B49B8A0290C2D06B01DE /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93AC5D773AF207693409F672599EC6 /* Floret.swift */; };
+		2CDA4BEAF4E85A528503A6044B963DFE /* ReplaceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2350BEA4AE7A23F1A0C05952500E612B /* ReplaceDefinition.swift */; };
+		30657DA7C98DC36FD71909675F9B675F /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A71BA1F1CFD48A122120C00ADD77EF8 /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C4314E57C70D5A45762C32454F4AF04 /* MockFloretStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AA08EC9A7938536A01124090E0DE2C /* MockFloretStorage.swift */; };
+		3FE92D1D79CB9CAC0655C81CA75B4D89 /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD55FC6AB4C9D3FA7B99AA9A5213DA7E /* FindReplaceFloret.swift */; };
+		45142431B4D1FDFD76B602F1421C1947 /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E79260690E58A0BC9B50655118BC9F1 /* Cauli.swift */; };
+		487AFEAFC2CC645A7D72173AFD25232E /* SwappedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8B71B2873F4C9B83D41BB6C1F1289 /* SwappedResponse.swift */; };
+		51C0FA0E51E12388B158014B5E207B96 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E4B434DB94DF7415E92256E664945E /* SwitchTableViewCell.swift */; };
+		61ACF170E82E6EE2CDE811A3EC90EA47 /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720EA41AAD442D6FD5740DF261B9AAE /* RecordTableViewDatasource.swift */; };
+		66B919D0373181A2025DB4CCC272F42D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		6705F3E15A4C69B1FE8D27679DAAF5B1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0A4A0EB906C4061950C4B1E9FDD8E9 /* Configuration.swift */; };
+		689218DEC614B3AFBA9C48FCA4439136 /* InspectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE043FD9C7DD7DB66EEDA6DABBBFB9FB /* InspectorTableViewController.swift */; };
+		6AFD3739981E1BD253151F36ED2A3A06 /* RecordModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E978E98862577993B1404B54C3573A /* RecordModifier.swift */; };
+		6B62348ED032415BEE38FBE03BBB01AA /* URLRequest+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01FAFCA7F4EDF95C8C488D44E72B39 /* URLRequest+Codable.swift */; };
+		7D024A31E6862A2E63B534E98E3E73F9 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE4A81D86FDEF3DD22D3C3F4AF9083 /* Storage.swift */; };
+		7DB8DB4DDA0C4AE9E8983C25697DC0C6 /* Cauliframework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ECFA5AA0DDFC92235005772938336761 /* Cauliframework-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		898DC8D41C430AF2E6E066713BCDB6E5 /* Pods-cauli-ios-example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 20625581CBC9A45DBC310C8BF85F2F8A /* Pods-cauli-ios-example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A945076532D9B4AA3E0B41E84460FF3 /* ViewControllerShakePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DA61D49E773BB7A030D0242B3E3811 /* ViewControllerShakePresenter.swift */; };
-		915444EAAA842AFC122E473874AF131E /* NSError+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE8F91AF92DFAC5F2F40BC90F4F440 /* NSError+Codable.swift */; };
-		9595C1A97FC9467D2CE708C32D60C69D /* Floret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905FC5FCCB3F3434815D4F862531915A /* Floret.swift */; };
+		899310C03763DC0C9EF6A4FC4BA809F5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C559C2A4AF5AC9577CA61651FFCBEDD6 /* Result.swift */; };
+		8CA9517BA37532DE860A23E9EFE66118 /* URLSessionConfiguration+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37B7F3B527FBA17997B984A27031741 /* URLSessionConfiguration+Swizzling.swift */; };
+		954E8FF5A99BED8802B555B668875E0E /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C0C7A3F7301120E249ED546992E36A /* WeakReference.swift */; };
+		987574CC6AE1378D573621A4B19E1B03 /* CauliAuthenticationChallengeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1567637460EF09238B209A56C946A6CE /* CauliAuthenticationChallengeProxy.swift */; };
+		9B35053A4FAF52A38D6E84B3CD6C1545 /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B6254093C7CABA130F96AA3EE0D24 /* RecordSelector.swift */; };
 		9CE544CABD544895D8614498E373761D /* Pods-cauli-ios-example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF1D27466D3F93E74A379195F62D074 /* Pods-cauli-ios-example-dummy.m */; };
-		A214DA86162C6CF30DB5010DECEEA7DD /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A3B9A2B0A9756DA5C3307D9D3B4855 /* Cauli.swift */; };
-		A42710E6538E5DCEA7088D9FBB9F0D7E /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54F0AE1F24F47D47EC7F8AD6E75C8F /* RecordTableViewController.swift */; };
-		A9C88E4888784461C44185ABBB5C8E52 /* Cauliframework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 848B9718D932A71E8AA24E08FD119FF3 /* Cauliframework-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AB4581E10DC7DD61FD6E84E2430DDF43 /* SwappedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643986AA7775C933FF0681DDC3E6FB3 /* SwappedRecord.swift */; };
-		AEB8816E2E5F3AE90F85547FAD7194CD /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE08593C27AFA3C0463ECC6F3298B95 /* Response.swift */; };
-		C47A34A12C73F46BB2B3A8045E878406 /* RecordModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B7E7C78EF3B6CD2A887C23A48202C /* RecordModifier.swift */; };
-		C7AF2055364BF820F1EA7EE32DB72A28 /* CauliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ECFC99672BB14D8CC65B2FE9DAC065 /* CauliViewController.swift */; };
-		C8A510BE59170F592E27E3A5ED57BBB9 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D80525A0D3145A4216F54C928A31076 /* MD5Digest.swift */; };
-		CE94FB9401ADA11BC8502D46A8240FE3 /* URLSessionConfiguration+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CBC89BDFCC0334638EB22548CA2B7D /* URLSessionConfiguration+Swizzling.swift */; };
-		D0BF3DD13C074CF65581F8283B7B6BD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		9DAF724A847D4A6E0DE043D5F69D9A7D /* InspectorRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA61E08A29D9E7D2140FE58E04CCD27B /* InspectorRecordTableViewCell.swift */; };
+		A026F32698A1E9D7D636090E905A5D64 /* CauliURLProtocolDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A32AF41836EB626C5C05A7799CB59D /* CauliURLProtocolDelegate.swift */; };
+		A530920D190BF5CC859A220E4C4F8B87 /* SwappedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CE795A6F86B22184BD9F5C9425F174 /* SwappedRecord.swift */; };
+		A5BD03C45D055149FD29B7AFA53681D2 /* NSError+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FDE78B9C5BD68B8BB35A21D7FB97D6 /* NSError+Codable.swift */; };
+		AA4B6B0569596DCC9D838114B59B6A6A /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF7C7C9170FA94DAD07BD5027EAFAF /* Collection+ReduceAsnyc.swift */; };
+		AB0F017AEB9445B88BF6D6267C5F91DE /* MockFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824E3A6E74834106FADB24B176B495EF /* MockFloret.swift */; };
+		B2C39C840395B37DAF805B4515E31ACE /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296645F2995238354533FF794705EAE /* MemoryStorage.swift */; };
+		BF357B3C9C6B955BAD25AC0EEE93B1ED /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC353BBD9B4DCF16924B8994A94885B9 /* Record.swift */; };
+		C578D009D2D4B553C8EE92B09BFEC75D /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C08326C6BE51604996B2F9842F2EF1 /* RecordItemTableViewCell.swift */; };
+		C96A8DE600DCA73EBC7DA91720D1FF43 /* URLResponseRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D600682648DE09CC519F88F9CA3B291 /* URLResponseRepresentable.swift */; };
 		D144202D1D3854579B2310DCA379D1EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
-		D400E65C7541E175A1410B7F5CF4F2CE /* URLRequest+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8794AE36E003D2D8DB1CB4346BCF4FF /* URLRequest+Codable.swift */; };
-		D7C2974AA6D56705088D08C7FC348F21 /* NSError+Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE261EC32300911323179C929A88C46 /* NSError+Cauli.swift */; };
-		D87F386FCBF59FB3E78D1D4964FFAF12 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B30D52915A127D36878DD5C9BC8996 /* Configuration.swift */; };
-		E1CFB8ED59BF2924799179544B1CF0B1 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4EDA4F6F99A60367E094C9468C81EF /* MemoryStorage.swift */; };
-		EB0A2562C5EE4F92F8580DF527459556 /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096575EBAA2C4B0D7F85C5C3E3686F48 /* CauliURLProtocol.swift */; };
-		EDA94247E0DA3C5933B38DC34AD09071 /* MockFloretStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C96C5D3D2CC12A7AE41584F0AA7D7E6 /* MockFloretStorage.swift */; };
-		EFF19C83F069DF77A87E15F5BB2B573D /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B41F566F0C6ED7BCB27834E5C1B85 /* RecordItemTableViewCell.swift */; };
-		F4F0E5E014CAEA11F2AA9397852C64A1 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465EB664E70B982E4FD76C06CFA7F144 /* SwitchTableViewCell.swift */; };
-		F8398AF0E27EA39BEDADF7A6B70427C6 /* Cauliframework-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B49EA2CD6449B0273C8740DFC6376 /* Cauliframework-dummy.m */; };
-		F9A441499129A98E98CA9750BFE058DD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB4FF80D1EBD3242655144BCE16B76 /* Storage.swift */; };
-		FACC1D58FAE6D60B2692285B775B9556 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE23D94E057B677004F4475B69BE4557 /* Displayable.swift */; };
-		FFF89689ABDD307831FDDCDDB8F676A9 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB17027A8DA95F62A6E146129A7EB56C /* SwitchTableViewCell.xib */; };
+		DAC5F518030103A409FA36BC35BEA123 /* NoCacheFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B89DB9E62CA5090601B68A487E107 /* NoCacheFloret.swift */; };
+		DE9490D2CA66D888F350851E3EE6A693 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31151572D40AE93685B015D68B77E4AD /* MD5Digest.swift */; };
+		E1E368573DCB21909919669A30D6C0D4 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1490C61462A5C4C127C0E43C884A58C3 /* TagLabel.swift */; };
+		E28FE52A7E880264F35DC94034536DA0 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44BE6EC5B4AEC00C221BFFA69773BBB /* SwitchTableViewCell.xib */; };
+		E340A000EF78F5B4758895936D1DA6A2 /* InspectorRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF464E93DF85694C74770ECCA5F9064C /* InspectorRecordTableViewCell.xib */; };
+		F0D08EA15DA2641758E52EA2C4C476C1 /* Cauliframework-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C2C10593BA96908191BD164E0B7D05 /* Cauliframework-dummy.m */; };
+		F17148D8A93955244B9C9D868DDF646F /* MockRecordSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669135D941DD375176FA8B6A2AF1B365 /* MockRecordSerializer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,197 +66,242 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E2DD368982823709218286E8E7BDEBA6;
+			remoteGlobalIDString = E3BD1CFC1FA5EEB98EB4E20BDEDDF3CE;
 			remoteInfo = Cauliframework;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02458BCCF19615E5C6DB94F9F8EFDA5C /* Record.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Record.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/Record.html; sourceTree = "<group>"; };
-		04EB53742DFE3456609274A4583BA950 /* florets.html */ = {isa = PBXFileReference; includeInIndex = 1; name = florets.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/florets.html; sourceTree = "<group>"; };
-		05739C0D550DE54832B34778758FE4C2 /* Configuration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Configuration.html; path = docs/generated/Structs/Configuration.html; sourceTree = "<group>"; };
-		07A114386C18FE4CC5E807FD0E77FA15 /* Result.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Result.html; path = docs/generated/Enums/Result.html; sourceTree = "<group>"; };
-		096575EBAA2C4B0D7F85C5C3E3686F48 /* CauliURLProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
-		0BC82C300E93414CE1F2794C91003879 /* frequently-asked-questions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "frequently-asked-questions.html"; path = "docs/generated/frequently-asked-questions.html"; sourceTree = "<group>"; };
-		0CBE92D50B4103ABB266CE764B00C5EB /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/generated/img/dash.png; sourceTree = "<group>"; };
-		11771DFE6AD4A3324FD5376C1C8AF10F /* Protocols.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Protocols.html; path = docs/generated/Protocols.html; sourceTree = "<group>"; };
-		1475911BEAC3A1D438E3598F763A39BD /* Cauliframework.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Cauliframework.modulemap; sourceTree = "<group>"; };
+		00F2CA21D8FF5A2E9C97175C978C8A4E /* Protocols.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Protocols.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols.html; sourceTree = "<group>"; };
+		022EDBF50A521DDAFD9BFB9E2D209689 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/generated/css/highlight.css; sourceTree = "<group>"; };
+		05C44ACDF155209570E764A1E361AD24 /* Record.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Record.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/Record.html; sourceTree = "<group>"; };
+		06AA08EC9A7938536A01124090E0DE2C /* MockFloretStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockFloretStorage.swift; sourceTree = "<group>"; };
+		06DD101FA7D6967232378465F8C302E2 /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/typeahead.jquery.js; sourceTree = "<group>"; };
+		06E9470F2BFF3595322059BCFC51FCCB /* RecordModifier.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordModifier.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/FindReplaceFloret/RecordModifier.html; sourceTree = "<group>"; };
+		07179F9AD1A355566033993633DDB3CA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		07436439ABEF3F312C140CB5C027D017 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/Cauli.html; sourceTree = "<group>"; };
+		0844C1ADF6DD3A86371BB55DA24AD3FD /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/generated/img/spinner.gif; sourceTree = "<group>"; };
+		0B035086F0E7166E88D52A0EB0B0D6ED /* undocumented.json */ = {isa = PBXFileReference; includeInIndex = 1; name = undocumented.json; path = docs/generated/undocumented.json; sourceTree = "<group>"; };
+		0B375BF323AB3CE9243FB548D5225777 /* Configuration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Configuration.html; path = docs/generated/Structs/Configuration.html; sourceTree = "<group>"; };
+		0C2C90FC1E9E00C5E4A47185A181A498 /* Result.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Result.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Enums/Result.html; sourceTree = "<group>"; };
+		0C890D62C7F932BAB7D7881D2038E64C /* CachePolicy.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CachePolicy.html; path = docs/generated/Extensions/URLRequest/CachePolicy.html; sourceTree = "<group>"; };
+		0CEF7C7C9170FA94DAD07BD5027EAFAF /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
+		0E79260690E58A0BC9B50655118BC9F1 /* Cauli.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cauli.swift; path = Cauli/Cauli.swift; sourceTree = "<group>"; };
+		0F3A040580276F72DA861457304EE643 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/Cauli.html; sourceTree = "<group>"; };
+		0F808BAABD32B29FB55A12D4103147FE /* florets.html */ = {isa = PBXFileReference; includeInIndex = 1; name = florets.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/florets.html; sourceTree = "<group>"; };
+		1204D1786218F9A5CA8FDBC7D81B0756 /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/generated/img/gh.png; sourceTree = "<group>"; };
+		12D14CF6ECF477F3451EF5FE773E23A0 /* SwappedURLRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwappedURLRequest.swift; sourceTree = "<group>"; };
+		1490C61462A5C4C127C0E43C884A58C3 /* TagLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
+		1513629F8F16983C9EEB9ACE8F599DC2 /* configuring-cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "configuring-cauli.html"; path = "docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/configuring-cauli.html"; sourceTree = "<group>"; };
+		1567637460EF09238B209A56C946A6CE /* CauliAuthenticationChallengeProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliAuthenticationChallengeProxy.swift; sourceTree = "<group>"; };
 		15E6CC9220321B05EDD0F54077D11DA6 /* Pods-cauli-ios-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-cauli-ios-example.debug.xcconfig"; sourceTree = "<group>"; };
-		15ECFC99672BB14D8CC65B2FE9DAC065 /* CauliViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliViewController.swift; sourceTree = "<group>"; };
-		1611949CE86B8301DA28B4C83B2A5BAB /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/typeahead.jquery.js; sourceTree = "<group>"; };
-		17B30D52915A127D36878DD5C9BC8996 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		19CBC89BDFCC0334638EB22548CA2B7D /* URLSessionConfiguration+Swizzling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Swizzling.swift"; sourceTree = "<group>"; };
-		1A6571481FEDDF2ECB44C2B2754A1D7D /* Cauliframework.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Cauliframework.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1B06FE97AF7F96F917CD61C94196FEB1 /* Record.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
-		1CB41D2754B9E59DF5871D4F5C6E04B7 /* Cauliframework-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cauliframework-prefix.pch"; sourceTree = "<group>"; };
-		1F2D1A1661EEDDD71F15881A3A4499A5 /* Enums.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Enums.html; path = docs/generated/Enums.html; sourceTree = "<group>"; };
-		1FDBEFF66529D2612753656A9B21F97E /* RecordSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
+		16158063D34071BE1CB0F6E3C82F1E0F /* architecture.html */ = {isa = PBXFileReference; includeInIndex = 1; name = architecture.html; path = docs/generated/architecture.html; sourceTree = "<group>"; };
+		164B6254093C7CABA130F96AA3EE0D24 /* RecordSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
+		16CE795A6F86B22184BD9F5C9425F174 /* SwappedRecord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwappedRecord.swift; sourceTree = "<group>"; };
+		183635EF07F4379E93F2189001FDBDC0 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/img/carat.png; sourceTree = "<group>"; };
+		1A2CA3703871842CCA3CFA95A14513E5 /* CauliURLProtocol.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CauliURLProtocol.html; path = docs/generated/Extensions/CauliURLProtocol.html; sourceTree = "<group>"; };
+		1B263F8B60C00493AEE50C8C6FC5A9CD /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/img/dash.png; sourceTree = "<group>"; };
+		1BB328F216B3111D26C6ABC42A1E483E /* Cauliframework.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Cauliframework.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1C6D4F7BE9ACCDBF3D33028F186F6924 /* InspectorTableViewDatasource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorTableViewDatasource.swift; sourceTree = "<group>"; };
+		1D600682648DE09CC519F88F9CA3B291 /* URLResponseRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = URLResponseRepresentable.swift; sourceTree = "<group>"; };
+		200E3F963F010CE76382878A578FEF0A /* UIWindow+Shake.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIWindow+Shake.swift"; sourceTree = "<group>"; };
 		20625581CBC9A45DBC310C8BF85F2F8A /* Pods-cauli-ios-example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-cauli-ios-example-umbrella.h"; sourceTree = "<group>"; };
-		20A943D4420C0A40AF681958E44CAA72 /* CachePolicy.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CachePolicy.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/URLRequest/CachePolicy.html; sourceTree = "<group>"; };
+		206756C185EC3A0EDA0C6376D4717F65 /* badge.svg */ = {isa = PBXFileReference; includeInIndex = 1; name = badge.svg; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/badge.svg; sourceTree = "<group>"; };
+		21FB91CE80C9F9AD3ABF980987B6AB2C /* NSError+Cauli.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSError+Cauli.swift"; sourceTree = "<group>"; };
+		22F571F36CF77568D58A10B0A4664526 /* Mode.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Mode.html; path = docs/generated/Classes/MockFloret/Mode.html; sourceTree = "<group>"; };
+		2350BEA4AE7A23F1A0C05952500E612B /* ReplaceDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceDefinition.swift; sourceTree = "<group>"; };
 		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		259F9CC069B564406AB0150EFB280BEF /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		2616532739F126C0102749DB1DA9719B /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/css/highlight.css; sourceTree = "<group>"; };
+		27E978E98862577993B1404B54C3573A /* RecordModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordModifier.swift; sourceTree = "<group>"; };
 		290445BC890406DEE2BF586E0406BF3E /* Pods-cauli-ios-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-cauli-ios-example.release.xcconfig"; sourceTree = "<group>"; };
-		2AD7CC510D07EE3C7F9738479A54A05D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B45CD27DE90D064A91273E62EC6EFD7 /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/generated/js/lunr.min.js; sourceTree = "<group>"; };
-		2DAC8A9D4E7FEBE24C09BCCDA5C7D0D7 /* frequently-asked-questions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "frequently-asked-questions.html"; path = "docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/frequently-asked-questions.html"; sourceTree = "<group>"; };
-		31406223E8AA7F1B572426512CEDEE58 /* Enums.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Enums.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Enums.html; sourceTree = "<group>"; };
-		31DA61D49E773BB7A030D0242B3E3811 /* ViewControllerShakePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewControllerShakePresenter.swift; path = Cauli/ViewControllerShakePresenter.swift; sourceTree = "<group>"; };
-		320D2F645C414CF7A943F12259852C9E /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/dash.png; sourceTree = "<group>"; };
-		349A09F26A126066F1503016E72A1D76 /* badge.svg */ = {isa = PBXFileReference; includeInIndex = 1; name = badge.svg; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/badge.svg; sourceTree = "<group>"; };
-		376647A40C0763E6D2ECC98D3C219AC3 /* Frequently Asked Questions.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "Frequently Asked Questions.md"; path = "docs/guides/Frequently Asked Questions.md"; sourceTree = "<group>"; };
-		3795ED798729869ECB86B37BAE4B0A43 /* WeakReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
-		39DE1D8CDB89712A8164F02C13F1FDAC /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/generated/Guides.html; sourceTree = "<group>"; };
-		3AC897835657ED5C25C0B884F12D7A34 /* Structs.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Structs.html; path = docs/generated/Structs.html; sourceTree = "<group>"; };
-		3D5292EC50572C5981429F14B33660D1 /* UIWindow.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIWindow.html; path = docs/generated/Extensions/UIWindow.html; sourceTree = "<group>"; };
-		41F37D5B49B8C7FC8296A2255B7F9B1A /* NoCacheFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NoCacheFloret.html; path = docs/generated/Classes/NoCacheFloret.html; sourceTree = "<group>"; };
-		42A3B9A2B0A9756DA5C3307D9D3B4855 /* Cauli.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cauli.swift; path = Cauli/Cauli.swift; sourceTree = "<group>"; };
-		44A2B3D22E1C424989354DC8F5CA9B95 /* writing-your-own-plugin.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "writing-your-own-plugin.html"; path = "docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/writing-your-own-plugin.html"; sourceTree = "<group>"; };
-		455E7FF0B72120DCD8F1438FA105C420 /* MockFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockFloret.swift; sourceTree = "<group>"; };
-		45892E3A63D4CFBB84F4067CC1DA6A82 /* undocumented.json */ = {isa = PBXFileReference; includeInIndex = 1; name = undocumented.json; path = docs/generated/undocumented.json; sourceTree = "<group>"; };
-		465EB664E70B982E4FD76C06CFA7F144 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
-		48ED079A8F8291BE12F9C7E675355534 /* CauliAuthenticationChallengeProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliAuthenticationChallengeProxy.swift; sourceTree = "<group>"; };
-		493AE28BBE8C8B7455549269326B8C02 /* Response.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Response.html; path = docs/generated/Structs/Response.html; sourceTree = "<group>"; };
-		4BE261EC32300911323179C929A88C46 /* NSError+Cauli.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSError+Cauli.swift"; sourceTree = "<group>"; };
-		4EBF55BFD6285B0AC866DC93E10E02E5 /* InspectorRecordTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = InspectorRecordTableViewCell.xib; sourceTree = "<group>"; };
-		51D03187B1B84763D83743B828BB4EEA /* URLRequest.html */ = {isa = PBXFileReference; includeInIndex = 1; name = URLRequest.html; path = docs/generated/Extensions/URLRequest.html; sourceTree = "<group>"; };
+		2A8EF06B4F066EEB334C350817EAB0F5 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/generated/js/jazzy.js; sourceTree = "<group>"; };
+		2D226A52F96C6126D5DE1128E8E4EEE1 /* frequently-asked-questions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "frequently-asked-questions.html"; path = "docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/frequently-asked-questions.html"; sourceTree = "<group>"; };
+		31151572D40AE93685B015D68B77E4AD /* MD5Digest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
+		31A8C1128C8F15149A35EE8FC722115D /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/gh.png; sourceTree = "<group>"; };
+		31D91E8FDDF23425DD2DF6B1EA3AA386 /* Record.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Record.html; path = docs/generated/Structs/Record.html; sourceTree = "<group>"; };
+		33DA2E8FDC53C610C58384FED991D54D /* Mode.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Mode.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/MockFloret/Mode.html; sourceTree = "<group>"; };
+		359CBB5C550F4C41C01C4171BB00500A /* Storage.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Storage.html; path = docs/generated/Protocols/Storage.html; sourceTree = "<group>"; };
+		36AE7A264BE162A00A8A2793E6F22AE7 /* CauliURLProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		38C571796FB24FFF1DD66D133FF95C58 /* InspectorFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = InspectorFloret.html; path = docs/generated/Classes/InspectorFloret.html; sourceTree = "<group>"; };
+		39C40D8A63EE00A98A73B1D563E2B3E7 /* badge.svg */ = {isa = PBXFileReference; includeInIndex = 1; name = badge.svg; path = docs/generated/badge.svg; sourceTree = "<group>"; };
+		3ADCEC48D46FE7278871FA457E98273E /* NSError.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NSError.html; path = docs/generated/Extensions/NSError.html; sourceTree = "<group>"; };
+		3BA90197F54CB93C1184AA6B6D3943D0 /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/lunr.min.js; sourceTree = "<group>"; };
+		3CC512BDB85F099FD23C6C96900FF0C7 /* docSet.dsidx */ = {isa = PBXFileReference; includeInIndex = 1; name = docSet.dsidx; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/docSet.dsidx; sourceTree = "<group>"; };
+		3D1FAED8363D9B748DF2CD587910E3EA /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/Classes/Cauli.html; sourceTree = "<group>"; };
+		3DD93B2A984B690754923F2A28DD3CFA /* NSError.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NSError.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/NSError.html; sourceTree = "<group>"; };
+		3F33C692ED1D52ACC6558525659DE2DF /* RecordTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		3F84240C3C1B54731D6D0295617E9C41 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Guides.html; sourceTree = "<group>"; };
+		407A5BA6E23778095686051A1A7B21E5 /* UIWindow.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIWindow.html; path = docs/generated/Extensions/UIWindow.html; sourceTree = "<group>"; };
+		40A36AA37513CD44AB5C23E11FB0DB4A /* Classes.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Classes.html; path = docs/generated/Classes.html; sourceTree = "<group>"; };
+		40CB1EE69BCFAFCB51A286274E522589 /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/jazzy.search.js; sourceTree = "<group>"; };
+		41751B60E085DE064FE0F908EF8BBCAB /* Protocols.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Protocols.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Protocols.html; sourceTree = "<group>"; };
+		4296645F2995238354533FF794705EAE /* MemoryStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MemoryStorage.swift; path = Cauli/MemoryStorage.swift; sourceTree = "<group>"; };
+		464B037F3E23031AD461280B2B400882 /* Enums.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Enums.html; path = docs/generated/Enums.html; sourceTree = "<group>"; };
+		4720EA41AAD442D6FD5740DF261B9AAE /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
+		47C91DEAC47B9E571D5F221311216D6F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		48C2C10593BA96908191BD164E0B7D05 /* Cauliframework-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cauliframework-dummy.m"; sourceTree = "<group>"; };
+		4A54B4AA772D1093129C44BE4D0BC71E /* architecture.html */ = {isa = PBXFileReference; includeInIndex = 1; name = architecture.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/architecture.html; sourceTree = "<group>"; };
+		4A8D0C5C7729934648E33520ABC55495 /* Displayable.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Displayable.html; path = docs/generated/Protocols/Displayable.html; sourceTree = "<group>"; };
+		4B315275484211CA4F92ADA2DC085636 /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/generated/css/jazzy.css; sourceTree = "<group>"; };
+		4B56D1A664CB3F33A861CE4690BB242D /* Cauliframework.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Cauliframework.modulemap; sourceTree = "<group>"; };
+		4D4C878EE77AFE50E71F6C7B30373AFA /* Floret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Floret.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Protocols/Floret.html; sourceTree = "<group>"; };
+		4E0A4A0EB906C4061950C4B1E9FDD8E9 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		4E88AEAA045FA7919D6109B6FB0F14F2 /* ViewControllerShakePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewControllerShakePresenter.swift; path = Cauli/ViewControllerShakePresenter.swift; sourceTree = "<group>"; };
+		4F3FE54B5544188D46187B1A3F5DADCF /* Cauliframework.tgz */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauliframework.tgz; path = docs/generated/docsets/Cauliframework.tgz; sourceTree = "<group>"; };
+		50C5BF0A9B49E928C8018DC0E51596BE /* Structs.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Structs.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs.html; sourceTree = "<group>"; };
 		526EED268023D8F722212522141E35C6 /* Pods-cauli-ios-example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-cauli-ios-example-acknowledgements.plist"; sourceTree = "<group>"; };
-		52C2A3D80007EBB64970F4E9F3D3CBD2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = docs/generated/docsets/Cauli.docset/Contents/Info.plist; sourceTree = "<group>"; };
-		52DB4FF80D1EBD3242655144BCE16B76 /* Storage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = Cauli/Storage.swift; sourceTree = "<group>"; };
-		531BFDDE4441DAF53C9CBD35C6650AF4 /* Floret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Floret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols/Floret.html; sourceTree = "<group>"; };
-		53F275A5365F2BCC136AA7F19B45F8D6 /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/generated/js/typeahead.jquery.js; sourceTree = "<group>"; };
-		5B68EA0FCAA2166E8F51405378739DFD /* Mode.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Mode.html; path = docs/generated/Classes/MockFloret/Mode.html; sourceTree = "<group>"; };
-		5CBA8FBEFB655038F9994A8F26F81AC5 /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/spinner.gif; sourceTree = "<group>"; };
-		5CD96076F283AD581222C7830CA50927 /* RecordSelector.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordSelector.html; path = docs/generated/Structs/RecordSelector.html; sourceTree = "<group>"; };
-		5D852A55CA6ADB37AA55F41468B724AD /* Cauliframework.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cauliframework.xcconfig; sourceTree = "<group>"; };
-		5DC7BE70B9D6341CC73BBA220143DB5B /* badge.svg */ = {isa = PBXFileReference; includeInIndex = 1; name = badge.svg; path = docs/generated/badge.svg; sourceTree = "<group>"; };
-		5E8FE81919D015510ECFD824E8B4640A /* FindReplaceFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = FindReplaceFloret.html; path = docs/generated/Classes/FindReplaceFloret.html; sourceTree = "<group>"; };
-		5F4484611CAED24DE94612449738EB20 /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/generated/search.json; sourceTree = "<group>"; };
-		5F792424D4B70E347A21A7605C4D3F7B /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/generated/index.html; sourceTree = "<group>"; };
-		60DE910B54E8E2A46DCFAA1640109C8F /* Storage.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Storage.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols/Storage.html; sourceTree = "<group>"; };
-		65744B8A270F9D3683FC8F14E2638577 /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/css/jazzy.css; sourceTree = "<group>"; };
-		6643986AA7775C933FF0681DDC3E6FB3 /* SwappedRecord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwappedRecord.swift; sourceTree = "<group>"; };
-		6AE8BE8ACD6B647DD3158F0E9FCAE35F /* CauliURLProtocol.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CauliURLProtocol.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/CauliURLProtocol.html; sourceTree = "<group>"; };
-		6B918BD4AEC0A0C397E5611DA6FA6633 /* Configuration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Configuration.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/Configuration.html; sourceTree = "<group>"; };
-		6CF004049B9C5CC1D8DC4C87474AA076 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/css/highlight.css; sourceTree = "<group>"; };
-		6D442DEFCB8E6D6FA46F4A9B62805853 /* NoCacheFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NoCacheFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/NoCacheFloret.html; sourceTree = "<group>"; };
-		77C42ED0746DE0FEDEC51F54A0335107 /* florets.html */ = {isa = PBXFileReference; includeInIndex = 1; name = florets.html; path = docs/generated/florets.html; sourceTree = "<group>"; };
-		784B41F566F0C6ED7BCB27834E5C1B85 /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
-		7886A45379ABB990B644ADAC1AAE8ECF /* Cauli.tgz */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.tgz; path = docs/generated/docsets/Cauli.tgz; sourceTree = "<group>"; };
-		7B73D854BB69D1B2A56B11A9993BAB4B /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
-		7C2391223EC22FC51D51EF2402E02221 /* RecordModifier.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordModifier.html; path = docs/generated/Classes/FindReplaceFloret/RecordModifier.html; sourceTree = "<group>"; };
-		7C336E49315B6952C7B65301D55D3EF6 /* Cauli.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Cauli.h; path = Cauli/Cauli.h; sourceTree = "<group>"; };
-		7C891FB92D52C3EE299C96EAE4580D16 /* CachePolicy.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CachePolicy.html; path = docs/generated/Extensions/URLRequest/CachePolicy.html; sourceTree = "<group>"; };
-		7CB28C8246BA67AC7AB657A5F7FCA8CD /* Storage.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Storage.html; path = docs/generated/Protocols/Storage.html; sourceTree = "<group>"; };
-		7DFB69444EBB92BE8D51D7D124C661E5 /* NoCacheFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NoCacheFloret.swift; sourceTree = "<group>"; };
-		7F1C153FE82F51E38D3B8D938528F686 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/index.html; sourceTree = "<group>"; };
-		7F3DF0EA0B7B87DDE55F1A9DF60A6246 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/NSError/Cauli.html; sourceTree = "<group>"; };
-		7FA3B045A26C9D53A9BF354887706EE0 /* URLResponseRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = URLResponseRepresentable.swift; sourceTree = "<group>"; };
-		807BF944E633854A094E5D1E4374C6E4 /* Mode.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Mode.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/MockFloret/Mode.html; sourceTree = "<group>"; };
-		81D32869BE104052AE9D50BC80F8DF37 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/Cauli.html; sourceTree = "<group>"; };
-		81E96CF415C3EFF14A89420F3583601A /* docSet.dsidx */ = {isa = PBXFileReference; includeInIndex = 1; name = docSet.dsidx; path = docs/generated/docsets/Cauli.docset/Contents/Resources/docSet.dsidx; sourceTree = "<group>"; };
-		831EB214DC2812F976C07E9E46C86839 /* Classes.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Classes.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes.html; sourceTree = "<group>"; };
-		848B9718D932A71E8AA24E08FD119FF3 /* Cauliframework-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cauliframework-umbrella.h"; sourceTree = "<group>"; };
-		89FC6341529430B833F078582D664CFF /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/search.json; sourceTree = "<group>"; };
-		8A6B62C04D460561D2A12B48FB687DB3 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Guides.html; sourceTree = "<group>"; };
-		8B0B6731972263D698F94CB39D357166 /* configuring-cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "configuring-cauli.html"; path = "docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/configuring-cauli.html"; sourceTree = "<group>"; };
-		8B3C0D206A9C06D9E9BAEAF9C657B022 /* architecture.html */ = {isa = PBXFileReference; includeInIndex = 1; name = architecture.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/architecture.html; sourceTree = "<group>"; };
-		8B4B49EA2CD6449B0273C8740DFC6376 /* Cauliframework-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cauliframework-dummy.m"; sourceTree = "<group>"; };
-		8B8DFD8C06E9E802850AB66B7B490DFA /* Displayable.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Displayable.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols/Displayable.html; sourceTree = "<group>"; };
-		8D80525A0D3145A4216F54C928A31076 /* MD5Digest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
-		8DAE81448424AE14BE6C06496C46B8EC /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/generated/css/jazzy.css; sourceTree = "<group>"; };
-		8DBE8F91AF92DFAC5F2F40BC90F4F440 /* NSError+Codable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSError+Codable.swift"; sourceTree = "<group>"; };
+		5374DF17DAFD4DB6937381D92B1D951F /* Structs.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Structs.html; path = docs/generated/Structs.html; sourceTree = "<group>"; };
+		54131E812154ED0DA34947CA19FFBD0F /* RecordSelector.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordSelector.html; path = docs/generated/Structs/RecordSelector.html; sourceTree = "<group>"; };
+		541E4EB4D4EC4172607762219DB6E97F /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/js/jazzy.search.js; sourceTree = "<group>"; };
+		55C065DCB528B30F39A42180D257DC03 /* StorageCapacity.html */ = {isa = PBXFileReference; includeInIndex = 1; name = StorageCapacity.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Enums/StorageCapacity.html; sourceTree = "<group>"; };
+		5681677C2F8B54D07C3CCB03C21DD61A /* Structs.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Structs.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Structs.html; sourceTree = "<group>"; };
+		57A7D28D2B6A749FC777677D55BE537E /* docSet.dsidx */ = {isa = PBXFileReference; includeInIndex = 1; name = docSet.dsidx; path = docs/generated/docsets/Cauli.docset/Contents/Resources/docSet.dsidx; sourceTree = "<group>"; };
+		585D8A69959C5707226D85B75A5EA16A /* StorageCapacity.html */ = {isa = PBXFileReference; includeInIndex = 1; name = StorageCapacity.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Enums/StorageCapacity.html; sourceTree = "<group>"; };
+		58A64A1BF6723F16E09AB48DA2F1B3A4 /* florets.html */ = {isa = PBXFileReference; includeInIndex = 1; name = florets.html; path = docs/generated/florets.html; sourceTree = "<group>"; };
+		5A71BA1F1CFD48A122120C00ADD77EF8 /* Cauli.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Cauli.h; path = Cauli/Cauli.h; sourceTree = "<group>"; };
+		5A9E2E99A6BB5FF36337C583A37813DD /* MockFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = MockFloret.html; path = docs/generated/Classes/MockFloret.html; sourceTree = "<group>"; };
+		5C906C2EDEEE80BF1C34A9ADB86A53B8 /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/css/jazzy.css; sourceTree = "<group>"; };
+		5CC52074FACB5FC81FEEA5E2F56ADE2D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = docs/generated/docsets/Cauli.docset/Contents/Info.plist; sourceTree = "<group>"; };
+		5CD55532ECAA8B4CD9A91F6B488951F4 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/index.html; sourceTree = "<group>"; };
+		5D27940F27B491549AFE08234F7EE562 /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/img/spinner.gif; sourceTree = "<group>"; };
+		5DE1E6532EE8952622F3D62D0165DD21 /* NetworkServiceType.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NetworkServiceType.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/URLRequest/NetworkServiceType.html; sourceTree = "<group>"; };
+		5E948ED988737D4439551A16C760AC51 /* Result.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Result.html; path = docs/generated/Enums/Result.html; sourceTree = "<group>"; };
+		5F2A31C34F5F2BF70DB62F20EC3D2383 /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/generated/search.json; sourceTree = "<group>"; };
+		6084FCEF8125BB213E43B966643CC120 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
+		61F63D6F7ED739D65DF4D7267ECBBBAB /* NSError.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NSError.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/NSError.html; sourceTree = "<group>"; };
+		659DCBAE07E58B469DE07E21A3BDFE59 /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "Writing Your Own Plugin.md"; path = "docs/guides/Writing Your Own Plugin.md"; sourceTree = "<group>"; };
+		669135D941DD375176FA8B6A2AF1B365 /* MockRecordSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockRecordSerializer.swift; sourceTree = "<group>"; };
+		67ED4E852BB30064D21DFA6A8F52C761 /* CachePolicy.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CachePolicy.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/URLRequest/CachePolicy.html; sourceTree = "<group>"; };
+		721B56CF34D442F9E8FE8864F1BB153D /* Displayable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Displayable.swift; path = Cauli/Displayable.swift; sourceTree = "<group>"; };
+		7407533E022398B83B291AF1051E5BAB /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions.html; sourceTree = "<group>"; };
+		79BE0D99469C081EA5F9DB0D54EF5DDF /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/spinner.gif; sourceTree = "<group>"; };
+		7C115EF773A961E3FA7ADDA40882C870 /* URLRequest.html */ = {isa = PBXFileReference; includeInIndex = 1; name = URLRequest.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/URLRequest.html; sourceTree = "<group>"; };
+		7C3E6CB3AF6216537B2FEB4827C9C0B9 /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/generated/js/jazzy.search.js; sourceTree = "<group>"; };
+		81335EB53E9233588D91853515BE507E /* Classes.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Classes.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes.html; sourceTree = "<group>"; };
+		8204ECE030495CDE0F20CD7A368D4557 /* CachePolicy.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CachePolicy.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/URLRequest/CachePolicy.html; sourceTree = "<group>"; };
+		824E3A6E74834106FADB24B176B495EF /* MockFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockFloret.swift; sourceTree = "<group>"; };
+		82E4C5C480AD5BD729DD1ED1D2852025 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = docs/generated/docsets/Cauliframework.docset/Contents/Info.plist; sourceTree = "<group>"; };
+		86B30119BE19D1245A4AE5529228C4CF /* NoCacheFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NoCacheFloret.html; path = docs/generated/Classes/NoCacheFloret.html; sourceTree = "<group>"; };
+		87A04AE4567EEB92B12EB7795BEB3B1B /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/img/gh.png; sourceTree = "<group>"; };
+		87B4308D33545CC409769BAA8EE0C4F1 /* Displayable.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Displayable.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols/Displayable.html; sourceTree = "<group>"; };
+		88E69AD50CB491AF5A030DF60E79150D /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/js/lunr.min.js; sourceTree = "<group>"; };
+		88EB351232880E8920F7C6E4863C73D8 /* writing-your-own-plugin.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "writing-your-own-plugin.html"; path = "docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/writing-your-own-plugin.html"; sourceTree = "<group>"; };
+		8B33513B480F9DF483C61B4C519C0392 /* StorageCapacity.html */ = {isa = PBXFileReference; includeInIndex = 1; name = StorageCapacity.html; path = docs/generated/Enums/StorageCapacity.html; sourceTree = "<group>"; };
+		8BF80F086512872CF3637F921AC6CF48 /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/jquery.min.js; sourceTree = "<group>"; };
+		8C8007425F5AA58BD325C995A1A9BB42 /* RecordModifier.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordModifier.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/FindReplaceFloret/RecordModifier.html; sourceTree = "<group>"; };
+		8C93AC5D773AF207693409F672599EC6 /* Floret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Floret.swift; path = Cauli/Floret.swift; sourceTree = "<group>"; };
 		8EB2E0282B5D42A84A052073310B9E3D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		902B7E7C78EF3B6CD2A887C23A48202C /* RecordModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordModifier.swift; sourceTree = "<group>"; };
-		905FC5FCCB3F3434815D4F862531915A /* Floret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Floret.swift; path = Cauli/Floret.swift; sourceTree = "<group>"; };
-		90EC9C9FEBADC47C88A067E67DBD1711 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/Classes/Cauli.html; sourceTree = "<group>"; };
+		8F09DBE34FECCD00FCFC53EC5E6C0C48 /* Response.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Response.html; path = docs/generated/Structs/Response.html; sourceTree = "<group>"; };
+		8F5D9F4C547C97504121CCB5490689AC /* Architecture.md */ = {isa = PBXFileReference; includeInIndex = 1; name = Architecture.md; path = docs/guides/Architecture.md; sourceTree = "<group>"; };
 		91331E4A38CD0986096F960E9E432477 /* Pods-cauli-ios-example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-cauli-ios-example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		92A5C27CBBE8A5CA3F62DEF1D38FEE39 /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/lunr.min.js; sourceTree = "<group>"; };
-		962A9814BA4F3B719918E49E6DDE565D /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "Writing Your Own Plugin.md"; path = "docs/guides/Writing Your Own Plugin.md"; sourceTree = "<group>"; };
-		9777F8FC72240C81A96E410C8D623CEE /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/carat.png; sourceTree = "<group>"; };
-		9B72C6AB326B0BD76D66D9BE4B3E2A44 /* TagLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
-		9C96C5D3D2CC12A7AE41584F0AA7D7E6 /* MockFloretStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockFloretStorage.swift; sourceTree = "<group>"; };
-		9D4EDA4F6F99A60367E094C9468C81EF /* MemoryStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MemoryStorage.swift; path = Cauli/MemoryStorage.swift; sourceTree = "<group>"; };
-		9E4BC4578D0E90EFA83DE350E2EC86E0 /* configuring-cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "configuring-cauli.html"; path = "docs/generated/configuring-cauli.html"; sourceTree = "<group>"; };
-		A3E2A97B850B8919E44B165D433D597C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		A537CA04F82BBF79AEADDF9F76212EF9 /* Displayable.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Displayable.html; path = docs/generated/Protocols/Displayable.html; sourceTree = "<group>"; };
-		AB01C9A413A6BD0061E2631BF6C70F4C /* NSError.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NSError.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/NSError.html; sourceTree = "<group>"; };
-		AB4133DACB300143F5BA4C6092834F35 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/generated/img/carat.png; sourceTree = "<group>"; };
-		AB6E1A5F36245E3A3986E7D68A3F08EC /* MockFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = MockFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/MockFloret.html; sourceTree = "<group>"; };
-		AE943869B8BE1A3159E044673AB59ADC /* StorageCapacity.html */ = {isa = PBXFileReference; includeInIndex = 1; name = StorageCapacity.html; path = docs/generated/Enums/StorageCapacity.html; sourceTree = "<group>"; };
-		AF0697D8D4EB9607C91CB4EBA91E7EE5 /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/gh.png; sourceTree = "<group>"; };
-		B244D61F722C1367B2D36FCEE8BE9EC7 /* Configuring Cauli.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "Configuring Cauli.md"; path = "docs/guides/Configuring Cauli.md"; sourceTree = "<group>"; };
-		B68F0B275E1463B717B8ECC1C75BF662 /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/generated/img/spinner.gif; sourceTree = "<group>"; };
+		91FDE78B9C5BD68B8BB35A21D7FB97D6 /* NSError+Codable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSError+Codable.swift"; sourceTree = "<group>"; };
+		939ED1DC2D9FA1946BA52121D551FEE1 /* Cauliframework-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cauliframework-prefix.pch"; sourceTree = "<group>"; };
+		98CAD450FC599981F8F42BA76251B3A4 /* Storage.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Storage.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols/Storage.html; sourceTree = "<group>"; };
+		9C01FAFCA7F4EDF95C8C488D44E72B39 /* URLRequest+Codable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "URLRequest+Codable.swift"; sourceTree = "<group>"; };
+		9EEB1810336768DB7FC602AF8D3A9E78 /* UIWindow.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIWindow.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/UIWindow.html; sourceTree = "<group>"; };
+		9F533A1CB2CE64BC5A8A8C7510616FD1 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
+		9F90BF22522F962F117D89C9D199D7A0 /* Classes.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Classes.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes.html; sourceTree = "<group>"; };
+		A0160D80112B84320F68076233289715 /* florets.html */ = {isa = PBXFileReference; includeInIndex = 1; name = florets.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/florets.html; sourceTree = "<group>"; };
+		A247985F04C9656E0EB64E6891F40AF1 /* CauliURLProtocol.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CauliURLProtocol.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/CauliURLProtocol.html; sourceTree = "<group>"; };
+		A2802EF3E478E4544430CAA267535B21 /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/generated/Extensions.html; sourceTree = "<group>"; };
+		A3C40C53EF51D12505E3932E657B6756 /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/js/typeahead.jquery.js; sourceTree = "<group>"; };
+		A48EEA8DFE0283B7DEF5A4C24D20FE43 /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/generated/js/typeahead.jquery.js; sourceTree = "<group>"; };
+		A81E357E0E4249EE2F483D308F00DDA4 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/generated/index.html; sourceTree = "<group>"; };
+		A8776F3147EB1E7444970FE7FDA0A14E /* undocumented.json */ = {isa = PBXFileReference; includeInIndex = 1; name = undocumented.json; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/undocumented.json; sourceTree = "<group>"; };
+		A8A32AF41836EB626C5C05A7799CB59D /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
+		A90E1D8D15C4C82CFC22F2DEDF839C80 /* frequently-asked-questions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "frequently-asked-questions.html"; path = "docs/generated/frequently-asked-questions.html"; sourceTree = "<group>"; };
+		A951040DE584D312096978F88E848613 /* MockFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = MockFloret.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/MockFloret.html; sourceTree = "<group>"; };
+		A96FDB9878AFE28B5FA1488A29FC8D23 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/css/highlight.css; sourceTree = "<group>"; };
+		AB0DCA2D496D1AF7F129A04EE903E689 /* Response.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Response.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Structs/Response.html; sourceTree = "<group>"; };
+		ABA8B71B2873F4C9B83D41BB6C1F1289 /* SwappedResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwappedResponse.swift; sourceTree = "<group>"; };
+		ADE3F0188C13B4D0085EFAE2CB2A237F /* FindReplaceFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = FindReplaceFloret.html; path = docs/generated/Classes/FindReplaceFloret.html; sourceTree = "<group>"; };
+		AEA379A6A0C3E06343C167B015B38BEA /* URLRequest.html */ = {isa = PBXFileReference; includeInIndex = 1; name = URLRequest.html; path = docs/generated/Extensions/URLRequest.html; sourceTree = "<group>"; };
+		AF71E6A0959DA6FD2911D23DA77ADCF3 /* Protocols.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Protocols.html; path = docs/generated/Protocols.html; sourceTree = "<group>"; };
+		AF87662AA7F15C0D93B94CE0CE1E537C /* Frequently Asked Questions.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "Frequently Asked Questions.md"; path = "docs/guides/Frequently Asked Questions.md"; sourceTree = "<group>"; };
+		B0B9E7A9F22927FFE2262D91B39C1BB1 /* Cauliframework.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cauliframework.xcconfig; sourceTree = "<group>"; };
+		B284A4D3F779FD9C0BAA2451377795DD /* Storage.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Storage.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Protocols/Storage.html; sourceTree = "<group>"; };
+		B30B5BAFA69367A37B32388C6FFCF6D8 /* Displayable.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Displayable.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Protocols/Displayable.html; sourceTree = "<group>"; };
+		B33989D5D91AEBB99ABCA2C8BEBF450D /* Floret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Floret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols/Floret.html; sourceTree = "<group>"; };
+		B3959EBEA1BF3449310B467E58128ADE /* configuring-cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "configuring-cauli.html"; path = "docs/generated/configuring-cauli.html"; sourceTree = "<group>"; };
+		B4E6E602DCC77087FABD499D1FFE2C70 /* InspectorFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = InspectorFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/InspectorFloret.html; sourceTree = "<group>"; };
+		B6753F72ED1713485DE11B6A28D3083C /* architecture.html */ = {isa = PBXFileReference; includeInIndex = 1; name = architecture.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/architecture.html; sourceTree = "<group>"; };
 		B6E59FA677F3E6B4FAC6F9677FEE90A0 /* Pods-cauli-ios-example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-cauli-ios-example-resources.sh"; sourceTree = "<group>"; };
-		B8794AE36E003D2D8DB1CB4346BCF4FF /* URLRequest+Codable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "URLRequest+Codable.swift"; sourceTree = "<group>"; };
-		B9357BEADAD8C9689734C57BF3EAC5D6 /* CauliURLProtocol.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CauliURLProtocol.html; path = docs/generated/Extensions/CauliURLProtocol.html; sourceTree = "<group>"; };
-		B9CC34A7158EC233AB04573BFC128F0D /* SwappedURLRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwappedURLRequest.swift; sourceTree = "<group>"; };
-		BC1D5401F39141531403B5374CDDE8E4 /* URLRequest.html */ = {isa = PBXFileReference; includeInIndex = 1; name = URLRequest.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/URLRequest.html; sourceTree = "<group>"; };
-		BCA11AF51B05B0FCA58CEA4586A92511 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/generated/js/jazzy.js; sourceTree = "<group>"; };
-		BDE08593C27AFA3C0463ECC6F3298B95 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		BE23D94E057B677004F4475B69BE4557 /* Displayable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Displayable.swift; path = Cauli/Displayable.swift; sourceTree = "<group>"; };
-		C3941F69190A4956FA1BC42C2AE6F094 /* RecordModifier.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordModifier.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/FindReplaceFloret/RecordModifier.html; sourceTree = "<group>"; };
-		C3D5891DBD72297056242BDD6F2B9D65 /* InspectorRecordTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorRecordTableViewCell.swift; sourceTree = "<group>"; };
-		C50508BF7ADE49E8C207CDD215505C42 /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/generated/js/jquery.min.js; sourceTree = "<group>"; };
+		BE5C3ACC077C8D517504685CB69BE825 /* configuring-cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "configuring-cauli.html"; path = "docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/configuring-cauli.html"; sourceTree = "<group>"; };
+		BFA2FF506274C6C4F6706879967516C4 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/index.html; sourceTree = "<group>"; };
+		BFBDA7DD5F88797CD7E5CEB82647C76B /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/css/jazzy.css; sourceTree = "<group>"; };
+		C10B591C1005EA36EE51C52FF56C614B /* NetworkServiceType.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NetworkServiceType.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/URLRequest/NetworkServiceType.html; sourceTree = "<group>"; };
+		C15101FADFE6CABEC4303A6C2B3EEE17 /* frequently-asked-questions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "frequently-asked-questions.html"; path = "docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/frequently-asked-questions.html"; sourceTree = "<group>"; };
+		C159E02749AE5C5BB6A11981D55C8B9F /* Result.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Result.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Enums/Result.html; sourceTree = "<group>"; };
+		C1C0C7A3F7301120E249ED546992E36A /* WeakReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
+		C1DA5CE758640F13B705A96F7CDC93DA /* badge.svg */ = {isa = PBXFileReference; includeInIndex = 1; name = badge.svg; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/badge.svg; sourceTree = "<group>"; };
+		C2C50F0BA45E0F4E2C89EAC4FD2769BC /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/NSError/Cauli.html; sourceTree = "<group>"; };
+		C2E301DBACA3DBDD75EF1AB9F6B3122B /* writing-your-own-plugin.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "writing-your-own-plugin.html"; path = "docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/writing-your-own-plugin.html"; sourceTree = "<group>"; };
+		C44847713D20EC9707C95F8E0B6D4268 /* InspectorFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorFloret.swift; sourceTree = "<group>"; };
+		C4484899DC86A47AC0A4F0BDF96D7139 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Guides.html; sourceTree = "<group>"; };
+		C44BE6EC5B4AEC00C221BFFA69773BBB /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
+		C559C2A4AF5AC9577CA61651FFCBEDD6 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		C66D899594E0259C6A6E8C36FDCC5B38 /* Pods_cauli_ios_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_cauli_ios_example.framework; path = "Pods-cauli-ios-example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C78910040341AF29FF2386A4480EFE5C /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/generated/css/highlight.css; sourceTree = "<group>"; };
-		C7C0582AE4C26D37268C66857A0DABD2 /* MockFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = MockFloret.html; path = docs/generated/Classes/MockFloret.html; sourceTree = "<group>"; };
-		C92D27583D8B0A6099F1239329FD7CAF /* RecordSelector.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordSelector.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/RecordSelector.html; sourceTree = "<group>"; };
-		CAD69D2FEFB5EE6DAA480DB2469CE35C /* writing-your-own-plugin.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "writing-your-own-plugin.html"; path = "docs/generated/writing-your-own-plugin.html"; sourceTree = "<group>"; };
-		CAE2FB9E1E0C50794C9E076ADE65AF98 /* InspectorTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorTableViewController.swift; sourceTree = "<group>"; };
-		CB0D737CC40BC8BDBC9602734E7B4327 /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
+		C804257219DFE05A0372A655C2E215EB /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/search.json; sourceTree = "<group>"; };
+		C977A210CD42393E41AC2CCD043B0619 /* undocumented.json */ = {isa = PBXFileReference; includeInIndex = 1; name = undocumented.json; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/undocumented.json; sourceTree = "<group>"; };
+		CB28A9CABBB2B57AF52D841650B42BD2 /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/generated/js/lunr.min.js; sourceTree = "<group>"; };
 		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CB60380DC72A71167C69AC49B494F4EE /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/generated/img/gh.png; sourceTree = "<group>"; };
-		CEE9F247E4AC9F07A7836B6F34156E65 /* FindReplaceFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = FindReplaceFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/FindReplaceFloret.html; sourceTree = "<group>"; };
-		CF71E9D11872D08904D73FBF854299B5 /* StorageCapacity.html */ = {isa = PBXFileReference; includeInIndex = 1; name = StorageCapacity.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Enums/StorageCapacity.html; sourceTree = "<group>"; };
-		CF8EB240BCC6146C842A7B970EBFC9D3 /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
-		D1C382F0C3EA283272A2677C793F3102 /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions.html; sourceTree = "<group>"; };
-		D3021C4F98D700120CB8657C2D6A617B /* SwappedResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwappedResponse.swift; sourceTree = "<group>"; };
-		D377457DA837A5E883F9134A14DF22A2 /* Floret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Floret.html; path = docs/generated/Protocols/Floret.html; sourceTree = "<group>"; };
-		D3B72432B0ABEDFB0502371C2A2D1E74 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/Extensions/NSError/Cauli.html; sourceTree = "<group>"; };
-		D47BC7BB390620E5433CED80F0375840 /* architecture.html */ = {isa = PBXFileReference; includeInIndex = 1; name = architecture.html; path = docs/generated/architecture.html; sourceTree = "<group>"; };
-		D7D3631D5DD9571DB139DFC5A6D3A4EA /* UIWindow+Shake.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIWindow+Shake.swift"; sourceTree = "<group>"; };
-		D82CED961B772F517B7143D7B5E62A0A /* Structs.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Structs.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs.html; sourceTree = "<group>"; };
-		D8BBB2EBE1724E0933ED35C0CEEC2CB1 /* UIWindow.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIWindow.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/UIWindow.html; sourceTree = "<group>"; };
-		DB17027A8DA95F62A6E146129A7EB56C /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
-		DB7405C5F8AB24879FF3BEE8DA761427 /* Response.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Response.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/Response.html; sourceTree = "<group>"; };
-		DC032AE3CFA712E35022BD68D67F907F /* NetworkServiceType.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NetworkServiceType.html; path = docs/generated/Extensions/URLRequest/NetworkServiceType.html; sourceTree = "<group>"; };
-		DC3B198F1AB07EB1D6E98CA9ABB74B26 /* NetworkServiceType.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NetworkServiceType.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Extensions/URLRequest/NetworkServiceType.html; sourceTree = "<group>"; };
-		DF68323B751B94951B9DD0BE5ABBC8AD /* MockRecordSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockRecordSerializer.swift; sourceTree = "<group>"; };
-		E287909962786D3293CD11ACDDD702ED /* Classes.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Classes.html; path = docs/generated/Classes.html; sourceTree = "<group>"; };
-		E318D57ACA42EE5974FA410277093220 /* Florets.md */ = {isa = PBXFileReference; includeInIndex = 1; name = Florets.md; path = docs/guides/Florets.md; sourceTree = "<group>"; };
-		E7881274D445F85A41FB670EFC182083 /* Protocols.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Protocols.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Protocols.html; sourceTree = "<group>"; };
-		EB54F0AE1F24F47D47EC7F8AD6E75C8F /* RecordTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
-		EB58907E7BCEE8C7472C9F696BA60431 /* InspectorFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorFloret.swift; sourceTree = "<group>"; };
-		EB610D0F654D49D447C23770264C1F26 /* InspectorFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = InspectorFloret.html; path = docs/generated/Classes/InspectorFloret.html; sourceTree = "<group>"; };
-		ED374AC4840B4A68CF3E2F0D3A3AFBF2 /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/generated/Extensions.html; sourceTree = "<group>"; };
-		EDE57B4D33FF746899966FF0BC1EDE26 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		CC52A891FF627B59A99F5A176B7638FB /* RecordModifier.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordModifier.html; path = docs/generated/Classes/FindReplaceFloret/RecordModifier.html; sourceTree = "<group>"; };
+		CCBE4A81D86FDEF3DD22D3C3F4AF9083 /* Storage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = Cauli/Storage.swift; sourceTree = "<group>"; };
+		CE69EBF52C2C0418718A0EB14D0A353D /* CauliURLProtocol.html */ = {isa = PBXFileReference; includeInIndex = 1; name = CauliURLProtocol.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/CauliURLProtocol.html; sourceTree = "<group>"; };
+		D01246628FE59CF180212E5162AEECB5 /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/generated/img/dash.png; sourceTree = "<group>"; };
+		D1C90326D0EB5A681EB44AF55C61F3C9 /* Enums.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Enums.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Enums.html; sourceTree = "<group>"; };
+		D37B7F3B527FBA17997B984A27031741 /* URLSessionConfiguration+Swizzling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Swizzling.swift"; sourceTree = "<group>"; };
+		D411658D99FEBBF7331C8AD7217DBAF3 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/Extensions/NSError/Cauli.html; sourceTree = "<group>"; };
+		D421937B88B474E123322EE5A2E9EA2C /* URLRequest.html */ = {isa = PBXFileReference; includeInIndex = 1; name = URLRequest.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/URLRequest.html; sourceTree = "<group>"; };
+		D80D979CB5657023D8D43F8801AC4B26 /* writing-your-own-plugin.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "writing-your-own-plugin.html"; path = "docs/generated/writing-your-own-plugin.html"; sourceTree = "<group>"; };
+		D8DDFC5389FFADB89A4EBCD1E2025925 /* Configuration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Configuration.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Structs/Configuration.html; sourceTree = "<group>"; };
+		DB93CD2C8A923D2C878674FC84670576 /* RecordSelector.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordSelector.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Structs/RecordSelector.html; sourceTree = "<group>"; };
+		DD55FC6AB4C9D3FA7B99AA9A5213DA7E /* FindReplaceFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FindReplaceFloret.swift; sourceTree = "<group>"; };
+		DE043FD9C7DD7DB66EEDA6DABBBFB9FB /* InspectorTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorTableViewController.swift; sourceTree = "<group>"; };
+		E0E56CB5D4B1F2D8FFF7A3EAF97EBA0F /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions.html; sourceTree = "<group>"; };
+		E2778B26534830A757D17F54061B7FD1 /* Cauli.tgz */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.tgz; path = docs/generated/docsets/Cauli.tgz; sourceTree = "<group>"; };
+		E2C08326C6BE51604996B2F9842F2EF1 /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
+		E3BC8A1F4631FD933029A70D96E6A554 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/carat.png; sourceTree = "<group>"; };
+		E4E4B434DB94DF7415E92256E664945E /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		E4E4D9B99CAB7E459A585683D2FFDC47 /* Configuring Cauli.md */ = {isa = PBXFileReference; includeInIndex = 1; name = "Configuring Cauli.md"; path = "docs/guides/Configuring Cauli.md"; sourceTree = "<group>"; };
+		E6D4004524A678C63D30AED8D580DDCE /* UIWindow.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIWindow.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/UIWindow.html; sourceTree = "<group>"; };
+		E76681631ED7C65713E25CC11A8D2010 /* MockFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = MockFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/MockFloret.html; sourceTree = "<group>"; };
+		E7FE0101C20144A2CE9301D035D3AD64 /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/generated/js/jquery.min.js; sourceTree = "<group>"; };
+		E876EFC73A1C9FFC172A7FAEECAEA046 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA1EAFC155C1FD4613D55A773F849A0E /* Enums.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Enums.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Enums.html; sourceTree = "<group>"; };
+		EA61E08A29D9E7D2140FE58E04CCD27B /* InspectorRecordTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InspectorRecordTableViewCell.swift; sourceTree = "<group>"; };
+		EB51565433B0AC99AD82C72C422B620A /* NetworkServiceType.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NetworkServiceType.html; path = docs/generated/Extensions/URLRequest/NetworkServiceType.html; sourceTree = "<group>"; };
+		EC353BBD9B4DCF16924B8994A94885B9 /* Record.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		EC97E1618198888C751CD81B1546A4CF /* Floret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Floret.html; path = docs/generated/Protocols/Floret.html; sourceTree = "<group>"; };
+		ECFA5AA0DDFC92235005772938336761 /* Cauliframework-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cauliframework-umbrella.h"; sourceTree = "<group>"; };
+		ED0358EBFFF86970D0098F343C0512B8 /* Response.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Response.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/Response.html; sourceTree = "<group>"; };
+		ED98B080826B85AB525F32FC85A0CB71 /* Record.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Record.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Structs/Record.html; sourceTree = "<group>"; };
+		EDA45B8D9ECE4A8438C9CB97EB8D632E /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/js/jquery.min.js; sourceTree = "<group>"; };
+		EF4161F7AB9D4E5E6E851E8347C3C09A /* Mode.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Mode.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/MockFloret/Mode.html; sourceTree = "<group>"; };
 		EFE8FBC6050AD32786761C35CA7B02A8 /* Pods-cauli-ios-example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-cauli-ios-example.modulemap"; sourceTree = "<group>"; };
-		F1CD6154A0E52AE204B674B3650C1337 /* FindReplaceFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FindReplaceFloret.swift; sourceTree = "<group>"; };
+		EFFC7B235331ED5A809A981B2E332F8F /* NoCacheFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NoCacheFloret.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/NoCacheFloret.html; sourceTree = "<group>"; };
+		F05C811017184F7FDB9CEAEE4DB4B88B /* Florets.md */ = {isa = PBXFileReference; includeInIndex = 1; name = Florets.md; path = docs/guides/Florets.md; sourceTree = "<group>"; };
 		F2975D1D678040DC58B0D4E64EBF16AC /* Cauliframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Cauliframework.framework; path = Cauliframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2EFBB1DBD9B080FF6B1952433FD8817 /* CauliURLProtocolDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliURLProtocolDelegate.swift; sourceTree = "<group>"; };
-		F3008578AED266B56F3B86E1ACB706C4 /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/generated/js/jazzy.search.js; sourceTree = "<group>"; };
-		F3D65406EFEE7121A7CF8C69E904069D /* Result.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Result.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Enums/Result.html; sourceTree = "<group>"; };
-		F536706E651B368F223889D897955415 /* InspectorFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = InspectorFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/InspectorFloret.html; sourceTree = "<group>"; };
-		F55393F2D89C8D32DCDE5D148445798F /* ReplaceDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceDefinition.swift; sourceTree = "<group>"; };
-		F60CB830921CBF13F270B53068AC15BB /* Architecture.md */ = {isa = PBXFileReference; includeInIndex = 1; name = Architecture.md; path = docs/guides/Architecture.md; sourceTree = "<group>"; };
-		F83FE8C67E69D55B391B22126C5806B0 /* NSError.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NSError.html; path = docs/generated/Extensions/NSError.html; sourceTree = "<group>"; };
-		F96DE467335E9FDF283C3268080BD09C /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/jquery.min.js; sourceTree = "<group>"; };
-		F9ABFDD5EC2C96BE1AC9488DE43A272E /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/js/jazzy.search.js; sourceTree = "<group>"; };
-		FB8A3A818ECB50D105B3237A6F7963FA /* undocumented.json */ = {isa = PBXFileReference; includeInIndex = 1; name = undocumented.json; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/undocumented.json; sourceTree = "<group>"; };
+		F2D264757C565552476D0E5931297931 /* CauliViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CauliViewController.swift; sourceTree = "<group>"; };
+		F31312713B9D6494146BD36C9EA037EE /* FindReplaceFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = FindReplaceFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/FindReplaceFloret.html; sourceTree = "<group>"; };
+		F39949D3E8CAB0CBB33925EE9CFD11CA /* NoCacheFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = NoCacheFloret.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Classes/NoCacheFloret.html; sourceTree = "<group>"; };
+		F49D25A9A2ED5654615AF83D9EA955A0 /* Configuration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Configuration.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/Configuration.html; sourceTree = "<group>"; };
+		F529E415B705AD125638797C18B1DC4F /* FindReplaceFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = FindReplaceFloret.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/FindReplaceFloret.html; sourceTree = "<group>"; };
+		F58651443D0F057EF0BD4846E2D7EECD /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/img/dash.png; sourceTree = "<group>"; };
+		F60B89DB9E62CA5090601B68A487E107 /* NoCacheFloret.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NoCacheFloret.swift; sourceTree = "<group>"; };
+		F6101E39AF00F676D90C560609DCB161 /* RecordSelector.html */ = {isa = PBXFileReference; includeInIndex = 1; name = RecordSelector.html; path = docs/generated/docsets/Cauli.docset/Contents/Resources/Documents/Structs/RecordSelector.html; sourceTree = "<group>"; };
+		F8BF80B7D142C89216B0CD1C5FC769C9 /* Cauli.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Cauli.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Extensions/NSError/Cauli.html; sourceTree = "<group>"; };
+		F96AE5599AF666223E7BB368128EED19 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/generated/img/carat.png; sourceTree = "<group>"; };
+		F9D71B6B76393F907DA1CD5F2B29A9E5 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/generated/Guides.html; sourceTree = "<group>"; };
+		FB5A3687D2DE24445CFCFD546DCB766A /* InspectorFloret.html */ = {isa = PBXFileReference; includeInIndex = 1; name = InspectorFloret.html; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/Classes/InspectorFloret.html; sourceTree = "<group>"; };
 		FBF1D27466D3F93E74A379195F62D074 /* Pods-cauli-ios-example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-cauli-ios-example-dummy.m"; sourceTree = "<group>"; };
-		FCEDF9894457626F7483189360517B6A /* Record.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Record.html; path = docs/generated/Structs/Record.html; sourceTree = "<group>"; };
 		FD0353FEE45649660C5469B9EDDDDCC2 /* Pods-cauli-ios-example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-cauli-ios-example-frameworks.sh"; sourceTree = "<group>"; };
-		FE22A916EB2232CC768FEB2A22562D92 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		FF464E93DF85694C74770ECCA5F9064C /* InspectorRecordTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = InspectorRecordTableViewCell.xib; sourceTree = "<group>"; };
+		FFF90A8F5899DBDC13F83D7DA52903D2 /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/generated/docsets/Cauliframework.docset/Contents/Resources/Documents/search.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		50EFF737B0CA9C66468682BF461131C4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0BF3DD13C074CF65581F8283B7B6BD1 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A4C77EA2A22FB06F661D6C7A8903C62A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,84 +310,280 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6BB4BFF1FD57A24DB7C6F2ACC6717AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66B919D0373181A2025DB4CCC272F42D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		19B7DFBB479DDE43DCCDBD42E93AED68 /* CauliViewController */ = {
+		00373FD3480648C947A8798971EEBBAA /* CauliURLProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				DB17027A8DA95F62A6E146129A7EB56C /* SwitchTableViewCell.xib */,
+				1567637460EF09238B209A56C946A6CE /* CauliAuthenticationChallengeProxy.swift */,
+				36AE7A264BE162A00A8A2793E6F22AE7 /* CauliURLProtocol.swift */,
+				A8A32AF41836EB626C5C05A7799CB59D /* CauliURLProtocolDelegate.swift */,
+				C1C0C7A3F7301120E249ED546992E36A /* WeakReference.swift */,
+			);
+			name = CauliURLProtocol;
+			path = Cauli/CauliURLProtocol;
+			sourceTree = "<group>";
+		};
+		1A5B94C5615E78E3EF676489D5510CD8 /* CauliViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2D264757C565552476D0E5931297931 /* CauliViewController.swift */,
+				E4E4B434DB94DF7415E92256E664945E /* SwitchTableViewCell.swift */,
 			);
 			name = CauliViewController;
 			path = Cauli/CauliViewController;
 			sourceTree = "<group>";
 		};
-		2FA491DD570E4E60ACD3200752289A13 /* Florets */ = {
+		1D2E4518402FF803133AC99571B999E8 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				5D6A7FA769A8D6C35B973211F1FFD82B /* Inspector */,
-			);
-			name = Florets;
-			path = Cauli/Florets;
-			sourceTree = "<group>";
-		};
-		4AE025280E6A6EC4CD8704017955AFEF /* CauliViewController */ = {
-			isa = PBXGroup;
-			children = (
-				15ECFC99672BB14D8CC65B2FE9DAC065 /* CauliViewController.swift */,
-				465EB664E70B982E4FD76C06CFA7F144 /* SwitchTableViewCell.swift */,
-			);
-			name = CauliViewController;
-			path = Cauli/CauliViewController;
-			sourceTree = "<group>";
-		};
-		5D6A7FA769A8D6C35B973211F1FFD82B /* Inspector */ = {
-			isa = PBXGroup;
-			children = (
-				D0C1DB021E140D2E9D0739379BC12D1B /* Record List */,
+				C44847713D20EC9707C95F8E0B6D4268 /* InspectorFloret.swift */,
+				1490C61462A5C4C127C0E43C884A58C3 /* TagLabel.swift */,
+				29C0DAA4CE93079F6FCB3FB426C4469A /* Record */,
+				6EE1845463F2C0CE202BA53E368C8061 /* Record List */,
 			);
 			name = Inspector;
 			path = Inspector;
 			sourceTree = "<group>";
 		};
-		5F2CC1E32A85EFE4A6FD6CD3EE1999FC /* Florets */ = {
+		210FB4E716882D3969A27432A4099DAB /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				9AF83A8A30707A8A44D165D3F1B04C5D /* FindReplace */,
-				8017B30020D2D5EC72AD0C545EBEDD03 /* Inspector */,
-				9C7B4A7D1F5403EAFA7500941A4F8118 /* Mock */,
-				6802CF4E394609D258E65E012FD3AC30 /* NoCache */,
+				B6753F72ED1713485DE11B6A28D3083C /* architecture.html */,
+				16158063D34071BE1CB0F6E3C82F1E0F /* architecture.html */,
+				4A54B4AA772D1093129C44BE4D0BC71E /* architecture.html */,
+				8F5D9F4C547C97504121CCB5490689AC /* Architecture.md */,
+				206756C185EC3A0EDA0C6376D4717F65 /* badge.svg */,
+				39C40D8A63EE00A98A73B1D563E2B3E7 /* badge.svg */,
+				C1DA5CE758640F13B705A96F7CDC93DA /* badge.svg */,
+				8204ECE030495CDE0F20CD7A368D4557 /* CachePolicy.html */,
+				67ED4E852BB30064D21DFA6A8F52C761 /* CachePolicy.html */,
+				0C890D62C7F932BAB7D7881D2038E64C /* CachePolicy.html */,
+				E3BC8A1F4631FD933029A70D96E6A554 /* carat.png */,
+				F96AE5599AF666223E7BB368128EED19 /* carat.png */,
+				183635EF07F4379E93F2189001FDBDC0 /* carat.png */,
+				07436439ABEF3F312C140CB5C027D017 /* Cauli.html */,
+				3D1FAED8363D9B748DF2CD587910E3EA /* Cauli.html */,
+				0F3A040580276F72DA861457304EE643 /* Cauli.html */,
+				C2C50F0BA45E0F4E2C89EAC4FD2769BC /* Cauli.html */,
+				D411658D99FEBBF7331C8AD7217DBAF3 /* Cauli.html */,
+				F8BF80B7D142C89216B0CD1C5FC769C9 /* Cauli.html */,
+				E2778B26534830A757D17F54061B7FD1 /* Cauli.tgz */,
+				1BB328F216B3111D26C6ABC42A1E483E /* Cauliframework.podspec */,
+				4F3FE54B5544188D46187B1A3F5DADCF /* Cauliframework.tgz */,
+				A247985F04C9656E0EB64E6891F40AF1 /* CauliURLProtocol.html */,
+				1A2CA3703871842CCA3CFA95A14513E5 /* CauliURLProtocol.html */,
+				CE69EBF52C2C0418718A0EB14D0A353D /* CauliURLProtocol.html */,
+				9F90BF22522F962F117D89C9D199D7A0 /* Classes.html */,
+				81335EB53E9233588D91853515BE507E /* Classes.html */,
+				40A36AA37513CD44AB5C23E11FB0DB4A /* Classes.html */,
+				D8DDFC5389FFADB89A4EBCD1E2025925 /* Configuration.html */,
+				0B375BF323AB3CE9243FB548D5225777 /* Configuration.html */,
+				F49D25A9A2ED5654615AF83D9EA955A0 /* Configuration.html */,
+				E4E4D9B99CAB7E459A585683D2FFDC47 /* Configuring Cauli.md */,
+				1513629F8F16983C9EEB9ACE8F599DC2 /* configuring-cauli.html */,
+				BE5C3ACC077C8D517504685CB69BE825 /* configuring-cauli.html */,
+				B3959EBEA1BF3449310B467E58128ADE /* configuring-cauli.html */,
+				1B263F8B60C00493AEE50C8C6FC5A9CD /* dash.png */,
+				F58651443D0F057EF0BD4846E2D7EECD /* dash.png */,
+				D01246628FE59CF180212E5162AEECB5 /* dash.png */,
+				4A8D0C5C7729934648E33520ABC55495 /* Displayable.html */,
+				B30B5BAFA69367A37B32388C6FFCF6D8 /* Displayable.html */,
+				87B4308D33545CC409769BAA8EE0C4F1 /* Displayable.html */,
+				3CC512BDB85F099FD23C6C96900FF0C7 /* docSet.dsidx */,
+				57A7D28D2B6A749FC777677D55BE537E /* docSet.dsidx */,
+				D1C90326D0EB5A681EB44AF55C61F3C9 /* Enums.html */,
+				EA1EAFC155C1FD4613D55A773F849A0E /* Enums.html */,
+				464B037F3E23031AD461280B2B400882 /* Enums.html */,
+				A2802EF3E478E4544430CAA267535B21 /* Extensions.html */,
+				E0E56CB5D4B1F2D8FFF7A3EAF97EBA0F /* Extensions.html */,
+				7407533E022398B83B291AF1051E5BAB /* Extensions.html */,
+				F31312713B9D6494146BD36C9EA037EE /* FindReplaceFloret.html */,
+				ADE3F0188C13B4D0085EFAE2CB2A237F /* FindReplaceFloret.html */,
+				F529E415B705AD125638797C18B1DC4F /* FindReplaceFloret.html */,
+				4D4C878EE77AFE50E71F6C7B30373AFA /* Floret.html */,
+				EC97E1618198888C751CD81B1546A4CF /* Floret.html */,
+				B33989D5D91AEBB99ABCA2C8BEBF450D /* Floret.html */,
+				58A64A1BF6723F16E09AB48DA2F1B3A4 /* florets.html */,
+				0F808BAABD32B29FB55A12D4103147FE /* florets.html */,
+				A0160D80112B84320F68076233289715 /* florets.html */,
+				F05C811017184F7FDB9CEAEE4DB4B88B /* Florets.md */,
+				AF87662AA7F15C0D93B94CE0CE1E537C /* Frequently Asked Questions.md */,
+				C15101FADFE6CABEC4303A6C2B3EEE17 /* frequently-asked-questions.html */,
+				A90E1D8D15C4C82CFC22F2DEDF839C80 /* frequently-asked-questions.html */,
+				2D226A52F96C6126D5DE1128E8E4EEE1 /* frequently-asked-questions.html */,
+				87A04AE4567EEB92B12EB7795BEB3B1B /* gh.png */,
+				31A8C1128C8F15149A35EE8FC722115D /* gh.png */,
+				1204D1786218F9A5CA8FDBC7D81B0756 /* gh.png */,
+				C4484899DC86A47AC0A4F0BDF96D7139 /* Guides.html */,
+				F9D71B6B76393F907DA1CD5F2B29A9E5 /* Guides.html */,
+				3F84240C3C1B54731D6D0295617E9C41 /* Guides.html */,
+				A96FDB9878AFE28B5FA1488A29FC8D23 /* highlight.css */,
+				2616532739F126C0102749DB1DA9719B /* highlight.css */,
+				022EDBF50A521DDAFD9BFB9E2D209689 /* highlight.css */,
+				5CD55532ECAA8B4CD9A91F6B488951F4 /* index.html */,
+				BFA2FF506274C6C4F6706879967516C4 /* index.html */,
+				A81E357E0E4249EE2F483D308F00DDA4 /* index.html */,
+				82E4C5C480AD5BD729DD1ED1D2852025 /* Info.plist */,
+				5CC52074FACB5FC81FEEA5E2F56ADE2D /* Info.plist */,
+				FB5A3687D2DE24445CFCFD546DCB766A /* InspectorFloret.html */,
+				B4E6E602DCC77087FABD499D1FFE2C70 /* InspectorFloret.html */,
+				38C571796FB24FFF1DD66D133FF95C58 /* InspectorFloret.html */,
+				5C906C2EDEEE80BF1C34A9ADB86A53B8 /* jazzy.css */,
+				BFBDA7DD5F88797CD7E5CEB82647C76B /* jazzy.css */,
+				4B315275484211CA4F92ADA2DC085636 /* jazzy.css */,
+				6084FCEF8125BB213E43B966643CC120 /* jazzy.js */,
+				9F533A1CB2CE64BC5A8A8C7510616FD1 /* jazzy.js */,
+				2A8EF06B4F066EEB334C350817EAB0F5 /* jazzy.js */,
+				40CB1EE69BCFAFCB51A286274E522589 /* jazzy.search.js */,
+				7C3E6CB3AF6216537B2FEB4827C9C0B9 /* jazzy.search.js */,
+				541E4EB4D4EC4172607762219DB6E97F /* jazzy.search.js */,
+				8BF80F086512872CF3637F921AC6CF48 /* jquery.min.js */,
+				EDA45B8D9ECE4A8438C9CB97EB8D632E /* jquery.min.js */,
+				E7FE0101C20144A2CE9301D035D3AD64 /* jquery.min.js */,
+				07179F9AD1A355566033993633DDB3CA /* LICENSE */,
+				3BA90197F54CB93C1184AA6B6D3943D0 /* lunr.min.js */,
+				88E69AD50CB491AF5A030DF60E79150D /* lunr.min.js */,
+				CB28A9CABBB2B57AF52D841650B42BD2 /* lunr.min.js */,
+				E76681631ED7C65713E25CC11A8D2010 /* MockFloret.html */,
+				5A9E2E99A6BB5FF36337C583A37813DD /* MockFloret.html */,
+				A951040DE584D312096978F88E848613 /* MockFloret.html */,
+				EF4161F7AB9D4E5E6E851E8347C3C09A /* Mode.html */,
+				22F571F36CF77568D58A10B0A4664526 /* Mode.html */,
+				33DA2E8FDC53C610C58384FED991D54D /* Mode.html */,
+				5DE1E6532EE8952622F3D62D0165DD21 /* NetworkServiceType.html */,
+				C10B591C1005EA36EE51C52FF56C614B /* NetworkServiceType.html */,
+				EB51565433B0AC99AD82C72C422B620A /* NetworkServiceType.html */,
+				EFFC7B235331ED5A809A981B2E332F8F /* NoCacheFloret.html */,
+				F39949D3E8CAB0CBB33925EE9CFD11CA /* NoCacheFloret.html */,
+				86B30119BE19D1245A4AE5529228C4CF /* NoCacheFloret.html */,
+				3DD93B2A984B690754923F2A28DD3CFA /* NSError.html */,
+				61F63D6F7ED739D65DF4D7267ECBBBAB /* NSError.html */,
+				3ADCEC48D46FE7278871FA457E98273E /* NSError.html */,
+				00F2CA21D8FF5A2E9C97175C978C8A4E /* Protocols.html */,
+				AF71E6A0959DA6FD2911D23DA77ADCF3 /* Protocols.html */,
+				41751B60E085DE064FE0F908EF8BBCAB /* Protocols.html */,
+				47C91DEAC47B9E571D5F221311216D6F /* README.md */,
+				31D91E8FDDF23425DD2DF6B1EA3AA386 /* Record.html */,
+				ED98B080826B85AB525F32FC85A0CB71 /* Record.html */,
+				05C44ACDF155209570E764A1E361AD24 /* Record.html */,
+				8C8007425F5AA58BD325C995A1A9BB42 /* RecordModifier.html */,
+				06E9470F2BFF3595322059BCFC51FCCB /* RecordModifier.html */,
+				CC52A891FF627B59A99F5A176B7638FB /* RecordModifier.html */,
+				54131E812154ED0DA34947CA19FFBD0F /* RecordSelector.html */,
+				F6101E39AF00F676D90C560609DCB161 /* RecordSelector.html */,
+				DB93CD2C8A923D2C878674FC84670576 /* RecordSelector.html */,
+				ED0358EBFFF86970D0098F343C0512B8 /* Response.html */,
+				8F09DBE34FECCD00FCFC53EC5E6C0C48 /* Response.html */,
+				AB0DCA2D496D1AF7F129A04EE903E689 /* Response.html */,
+				C159E02749AE5C5BB6A11981D55C8B9F /* Result.html */,
+				0C2C90FC1E9E00C5E4A47185A181A498 /* Result.html */,
+				5E948ED988737D4439551A16C760AC51 /* Result.html */,
+				FFF90A8F5899DBDC13F83D7DA52903D2 /* search.json */,
+				C804257219DFE05A0372A655C2E215EB /* search.json */,
+				5F2A31C34F5F2BF70DB62F20EC3D2383 /* search.json */,
+				5D27940F27B491549AFE08234F7EE562 /* spinner.gif */,
+				0844C1ADF6DD3A86371BB55DA24AD3FD /* spinner.gif */,
+				79BE0D99469C081EA5F9DB0D54EF5DDF /* spinner.gif */,
+				B284A4D3F779FD9C0BAA2451377795DD /* Storage.html */,
+				359CBB5C550F4C41C01C4171BB00500A /* Storage.html */,
+				98CAD450FC599981F8F42BA76251B3A4 /* Storage.html */,
+				55C065DCB528B30F39A42180D257DC03 /* StorageCapacity.html */,
+				8B33513B480F9DF483C61B4C519C0392 /* StorageCapacity.html */,
+				585D8A69959C5707226D85B75A5EA16A /* StorageCapacity.html */,
+				5681677C2F8B54D07C3CCB03C21DD61A /* Structs.html */,
+				50C5BF0A9B49E928C8018DC0E51596BE /* Structs.html */,
+				5374DF17DAFD4DB6937381D92B1D951F /* Structs.html */,
+				A3C40C53EF51D12505E3932E657B6756 /* typeahead.jquery.js */,
+				A48EEA8DFE0283B7DEF5A4C24D20FE43 /* typeahead.jquery.js */,
+				06DD101FA7D6967232378465F8C302E2 /* typeahead.jquery.js */,
+				E6D4004524A678C63D30AED8D580DDCE /* UIWindow.html */,
+				9EEB1810336768DB7FC602AF8D3A9E78 /* UIWindow.html */,
+				407A5BA6E23778095686051A1A7B21E5 /* UIWindow.html */,
+				C977A210CD42393E41AC2CCD043B0619 /* undocumented.json */,
+				A8776F3147EB1E7444970FE7FDA0A14E /* undocumented.json */,
+				0B035086F0E7166E88D52A0EB0B0D6ED /* undocumented.json */,
+				D421937B88B474E123322EE5A2E9EA2C /* URLRequest.html */,
+				7C115EF773A961E3FA7ADDA40882C870 /* URLRequest.html */,
+				AEA379A6A0C3E06343C167B015B38BEA /* URLRequest.html */,
+				659DCBAE07E58B469DE07E21A3BDFE59 /* Writing Your Own Plugin.md */,
+				C2E301DBACA3DBDD75EF1AB9F6B3122B /* writing-your-own-plugin.html */,
+				D80D979CB5657023D8D43F8801AC4B26 /* writing-your-own-plugin.html */,
+				88EB351232880E8920F7C6E4863C73D8 /* writing-your-own-plugin.html */,
 			);
-			name = Florets;
-			path = Cauli/Florets;
+			name = Pod;
 			sourceTree = "<group>";
 		};
-		674DDD4DFE19657E0D167F9B8C0A13EB /* Configuration */ = {
+		29C0DAA4CE93079F6FCB3FB426C4469A /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				17B30D52915A127D36878DD5C9BC8996 /* Configuration.swift */,
-				1FDBEFF66529D2612753656A9B21F97E /* RecordSelector.swift */,
+				E2C08326C6BE51604996B2F9842F2EF1 /* RecordItemTableViewCell.swift */,
+				3F33C692ED1D52ACC6558525659DE2DF /* RecordTableViewController.swift */,
+				4720EA41AAD442D6FD5740DF261B9AAE /* RecordTableViewDatasource.swift */,
+			);
+			name = Record;
+			path = Record;
+			sourceTree = "<group>";
+		};
+		3D639C39B18A98258513ABE18003A5D5 /* Cauliframework */ = {
+			isa = PBXGroup;
+			children = (
+				5A71BA1F1CFD48A122120C00ADD77EF8 /* Cauli.h */,
+				0E79260690E58A0BC9B50655118BC9F1 /* Cauli.swift */,
+				721B56CF34D442F9E8FE8864F1BB153D /* Displayable.swift */,
+				8C93AC5D773AF207693409F672599EC6 /* Floret.swift */,
+				4296645F2995238354533FF794705EAE /* MemoryStorage.swift */,
+				CCBE4A81D86FDEF3DD22D3C3F4AF9083 /* Storage.swift */,
+				4E88AEAA045FA7919D6109B6FB0F14F2 /* ViewControllerShakePresenter.swift */,
+				00373FD3480648C947A8798971EEBBAA /* CauliURLProtocol */,
+				1A5B94C5615E78E3EF676489D5510CD8 /* CauliViewController */,
+				48F86493A897475B1688536C5D3F8A41 /* Configuration */,
+				97287D5F0C8CBDD6F66093E2B6E6A53F /* Data structures */,
+				D1689F12B7807A602B61FE591CF336FF /* Extensions */,
+				C3E347AE3275FA838FBA223D8E77CE5A /* Florets */,
+				210FB4E716882D3969A27432A4099DAB /* Pod */,
+				AA6E1D82F2E21974C9D27D6CF890A07C /* Resources */,
+				F2625840397C38E99DA59D6DE9B92EDE /* Support Files */,
+			);
+			name = Cauliframework;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
+		48F86493A897475B1688536C5D3F8A41 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				4E0A4A0EB906C4061950C4B1E9FDD8E9 /* Configuration.swift */,
+				164B6254093C7CABA130F96AA3EE0D24 /* RecordSelector.swift */,
 			);
 			name = Configuration;
 			path = Cauli/Configuration;
 			sourceTree = "<group>";
 		};
-		67CA76337265924D7D38DCD5718DD698 /* Resources */ = {
+		4E17F240636882ED75DFE2DF7556A265 /* CauliViewController */ = {
 			isa = PBXGroup;
 			children = (
-				19B7DFBB479DDE43DCCDBD42E93AED68 /* CauliViewController */,
-				2FA491DD570E4E60ACD3200752289A13 /* Florets */,
+				C44BE6EC5B4AEC00C221BFFA69773BBB /* SwitchTableViewCell.xib */,
 			);
-			name = Resources;
+			name = CauliViewController;
+			path = Cauli/CauliViewController;
 			sourceTree = "<group>";
 		};
-		6802CF4E394609D258E65E012FD3AC30 /* NoCache */ = {
+		691D0131D6461F24023F0DC7B6332B2D /* Florets */ = {
 			isa = PBXGroup;
 			children = (
-				7DFB69444EBB92BE8D51D7D124C661E5 /* NoCacheFloret.swift */,
+				E20B980C8C2D06F73C9BF85FBC511CC2 /* Inspector */,
 			);
-			name = NoCache;
-			path = NoCache;
+			name = Florets;
+			path = Cauli/Florets;
 			sourceTree = "<group>";
 		};
 		6A76631084040B4FAC008B20FE6989F4 /* Pods-cauli-ios-example */ = {
@@ -362,197 +604,64 @@
 			path = "Target Support Files/Pods-cauli-ios-example";
 			sourceTree = "<group>";
 		};
-		6AB9BA1EE406C66F66BEA8EFFE0A198C /* Pod */ = {
+		6EE1845463F2C0CE202BA53E368C8061 /* Record List */ = {
 			isa = PBXGroup;
 			children = (
-				8B3C0D206A9C06D9E9BAEAF9C657B022 /* architecture.html */,
-				D47BC7BB390620E5433CED80F0375840 /* architecture.html */,
-				F60CB830921CBF13F270B53068AC15BB /* Architecture.md */,
-				5DC7BE70B9D6341CC73BBA220143DB5B /* badge.svg */,
-				349A09F26A126066F1503016E72A1D76 /* badge.svg */,
-				20A943D4420C0A40AF681958E44CAA72 /* CachePolicy.html */,
-				7C891FB92D52C3EE299C96EAE4580D16 /* CachePolicy.html */,
-				AB4133DACB300143F5BA4C6092834F35 /* carat.png */,
-				9777F8FC72240C81A96E410C8D623CEE /* carat.png */,
-				81D32869BE104052AE9D50BC80F8DF37 /* Cauli.html */,
-				D3B72432B0ABEDFB0502371C2A2D1E74 /* Cauli.html */,
-				90EC9C9FEBADC47C88A067E67DBD1711 /* Cauli.html */,
-				7F3DF0EA0B7B87DDE55F1A9DF60A6246 /* Cauli.html */,
-				7886A45379ABB990B644ADAC1AAE8ECF /* Cauli.tgz */,
-				1A6571481FEDDF2ECB44C2B2754A1D7D /* Cauliframework.podspec */,
-				B9357BEADAD8C9689734C57BF3EAC5D6 /* CauliURLProtocol.html */,
-				6AE8BE8ACD6B647DD3158F0E9FCAE35F /* CauliURLProtocol.html */,
-				E287909962786D3293CD11ACDDD702ED /* Classes.html */,
-				831EB214DC2812F976C07E9E46C86839 /* Classes.html */,
-				6B918BD4AEC0A0C397E5611DA6FA6633 /* Configuration.html */,
-				05739C0D550DE54832B34778758FE4C2 /* Configuration.html */,
-				B244D61F722C1367B2D36FCEE8BE9EC7 /* Configuring Cauli.md */,
-				8B0B6731972263D698F94CB39D357166 /* configuring-cauli.html */,
-				9E4BC4578D0E90EFA83DE350E2EC86E0 /* configuring-cauli.html */,
-				0CBE92D50B4103ABB266CE764B00C5EB /* dash.png */,
-				320D2F645C414CF7A943F12259852C9E /* dash.png */,
-				8B8DFD8C06E9E802850AB66B7B490DFA /* Displayable.html */,
-				A537CA04F82BBF79AEADDF9F76212EF9 /* Displayable.html */,
-				81E96CF415C3EFF14A89420F3583601A /* docSet.dsidx */,
-				1F2D1A1661EEDDD71F15881A3A4499A5 /* Enums.html */,
-				31406223E8AA7F1B572426512CEDEE58 /* Enums.html */,
-				D1C382F0C3EA283272A2677C793F3102 /* Extensions.html */,
-				ED374AC4840B4A68CF3E2F0D3A3AFBF2 /* Extensions.html */,
-				CEE9F247E4AC9F07A7836B6F34156E65 /* FindReplaceFloret.html */,
-				5E8FE81919D015510ECFD824E8B4640A /* FindReplaceFloret.html */,
-				531BFDDE4441DAF53C9CBD35C6650AF4 /* Floret.html */,
-				D377457DA837A5E883F9134A14DF22A2 /* Floret.html */,
-				77C42ED0746DE0FEDEC51F54A0335107 /* florets.html */,
-				04EB53742DFE3456609274A4583BA950 /* florets.html */,
-				E318D57ACA42EE5974FA410277093220 /* Florets.md */,
-				376647A40C0763E6D2ECC98D3C219AC3 /* Frequently Asked Questions.md */,
-				0BC82C300E93414CE1F2794C91003879 /* frequently-asked-questions.html */,
-				2DAC8A9D4E7FEBE24C09BCCDA5C7D0D7 /* frequently-asked-questions.html */,
-				AF0697D8D4EB9607C91CB4EBA91E7EE5 /* gh.png */,
-				CB60380DC72A71167C69AC49B494F4EE /* gh.png */,
-				39DE1D8CDB89712A8164F02C13F1FDAC /* Guides.html */,
-				8A6B62C04D460561D2A12B48FB687DB3 /* Guides.html */,
-				C78910040341AF29FF2386A4480EFE5C /* highlight.css */,
-				6CF004049B9C5CC1D8DC4C87474AA076 /* highlight.css */,
-				5F792424D4B70E347A21A7605C4D3F7B /* index.html */,
-				7F1C153FE82F51E38D3B8D938528F686 /* index.html */,
-				52C2A3D80007EBB64970F4E9F3D3CBD2 /* Info.plist */,
-				EB610D0F654D49D447C23770264C1F26 /* InspectorFloret.html */,
-				F536706E651B368F223889D897955415 /* InspectorFloret.html */,
-				65744B8A270F9D3683FC8F14E2638577 /* jazzy.css */,
-				8DAE81448424AE14BE6C06496C46B8EC /* jazzy.css */,
-				BCA11AF51B05B0FCA58CEA4586A92511 /* jazzy.js */,
-				7B73D854BB69D1B2A56B11A9993BAB4B /* jazzy.js */,
-				F3008578AED266B56F3B86E1ACB706C4 /* jazzy.search.js */,
-				F9ABFDD5EC2C96BE1AC9488DE43A272E /* jazzy.search.js */,
-				C50508BF7ADE49E8C207CDD215505C42 /* jquery.min.js */,
-				F96DE467335E9FDF283C3268080BD09C /* jquery.min.js */,
-				FE22A916EB2232CC768FEB2A22562D92 /* LICENSE */,
-				92A5C27CBBE8A5CA3F62DEF1D38FEE39 /* lunr.min.js */,
-				2B45CD27DE90D064A91273E62EC6EFD7 /* lunr.min.js */,
-				AB6E1A5F36245E3A3986E7D68A3F08EC /* MockFloret.html */,
-				C7C0582AE4C26D37268C66857A0DABD2 /* MockFloret.html */,
-				807BF944E633854A094E5D1E4374C6E4 /* Mode.html */,
-				5B68EA0FCAA2166E8F51405378739DFD /* Mode.html */,
-				DC032AE3CFA712E35022BD68D67F907F /* NetworkServiceType.html */,
-				DC3B198F1AB07EB1D6E98CA9ABB74B26 /* NetworkServiceType.html */,
-				6D442DEFCB8E6D6FA46F4A9B62805853 /* NoCacheFloret.html */,
-				41F37D5B49B8C7FC8296A2255B7F9B1A /* NoCacheFloret.html */,
-				F83FE8C67E69D55B391B22126C5806B0 /* NSError.html */,
-				AB01C9A413A6BD0061E2631BF6C70F4C /* NSError.html */,
-				E7881274D445F85A41FB670EFC182083 /* Protocols.html */,
-				11771DFE6AD4A3324FD5376C1C8AF10F /* Protocols.html */,
-				A3E2A97B850B8919E44B165D433D597C /* README.md */,
-				FCEDF9894457626F7483189360517B6A /* Record.html */,
-				02458BCCF19615E5C6DB94F9F8EFDA5C /* Record.html */,
-				C3941F69190A4956FA1BC42C2AE6F094 /* RecordModifier.html */,
-				7C2391223EC22FC51D51EF2402E02221 /* RecordModifier.html */,
-				C92D27583D8B0A6099F1239329FD7CAF /* RecordSelector.html */,
-				5CD96076F283AD581222C7830CA50927 /* RecordSelector.html */,
-				DB7405C5F8AB24879FF3BEE8DA761427 /* Response.html */,
-				493AE28BBE8C8B7455549269326B8C02 /* Response.html */,
-				07A114386C18FE4CC5E807FD0E77FA15 /* Result.html */,
-				F3D65406EFEE7121A7CF8C69E904069D /* Result.html */,
-				5F4484611CAED24DE94612449738EB20 /* search.json */,
-				89FC6341529430B833F078582D664CFF /* search.json */,
-				5CBA8FBEFB655038F9994A8F26F81AC5 /* spinner.gif */,
-				B68F0B275E1463B717B8ECC1C75BF662 /* spinner.gif */,
-				60DE910B54E8E2A46DCFAA1640109C8F /* Storage.html */,
-				7CB28C8246BA67AC7AB657A5F7FCA8CD /* Storage.html */,
-				CF71E9D11872D08904D73FBF854299B5 /* StorageCapacity.html */,
-				AE943869B8BE1A3159E044673AB59ADC /* StorageCapacity.html */,
-				3AC897835657ED5C25C0B884F12D7A34 /* Structs.html */,
-				D82CED961B772F517B7143D7B5E62A0A /* Structs.html */,
-				53F275A5365F2BCC136AA7F19B45F8D6 /* typeahead.jquery.js */,
-				1611949CE86B8301DA28B4C83B2A5BAB /* typeahead.jquery.js */,
-				D8BBB2EBE1724E0933ED35C0CEEC2CB1 /* UIWindow.html */,
-				3D5292EC50572C5981429F14B33660D1 /* UIWindow.html */,
-				45892E3A63D4CFBB84F4067CC1DA6A82 /* undocumented.json */,
-				FB8A3A818ECB50D105B3237A6F7963FA /* undocumented.json */,
-				BC1D5401F39141531403B5374CDDE8E4 /* URLRequest.html */,
-				51D03187B1B84763D83743B828BB4EEA /* URLRequest.html */,
-				962A9814BA4F3B719918E49E6DDE565D /* Writing Your Own Plugin.md */,
-				44A2B3D22E1C424989354DC8F5CA9B95 /* writing-your-own-plugin.html */,
-				CAD69D2FEFB5EE6DAA480DB2469CE35C /* writing-your-own-plugin.html */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		6B4BA78316109C0B4FE3EB26011576E9 /* Cauliframework */ = {
-			isa = PBXGroup;
-			children = (
-				7C336E49315B6952C7B65301D55D3EF6 /* Cauli.h */,
-				42A3B9A2B0A9756DA5C3307D9D3B4855 /* Cauli.swift */,
-				BE23D94E057B677004F4475B69BE4557 /* Displayable.swift */,
-				905FC5FCCB3F3434815D4F862531915A /* Floret.swift */,
-				9D4EDA4F6F99A60367E094C9468C81EF /* MemoryStorage.swift */,
-				52DB4FF80D1EBD3242655144BCE16B76 /* Storage.swift */,
-				31DA61D49E773BB7A030D0242B3E3811 /* ViewControllerShakePresenter.swift */,
-				F6D4C34CC77B936CFAE1C0DA4CD28E12 /* CauliURLProtocol */,
-				4AE025280E6A6EC4CD8704017955AFEF /* CauliViewController */,
-				674DDD4DFE19657E0D167F9B8C0A13EB /* Configuration */,
-				8E0A8788CF622987C77C468D5FAE8CB4 /* Data structures */,
-				CA8F966A1B0EAB72535573A6D1A94E44 /* Extensions */,
-				5F2CC1E32A85EFE4A6FD6CD3EE1999FC /* Florets */,
-				6AB9BA1EE406C66F66BEA8EFFE0A198C /* Pod */,
-				67CA76337265924D7D38DCD5718DD698 /* Resources */,
-				FDE7974C9CC1889243C44A522B0A6ECC /* Support Files */,
-			);
-			name = Cauliframework;
-			path = ../../..;
-			sourceTree = "<group>";
-		};
-		777C48B240F79046A62C4068CAD0C3D4 /* Record List */ = {
-			isa = PBXGroup;
-			children = (
-				C3D5891DBD72297056242BDD6F2B9D65 /* InspectorRecordTableViewCell.swift */,
-				CAE2FB9E1E0C50794C9E076ADE65AF98 /* InspectorTableViewController.swift */,
+				EA61E08A29D9E7D2140FE58E04CCD27B /* InspectorRecordTableViewCell.swift */,
+				DE043FD9C7DD7DB66EEDA6DABBBFB9FB /* InspectorTableViewController.swift */,
+				1C6D4F7BE9ACCDBF3D33028F186F6924 /* InspectorTableViewDatasource.swift */,
 			);
 			name = "Record List";
 			path = "Record List";
 			sourceTree = "<group>";
 		};
-		8017B30020D2D5EC72AD0C545EBEDD03 /* Inspector */ = {
+		7A690B8E6160504BAC0D4A5810FB5D93 /* NoCache */ = {
 			isa = PBXGroup;
 			children = (
-				EB58907E7BCEE8C7472C9F696BA60431 /* InspectorFloret.swift */,
-				9B72C6AB326B0BD76D66D9BE4B3E2A44 /* TagLabel.swift */,
-				F932F8BD74DCDCC2634456EEE42B49F9 /* Record */,
-				777C48B240F79046A62C4068CAD0C3D4 /* Record List */,
+				F60B89DB9E62CA5090601B68A487E107 /* NoCacheFloret.swift */,
 			);
-			name = Inspector;
-			path = Inspector;
+			name = NoCache;
+			path = NoCache;
+			sourceTree = "<group>";
+		};
+		83373C4666D3E221596084DD2AEF1C68 /* FindReplace */ = {
+			isa = PBXGroup;
+			children = (
+				DD55FC6AB4C9D3FA7B99AA9A5213DA7E /* FindReplaceFloret.swift */,
+				27E978E98862577993B1404B54C3573A /* RecordModifier.swift */,
+				2350BEA4AE7A23F1A0C05952500E612B /* ReplaceDefinition.swift */,
+			);
+			name = FindReplace;
+			path = FindReplace;
 			sourceTree = "<group>";
 		};
 		86011B376B1F31289088940DFE1018A5 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6B4BA78316109C0B4FE3EB26011576E9 /* Cauliframework */,
+				3D639C39B18A98258513ABE18003A5D5 /* Cauliframework */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		8E0A8788CF622987C77C468D5FAE8CB4 /* Data structures */ = {
+		8AC7D387210267E41A50E4EB6ED33CCD /* Record List */ = {
 			isa = PBXGroup;
 			children = (
-				1B06FE97AF7F96F917CD61C94196FEB1 /* Record.swift */,
-				BDE08593C27AFA3C0463ECC6F3298B95 /* Response.swift */,
-				EDE57B4D33FF746899966FF0BC1EDE26 /* Result.swift */,
-				7FA3B045A26C9D53A9BF354887706EE0 /* URLResponseRepresentable.swift */,
+				FF464E93DF85694C74770ECCA5F9064C /* InspectorRecordTableViewCell.xib */,
+			);
+			name = "Record List";
+			path = "Record List";
+			sourceTree = "<group>";
+		};
+		97287D5F0C8CBDD6F66093E2B6E6A53F /* Data structures */ = {
+			isa = PBXGroup;
+			children = (
+				EC353BBD9B4DCF16924B8994A94885B9 /* Record.swift */,
+				259F9CC069B564406AB0150EFB280BEF /* Response.swift */,
+				C559C2A4AF5AC9577CA61651FFCBEDD6 /* Result.swift */,
+				1D600682648DE09CC519F88F9CA3B291 /* URLResponseRepresentable.swift */,
 			);
 			name = "Data structures";
 			path = "Cauli/Data structures";
-			sourceTree = "<group>";
-		};
-		9AF83A8A30707A8A44D165D3F1B04C5D /* FindReplace */ = {
-			isa = PBXGroup;
-			children = (
-				F1CD6154A0E52AE204B674B3650C1337 /* FindReplaceFloret.swift */,
-				902B7E7C78EF3B6CD2A887C23A48202C /* RecordModifier.swift */,
-				F55393F2D89C8D32DCDE5D148445798F /* ReplaceDefinition.swift */,
-			);
-			name = FindReplace;
-			path = FindReplace;
 			sourceTree = "<group>";
 		};
 		9B055D0CFEA43187E72B03DED11F5662 /* iOS */ = {
@@ -563,19 +672,25 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		9C7B4A7D1F5403EAFA7500941A4F8118 /* Mock */ = {
+		AA6E1D82F2E21974C9D27D6CF890A07C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8D80525A0D3145A4216F54C928A31076 /* MD5Digest.swift */,
-				455E7FF0B72120DCD8F1438FA105C420 /* MockFloret.swift */,
-				9C96C5D3D2CC12A7AE41584F0AA7D7E6 /* MockFloretStorage.swift */,
-				DF68323B751B94951B9DD0BE5ABBC8AD /* MockRecordSerializer.swift */,
-				6643986AA7775C933FF0681DDC3E6FB3 /* SwappedRecord.swift */,
-				D3021C4F98D700120CB8657C2D6A617B /* SwappedResponse.swift */,
-				B9CC34A7158EC233AB04573BFC128F0D /* SwappedURLRequest.swift */,
+				4E17F240636882ED75DFE2DF7556A265 /* CauliViewController */,
+				691D0131D6461F24023F0DC7B6332B2D /* Florets */,
 			);
-			name = Mock;
-			path = Mock;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C3E347AE3275FA838FBA223D8E77CE5A /* Florets */ = {
+			isa = PBXGroup;
+			children = (
+				83373C4666D3E221596084DD2AEF1C68 /* FindReplace */,
+				1D2E4518402FF803133AC99571B999E8 /* Inspector */,
+				D68B868B5B7C3B8046931A912EEF426B /* Mock */,
+				7A690B8E6160504BAC0D4A5810FB5D93 /* NoCache */,
+			);
+			name = Florets;
+			path = Cauli/Florets;
 			sourceTree = "<group>";
 		};
 		CA59CB4EF9C5D9425ECE553F06151D48 /* Products */ = {
@@ -585,20 +700,6 @@
 				C66D899594E0259C6A6E8C36FDCC5B38 /* Pods_cauli_ios_example.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CA8F966A1B0EAB72535573A6D1A94E44 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				CF8EB240BCC6146C842A7B970EBFC9D3 /* Collection+ReduceAsnyc.swift */,
-				4BE261EC32300911323179C929A88C46 /* NSError+Cauli.swift */,
-				8DBE8F91AF92DFAC5F2F40BC90F4F440 /* NSError+Codable.swift */,
-				D7D3631D5DD9571DB139DFC5A6D3A4EA /* UIWindow+Shake.swift */,
-				B8794AE36E003D2D8DB1CB4346BCF4FF /* URLRequest+Codable.swift */,
-				19CBC89BDFCC0334638EB22548CA2B7D /* URLSessionConfiguration+Swizzling.swift */,
-			);
-			name = Extensions;
-			path = Cauli/Extensions;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -612,13 +713,18 @@
 			);
 			sourceTree = "<group>";
 		};
-		D0C1DB021E140D2E9D0739379BC12D1B /* Record List */ = {
+		D1689F12B7807A602B61FE591CF336FF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4EBF55BFD6285B0AC866DC93E10E02E5 /* InspectorRecordTableViewCell.xib */,
+				0CEF7C7C9170FA94DAD07BD5027EAFAF /* Collection+ReduceAsnyc.swift */,
+				21FB91CE80C9F9AD3ABF980987B6AB2C /* NSError+Cauli.swift */,
+				91FDE78B9C5BD68B8BB35A21D7FB97D6 /* NSError+Codable.swift */,
+				200E3F963F010CE76382878A578FEF0A /* UIWindow+Shake.swift */,
+				9C01FAFCA7F4EDF95C8C488D44E72B39 /* URLRequest+Codable.swift */,
+				D37B7F3B527FBA17997B984A27031741 /* URLSessionConfiguration+Swizzling.swift */,
 			);
-			name = "Record List";
-			path = "Record List";
+			name = Extensions;
+			path = Cauli/Extensions;
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -629,27 +735,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F6D4C34CC77B936CFAE1C0DA4CD28E12 /* CauliURLProtocol */ = {
+		D68B868B5B7C3B8046931A912EEF426B /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				48ED079A8F8291BE12F9C7E675355534 /* CauliAuthenticationChallengeProxy.swift */,
-				096575EBAA2C4B0D7F85C5C3E3686F48 /* CauliURLProtocol.swift */,
-				F2EFBB1DBD9B080FF6B1952433FD8817 /* CauliURLProtocolDelegate.swift */,
-				3795ED798729869ECB86B37BAE4B0A43 /* WeakReference.swift */,
+				31151572D40AE93685B015D68B77E4AD /* MD5Digest.swift */,
+				824E3A6E74834106FADB24B176B495EF /* MockFloret.swift */,
+				06AA08EC9A7938536A01124090E0DE2C /* MockFloretStorage.swift */,
+				669135D941DD375176FA8B6A2AF1B365 /* MockRecordSerializer.swift */,
+				16CE795A6F86B22184BD9F5C9425F174 /* SwappedRecord.swift */,
+				ABA8B71B2873F4C9B83D41BB6C1F1289 /* SwappedResponse.swift */,
+				12D14CF6ECF477F3451EF5FE773E23A0 /* SwappedURLRequest.swift */,
 			);
-			name = CauliURLProtocol;
-			path = Cauli/CauliURLProtocol;
+			name = Mock;
+			path = Mock;
 			sourceTree = "<group>";
 		};
-		F932F8BD74DCDCC2634456EEE42B49F9 /* Record */ = {
+		E20B980C8C2D06F73C9BF85FBC511CC2 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				784B41F566F0C6ED7BCB27834E5C1B85 /* RecordItemTableViewCell.swift */,
-				EB54F0AE1F24F47D47EC7F8AD6E75C8F /* RecordTableViewController.swift */,
-				CB0D737CC40BC8BDBC9602734E7B4327 /* RecordTableViewDatasource.swift */,
+				8AC7D387210267E41A50E4EB6ED33CCD /* Record List */,
 			);
-			name = Record;
-			path = Record;
+			name = Inspector;
+			path = Inspector;
+			sourceTree = "<group>";
+		};
+		F2625840397C38E99DA59D6DE9B92EDE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B56D1A664CB3F33A861CE4690BB242D /* Cauliframework.modulemap */,
+				B0B9E7A9F22927FFE2262D91B39C1BB1 /* Cauliframework.xcconfig */,
+				48C2C10593BA96908191BD164E0B7D05 /* Cauliframework-dummy.m */,
+				939ED1DC2D9FA1946BA52121D551FEE1 /* Cauliframework-prefix.pch */,
+				ECFA5AA0DDFC92235005772938336761 /* Cauliframework-umbrella.h */,
+				E876EFC73A1C9FFC172A7FAEECAEA046 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/cauli-ios-example/Pods/Target Support Files/Cauliframework";
 			sourceTree = "<group>";
 		};
 		FD9794DC984DC04CE60B3CE4545AEF84 /* Targets Support Files */ = {
@@ -658,20 +779,6 @@
 				6A76631084040B4FAC008B20FE6989F4 /* Pods-cauli-ios-example */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		FDE7974C9CC1889243C44A522B0A6ECC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				1475911BEAC3A1D438E3598F763A39BD /* Cauliframework.modulemap */,
-				5D852A55CA6ADB37AA55F41468B724AD /* Cauliframework.xcconfig */,
-				8B4B49EA2CD6449B0273C8740DFC6376 /* Cauliframework-dummy.m */,
-				1CB41D2754B9E59DF5871D4F5C6E04B7 /* Cauliframework-prefix.pch */,
-				848B9718D932A71E8AA24E08FD119FF3 /* Cauliframework-umbrella.h */,
-				2AD7CC510D07EE3C7F9738479A54A05D /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/cauli-ios-example/Pods/Target Support Files/Cauliframework";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -685,12 +792,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		33DDC131AAAFA860CCCAD0778E69A04D /* Headers */ = {
+		BC42C92F9BD156982D1EA5F416355FF1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C694A629BCBF85D6F04B5B1ECA0711C /* Cauli.h in Headers */,
-				A9C88E4888784461C44185ABBB5C8E52 /* Cauliframework-umbrella.h in Headers */,
+				30657DA7C98DC36FD71909675F9B675F /* Cauli.h in Headers */,
+				7DB8DB4DDA0C4AE9E8983C25697DC0C6 /* Cauliframework-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,14 +823,14 @@
 			productReference = C66D899594E0259C6A6E8C36FDCC5B38 /* Pods_cauli_ios_example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E2DD368982823709218286E8E7BDEBA6 /* Cauliframework */ = {
+		E3BD1CFC1FA5EEB98EB4E20BDEDDF3CE /* Cauliframework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5D749D7880BC8215C34E0941813C953D /* Build configuration list for PBXNativeTarget "Cauliframework" */;
+			buildConfigurationList = EBD13CA9B0142F538ACD519834C718DF /* Build configuration list for PBXNativeTarget "Cauliframework" */;
 			buildPhases = (
-				33DDC131AAAFA860CCCAD0778E69A04D /* Headers */,
-				1B804063316E2BD2919914BFE863358D /* Sources */,
-				50EFF737B0CA9C66468682BF461131C4 /* Frameworks */,
-				8B9533A2FE8E4665DAEF3983C1EEC062 /* Resources */,
+				BC42C92F9BD156982D1EA5F416355FF1 /* Headers */,
+				DA3ADE85340E3EBE40CCE072E724766C /* Sources */,
+				A6BB4BFF1FD57A24DB7C6F2ACC6717AD /* Frameworks */,
+				650167053FAD3E4266C224A7557E2A71 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -755,13 +862,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2DD368982823709218286E8E7BDEBA6 /* Cauliframework */,
+				E3BD1CFC1FA5EEB98EB4E20BDEDDF3CE /* Cauliframework */,
 				DCCB792654F85279EED80A9300FF3ED3 /* Pods-cauli-ios-example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		650167053FAD3E4266C224A7557E2A71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E340A000EF78F5B4758895936D1DA6A2 /* InspectorRecordTableViewCell.xib in Resources */,
+				E28FE52A7E880264F35DC94034536DA0 /* SwitchTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7B460E8457FFEDFC293B2C778783FCE3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -769,73 +885,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8B9533A2FE8E4665DAEF3983C1EEC062 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				31DBC3A23CCB6C5ABAA264408DA433E8 /* InspectorRecordTableViewCell.xib in Resources */,
-				FFF89689ABDD307831FDDCDDB8F676A9 /* SwitchTableViewCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1B804063316E2BD2919914BFE863358D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A214DA86162C6CF30DB5010DECEEA7DD /* Cauli.swift in Sources */,
-				4540FA84579D99E9B93AC9C7675BCCBE /* CauliAuthenticationChallengeProxy.swift in Sources */,
-				F8398AF0E27EA39BEDADF7A6B70427C6 /* Cauliframework-dummy.m in Sources */,
-				EB0A2562C5EE4F92F8580DF527459556 /* CauliURLProtocol.swift in Sources */,
-				4636CFEA0263978A27141BABBAD4A454 /* CauliURLProtocolDelegate.swift in Sources */,
-				C7AF2055364BF820F1EA7EE32DB72A28 /* CauliViewController.swift in Sources */,
-				231EC343BFAEF17B00469E1F97A935BE /* Collection+ReduceAsnyc.swift in Sources */,
-				D87F386FCBF59FB3E78D1D4964FFAF12 /* Configuration.swift in Sources */,
-				FACC1D58FAE6D60B2692285B775B9556 /* Displayable.swift in Sources */,
-				0F475BAD7EE14D4AD6F0B5AFC37D3D0A /* FindReplaceFloret.swift in Sources */,
-				9595C1A97FC9467D2CE708C32D60C69D /* Floret.swift in Sources */,
-				2377E0660D2A71253FB952BAA9D5E94C /* InspectorFloret.swift in Sources */,
-				5EEA820C7E891D88D7B930BC922A2D47 /* InspectorRecordTableViewCell.swift in Sources */,
-				66DAB26172A03BEBC1179366A1D1375C /* InspectorTableViewController.swift in Sources */,
-				C8A510BE59170F592E27E3A5ED57BBB9 /* MD5Digest.swift in Sources */,
-				E1CFB8ED59BF2924799179544B1CF0B1 /* MemoryStorage.swift in Sources */,
-				11E772E905524B7C82A37D65D335000B /* MockFloret.swift in Sources */,
-				EDA94247E0DA3C5933B38DC34AD09071 /* MockFloretStorage.swift in Sources */,
-				301C59F592E3F9E39654B1E24D168877 /* MockRecordSerializer.swift in Sources */,
-				4D970F0F194E00F2EFE5B5CD89C6D564 /* NoCacheFloret.swift in Sources */,
-				D7C2974AA6D56705088D08C7FC348F21 /* NSError+Cauli.swift in Sources */,
-				915444EAAA842AFC122E473874AF131E /* NSError+Codable.swift in Sources */,
-				20E630F0DE9356C658979DD21613533C /* Record.swift in Sources */,
-				EFF19C83F069DF77A87E15F5BB2B573D /* RecordItemTableViewCell.swift in Sources */,
-				C47A34A12C73F46BB2B3A8045E878406 /* RecordModifier.swift in Sources */,
-				4AE570D89FCEE6F395410392B01D7AF8 /* RecordSelector.swift in Sources */,
-				A42710E6538E5DCEA7088D9FBB9F0D7E /* RecordTableViewController.swift in Sources */,
-				4B2B0335CBD777B5EACF0F6E73F12F1C /* RecordTableViewDatasource.swift in Sources */,
-				0AC45E4A31A7C8F6D9865742B16068C3 /* ReplaceDefinition.swift in Sources */,
-				AEB8816E2E5F3AE90F85547FAD7194CD /* Response.swift in Sources */,
-				66C853ABCB5E0DDBFF9EA438045C9515 /* Result.swift in Sources */,
-				F9A441499129A98E98CA9750BFE058DD /* Storage.swift in Sources */,
-				AB4581E10DC7DD61FD6E84E2430DDF43 /* SwappedRecord.swift in Sources */,
-				546765CD984F109F3D6C112C738770CA /* SwappedResponse.swift in Sources */,
-				4CBC51B01E539018C2D505392D9CAB01 /* SwappedURLRequest.swift in Sources */,
-				F4F0E5E014CAEA11F2AA9397852C64A1 /* SwitchTableViewCell.swift in Sources */,
-				1DEB12218F48F4E05DE4F083FE79A893 /* TagLabel.swift in Sources */,
-				016CCE1738C150EF84867BBE13BF7FC2 /* UIWindow+Shake.swift in Sources */,
-				D400E65C7541E175A1410B7F5CF4F2CE /* URLRequest+Codable.swift in Sources */,
-				0D790D5E66C1A9A86CA7EB29119BF30D /* URLResponseRepresentable.swift in Sources */,
-				CE94FB9401ADA11BC8502D46A8240FE3 /* URLSessionConfiguration+Swizzling.swift in Sources */,
-				8A945076532D9B4AA3E0B41E84460FF3 /* ViewControllerShakePresenter.swift in Sources */,
-				8524DA07A380320B3A0887719BB08101 /* WeakReference.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2252F50A1E6D746306DFD88CCF5893B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9CE544CABD544895D8614498E373761D /* Pods-cauli-ios-example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA3ADE85340E3EBE40CCE072E724766C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45142431B4D1FDFD76B602F1421C1947 /* Cauli.swift in Sources */,
+				987574CC6AE1378D573621A4B19E1B03 /* CauliAuthenticationChallengeProxy.swift in Sources */,
+				F0D08EA15DA2641758E52EA2C4C476C1 /* Cauliframework-dummy.m in Sources */,
+				2114EC41985A324FE0FD447246562E51 /* CauliURLProtocol.swift in Sources */,
+				A026F32698A1E9D7D636090E905A5D64 /* CauliURLProtocolDelegate.swift in Sources */,
+				1201E28BBB2FF5E1C3B2D8A3B8AD8F9D /* CauliViewController.swift in Sources */,
+				AA4B6B0569596DCC9D838114B59B6A6A /* Collection+ReduceAsnyc.swift in Sources */,
+				6705F3E15A4C69B1FE8D27679DAAF5B1 /* Configuration.swift in Sources */,
+				25E9CBA180CC681663F0A15EABF82B57 /* Displayable.swift in Sources */,
+				3FE92D1D79CB9CAC0655C81CA75B4D89 /* FindReplaceFloret.swift in Sources */,
+				292153876835B49B8A0290C2D06B01DE /* Floret.swift in Sources */,
+				28F0D0997D3F5538A9657986211D3285 /* InspectorFloret.swift in Sources */,
+				9DAF724A847D4A6E0DE043D5F69D9A7D /* InspectorRecordTableViewCell.swift in Sources */,
+				689218DEC614B3AFBA9C48FCA4439136 /* InspectorTableViewController.swift in Sources */,
+				0C22531915A966AE206EF346C142875A /* InspectorTableViewDatasource.swift in Sources */,
+				DE9490D2CA66D888F350851E3EE6A693 /* MD5Digest.swift in Sources */,
+				B2C39C840395B37DAF805B4515E31ACE /* MemoryStorage.swift in Sources */,
+				AB0F017AEB9445B88BF6D6267C5F91DE /* MockFloret.swift in Sources */,
+				3C4314E57C70D5A45762C32454F4AF04 /* MockFloretStorage.swift in Sources */,
+				F17148D8A93955244B9C9D868DDF646F /* MockRecordSerializer.swift in Sources */,
+				DAC5F518030103A409FA36BC35BEA123 /* NoCacheFloret.swift in Sources */,
+				1817EB370B530D15EE3B7FAF14239945 /* NSError+Cauli.swift in Sources */,
+				A5BD03C45D055149FD29B7AFA53681D2 /* NSError+Codable.swift in Sources */,
+				BF357B3C9C6B955BAD25AC0EEE93B1ED /* Record.swift in Sources */,
+				C578D009D2D4B553C8EE92B09BFEC75D /* RecordItemTableViewCell.swift in Sources */,
+				6AFD3739981E1BD253151F36ED2A3A06 /* RecordModifier.swift in Sources */,
+				9B35053A4FAF52A38D6E84B3CD6C1545 /* RecordSelector.swift in Sources */,
+				2863834D232534637F549178E364A468 /* RecordTableViewController.swift in Sources */,
+				61ACF170E82E6EE2CDE811A3EC90EA47 /* RecordTableViewDatasource.swift in Sources */,
+				2CDA4BEAF4E85A528503A6044B963DFE /* ReplaceDefinition.swift in Sources */,
+				02A802DE82C644A7F4306CFD519989D8 /* Response.swift in Sources */,
+				899310C03763DC0C9EF6A4FC4BA809F5 /* Result.swift in Sources */,
+				7D024A31E6862A2E63B534E98E3E73F9 /* Storage.swift in Sources */,
+				A530920D190BF5CC859A220E4C4F8B87 /* SwappedRecord.swift in Sources */,
+				487AFEAFC2CC645A7D72173AFD25232E /* SwappedResponse.swift in Sources */,
+				04E15ECB7664FF3F12E2D54965CDBC54 /* SwappedURLRequest.swift in Sources */,
+				51C0FA0E51E12388B158014B5E207B96 /* SwitchTableViewCell.swift in Sources */,
+				E1E368573DCB21909919669A30D6C0D4 /* TagLabel.swift in Sources */,
+				28E2A176DA5C83A1DE7DA697446FB2F6 /* UIWindow+Shake.swift in Sources */,
+				6B62348ED032415BEE38FBE03BBB01AA /* URLRequest+Codable.swift in Sources */,
+				C96A8DE600DCA73EBC7DA91720D1FF43 /* URLResponseRepresentable.swift in Sources */,
+				8CA9517BA37532DE860A23E9EFE66118 /* URLSessionConfiguration+Swizzling.swift in Sources */,
+				23680D7E86C37207B36DC486D4DF69AE /* ViewControllerShakePresenter.swift in Sources */,
+				954E8FF5A99BED8802B555B668875E0E /* WeakReference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,85 +953,12 @@
 		D427CF9316A86219F850C39366097499 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Cauliframework;
-			target = E2DD368982823709218286E8E7BDEBA6 /* Cauliframework */;
+			target = E3BD1CFC1FA5EEB98EB4E20BDEDDF3CE /* Cauliframework */;
 			targetProxy = 8346848C64348F9F3A9E3474358F2EBA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2DD571C7A20EBCE4EE97D0A9EC7227B5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D852A55CA6ADB37AA55F41468B724AD /* Cauliframework.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Cauliframework/Cauliframework-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Cauliframework/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Cauliframework/Cauliframework.modulemap";
-				PRODUCT_MODULE_NAME = Cauliframework;
-				PRODUCT_NAME = Cauliframework;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5B97F436A213135812510BB45CEC2D41 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D852A55CA6ADB37AA55F41468B724AD /* Cauliframework.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Cauliframework/Cauliframework-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Cauliframework/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Cauliframework/Cauliframework.modulemap";
-				PRODUCT_MODULE_NAME = Cauliframework;
-				PRODUCT_NAME = Cauliframework;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		7064A948AD01AC6EEACFE7AFC03CC844 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 290445BC890406DEE2BF586E0406BF3E /* Pods-cauli-ios-example.release.xcconfig */;
@@ -956,6 +991,43 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7F677D6A69A8D0D14DEC1921C464529D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0B9E7A9F22927FFE2262D91B39C1BB1 /* Cauliframework.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Cauliframework/Cauliframework-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cauliframework/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Cauliframework/Cauliframework.modulemap";
+				PRODUCT_MODULE_NAME = Cauliframework;
+				PRODUCT_NAME = Cauliframework;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1129,6 +1201,42 @@
 			};
 			name = Debug;
 		};
+		ED17B887D15D41C9728CCA96AB909ACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0B9E7A9F22927FFE2262D91B39C1BB1 /* Cauliframework.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Cauliframework/Cauliframework-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cauliframework/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Cauliframework/Cauliframework.modulemap";
+				PRODUCT_MODULE_NAME = Cauliframework;
+				PRODUCT_NAME = Cauliframework;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1141,20 +1249,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5D749D7880BC8215C34E0941813C953D /* Build configuration list for PBXNativeTarget "Cauliframework" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5B97F436A213135812510BB45CEC2D41 /* Debug */,
-				2DD571C7A20EBCE4EE97D0A9EC7227B5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		6CE9444C3B58FB6F229BDB93C60CAF75 /* Build configuration list for PBXNativeTarget "Pods-cauli-ios-example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF6F9898383919748AE2FCE3A2AA737C /* Debug */,
 				7064A948AD01AC6EEACFE7AFC03CC844 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBD13CA9B0142F538ACD519834C718DF /* Build configuration list for PBXNativeTarget "Cauliframework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED17B887D15D41C9728CCA96AB909ACD /* Debug */,
+				7F677D6A69A8D0D14DEC1921C464529D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
