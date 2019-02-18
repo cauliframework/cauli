@@ -25,8 +25,8 @@ import Foundation
 /// The Configuration is used to configure Cauli at initialization time.
 /// The `Configuration.standard` is a sensibly chosen configuration set.
 public struct Configuration {
-    ///
-    public typealias PrePersistHook = ((Record) -> Record)
+    /// A callback that returns a possibly modified `Record`
+    public typealias RecordModifier = ((Record) -> Record)
     
     /// The default Configuration.
     ///
@@ -38,7 +38,7 @@ public struct Configuration {
         recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
         enableShakeGesture: true,
         storageCapacity: .records(50),
-        prePersistHook: { record in
+        preStorageRecordModifier: { record in
             var mutatedRecord = record
             mutatedRecord.designatedRequest.url = URL(string: "http://google.com")!
             return mutatedRecord
@@ -69,14 +69,14 @@ public struct Configuration {
     
     /// Pass in a callback that will be executed on each `Record` before it is persisted to a `Storage`.
     /// This allows you to modify requests and responses after they are executed but before they are passed along to other florets.
-    public var prePersistHook: PrePersistHook?
+    public var preStorageRecordModifier: RecordModifier?
 
     /// Creates a new `Configuration` with the given parameters. Please check the
     /// properties of a `Configuration` for their meaning.
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity, prePersistHook: PrePersistHook? = nil) {
+    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture
         self.storageCapacity = storageCapacity
-        self.prePersistHook = prePersistHook
+        self.preStorageRecordModifier = preStorageRecordModifier
     }
 }

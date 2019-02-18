@@ -124,7 +124,7 @@ extension Cauli: CauliURLProtocolDelegate {
                 completion(record)
             }
         }, completion: { record in
-            let modifiedRecord = self.configuration.prePersistHook?(record) ?? record
+            let modifiedRecord = self.configuration.preStorageRecordModifier?(record) ?? record
             DispatchQueue.main.sync {
                 self.storage.store(modifiedRecord)
             }
@@ -140,7 +140,7 @@ extension Cauli: CauliURLProtocolDelegate {
                 completion(record)
             }
         }, completion: { record in
-            let modifiedRecord = self.configuration.prePersistHook?(record) ?? record
+            let modifiedRecord = self.configuration.preStorageRecordModifier?(record) ?? record
             DispatchQueue.main.sync {
                 self.storage.store(modifiedRecord)
             }
