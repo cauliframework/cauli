@@ -25,6 +25,9 @@ import Foundation
 /// The Configuration is used to configure Cauli at initialization time.
 /// The `Configuration.standard` is a sensibly chosen configuration set.
 public struct Configuration {
+    ///
+    public typealias PrePersistHook = ((Record) -> Record)
+    
     /// The default Configuration.
     ///
     /// - Configuration:
@@ -34,7 +37,13 @@ public struct Configuration {
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
         enableShakeGesture: true,
-        storageCapacity: .records(50))
+        storageCapacity: .records(50),
+        prePersistHook: { record in
+            var mutatedRecord = record
+            mutatedRecord.designatedRequest.url = URL(string: "http://google.com")!
+            return mutatedRecord
+        }
+    )
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
     ///
@@ -57,12 +66,17 @@ public struct Configuration {
 
     /// The `storageCapacity` defines the capacity of the storage.
     public let storageCapacity: StorageCapacity
+    
+    /// Pass in a callback that will be executed on each `Record` before it is persisted to a `Storage`.
+    /// This allows you to modify requests and responses after they are executed but before they are passed along to other florets.
+    public var prePersistHook: PrePersistHook?
 
     /// Creates a new `Configuration` with the given parameters. Please check the
     /// properties of a `Configuration` for their meaning.
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity) {
+    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity, prePersistHook: PrePersistHook?) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture
         self.storageCapacity = storageCapacity
+        self.prePersistHook = prePersistHook
     }
 }
