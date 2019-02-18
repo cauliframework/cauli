@@ -64,8 +64,10 @@ internal class InspectorTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
-        dataSource.append(records: records, to: tableView)
+        if dataSource.items.count == 0 {
+            let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
+            dataSource.append(records: records, to: tableView)
+        }
         searchController.searchBar.isHidden = false
     }
 
