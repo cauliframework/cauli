@@ -92,6 +92,8 @@ extension InspectorTableViewDatasource: UITableViewDataSource {
         let bundle = Bundle(for: InspectorTableViewController.self)
         let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 82.0
     }
 
     internal func record(at indexPath: IndexPath) -> Record {
