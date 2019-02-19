@@ -55,6 +55,7 @@ internal class InspectorTableViewController: UITableViewController {
         title = "Records"
         dataSource.setup(tableView: tableView)
         definesPresentationContext = true
+        extendedLayoutIncludesOpaqueBars = true
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         } else {

@@ -5,6 +5,7 @@
 * **improvement** Added a search to the Inspector Floret that allows filtering the record list by URL. [#134](https://github.com/cauliframework/cauli/pull/134) by @shukuyen
 * **bugfix** Fixed an issue where records cells were cropped in the InspectorViewController. [#147](https://github.com/cauliframework/cauli/issues/147)
 * **bugfix** Fixed a bug where Records would be duplicated in the InspectorViewController. [#148](https://github.com/cauliframework/cauli/issues/148) by @brototyp
+* **bugfix** Fixed a bug where the searchbar could cover the first entry in the InspectorViewController. [#144](https://github.com/cauliframework/cauli/issues/144) by @brototyp
 
 ## 0.9
 * First public release
