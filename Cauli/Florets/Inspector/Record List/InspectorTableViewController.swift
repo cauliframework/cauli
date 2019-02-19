@@ -64,7 +64,7 @@ internal class InspectorTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if dataSource.items.count == 0 {
+        if dataSource.items.isEmpty {
             let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
             dataSource.append(records: records, to: tableView)
         }
@@ -94,10 +94,10 @@ internal class InspectorTableViewController: UITableViewController {
             scrolledToEnd = true
             return
         }
-        
-        dataSource.append(records: newRecords, to: tableView, completion: { [weak self] _ in
+
+        dataSource.append(records: newRecords, to: tableView) { [weak self] _ in
             self?.isLoading = false
-        })
+        }
     }
 
 }

@@ -45,25 +45,25 @@ internal class InspectorTableViewDatasource: NSObject {
         guard let filter = filter else { return array }
         return array.filter(filter.selects)
     }
-    
+
     private func updateFilter(with filterString: String?) {
         guard let filterString = filterString, !filterString.isEmpty else {
             filter = nil
             return
         }
-        filter = RecordSelector(selects: { record in
+        filter = RecordSelector { record in
             guard let urlString = record.designatedRequest.url?.absoluteString else {
                 return false
             }
             return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil
-        })
+        }
     }
 
     private func filter(records: [Record]) -> [Record] {
         return filteredItems(in: records, with: filter)
     }
 
-    private func performBatchUpdate(in tableView: UITableView, updates: (()->Void), completion: ((_ finished: Bool)->Void)? = nil) {
+    private func performBatchUpdate(in tableView: UITableView, updates: (() -> Void), completion: ((_ finished: Bool) -> Void)? = nil) {
         if #available(iOS 11, *) {
             tableView.performBatchUpdates(updates, completion: completion)
         } else {
@@ -74,7 +74,7 @@ internal class InspectorTableViewDatasource: NSObject {
         }
     }
 
-    internal func append(records: [Record], to tableView: UITableView, completion: ((_ finished: Bool)->Void)? = nil) {
+    internal func append(records: [Record], to tableView: UITableView, completion: ((_ finished: Bool) -> Void)? = nil) {
         performBatchUpdate(in: tableView, updates: {
             let numberOfExistingRecords = filteredItems.count
             let numberOfAddedRecords = filter(records: records).count
