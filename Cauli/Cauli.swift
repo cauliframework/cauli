@@ -55,7 +55,7 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
-        self.storage = MemoryStorage(capacity: configuration.storageCapacity)
+        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }
@@ -124,9 +124,8 @@ extension Cauli: CauliURLProtocolDelegate {
                 completion(record)
             }
         }, completion: { record in
-            let modifiedRecord = self.configuration.preStorageRecordModifier?(record) ?? record
             DispatchQueue.main.sync {
-                self.storage.store(modifiedRecord)
+                self.storage.store(record)
             }
             completionHandler(record)
         })
@@ -140,9 +139,8 @@ extension Cauli: CauliURLProtocolDelegate {
                 completion(record)
             }
         }, completion: { record in
-            let modifiedRecord = self.configuration.preStorageRecordModifier?(record) ?? record
             DispatchQueue.main.sync {
-                self.storage.store(modifiedRecord)
+                self.storage.store(record)
             }
             completionHandler(record)
         })

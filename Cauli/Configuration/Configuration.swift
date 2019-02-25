@@ -67,8 +67,8 @@ public struct Configuration {
     /// The `storageCapacity` defines the capacity of the storage.
     public let storageCapacity: StorageCapacity
     
-    /// Pass in a callback that will be executed on each `Record` before it is persisted to a `Storage`.
-    /// This allows you to modify requests and responses after they are executed but before they are passed along to other florets.
+    /// This `RecordModifier` allows the `Storage` to modify records before they are stored.
+    /// This allows you to change details of a record before it is passed along to a presentation floret, like for example the `InspectorFloret`.
     public var preStorageRecordModifier: RecordModifier?
 
     /// Creates a new `Configuration` with the given parameters. Please check the
