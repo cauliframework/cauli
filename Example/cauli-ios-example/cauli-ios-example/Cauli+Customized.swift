@@ -28,5 +28,5 @@ internal extension Cauli {
         return floret
     }()
     static let inspectorFloret = InspectorFloret()
-    static let customShared = Cauli([findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
+    static let customShared = Cauli([HTTPBodyStreamFloret(), findReplaceFloret, mockFloret, inspectorFloret], configuration: Configuration.standard)
 }

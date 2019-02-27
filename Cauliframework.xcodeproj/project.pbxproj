@@ -29,6 +29,7 @@
 		1F7BF23020F790F50023D219 /* URLSessionConfiguration+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration+Swizzling.swift */; };
 		1F80E2CC21E2AB2800F1EA01 /* SwappedURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80E2CA21E2AB2800F1EA01 /* SwappedURLRequest.swift */; };
 		1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80E2CB21E2AB2800F1EA01 /* SwappedResponse.swift */; };
+		1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */; };
 		1F8C2A1521D794BD009D0382 /* CauliSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C2A1421D794BD009D0382 /* CauliSpec.swift */; };
 		1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */; };
 		1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */; };
@@ -108,6 +109,7 @@
 		1F7BF22F20F790F50023D219 /* URLSessionConfiguration+Swizzling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Swizzling.swift"; sourceTree = "<group>"; };
 		1F80E2CA21E2AB2800F1EA01 /* SwappedURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwappedURLRequest.swift; sourceTree = "<group>"; };
 		1F80E2CB21E2AB2800F1EA01 /* SwappedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwappedResponse.swift; sourceTree = "<group>"; };
+		1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPBodyStreamFloret.swift; sourceTree = "<group>"; };
 		1F8C2A1421D794BD009D0382 /* CauliSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliSpec.swift; sourceTree = "<group>"; };
 		1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		1F0EB9D8219DB32300060F28 /* Florets */ = {
 			isa = PBXGroup;
 			children = (
+				1F891AE922271203000ECD61 /* HTTPBodyStreamFloret */,
 				50E068E621C67DF800A9DFA8 /* FindReplace */,
 				5044B7E621F2853A006908B2 /* NoCache */,
 				1FBE790321A1A245004C81A7 /* Inspector */,
@@ -235,6 +238,14 @@
 				1F7001C3216B8250007A9355 /* CauliURLProtocolDelegateStub.swift */,
 			);
 			path = Stubs;
+			sourceTree = "<group>";
+		};
+		1F891AE922271203000ECD61 /* HTTPBodyStreamFloret */ = {
+			isa = PBXGroup;
+			children = (
+				1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */,
+			);
+			path = HTTPBodyStreamFloret;
 			sourceTree = "<group>";
 		};
 		1FA4A50221B7C40100F1CA6B /* Record */ = {
@@ -689,6 +700,7 @@
 				1F45CF1D221338D500DA929D /* InspectorTableViewDatasource.swift in Sources */,
 				50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */,
 				1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */,
+				1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,
 				1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
