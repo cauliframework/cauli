@@ -50,6 +50,7 @@ public extension RecordSelector {
     ///     equal than the required size.
     static func max(bytesize: Int) -> RecordSelector {
         return RecordSelector { record in
+            guard record.designatedRequest.httpBody?.count ?? 0 <= bytesize else { return false }
             switch record.result {
             case nil: return true
             case .error?: return true
