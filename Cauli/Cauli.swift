@@ -35,8 +35,8 @@ public class Cauli {
     /// The Storage used by this instance to store all Records.
     public let storage: Storage
     internal let florets: [Floret]
-    private var enabledFlores: [Floret] {
-        return florets.filter { $0.enabled }
+    private var enabledFlorets: [InterceptableFloret] {
+        return florets.lazy.compactMap { $0 as? InterceptableFloret }.filter { $0.enabled }
     }
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?
@@ -117,7 +117,7 @@ extension Cauli: CauliURLProtocolDelegate {
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         assert(!Thread.current.isMainThread, "should never be called on the MainThread")
         guard enabled else { completionHandler(record); return }
-        enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
+        enabledFlorets.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.willRequest(record) { record in
                 completion(record)
             }
@@ -132,7 +132,7 @@ extension Cauli: CauliURLProtocolDelegate {
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         assert(!Thread.current.isMainThread, "should never be called on the MainThread")
         guard enabled else { completionHandler(record); return }
-        enabledFlores.cauli_reduceAsync(record, transform: { record, floret, completion in
+        enabledFlorets.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.didRespond(record) { record in
                 completion(record)
             }

@@ -24,14 +24,25 @@ import UIKit
 
 internal class CauliViewController: UITableViewController {
 
-    typealias DisplayableFloret = Floret & Displayable
-
     private let cauli: Cauli
     private var displayableFlorets: [DisplayableFloret]
+    private var interceptableFlorets: [InterceptableFloret]
 
     init(cauli: Cauli) {
         self.cauli = cauli
-        displayableFlorets = cauli.florets.compactMap { $0 as? (DisplayableFloret) }
+        
+        var displayableFlorets: [DisplayableFloret] = []
+        var interceptableFlorets: [InterceptableFloret] = []
+        cauli.florets.forEach {
+            switch $0 {
+            case let displayableFloret as DisplayableFloret: displayableFlorets.append(displayableFloret)
+            case let interceptableFloret as InterceptableFloret: interceptableFlorets.append(interceptableFloret)
+            default: assertionFailure("useful message goes here")
+            }
+        }
+        self.displayableFlorets = displayableFlorets
+        self.interceptableFlorets = interceptableFlorets
+        
         super.init(style: .grouped)
         title = "Cauli"
     }
@@ -57,7 +68,7 @@ internal class CauliViewController: UITableViewController {
             return displayableFlorets.count
         }
 
-        return cauli.florets.count
+        return interceptableFlorets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +89,7 @@ internal class CauliViewController: UITableViewController {
     private func tableView(_ tableView: UITableView, switchCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
 
-        var floret = cauli.florets[indexPath.row]
+        var floret = interceptableFlorets[indexPath.row]
         cell.set(title: floret.name, switchValue: floret.enabled)
         cell.switchValueChanged = {
             floret.enabled = $0
