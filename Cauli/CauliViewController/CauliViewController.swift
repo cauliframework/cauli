@@ -102,7 +102,7 @@ internal class CauliViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
-        case 1: return "If a InterceptableFloret is disabled it cannot intercept any request or response."
+        case 1: return "If an InterceptableFloret is disabled it cannot intercept any request or response."
         default: return nil
         }
     }
