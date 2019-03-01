@@ -26,10 +26,11 @@ internal class ViewControllerShakePresenter {
 
     private var viewController: (() -> (UIViewController?))
 
-    /// This will initialize a ViewControllerShakePresenter which will modally present
-    /// a ViewController wrapped within in a UINavigationController.
+    /// This initializes a `ViewControllerShakePresenter` which will, when the device is shaked,
+    /// modally present a `UINavigationController`. The passed ViewController will be the
+    /// `rootViewController` of the `UINavigationController`.
     ///
-    /// - Parameter viewController: The viewController wrapped in a UINavigationController.
+    /// - Parameter viewController: A viewController that will be the `rootViewController` of a UINavigationController.
     init(_ viewController: @escaping () -> (UIViewController?)) {
         self.viewController = viewController
         self.shakeMotionDidEndObserver = NotificationCenter.default.addObserver(forName: Notification.shakeMotionDidEnd, object: nil, queue: nil) { [weak self] _ in
