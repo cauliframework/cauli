@@ -6,6 +6,7 @@
 * **bugfix** Fixed an issue where records cells were cropped in the InspectorViewController. [#147](https://github.com/cauliframework/cauli/issues/147)
 * **bugfix** Fixed a bug where Records would be duplicated in the InspectorViewController. [#148](https://github.com/cauliframework/cauli/issues/148) by @brototyp
 * **bugfix** Fixed a bug where the searchbar could cover the first entry in the InspectorViewController. [#144](https://github.com/cauliframework/cauli/issues/144) by @brototyp
+* **improvement** Added some description to the `CauliViewController`s sections. [#157](https://github.com/cauliframework/cauli/issues/157) by @pstued
 
 ## 0.9
 * First public release
