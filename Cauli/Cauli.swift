@@ -36,7 +36,7 @@ public class Cauli {
     public let storage: Storage
     internal let florets: [Floret]
     private var enabledFlorets: [InterceptableFloret] {
-        return florets.lazy.compactMap { $0 as? InterceptableFloret }.filter { $0.enabled }
+        return florets.compactMap { $0 as? InterceptableFloret }.filter { $0.enabled }
     }
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?

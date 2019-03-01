@@ -31,17 +31,8 @@ internal class CauliViewController: UITableViewController {
     init(cauli: Cauli) {
         self.cauli = cauli
         
-        var displayableFlorets: [DisplayableFloret] = []
-        var interceptableFlorets: [InterceptableFloret] = []
-        cauli.florets.forEach {
-            switch $0 {
-            case let displayableFloret as DisplayableFloret: displayableFlorets.append(displayableFloret)
-            case let interceptableFloret as InterceptableFloret: interceptableFlorets.append(interceptableFloret)
-            default: assertionFailure("useful message goes here")
-            }
-        }
-        self.displayableFlorets = displayableFlorets
-        self.interceptableFlorets = interceptableFlorets
+        displayableFlorets = cauli.florets.compactMap { $0 as? DisplayableFloret }
+        interceptableFlorets = cauli.florets.compactMap { $0 as? InterceptableFloret }
         
         super.init(style: .grouped)
         title = "Cauli"
