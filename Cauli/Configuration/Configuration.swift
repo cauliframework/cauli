@@ -25,8 +25,6 @@ import Foundation
 /// The Configuration is used to configure Cauli at initialization time.
 /// The `Configuration.standard` is a sensibly chosen configuration set.
 public struct Configuration {
-    /// A callback that returns a possibly modified `Record`
-    public typealias RecordModifier = ((Record) -> Record)
     
     /// The default Configuration.
     ///
@@ -34,14 +32,15 @@ public struct Configuration {
     ///   - recordSelector: Only records to a maximum of 5 MB are considered.
     ///   - enableShakeGesture: The shake gesture is enabled.
     ///   - storageCapacity: The storage capacity is limited to 50 records,.
+    ///   - preStorageRecordModifier: A `RecordModifier` that can modify records before they are stored.
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
         enableShakeGesture: true,
         storageCapacity: .records(50),
-        preStorageRecordModifier: { record in
-            var mutatedRecord = record
-            mutatedRecord.designatedRequest.url = URL(string: "http://google.com")!
-            return mutatedRecord
+        preStorageRecordModifier: RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
+            var request = designatedRequest
+            request.url = URL(string: "https://example.com")!
+            return request
         }
     )
 

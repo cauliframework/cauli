@@ -12,7 +12,7 @@ import Cauliframework
 internal extension Cauli {
     static let findReplaceFloret: FindReplaceFloret = {
         let expresssion = try! NSRegularExpression(pattern: "^http://", options: [])
-        let httpsUrl = FindReplaceFloret.RecordModifier.modifyUrl(expression: expresssion, template: "https://")
+        let httpsUrl = RecordModifier.modifyUrl(expression: expresssion, template: "https://")
         return FindReplaceFloret(willRequestModifiers: [httpsUrl], name: "https-ify Floret")
     }()
     static let mockFloret: MockFloret = {

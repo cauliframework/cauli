@@ -30,16 +30,16 @@ internal final class MemoryStorage: Storage {
             ensureCapacity()
         }
     }
-    var preStorageRecordModifier: Configuration.RecordModifier?
+    var preStorageRecordModifier: RecordModifier?
 
-    init(capacity: StorageCapacity, preStorageRecordModifier: Configuration.RecordModifier? = nil) {
+    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
         self.capacity = capacity
         self.preStorageRecordModifier = preStorageRecordModifier
     }
 
     func store(_ record: Record) {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-        let modifiedRecord = preStorageRecordModifier?(record) ?? record
+        let modifiedRecord = preStorageRecordModifier?.modify(record) ?? record
         if let recordIndex = records.index(where: { $0.identifier == modifiedRecord.identifier }) {
             records[recordIndex] = modifiedRecord
         } else {
