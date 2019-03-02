@@ -36,12 +36,7 @@ public struct Configuration {
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
         enableShakeGesture: true,
-        storageCapacity: .records(50),
-        preStorageRecordModifier: RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
-            var request = designatedRequest
-            request.url = URL(string: "https://example.com")!
-            return request
-        }
+        storageCapacity: .records(50)
     )
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
