@@ -55,6 +55,7 @@ internal class InspectorTableViewController: UITableViewController {
         title = "Records"
         dataSource.setup(tableView: tableView)
         definesPresentationContext = true
+        extendedLayoutIncludesOpaqueBars = true
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         } else {
@@ -64,8 +65,10 @@ internal class InspectorTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: nil)
-        dataSource.append(records: records, to: tableView)
+        if dataSource.items.isEmpty {
+            let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
+            dataSource.append(records: records, to: tableView)
+        }
         searchController.searchBar.isHidden = false
     }
 
@@ -93,9 +96,9 @@ internal class InspectorTableViewController: UITableViewController {
             return
         }
 
-        dataSource.append(records: newRecords, to: tableView, completion: { [weak self] _ in
+        dataSource.append(records: newRecords, to: tableView) { [weak self] _ in
             self?.isLoading = false
-        })
+        }
     }
 
 }

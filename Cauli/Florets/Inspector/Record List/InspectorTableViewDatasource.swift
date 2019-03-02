@@ -51,12 +51,12 @@ internal class InspectorTableViewDatasource: NSObject {
             filter = nil
             return
         }
-        filter = RecordSelector(selects: { record in
+        filter = RecordSelector { record in
             guard let urlString = record.designatedRequest.url?.absoluteString else {
                 return false
             }
             return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil
-        })
+        }
     }
 
     private func filter(records: [Record]) -> [Record] {
@@ -92,6 +92,8 @@ extension InspectorTableViewDatasource: UITableViewDataSource {
         let bundle = Bundle(for: InspectorTableViewController.self)
         let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 82.0
     }
 
     internal func record(at indexPath: IndexPath) -> Record {
