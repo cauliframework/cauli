@@ -25,7 +25,7 @@ import Foundation
 /// The `HTTPBodyStreamFloret` can modify a `Record` where the request uses a `httpBodyStream`
 /// instead of setting the data on the request itself.
 /// It will read all data from the stream and set it as data on the request. This is helpful
-/// if you want to inspect `Record`s in the storage or want to modify re requets body
+/// if you want to inspect `Record`s in the storage or want to modify the requests body
 /// before it is sent to the server.
 public class HTTPBodyStreamFloret: Floret {
     private static let bufferByteSize = 1024
