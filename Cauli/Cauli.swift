@@ -55,7 +55,7 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
-        self.storage = MemoryStorage(capacity: configuration.storageCapacity)
+        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }

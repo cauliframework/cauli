@@ -35,6 +35,7 @@ public struct RecordSelector {
     }
 }
 
+/// Provides helper methods to select records with a `RecordSelector`
 public extension RecordSelector {
     /// Selects every Record.
     ///
