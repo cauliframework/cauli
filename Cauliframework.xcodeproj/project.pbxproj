@@ -299,6 +299,7 @@
 				50576BB9210E173C0085DF5E /* Floret.swift */,
 				1F18B1A2210EF9F500CEDD42 /* Storage.swift */,
 				500CE35021F0CE8D00479B98 /* Displayable.swift */,
+				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 				1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */,
 				1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */,
 				50085A4821FB652F005197F2 /* CauliURLProtocol */,
@@ -428,7 +429,6 @@
 			isa = PBXGroup;
 			children = (
 				50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */,
-				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 			);
 			path = FindReplace;
 			sourceTree = "<group>";
