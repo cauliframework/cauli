@@ -25,7 +25,7 @@ import Foundation
 /// The Configuration is used to configure Cauli at initialization time.
 /// The `Configuration.standard` is a sensibly chosen configuration set.
 public struct Configuration {
-    
+
     /// The default Configuration.
     ///
     /// - Configuration:
@@ -65,7 +65,7 @@ public struct Configuration {
 
     /// The `storageCapacity` defines the capacity of the storage.
     public let storageCapacity: StorageCapacity
-    
+
     /// This `RecordModifier` allows the `Storage` to modify records before they are stored.
     /// This allows you to change details of a record before it is passed along to a presentation floret, like for example the `InspectorFloret`.
     public var preStorageRecordModifier: RecordModifier?

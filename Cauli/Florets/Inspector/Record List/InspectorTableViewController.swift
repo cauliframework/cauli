@@ -92,7 +92,7 @@ internal class InspectorTableViewController: UITableViewController {
             scrolledToEnd = true
             return
         }
-        
+
         dataSource.append(records: newRecords, to: tableView, completion: { [weak self] _ in
             self?.isLoading = false
         })
