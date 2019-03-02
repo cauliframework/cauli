@@ -7,6 +7,7 @@
 * **bugfix** Fixed a bug where Records would be duplicated in the InspectorViewController. [#148](https://github.com/cauliframework/cauli/issues/148) by @brototyp
 * **bugfix** Fixed a bug where the searchbar could cover the first entry in the InspectorViewController. [#144](https://github.com/cauliframework/cauli/issues/144) by @brototyp
 * **improvement** Added `preStorageRecordModifier` to `Configuration` and `Storage` to allow for records to be modified before they are stored. [#146](https://github.com/cauliframework/cauli/pull/146) by @shukuyen
+* **bugfix** Fixed a bug where searching in the InspectorFloret would not load additional records [#160](https://github.com/cauliframework/cauli/pull/160) by @shukuyen
 
 ## 0.9
 * First public release
