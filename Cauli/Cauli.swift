@@ -63,7 +63,7 @@ public class Cauli {
     private func loadConfiguration(_ configuration: Configuration) {
         if configuration.enableShakeGesture {
             viewControllerManager = ViewControllerShakePresenter { [weak self] in
-                return self?.viewController()
+                self?.viewController()
             }
         }
     }

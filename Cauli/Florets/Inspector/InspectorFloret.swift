@@ -23,7 +23,7 @@
 import UIKit
 
 public class InspectorFloret: DisplayingFloret {
-    
+
     public init() {}
 
     public func viewController(_ cauli: Cauli) -> UIViewController {
