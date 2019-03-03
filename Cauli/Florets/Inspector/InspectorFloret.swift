@@ -22,8 +22,16 @@
 
 import UIKit
 
+/// The InspectorFloret lets you browse through and share your requests and responses from within the application. Just open `Cauli`s viewController.
+///
+/// You can
+/// * browse through all stored `Records`.
+/// * inspect details of a `Record`.
+/// * share details of a `Record`.
+/// * filter `Record`s by the request URL.
 public class InspectorFloret: DisplayingFloret {
 
+    /// Public initalizer to create an instance of the `InspectorFloret`.
     public init() {}
 
     public func viewController(_ cauli: Cauli) -> UIViewController {
