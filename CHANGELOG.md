@@ -1,4 +1,5 @@
 # Changelog
+
 ## Unreleased
 * **feature** Added a `HTTPBodyStreamFloret` to improve the compatibilty to requests with `httpBodyStream`s. [#154](https://github.com/cauliframework/cauli/pull/154) by @brototyp
 * **improvement** Changed the name of the framework from `Cauli` to `Cauliframework`. [#135](https://github.com/cauliframework/cauli/issues/135)
