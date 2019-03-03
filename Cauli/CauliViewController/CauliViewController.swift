@@ -91,7 +91,7 @@ internal class CauliViewController: UITableViewController {
         guard indexPath.section == 0 else { return }
         navigationController?.pushViewController(displayableFlorets[indexPath.row].viewController(cauli), animated: true)
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: return "Displayable Florets"
@@ -99,7 +99,7 @@ internal class CauliViewController: UITableViewController {
         default: return nil
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 1: return "If an InterceptableFloret is disabled it cannot intercept any requests or responses."

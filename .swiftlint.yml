@@ -35,8 +35,11 @@ opt_in_rules:
   - unneeded_parentheses_in_closure_argument
   - unused_import
   - unused_optional_binding
-included:
-  - Cauli
+excluded:
+  - Pods
+  - CauliTests
+  - Example
+  - Draft.playground
 
 force_cast: warning
 force_try: warning
