@@ -50,8 +50,8 @@
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
 		1FFFE7D621AC7C080040B805 /* Record+Fake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D121AC7C080040B805 /* Record+Fake.swift */; };
 		1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */; };
-		5005E53D222BE0C800BD5DF7 /* DisplayableFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5005E53C222BE0C700BD5DF7 /* DisplayableFloret.swift */; };
-		5005E53F222BE0D400BD5DF7 /* InterceptableFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5005E53E222BE0D400BD5DF7 /* InterceptableFloret.swift */; };
+		5005E53D222BE0C800BD5DF7 /* DisplayingFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */; };
+		5005E53F222BE0D400BD5DF7 /* InterceptingFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5005E53E222BE0D400BD5DF7 /* InterceptingFloret.swift */; };
 		5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042C4CF21EBE1B500652AC6 /* CauliViewController.swift */; };
 		5042C4D321EBE1B500652AC6 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5042C4D021EBE1B500652AC6 /* SwitchTableViewCell.xib */; };
 		5042C4D421EBE1B500652AC6 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042C4D121EBE1B500652AC6 /* SwitchTableViewCell.swift */; };
@@ -136,8 +136,8 @@
 		1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorageSpec.swift; sourceTree = "<group>"; };
 		4313259D01CD824F65FBB0E8 /* Pods-Cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.debug.xcconfig"; sourceTree = "<group>"; };
 		4FE3642FFEA70C12D702093E /* Pods_CauliframeworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CauliframeworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5005E53C222BE0C700BD5DF7 /* DisplayableFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableFloret.swift; sourceTree = "<group>"; };
-		5005E53E222BE0D400BD5DF7 /* InterceptableFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptableFloret.swift; sourceTree = "<group>"; };
+		5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayingFloret.swift; sourceTree = "<group>"; };
+		5005E53E222BE0D400BD5DF7 /* InterceptingFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptingFloret.swift; sourceTree = "<group>"; };
 		5042C4CF21EBE1B500652AC6 /* CauliViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CauliViewController.swift; sourceTree = "<group>"; };
 		5042C4D021EBE1B500652AC6 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		5042C4D121EBE1B500652AC6 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 				1FE3F73F20F64AA000233C7C /* Cauli.swift */,
 				50576BB9210E173C0085DF5E /* Floret.swift */,
 				1F18B1A2210EF9F500CEDD42 /* Storage.swift */,
-				5005E53E222BE0D400BD5DF7 /* InterceptableFloret.swift */,
-				5005E53C222BE0C700BD5DF7 /* DisplayableFloret.swift */,
+				5005E53E222BE0D400BD5DF7 /* InterceptingFloret.swift */,
+				5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */,
 				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 				1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */,
 				1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */,
@@ -667,11 +667,11 @@
 			files = (
 				1F0EB9DF219DB32300060F28 /* MockFloretStorage.swift in Sources */,
 				1FBE790521A1A271004C81A7 /* InspectorFloret.swift in Sources */,
-				5005E53D222BE0C800BD5DF7 /* DisplayableFloret.swift in Sources */,
+				5005E53D222BE0C800BD5DF7 /* DisplayingFloret.swift in Sources */,
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
 				1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */,
 				1FA4A50C21B7C40100F1CA6B /* RecordTableViewController.swift in Sources */,
-				5005E53F222BE0D400BD5DF7 /* InterceptableFloret.swift in Sources */,
+				5005E53F222BE0D400BD5DF7 /* InterceptingFloret.swift in Sources */,
 				5042C4D421EBE1B500652AC6 /* SwitchTableViewCell.swift in Sources */,
 				1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */,
 				1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */,

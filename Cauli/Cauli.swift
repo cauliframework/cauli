@@ -35,8 +35,8 @@ public class Cauli {
     /// The Storage used by this instance to store all Records.
     public let storage: Storage
     internal let florets: [Floret]
-    private var enabledFlorets: [InterceptableFloret] {
-        return florets.compactMap { $0 as? InterceptableFloret }.filter { $0.enabled }
+    private var enabledFlorets: [InterceptingFloret] {
+        return florets.compactMap { $0 as? InterceptingFloret }.filter { $0.enabled }
     }
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?

@@ -22,13 +22,13 @@
 
 import Foundation
 
-protocol InterceptableFloret: Floret {
-    
-    /// If a InterceptableFloret is disabled both functions `willRequest` and `didRespond` will
-    /// not be called anymore. A InterceptableFloret doesn't need to perform any specific action.
+protocol InterceptingFloret: Floret {
+
+    /// If an InterceptingFloret is disabled both functions `willRequest` and `didRespond` will
+    /// not be called anymore. A InterceptingFloret doesn't need to perform any specific action.
     var enabled: Bool { get set }
-    
-    /// This function will be called before a request is performed. The InterceptableFlorets will be
+
+    /// This function will be called before a request is performed. The InterceptingFlorets will be
     /// called in the order the Cauli instance got initialized with.
     ///
     /// Using this function you can:
@@ -42,9 +42,9 @@ protocol InterceptableFloret: Floret {
     ///   - completionHandler: Call this completion handler exactly once with the
     ///     original or modified `Record`.
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
-    
+
     /// This function will be called after a request is performed and the response arrived.
-    /// The InterceptableFlorets will be called in the order the Cauli instance got initialized with.
+    /// The InterceptingFlorets will be called in the order the Cauli instance got initialized with.
     ///
     /// Using this function you can:
     /// - modify the request

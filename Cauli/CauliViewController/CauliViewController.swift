@@ -25,15 +25,15 @@ import UIKit
 internal class CauliViewController: UITableViewController {
 
     private let cauli: Cauli
-    private var displayableFlorets: [DisplayableFloret]
-    private var interceptableFlorets: [InterceptableFloret]
+    private var displayingFlorets: [DisplayingFloret]
+    private var interceptingFlorets: [InterceptingFloret]
 
     init(cauli: Cauli) {
         self.cauli = cauli
-        
-        displayableFlorets = cauli.florets.compactMap { $0 as? DisplayableFloret }
-        interceptableFlorets = cauli.florets.compactMap { $0 as? InterceptableFloret }
-        
+
+        displayingFlorets = cauli.florets.compactMap { $0 as? DisplayingFloret }
+        interceptingFlorets = cauli.florets.compactMap { $0 as? InterceptingFloret }
+
         super.init(style: .grouped)
         title = "Cauli"
     }
@@ -56,10 +56,10 @@ internal class CauliViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return displayableFlorets.count
+            return displayingFlorets.count
         }
 
-        return interceptableFlorets.count
+        return interceptingFlorets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +72,7 @@ internal class CauliViewController: UITableViewController {
 
     private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = displayableFlorets[indexPath.row].name
+        cell.textLabel?.text = displayingFlorets[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -80,7 +80,7 @@ internal class CauliViewController: UITableViewController {
     private func tableView(_ tableView: UITableView, switchCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
 
-        var floret = interceptableFlorets[indexPath.row]
+        var floret = interceptingFlorets[indexPath.row]
         cell.set(title: floret.name, switchValue: floret.enabled)
         cell.switchValueChanged = {
             floret.enabled = $0
@@ -91,20 +91,20 @@ internal class CauliViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 0 else { return }
-        navigationController?.pushViewController(displayableFlorets[indexPath.row].viewController(cauli), animated: true)
+        navigationController?.pushViewController(displayingFlorets[indexPath.row].viewController(cauli), animated: true)
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Displayable Florets"
-        case 1: return "Interceptable Florets"
+        case 0: return "Displaying Florets"
+        case 1: return "Intercepting Florets"
         default: return nil
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
-        case 1: return "If an InterceptableFloret is disabled it cannot intercept any requests or responses."
+        case 1: return "If an InterceptingFloret is disabled it cannot intercept any requests or responses."
         default: return nil
         }
     }

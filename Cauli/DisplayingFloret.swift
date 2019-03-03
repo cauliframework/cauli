@@ -22,8 +22,8 @@
 
 import UIKit
 
-/// A DisplayableFloret provides a ViewController for settings or to display any information.
-public protocol DisplayableFloret: Floret {
+/// A DisplayingFloret provides a ViewController for settings or to display any information.
+public protocol DisplayingFloret: Floret {
     /// This function is called whenever the Cauli UI will be displayed.
     /// If a Floret needs any UI for configuration or to display data you
     /// can return a ViewController here.

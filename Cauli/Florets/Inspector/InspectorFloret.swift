@@ -22,7 +22,7 @@
 
 import UIKit
 
-public class InspectorFloret: DisplayableFloret {
+public class InspectorFloret: DisplayingFloret {
     
     public init() {}
 
