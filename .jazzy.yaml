@@ -4,3 +4,6 @@ github_url: https://github.com/cauliframework/cauli
 output: docs/generated
 theme: fullwidth
 documentation: docs/guides/*.md
+exclude: 
+  - Cauli/CauliURLProtocol/CauliURLProtocol.swift # jazzy wrongly includes this internal file
+  - Cauli/Extensions/URLRequest+Codable.swift
