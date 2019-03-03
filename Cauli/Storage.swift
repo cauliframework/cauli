@@ -57,10 +57,9 @@ public protocol Storage {
 }
 
 /// Defines the capacity of a storage.
-///
-/// - unlimited: The capacity is unlimited.
-/// - records: The capacity is limited to a certain number of records.
 public enum StorageCapacity: Equatable {
+    /// The capacity is unlimited.
     case unlimited
+    /// The capacity is limited to a certain number of records.
     case records(Int)
 }
