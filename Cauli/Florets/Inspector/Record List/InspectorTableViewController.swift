@@ -86,7 +86,11 @@ internal class InspectorTableViewController: UITableViewController {
     private var scrolledToEnd = false
     private var isLoading = false
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let distanceToBottom = scrollView.contentSize.height - scrollView.frame.height - scrollView.contentOffset.y
+        loadAdditionalRecordsIfNeeded()
+    }
+    
+    fileprivate func loadAdditionalRecordsIfNeeded() {
+        let distanceToBottom = tableView.contentSize.height - tableView.frame.height - tableView.contentOffset.y
         guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
         isLoading = true
         let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
@@ -95,12 +99,11 @@ internal class InspectorTableViewController: UITableViewController {
             scrolledToEnd = true
             return
         }
-
+        
         dataSource.append(records: newRecords, to: tableView) { [weak self] _ in
             self?.isLoading = false
         }
     }
-
 }
 
 // MARK: - UISearchResultsUpdating
@@ -111,6 +114,7 @@ extension InspectorTableViewController: UISearchResultsUpdating {
         let searchString = searchController.searchBar.text ?? ""
         dataSource.filterString = searchString
         tableView.reloadData()
+        loadAdditionalRecordsIfNeeded()
     }
 
 }
