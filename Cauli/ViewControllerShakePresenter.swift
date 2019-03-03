@@ -26,9 +26,13 @@ internal class ViewControllerShakePresenter {
 
     private var viewController: (() -> (UIViewController?))
 
+    /// This initializes a `ViewControllerShakePresenter` which will, when the device is shaked,
+    /// modally present a `UINavigationController`. The passed ViewController will be the
+    /// `rootViewController` of the `UINavigationController`.
+    ///
+    /// - Parameter viewController: A viewController that will be the `rootViewController` of a UINavigationController.
     init(_ viewController: @escaping () -> (UIViewController?)) {
         self.viewController = viewController
-
         self.shakeMotionDidEndObserver = NotificationCenter.default.addObserver(forName: Notification.shakeMotionDidEnd, object: nil, queue: nil) { [weak self] _ in
             self?.toggleViewController()
         }
@@ -51,9 +55,15 @@ internal class ViewControllerShakePresenter {
             presentedViewController.presentingViewController != nil {
             presentedViewController.dismiss(animated: true, completion: nil)
         } else if let viewController = self.viewController() {
-            presentedViewController = viewController
-            presentingViewController?.present(viewController, animated: true, completion: nil)
+            let navigationController = UINavigationController(rootViewController: viewController)
+            let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissPresentedViewController))
+            viewController.navigationItem.rightBarButtonItem = doneBarButtonItem
+            presentedViewController = navigationController
+            presentingViewController?.present(navigationController, animated: true, completion: nil)
         }
     }
 
+    @objc private func dismissPresentedViewController() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
 }
