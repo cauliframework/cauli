@@ -26,7 +26,7 @@ import Foundation
 /// before sending a request and after receiving a response. Use multiple
 /// instances of the `FindReplaceFloret`s to group certain RecordModifiers
 /// under a given name.
-public class FindReplaceFloret: Floret {
+public class FindReplaceFloret: InterceptingFloret {
 
     public var enabled: Bool = true
     public let name: String

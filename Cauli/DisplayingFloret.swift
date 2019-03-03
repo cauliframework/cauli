@@ -22,12 +22,16 @@
 
 import UIKit
 
-public class InspectorFloret: DisplayingFloret {
-
-    public init() {}
-
-    public func viewController(_ cauli: Cauli) -> UIViewController {
-        return InspectorTableViewController(cauli)
-    }
-
+/// A DisplayingFloret provides a ViewController for settings or to display any information.
+public protocol DisplayingFloret: Floret {
+    /// This function is called whenever the Cauli UI will be displayed.
+    /// If a Floret needs any UI for configuration or to display data you
+    /// can return a ViewController here.
+    ///
+    /// The default implementation returns nil.
+    ///
+    /// - Parameter cauli: The Cauli instance this floret will be displayed in. Use this
+    ///     instance to access the storage for example.
+    /// - Returns: Return a Floret specific ViewController or `nil` if there is none.
+    func viewController(_ cauli: Cauli) -> UIViewController
 }
