@@ -88,7 +88,7 @@ internal class InspectorTableViewController: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         loadAdditionalRecordsIfNeeded()
     }
-    
+
     fileprivate func loadAdditionalRecordsIfNeeded() {
         let distanceToBottom = tableView.contentSize.height - tableView.frame.height - tableView.contentOffset.y
         guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
@@ -99,7 +99,7 @@ internal class InspectorTableViewController: UITableViewController {
             scrolledToEnd = true
             return
         }
-        
+
         dataSource.append(records: newRecords, to: tableView) { [weak self] _ in
             self?.isLoading = false
         }

@@ -1,7 +1,7 @@
 # ![Cauli](https://cauli.works/logo.png)
 
 [![Build Status](https://travis-ci.org/cauliframework/cauli.svg?branch=develop)](https://travis-ci.org/cauliframework/cauli)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauli.svg?style=flat-square)](https://cocoapods.org/pods/Cauli)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauliframework.svg?style=flat-square)](https://cocoapods.org/pods/Cauliframework)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/cauliframework/cauli/blob/develop/LICENSE)
 [![Jazzy documentation](https://cauli.works/docs/badge.svg)](https://cauli.works/docs/)
 
@@ -29,7 +29,7 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 Use the following in your Podfile.
 
 ```ruby
-pod 'Cauliframework', git: 'https://github.com/cauliframework/cauli.git', branch: 'develop'
+pod 'Cauliframework'
 ```
 
 Then run `pod install`.
