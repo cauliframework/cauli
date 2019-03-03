@@ -61,7 +61,7 @@ import Foundation
 ///     Result<Response>.notFound(for: request)
 /// }
 /// ```
-public class MockFloret: Floret {
+public class MockFloret: InterceptingFloret {
 
     public var enabled: Bool = true
 

@@ -22,22 +22,9 @@
 
 import UIKit
 
-public class InspectorFloret: Floret {
-    public var enabled: Bool = true
-
+public class InspectorFloret: DisplayingFloret {
+    
     public init() {}
-
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
-    }
-
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
-    }
-
-}
-
-extension InspectorFloret: Displayable {
 
     public func viewController(_ cauli: Cauli) -> UIViewController {
         return InspectorTableViewController(cauli)

@@ -1,30 +1,15 @@
 # Writing your own Plugin
 
-You can write your own plugin if you want to process requests before they get send or responses after they got received.
+You can write your own plugin if you want to process requests before they get send, responses after they got received or if you want to provide an additional UI.
 
-## Implementing the `Floret` protocol
+## Before implementing your own Plugin
 
-```swift
-protocol Floret {
-    
-    /// The name of your floret so we can display it in a list.
-    var name: String? { get }
-    
-    // So we can show switches for the Florets in the Cauli UI.
-    // There is no need to act on this bool. If it is disabled, the 
-    // `willRequest` and `didRespond` functions just aren't called anymore.
-    var enabled: Bool { get set }
-    
-    // Return a ViewController here if you want to or nil if you don't have any UI at all.
-    func viewController(_ cauli: Cauli) -> UIViewController?
-    
-    // These are the two functions that you can use to manipulate a request before it will be sent ...
-    func willRequest(_ record: Record) -> Record
-    // ... and the response after it is received.
-    func didRespond(_ record: Record) -> Record
-}
-```
+Before implementing your own idea, you have to decide which Floret base protocol suits you best. You can also implement multiple.
+
+**[InterceptingFloret]](https://cauli.works/docs/Protocols/InterceptingFloret.html):** This protocol let's you process requests and responses.   
+**[DisplayingFloret](https://cauli.works/docs/Protocols/DisplayingFloret.html):** This protocol let's you create a custom UIViewController for your floret.  
+**[Floret](https://cauli.works/docs/Protocols/Floret.html):** The Floret protocol is the base for the protocols described above. It should not be implemented directly, since there will be no effect.
 
 ## Accessing the storage
 
-Cauli manages the storage of `Record`s. Every `Record` selected by the [RecordSelector](https://cauli.works/docs/Structs/RecordSelector.html) is stored in memory. When displaying your Florets ViewController you have access to the respective Cauli instance and thus to it's [Storage](https://cauli.works/docs/Protocols/Storage.html).
+Cauli manages the storage of `Record`s. Every `Record` selected by the [RecordSelector](https://cauli.works/docs/Structs/RecordSelector.html) is stored in memory. When displaying your [DisplayingFlorets](https://cauli.works/docs/Protocols/DisplayingFloret.html) ViewController you have access to the respective Cauli instance and thus to it's [Storage](https://cauli.works/docs/Protocols/Storage.html).
