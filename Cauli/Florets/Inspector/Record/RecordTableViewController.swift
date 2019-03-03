@@ -84,10 +84,10 @@ extension RecordTableViewController {
             }
         }
 
-        alertController.addAction(UIAlertAction(title: "Share", style: .default, handler: { [weak self] _ in
+        alertController.addAction(UIAlertAction(title: "Share", style: .default) { [weak self] _ in
             let activityItem = item.value() ?? item.description
             self?.presentShareSheet(for: [activityItem], from: cell)
-        }))
+        })
 
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
