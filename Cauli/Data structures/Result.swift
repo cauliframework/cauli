@@ -23,11 +23,10 @@
 import Foundation
 
 /// The Result represents a possible result expecting any given type.
-///
-/// - error: An error occured.
-/// - result: The successful result itself
 public enum Result<Type: Codable> {
+    /// An error occured.
     case error(NSError)
+    /// The successful result itself
     case result(Type)
 }
 

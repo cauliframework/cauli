@@ -22,6 +22,7 @@
 
 import Foundation
 
+/// An InterceptingFloret can process requests and responses.
 public protocol InterceptingFloret: Floret {
 
     /// If an InterceptingFloret is disabled both functions `willRequest` and `didRespond` will

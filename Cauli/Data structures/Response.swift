@@ -22,8 +22,12 @@
 
 import Foundation
 
+/// The `Response` wrapps the `URLResponse` and the data received from the server.
 public struct Response: Codable {
+    /// The `Data` received for a request.
     public var data: Data?
+
+    /// The `URLResponse` for a request.
     public var urlResponse: URLResponse {
         get {
             return urlResponseRepresentable.urlResponse
@@ -33,6 +37,11 @@ public struct Response: Codable {
         }
     }
 
+    /// Initializes a new `Response` with a given `URLResponse` and optional data.
+    ///
+    /// - Parameters:
+    ///   - urlResponse: The URLResponse
+    ///   - data: Optional received data
     init(_ urlResponse: URLResponse, data: Data?) {
         self.data = data
         urlResponseRepresentable = URLResponseRepresentable(urlResponse)

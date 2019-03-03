@@ -38,6 +38,7 @@ import Foundation
 /// * change **Cache-Control** to **no-cache**
 public class NoCacheFloret: FindReplaceFloret {
 
+    /// Public initalizer to create an instance of the `NoCacheFloret`.
     public required init() {
         let willRequestReplaceDefinition = RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
             var request = designatedRequest

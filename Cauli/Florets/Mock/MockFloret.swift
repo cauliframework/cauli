@@ -129,6 +129,7 @@ public class MockFloret: InterceptingFloret {
     }
 
     private var mappings: [Mapping] = []
+    /// A MappingClosue maps a `URLRequest` to an optional `Result`.
     public typealias MappingClosure = (URLRequest, MockFloret) -> Result<Response>?
 
     /// Adds a manual mapping defining which Result to use for a certain Request.
@@ -188,16 +189,16 @@ public class MockFloret: InterceptingFloret {
 
 extension MockFloret {
     /// All possible modes the MockFloret can be in.
-    ///
-    /// - record: In record mode the MockFloret will record all (depending on the
-    ///     Cauli configuration) requests, serialize and store them in the documents folder.
-    /// - mock: In mock mode the MockFloret will search for a "MockFloret" folder in the Bundle
-    ///     and tries to map all requests to a response stored in that folder.
-    ///     Forced defines the behaviour if no response is found.
-    ///     If forced is false, the request will be ignored by the `MockFloret`.
-    ///     If forced is true, the request will be answered with a 404-not-found response.
     public enum Mode: Equatable {
+        /// In record mode the MockFloret will record all (depending on the
+        /// Cauli configuration) requests, serialize and store them in the documents folder.
         case record
+
+        /// In mock mode the MockFloret will search for a "MockFloret" folder in the Bundle
+        /// and tries to map all requests to a response stored in that folder.
+        /// Forced defines the behaviour if no response is found.
+        /// If forced is false, the request will be ignored by the `MockFloret`.
+        /// If forced is true, the request will be answered with a 404-not-found response.
         case mock(forced: Bool)
     }
 }
