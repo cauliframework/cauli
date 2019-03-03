@@ -60,7 +60,7 @@ extension Record {
 }
 
 extension Record {
-    mutating func append(_ receivedData: Data) throws {
+    internal mutating func append(receivedData: Data) throws {
         guard case let .result(result)? = result else {
             throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
         }

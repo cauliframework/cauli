@@ -28,6 +28,17 @@ public protocol Storage {
     /// The `capacity` defines the capacity of the storage.
     var capacity: StorageCapacity { get set }
 
+    /// A `RecordModifier` that can modify each `Record` before it is persisted to a `Storage`.
+    /// This allows you to modify requests and responses after they are executed but before they are passed along to other florets.
+    var preStorageRecordModifier: RecordModifier? { get set }
+
+    /// Initialize a Store with capacity and optional pre storage record modifier
+    ///
+    /// - Parameters:
+    ///   - capacity: `StorageCapacity` of the storage
+    ///   - preStorageRecordModifier: `RecordModifier` that can modify a `Record` before it is stored
+    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier?)
+
     /// Adds a record to the storage. Updates a possibly existing record.
     /// A record is the same if it's identifier is the same.
     ///

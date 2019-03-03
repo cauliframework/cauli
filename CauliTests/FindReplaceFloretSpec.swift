@@ -36,7 +36,7 @@ class FindReplaceFloretSpec: QuickSpec {
         describe("willRequest(::") {
             it("should call the willRequestModifiers") {
                 var willRequestRecordModifierCalled = false
-                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                let modifier = RecordModifier(modify: { (record) -> (Record) in
                     willRequestRecordModifierCalled = true
                     return record
                 })
@@ -48,7 +48,7 @@ class FindReplaceFloretSpec: QuickSpec {
             
             it("should not call the didRespondModifiers") {
                 var didRespondRecordModifierCalled = false
-                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                let modifier = RecordModifier(modify: { (record) -> (Record) in
                     didRespondRecordModifierCalled = true
                     return record
                 })
@@ -60,7 +60,7 @@ class FindReplaceFloretSpec: QuickSpec {
             
             it("should pass the modified Record of a RecordModifier to the completionHandler") {
                 let recordModifierRecord = Record.fake(with: URL(string: "replace_definition_url")!)
-                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                let modifier = RecordModifier(modify: { (record) -> (Record) in
                     return recordModifierRecord
                 })
                 
@@ -76,7 +76,7 @@ class FindReplaceFloretSpec: QuickSpec {
         describe("didRespond(::") {
             it("should call the didRespondModifiers") {
                 var didRespondRecordModifierCalled = false
-                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                let modifier = RecordModifier(modify: { (record) -> (Record) in
                     didRespondRecordModifierCalled = true
                     return record
                 })
@@ -88,7 +88,7 @@ class FindReplaceFloretSpec: QuickSpec {
             
             it("should not call the willRequestModifiers") {
                 var willRequestRecordModifierCalled = false
-                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                let modifier = RecordModifier(modify: { (record) -> (Record) in
                     willRequestRecordModifierCalled = true
                     return record
                 })
@@ -100,7 +100,7 @@ class FindReplaceFloretSpec: QuickSpec {
             
             it("should pass the modified Record of a RecordModifier to the completionHandler") {
                 let recordModifierRecord = Record.fake(with: URL(string: "replace_definition_url")!)
-                let modifier = FindReplaceFloret.RecordModifier(modify: { (record) -> (Record) in
+                let modifier = RecordModifier(modify: { (record) -> (Record) in
                     return recordModifierRecord
                 })
                 

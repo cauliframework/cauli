@@ -103,5 +103,21 @@ class MemoryStorageSpec: QuickSpec {
                 expect(storage.records(10, after: firstRecord).count) == 0
             }
         }
+        describe("preStorageRecordModifier") {
+            it("should return a modifier record") {
+                let headerKey = "fake"
+                let recordModifier = RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
+                    var request = designatedRequest
+                    request.setValue(String(repeating: "*", count: (request.value(forHTTPHeaderField: headerKey) ?? "").count), forHTTPHeaderField: headerKey)
+                    return request
+                }
+                let storage = MemoryStorage(capacity: .records(10), preStorageRecordModifier: recordModifier)
+                var firstRecord = Record.fake()
+                firstRecord.setting(designatedRequestsHeaderFields: [headerKey: "fake"])
+                storage.store(firstRecord)
+                expect(storage.records(1, after: nil).first!.designatedRequest.value(forHTTPHeaderField: headerKey)) != firstRecord.designatedRequest.value(forHTTPHeaderField: headerKey)
+                expect(storage.records(1, after: nil).first!.designatedRequest.value(forHTTPHeaderField: headerKey)) == "****"
+            }
+        }
     }
 }

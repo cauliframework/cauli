@@ -18,6 +18,7 @@
 		1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */; };
 		1F23D35521EBCBD300D6E316 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D35321EBCBD300D6E316 /* CHANGELOG.md */; };
 		1F23D35621EBCBD300D6E316 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D35421EBCBD300D6E316 /* README.md */; };
+		1F45CF1D221338D500DA929D /* InspectorTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F45CF1C221338D500DA929D /* InspectorTableViewDatasource.swift */; };
 		1F4AE5B021F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4AE5AF21F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift */; };
 		1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F644F49211B620B004C4271 /* WeakReference.swift */; };
 		1F6BB4562163609100D56F4F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BB4552163609100D56F4F /* Configuration.swift */; };
@@ -28,6 +29,7 @@
 		1F7BF23020F790F50023D219 /* URLSessionConfiguration+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BF22F20F790F50023D219 /* URLSessionConfiguration+Swizzling.swift */; };
 		1F80E2CC21E2AB2800F1EA01 /* SwappedURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80E2CA21E2AB2800F1EA01 /* SwappedURLRequest.swift */; };
 		1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80E2CB21E2AB2800F1EA01 /* SwappedResponse.swift */; };
+		1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */; };
 		1F8C2A1521D794BD009D0382 /* CauliSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C2A1421D794BD009D0382 /* CauliSpec.swift */; };
 		1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */; };
 		1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */; };
@@ -96,6 +98,7 @@
 		1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your Own Plugin.md"; sourceTree = "<group>"; };
 		1F23D35321EBCBD300D6E316 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		1F23D35421EBCBD300D6E316 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		1F45CF1C221338D500DA929D /* InspectorTableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorTableViewDatasource.swift; sourceTree = "<group>"; };
 		1F4AE5AF21F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliAuthenticationChallengeProxy.swift; sourceTree = "<group>"; };
 		1F644F49211B620B004C4271 /* WeakReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
 		1F6BB4552163609100D56F4F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		1F7BF22F20F790F50023D219 /* URLSessionConfiguration+Swizzling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Swizzling.swift"; sourceTree = "<group>"; };
 		1F80E2CA21E2AB2800F1EA01 /* SwappedURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwappedURLRequest.swift; sourceTree = "<group>"; };
 		1F80E2CB21E2AB2800F1EA01 /* SwappedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwappedResponse.swift; sourceTree = "<group>"; };
+		1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPBodyStreamFloret.swift; sourceTree = "<group>"; };
 		1F8C2A1421D794BD009D0382 /* CauliSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliSpec.swift; sourceTree = "<group>"; };
 		1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 		1F0EB9D8219DB32300060F28 /* Florets */ = {
 			isa = PBXGroup;
 			children = (
+				1F891AE922271203000ECD61 /* HTTPBodyStreamFloret */,
 				50E068E621C67DF800A9DFA8 /* FindReplace */,
 				5044B7E621F2853A006908B2 /* NoCache */,
 				1FBE790321A1A245004C81A7 /* Inspector */,
@@ -235,6 +240,14 @@
 			path = Stubs;
 			sourceTree = "<group>";
 		};
+		1F891AE922271203000ECD61 /* HTTPBodyStreamFloret */ = {
+			isa = PBXGroup;
+			children = (
+				1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */,
+			);
+			path = HTTPBodyStreamFloret;
+			sourceTree = "<group>";
+		};
 		1FA4A50221B7C40100F1CA6B /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +261,7 @@
 		1FA4A50621B7C40100F1CA6B /* Record List */ = {
 			isa = PBXGroup;
 			children = (
+				1F45CF1C221338D500DA929D /* InspectorTableViewDatasource.swift */,
 				1FA4A50721B7C40100F1CA6B /* InspectorRecordTableViewCell.swift */,
 				1FA4A50821B7C40100F1CA6B /* InspectorTableViewController.swift */,
 				1FA4A50921B7C40100F1CA6B /* InspectorRecordTableViewCell.xib */,
@@ -296,6 +310,7 @@
 				50576BB9210E173C0085DF5E /* Floret.swift */,
 				1F18B1A2210EF9F500CEDD42 /* Storage.swift */,
 				500CE35021F0CE8D00479B98 /* Displayable.swift */,
+				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 				1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */,
 				1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */,
 				50085A4821FB652F005197F2 /* CauliURLProtocol */,
@@ -425,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */,
-				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 			);
 			path = FindReplace;
 			sourceTree = "<group>";
@@ -683,8 +697,10 @@
 				5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
 				1F4AE5B021F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift in Sources */,
+				1F45CF1D221338D500DA929D /* InspectorTableViewDatasource.swift in Sources */,
 				50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */,
 				1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */,
+				1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,
 				1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
