@@ -101,7 +101,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
         if CauliURLProtocol.handles(record) {
-            try? record.append(receivedData)
+            try? record.append(receivedData: receivedData)
         } else {
             if case let .result(response)? = record.result, let data = response.data {
                 self.client?.urlProtocol(self, didLoad: data)

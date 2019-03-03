@@ -55,7 +55,7 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
-        self.storage = MemoryStorage(capacity: configuration.storageCapacity)
+        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }
@@ -63,9 +63,7 @@ public class Cauli {
     private func loadConfiguration(_ configuration: Configuration) {
         if configuration.enableShakeGesture {
             viewControllerManager = ViewControllerShakePresenter { [weak self] in
-                guard let cauliViewController = self?.viewController() else { return nil }
-                let navigationController = UINavigationController(rootViewController: cauliViewController)
-                return navigationController
+                return self?.viewController()
             }
         }
     }

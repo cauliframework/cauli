@@ -25,16 +25,19 @@ import Foundation
 /// The Configuration is used to configure Cauli at initialization time.
 /// The `Configuration.standard` is a sensibly chosen configuration set.
 public struct Configuration {
+
     /// The default Configuration.
     ///
     /// - Configuration:
     ///   - recordSelector: Only records to a maximum of 5 MB are considered.
     ///   - enableShakeGesture: The shake gesture is enabled.
     ///   - storageCapacity: The storage capacity is limited to 50 records,.
+    ///   - preStorageRecordModifier: A `RecordModifier` that can modify records before they are stored.
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
         enableShakeGesture: true,
-        storageCapacity: .records(50))
+        storageCapacity: .records(50)
+    )
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.
     ///
@@ -58,11 +61,16 @@ public struct Configuration {
     /// The `storageCapacity` defines the capacity of the storage.
     public let storageCapacity: StorageCapacity
 
+    /// This `RecordModifier` allows the `Storage` to modify records before they are stored.
+    /// This allows you to change details of a record before it is passed along to a presentation floret, like for example the `InspectorFloret`.
+    public var preStorageRecordModifier: RecordModifier?
+
     /// Creates a new `Configuration` with the given parameters. Please check the
     /// properties of a `Configuration` for their meaning.
-    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity) {
+    public init(recordSelector: RecordSelector, enableShakeGesture: Bool, storageCapacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
         self.recordSelector = recordSelector
         self.enableShakeGesture = enableShakeGesture
         self.storageCapacity = storageCapacity
+        self.preStorageRecordModifier = preStorageRecordModifier
     }
 }

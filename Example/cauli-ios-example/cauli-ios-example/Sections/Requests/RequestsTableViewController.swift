@@ -16,13 +16,14 @@ class RequestsTableViewController: UITableViewController {
     }()
     
     let requestModels: [RequestModel] = [
-        RequestModel(name: "httpstat.us/200", url: URL(string: "https://httpstat.us/200")!),
-        RequestModel(name: "httpstat.us/301", url: URL(string: "https://httpstat.us/301")!),
-        RequestModel(name: "httpstat.us/304", url: URL(string: "https://httpstat.us/304")!),
-        RequestModel(name: "httpstat.us/404", url: URL(string: "https://httpstat.us/404")!),
-        RequestModel(name: "api.ipify.org", url: URL(string: "http://api.ipify.org/?format=json")!),
-        RequestModel(name: "invalidurl.invalid", url: URL(string: "https://invalidurl.invalid/")!),
-        RequestModel(name: "HTTP Basic Auth", url: URL(string: "https://jigsaw.w3.org/HTTP/Basic/")!),
+        DownloadRequestModel(name: "httpstat.us/200", url: URL(string: "https://httpstat.us/200")!),
+        DownloadRequestModel(name: "httpstat.us/301", url: URL(string: "https://httpstat.us/301")!),
+        DownloadRequestModel(name: "httpstat.us/304", url: URL(string: "https://httpstat.us/304")!),
+        DownloadRequestModel(name: "httpstat.us/404", url: URL(string: "https://httpstat.us/404")!),
+        DownloadRequestModel(name: "api.ipify.org", url: URL(string: "http://api.ipify.org/?format=json")!),
+        DownloadRequestModel(name: "invalidurl.invalid", url: URL(string: "https://invalidurl.invalid/")!),
+        DownloadRequestModel(name: "HTTP Basic Auth", url: URL(string: "https://jigsaw.w3.org/HTTP/Basic/")!),
+        UploadRequestModel(name: "Upload", url: URL(string: "https://httpbin.org/post")!, localFileName: "File.txt")
     ]
     
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ class RequestsTableViewController: UITableViewController {
         activityIndicator.startAnimating()
         cell?.accessoryView = activityIndicator
 
-        let dataTask = urlSession.dataTask(with: requestModel.url) { (data, response, error) in
+        let dataTask = requestModel.dataTask(in: urlSession) { (data, response, error) in
             DispatchQueue.main.sync {
                 if let httpUrlResponse = response as? HTTPURLResponse {
                     let label = UILabel()
