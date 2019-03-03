@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0ACDFF222C26D0004E0361 /* PlaintextPrettyPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0ACDFD222C26D0004E0361 /* PlaintextPrettyPrinter.swift */; };
+		1F0ACE00222C26D0004E0361 /* PrettyPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0ACDFE222C26D0004E0361 /* PrettyPrinter.swift */; };
 		1F0EB9DF219DB32300060F28 /* MockFloretStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */; };
 		1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9DC219DB32300060F28 /* MockFloret.swift */; };
 		1F0EB9E1219DB32300060F28 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9DD219DB32300060F28 /* MD5Digest.swift */; };
@@ -88,6 +90,8 @@
 		050B9B8E9B59CC9EA6894B34 /* Pods-CauliframeworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliframeworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauliframeworkTests/Pods-CauliframeworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0A31BB5AF4F25CEDA830FD0E /* Pods-Cauliframework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauliframework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cauliframework/Pods-Cauliframework.debug.xcconfig"; sourceTree = "<group>"; };
 		1B96940CA29D46F2252C5462 /* Pods-Cauli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.release.xcconfig"; sourceTree = "<group>"; };
+		1F0ACDFD222C26D0004E0361 /* PlaintextPrettyPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaintextPrettyPrinter.swift; sourceTree = "<group>"; };
+		1F0ACDFE222C26D0004E0361 /* PrettyPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyPrinter.swift; sourceTree = "<group>"; };
 		1F0EB9DB219DB32300060F28 /* MockFloretStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFloretStorage.swift; sourceTree = "<group>"; };
 		1F0EB9DC219DB32300060F28 /* MockFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFloret.swift; sourceTree = "<group>"; };
 		1F0EB9DD219DB32300060F28 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
@@ -188,6 +192,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0ACDFC222C26D0004E0361 /* PrettyPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				1F0ACDFD222C26D0004E0361 /* PlaintextPrettyPrinter.swift */,
+				1F0ACDFE222C26D0004E0361 /* PrettyPrinter.swift */,
+			);
+			path = PrettyPrinter;
+			sourceTree = "<group>";
+		};
 		1F0EB9D8219DB32300060F28 /* Florets */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +287,7 @@
 		1FBE790321A1A245004C81A7 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
+				1F0ACDFC222C26D0004E0361 /* PrettyPrinter */,
 				1FA4A50221B7C40100F1CA6B /* Record */,
 				1FA4A50621B7C40100F1CA6B /* Record List */,
 				1FBE790421A1A271004C81A7 /* InspectorFloret.swift */,
@@ -671,11 +685,13 @@
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
 				1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */,
 				1FA4A50C21B7C40100F1CA6B /* RecordTableViewController.swift in Sources */,
+				1F0ACE00222C26D0004E0361 /* PrettyPrinter.swift in Sources */,
 				5005E53F222BE0D400BD5DF7 /* InterceptingFloret.swift in Sources */,
 				5042C4D421EBE1B500652AC6 /* SwitchTableViewCell.swift in Sources */,
 				1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */,
 				1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */,
 				1FA4A50E21B7C40100F1CA6B /* InspectorTableViewController.swift in Sources */,
+				1F0ACDFF222C26D0004E0361 /* PlaintextPrettyPrinter.swift in Sources */,
 				1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */,
 				50A6CFB821178E2200FC57E7 /* URLRequest+Codable.swift in Sources */,
 				5044B7E821F2853A006908B2 /* NoCacheFloret.swift in Sources */,

@@ -22,7 +22,7 @@
 
 import Foundation
 
-protocol InterceptingFloret: Floret {
+public protocol InterceptingFloret: Floret {
 
     /// If an InterceptingFloret is disabled both functions `willRequest` and `didRespond` will
     /// not be called anymore. A InterceptingFloret doesn't need to perform any specific action.

@@ -22,12 +22,7 @@
 
 import UIKit
 
-public class InspectorFloret: DisplayingFloret {
-
-    public init() {}
-
-    public func viewController(_ cauli: Cauli) -> UIViewController {
-        return InspectorTableViewController(cauli)
-    }
-
+internal protocol PrettyPrinter {
+    static var name: String { get }
+    static func viewController(for item: Any) -> UIViewController?
 }
