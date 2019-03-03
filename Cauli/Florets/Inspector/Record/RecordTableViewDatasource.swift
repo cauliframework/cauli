@@ -104,7 +104,7 @@ extension RecordTableViewDatasource.Item {
         // swiftlint:disable trailing_closure
         return RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
             guard let data = response.data else { return nil }
-            let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
+            let fileName = response.suggestedFilename
             let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
             let filePath = tmpFolder.appendingPathComponent(fileName)
             do {

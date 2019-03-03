@@ -62,17 +62,46 @@ internal class RecordTableViewController: UITableViewController {
 
 // UITableViewDelegate
 extension RecordTableViewController {
+
+    static let prettyPrinter: [PrettyPrinter.Type] = [PlaintextPrettyPrinter.self]
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = datasource.item(at: indexPath) else { return }
+        guard let item = datasource.item(at: indexPath),
+            let sourceCell = tableView.cellForRow(at: indexPath) else { return }
 
-        let activityItem = item.value() ?? item.description
+        presentActionSelection(for: item, from: sourceCell)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
-        let viewContoller = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
-        viewContoller.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
-        viewContoller.popoverPresentationController?.sourceRect = tableView.cellForRow(at: indexPath)?.bounds ?? .zero
+    private func presentActionSelection(for item: RecordTableViewDatasource.Item, from cell: UITableViewCell) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        for prettyPrinter in RecordTableViewController.prettyPrinter {
+            if let value = item.value() {
+                alertController.addAction(UIAlertAction(title: prettyPrinter.name, style: .default) { [weak self] _ in
+                    if let viewController = prettyPrinter.viewController(for: value) {
+                        self?.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                })
+            }
+        }
+
+        alertController.addAction(UIAlertAction(title: "Share", style: .default, handler: { [weak self] _ in
+            let activityItem = item.value() ?? item.description
+            self?.presentShareSheet(for: [activityItem], from: cell)
+        }))
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func presentShareSheet(for items: [Any], from cell: UITableViewCell) {
+        let viewContoller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        viewContoller.popoverPresentationController?.sourceView = cell
+        viewContoller.popoverPresentationController?.sourceRect = cell.bounds
         viewContoller.popoverPresentationController?.permittedArrowDirections = [.up, .down]
         present(viewContoller, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true
-        )
     }
+
 }
