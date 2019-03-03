@@ -29,7 +29,7 @@ extension NSError {
     public struct Cauli {
 
         /// The Cauli NSErrorDomain.
-        public let domain = "de.brototyp.cauli"
+        public let domain = "works.cauli.framework"
 
         /// All Cauli Error Codes.
         public enum Code {}
@@ -39,7 +39,7 @@ extension NSError {
     }
 
     internal struct CauliInternal {
-        internal static let domain = "de.brototyp.cauli.internal"
+        internal static let domain = "works.cauli.framework.internal"
         internal enum Code: Int {
             case failedToAppendData
             case appendingDataWithoutResponse
