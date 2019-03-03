@@ -13,7 +13,7 @@
 * **bugfix** Fixed a bug where the searchbar could cover the first entry in the InspectorViewController. [#144](https://github.com/cauliframework/cauli/issues/144) by @brototyp
 * **improvement** Added `preStorageRecordModifier` to `Configuration` and `Storage` to allow for records to be modified before they are stored. [#146](https://github.com/cauliframework/cauli/pull/146) by @shukuyen
 * **improvement** Added a done button to dismiss the CauliViewController when the ViewController is displayed via the shake gesture. [#114](https://github.com/cauliframework/cauli/issues/114) by @pstued
-* **improvement** Splittet the Floret protocol into InterceptableFloret and DisplayableFloret protocols for a better separation of a Florets functionality and responsibility.
+* **improvement** Splitted the Floret protocol into InterceptableFloret and DisplayableFloret protocols for a better separation of a Florets functionality and responsibility. [#155](https://github.com/cauliframework/cauli/issues/155) by @pstued
 
 ## 0.9
 * First public release
