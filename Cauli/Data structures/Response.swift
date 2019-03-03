@@ -39,31 +39,4 @@ public struct Response: Codable {
     }
 
     private var urlResponseRepresentable: URLResponseRepresentable
-
-    public var suggestedFilename: String {
-        // TODO: Check the Content-Disposition header for a possible filename
-        let uuid = UUID().uuidString
-        if let mimetypeString = urlResponse.mimeType,
-            let mimeType = MimeType(rawValue: mimetypeString) {
-            return uuid.appending(".\(mimeType.fileExtension)")
-        } else {
-            return uuid
-        }
-    }
-}
-
-enum MimeType: String {
-    case json = "application/json"
-    case xml = "application/xml"
-    case html = "text/html"
-    case text = "text/plain"
-
-    var fileExtension: String {
-        switch self {
-        case .json: return "json"
-        case .xml: return "xml"
-        case .html: return "html"
-        case .text: return "txt"
-        }
-    }
 }
