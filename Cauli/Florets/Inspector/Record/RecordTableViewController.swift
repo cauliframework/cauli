@@ -77,11 +77,9 @@ extension RecordTableViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         for prettyPrinter in RecordTableViewController.prettyPrinter {
-            if let value = item.value() {
+            if let value = item.value(), let viewController = prettyPrinter.viewController(for: value) {
                 alertController.addAction(UIAlertAction(title: prettyPrinter.name, style: .default) { [weak self] _ in
-                    if let viewController = prettyPrinter.viewController(for: value) {
-                        self?.navigationController?.pushViewController(viewController, animated: true)
-                    }
+                    self?.navigationController?.pushViewController(viewController, animated: true)
                 })
             }
         }

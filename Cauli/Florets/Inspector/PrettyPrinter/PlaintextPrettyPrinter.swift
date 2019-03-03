@@ -65,13 +65,13 @@ extension PlaintextPrettyPrinter: PrettyPrinter {
     static func viewController(for item: Any) -> UIViewController? {
         switch item {
         case let string as String: return PlaintextPrettyPrinter(string: string)
-        case let data as Data: return viewController(for: data)
-        case let url as URL: return viewController(for: url)
+        case let data as Data: return viewController(forJsonData: data)
+        case let url as URL: return viewController(forUrl: url)
         default: return nil
         }
     }
 
-    static func viewController(for url: URL) -> UIViewController? {
+    static func viewController(forUrl url: URL) -> UIViewController? {
         guard url.isFileURL, let data = try? Data(contentsOf: url) else {
             return nil
         }
