@@ -55,7 +55,7 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
-        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
+        self.storage = HybridStorage(path: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!.appendingPathComponent("HybridStorage", isDirectory: true))
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }
@@ -66,6 +66,8 @@ public class Cauli {
                 self?.viewController()
             }
         }
+        storage.capacity = configuration.storageCapacity
+        storage.preStorageRecordModifier = configuration.preStorageRecordModifier
     }
 
     /// The ViewController for the Cauli UI. For the shared Cauli instance,

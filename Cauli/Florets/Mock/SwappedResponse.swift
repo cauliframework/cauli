@@ -24,6 +24,7 @@ import Foundation
 
 internal struct SwappedResponse: Codable {
     let dataFilename: String?
+    let dataSize: Int
     var urlResponse: URLResponse {
         get {
             return urlResponseRepresentable.urlResponse
@@ -33,8 +34,9 @@ internal struct SwappedResponse: Codable {
         }
     }
 
-    init(_ urlResponse: URLResponse, dataFilename: String?) {
+    init(_ urlResponse: URLResponse, dataFilename: String?, dataSize: Int) {
         self.dataFilename = dataFilename
+        self.dataSize = dataSize
         urlResponseRepresentable = URLResponseRepresentable(urlResponse)
     }
 
@@ -48,8 +50,10 @@ extension SwappedResponse {
         if let data = response.data,
             (try? data.write(to: dataFilepath)) != nil {
             self.dataFilename = dataFilepath.lastPathComponent
+            self.dataSize = data.count
         } else {
             self.dataFilename = nil
+            self.dataSize = 0
         }
     }
 

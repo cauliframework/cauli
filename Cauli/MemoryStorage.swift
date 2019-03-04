@@ -25,17 +25,12 @@ import Foundation
 internal final class MemoryStorage: Storage {
 
     var records: [Record] = []
-    var capacity: StorageCapacity {
+    var capacity: StorageCapacity = .unlimited {
         didSet {
             ensureCapacity()
         }
     }
     var preStorageRecordModifier: RecordModifier?
-
-    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
-        self.capacity = capacity
-        self.preStorageRecordModifier = preStorageRecordModifier
-    }
 
     func store(_ record: Record) {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")

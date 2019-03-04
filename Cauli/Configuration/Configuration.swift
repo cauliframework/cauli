@@ -36,7 +36,7 @@ public struct Configuration {
     public static let standard = Configuration(
         recordSelector: RecordSelector.max(bytesize: 5 * 1024 * 1024),
         enableShakeGesture: true,
-        storageCapacity: .records(50)
+        storageCapacity: .records(5)
     )
 
     /// Defines if a Record should be handled. This can be used to only select Records by a specific domain, a filetype, a maximum filesize or such.

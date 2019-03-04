@@ -72,6 +72,7 @@
 		50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */; };
 		50E068E821C67E0C00A9DFA8 /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */; };
 		50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E921C67E2300A9DFA8 /* RecordModifier.swift */; };
+		5CEB007B222D75BB004755C8 /* HybridStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB007A222D75BB004755C8 /* HybridStorage.swift */; };
 		6267C31F023357615618E5CD /* Pods_Cauliframework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E132CF77DE7DED9DD5287C2E /* Pods_Cauliframework.framework */; };
 		81AD3C64AE14F4903F0F31DA /* Pods_CauliframeworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE3642FFEA70C12D702093E /* Pods_CauliframeworkTests.framework */; };
 /* End PBXBuildFile section */
@@ -162,6 +163,7 @@
 		50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Cauli.swift"; sourceTree = "<group>"; };
 		50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindReplaceFloret.swift; sourceTree = "<group>"; };
 		50E068E921C67E2300A9DFA8 /* RecordModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModifier.swift; sourceTree = "<group>"; };
+		5CEB007A222D75BB004755C8 /* HybridStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridStorage.swift; sourceTree = "<group>"; };
 		6150F830B00ACA8197E38F4A /* Pods_Cauli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cauli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6BC86272E2B451AA4475E0 /* Pods-CauliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3FFD4A99E530B7B60FA9DA0 /* Pods-CauliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CauliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CauliTests/Pods-CauliTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */,
 				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
 				1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */,
+				5CEB007A222D75BB004755C8 /* HybridStorage.swift */,
 				1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */,
 				50085A4821FB652F005197F2 /* CauliURLProtocol */,
 				5042C4CE21EBE1B500652AC6 /* CauliViewController */,
@@ -717,6 +720,7 @@
 				5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
 				1F4AE5B021F8427F00F91402 /* CauliAuthenticationChallengeProxy.swift in Sources */,
+				5CEB007B222D75BB004755C8 /* HybridStorage.swift in Sources */,
 				1F45CF1D221338D500DA929D /* InspectorTableViewDatasource.swift in Sources */,
 				50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */,
 				1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */,

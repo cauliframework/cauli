@@ -30,9 +30,10 @@ internal struct SwappedURLRequest: Codable {
     let allowsCellularAccess: Bool
     let httpMethod: String?
     let allHTTPHeaderFields: [String: String]?
-    let bodyFilename: String?
     let httpShouldHandleCookies: Bool
     let httpShouldUsePipelining: Bool
+    let bodyFilename: String?
+    let bodySize: Int
 }
 
 extension SwappedURLRequest {
@@ -52,8 +53,10 @@ extension SwappedURLRequest {
         if let body = urlRequest.httpBody,
             (try? body.write(to: bodyFilepath)) != nil {
             self.bodyFilename = bodyFilepath.lastPathComponent
+            self.bodySize = body.count
         } else {
             self.bodyFilename = nil
+            self.bodySize = 0
         }
     }
 
