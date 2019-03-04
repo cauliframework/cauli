@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 1.0
 * **feature** Added a `HTTPBodyStreamFloret` to improve the compatibilty to requests with `httpBodyStream`s. [#154](https://github.com/cauliframework/cauli/pull/154) by @brototyp
 * **improvement** Changed the name of the framework from `Cauli` to `Cauliframework`. [#135](https://github.com/cauliframework/cauli/issues/135)
 * **improvement** Changed the `max` and `all` functions on `RecordSelector` to be public. [#136](https://github.com/cauliframework/cauli/issues/136)
