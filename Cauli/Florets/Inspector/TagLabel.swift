@@ -58,6 +58,7 @@ internal class TagLabel: UILabel {
         return CGSize(width: size.width + TagLabel.edgeInsets.left + TagLabel.edgeInsets.right, height: size.height + TagLabel.edgeInsets.top + TagLabel.edgeInsets.bottom)
     }
 
+    @available(iOS 9.0, *)
     override var firstBaselineAnchor: NSLayoutYAxisAnchor {
         let anchor = super.firstBaselineAnchor
         return anchor // is there any way to move this anchor down by `TagLabel.edgeInsets.top`?

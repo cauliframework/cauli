@@ -1,9 +1,9 @@
 {
   "name": "Cauliframework",
-  "version": "0.9",
-  "summary": "Helps you to intercept network requests. (under development)",
-  "description": "under development",
-  "homepage": "https://github.com/brototyp/cauli",
+  "version": "1.0",
+  "summary": "Helps you to intercept network requests.",
+  "description": "Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests. It provides a wide range of possibilities. For example from inspecting network traffic to mock UnitTests. Missing something fancy? How about writing your own Plugin.",
+  "homepage": "https://cauli.works",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -13,13 +13,11 @@
     "Pascal Stüdlein": "mail@pascal-stuedlein.de"
   },
   "platforms": {
-    "ios": "10.0",
-    "watchos": "3.0",
-    "tvos": "10.0"
+    "ios": "8.0"
   },
   "source": {
-    "git": "https://github.com/brototyp/cauli.git",
-    "branch": "0.9"
+    "git": "https://github.com/cauliframework/cauli.git",
+    "tag": "1.0"
   },
   "source_files": [
     "Cauli",
