@@ -138,6 +138,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         }
     }
 
+    @available(iOS 10.0, *)
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
         // possibly add the metrics to the record in the future
     }
