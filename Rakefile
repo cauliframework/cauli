@@ -12,7 +12,9 @@ namespace :test do
     run_tests('Cauliframework', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=11.4')
     build_failed('iPhone 6, iOS 11.4') unless $?.success?
     run_tests('Cauliframework', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=10.3.1')
-    build_failed('iPhone 6, iOS 10.3.1') unless $?.success?
+    build_failed('iPhone 6, iOS 10.0') unless $?.success?
+    run_tests('Cauliframework', 'iphonesimulator', 'platform=iOS Simulator,name=iPhone 6,OS=10.3.1')
+    build_failed('iPhone 6, iOS 9.0') unless $?.success?
   end
 
   desc 'Build the Cauli iOS Example Application'

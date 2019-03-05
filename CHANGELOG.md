@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **imrovement** Added Support for iOS 8 and 9. [#164](https://github.com/cauliframework/cauli/issues/164) by @brototyp
 
 ## 1.0
 * **feature** Added a `HTTPBodyStreamFloret` to improve the compatibilty to requests with `httpBodyStream`s. [#154](https://github.com/cauliframework/cauli/pull/154) by @brototyp
