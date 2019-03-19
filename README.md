@@ -34,9 +34,9 @@ pod 'Cauliframework'
 
 Then run `pod install`.
 
-#### Carthage
+#### [Carthage](https://github.com/Carthage/Carthage)
 
-[Carthage](https://github.com/Carthage/Carthage) is a non intrusive way to install Cauli to your project. It makes no changes to your Xcode project and workspace. Add the following to your Cartfile:
+Carthage is a non intrusive way to install Cauli to your project. It makes no changes to your Xcode project and workspace. Add the following to your Cartfile:
 
 ```swift
 github "cauliframework/cauli"
