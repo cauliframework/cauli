@@ -25,13 +25,6 @@ import UIKit
 @IBDesignable
 internal class TagLabel: UILabel {
 
-    @IBInspectable
-    var borderColor = UIColor.green {
-        didSet {
-            layer.borderColor = borderColor.cgColor
-        }
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -43,12 +36,12 @@ internal class TagLabel: UILabel {
     }
 
     private func commonInit() {
-        layer.borderWidth = 1
-        layer.cornerRadius = 6
-
+        layer.cornerRadius = 3
+        clipsToBounds = true
+        textColor = UIColor.white
     }
 
-    static let edgeInsets = UIEdgeInsets.init(top: 5, left: 8, bottom: 5, right: 8)
+    static let edgeInsets = UIEdgeInsets.init(top: 0, left: 4, bottom: 0, right: 4)
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: TagLabel.edgeInsets))
     }
