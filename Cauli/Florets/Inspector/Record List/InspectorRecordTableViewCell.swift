@@ -71,15 +71,16 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         }
     }
 
-    static let greenColor = UIColor(red: 40 / 255.0, green: 167 / 255.0, blue: 69 / 255.0, alpha: 1)
-    static let blueColor = UIColor(red: 0 / 255.0, green: 123 / 255.0, blue: 255 / 255.0, alpha: 1)
-    static let redColor = UIColor(red: 220 / 255.0, green: 53 / 255.0, blue: 69 / 255.0, alpha: 1)
+    static let greenColor = UIColor(red: 11 / 255.0, green: 176 / 255.0, blue: 61 / 255.0, alpha: 1)
+    static let blueColor = UIColor(red: 74 / 255.0, green: 144 / 255.0, blue: 226 / 255.0, alpha: 1)
+    static let redColor = UIColor(red: 210 / 255.0, green: 46 / 255.0, blue: 14 / 255.0, alpha: 1)
+    static let grayColor = UIColor(red: 155 / 255.0, green: 155 / 255.0, blue: 155 / 255.0, alpha: 1)
     private func colorForHTTPStatusCode(_ statusCode: Int) -> UIColor {
         switch statusCode {
         case 0..<300: return InspectorRecordTableViewCell.greenColor
         case 300..<400: return InspectorRecordTableViewCell.blueColor
         case 400..<600: return InspectorRecordTableViewCell.redColor
-        default: return UIColor.black
+        default: return InspectorRecordTableViewCell.grayColor
         }
     }
     
