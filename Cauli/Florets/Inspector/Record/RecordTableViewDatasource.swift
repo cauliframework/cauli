@@ -100,21 +100,8 @@ extension RecordTableViewDatasource.Item {
         self.description = description
         self.value = value
     }
-    static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
-        // swiftlint:disable trailing_closure
-        return RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
-            guard let data = response.data else { return nil }
-            let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
-            let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
-            let filePath = tmpFolder.appendingPathComponent(fileName)
-            do {
-                try data.write(to: filePath)
-                return filePath
-            } catch {
-                return nil
-            }
-        })
-        // swiftlint:enable trailing_closure
+    static func forResponseBody(with record: Record) -> RecordTableViewDatasource.Item {
+        return RecordTableViewDatasource.Item(title: "Body", description: "\(record.responseBodySize ?? 0) bytes")
     }
 }
 
@@ -133,7 +120,7 @@ extension RecordTableViewDatasource.Section {
         self.init(title: "Request", items: requestItems)
     }
 
-    init(_ result: Result<Response>?) {
+    init(_ result: Result<URLResponseRepresentable>?) {
         var resultItems: [RecordTableViewDatasource.Item] = []
         switch result {
         case .error(let error)?:
@@ -147,7 +134,7 @@ extension RecordTableViewDatasource.Section {
                     .joined(separator: "\n"), value: httpUrlResponse.allHeaderFields))
                 resultItems.append(RecordTableViewDatasource.Item(title: "Status Code", description: "\(httpUrlResponse.statusCode)"))
             }
-            resultItems.append(RecordTableViewDatasource.Item.forBody(in: response))
+//            resultItems.append(RecordTableViewDatasource.Item.forResponseBody(with: record))
         case .none: break
         }
         self.init(title: "Response", items: resultItems)

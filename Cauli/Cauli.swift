@@ -55,7 +55,9 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
-        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
+        self.storage = MemoryStorage()
+        self.storage.capacity = configuration.storageCapacity
+        self.storage.preStorageRecordModifier = configuration.preStorageRecordModifier
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }
@@ -114,34 +116,70 @@ extension Cauli: CauliURLProtocolDelegate {
         return configuration.recordSelector.selects(record)
     }
 
-    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+    func willRequest(_ record: Record, requestStream: InputStream?, responseStream: InputStream?, completion: @escaping (_ record: Record, _ requestBody: InputStream?, _ responseBody: InputStream?) -> Void) {
         assert(!Thread.current.isMainThread, "should never be called on the MainThread")
-        guard enabled else { completionHandler(record); return }
-        enabledFlorets.cauli_reduceAsync(record, transform: { record, floret, completion in
-            floret.willRequest(record) { record in
-                completion(record)
+        guard enabled else { completion(record, requestStream, responseStream); return }
+        if configuration.recordSelector.selects(record) {
+            let requestData = requestStream?.cauli_data()
+            let responseData = responseStream?.cauli_data()
+            enabledFlorets.cauli_reduceAsync((record, requestData, responseData), transform: { current, floret, completion in
+                let (record, requestBody, responseBody) = current
+                floret.willRequest(record, requestBody: requestBody, responseBody: responseBody) { record, requestBody, responseBody in
+                    completion((record, requestBody, responseBody))
+                }
+            }, completion: { record, requestBody, responseBody in
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else { return }
+                    strongSelf.storage.store(record)
+                    if let requestBody = requestBody {
+                        strongSelf.storage.storeRequestBody(InputStream(data: requestBody), for: record)
+                    }
+                    if let responseBody = responseBody {
+                        strongSelf.storage.storeResponseBody(InputStream(data: responseBody), for: record)
+                    }
+                    let storedRequestStream = strongSelf.storage.requestBody(for: record)
+                    let storedResponseStream = strongSelf.storage.responseBody(for: record)
+                    completion(record, storedRequestStream, storedResponseStream)
+                }
+            })
+        } else {
+            storage.store(record)
+            if let requestStream = requestStream {
+                storage.storeRequestBody(requestStream, for: record)
             }
-        }, completion: { record in
-            DispatchQueue.main.sync {
-                self.storage.store(record)
-            }
-            completionHandler(record)
-        })
+            let storedRequestStream = storage.requestBody(for: record)
+            completion(record, storedRequestStream, nil)
+        }
     }
 
-    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+    func didRespond(_ record: Record, responseStream: InputStream?, completion: @escaping (_ record: Record, _ responseStream: InputStream?) -> Void) {
         assert(!Thread.current.isMainThread, "should never be called on the MainThread")
-        guard enabled else { completionHandler(record); return }
-        enabledFlorets.cauli_reduceAsync(record, transform: { record, floret, completion in
-            floret.didRespond(record) { record in
-                completion(record)
+        guard enabled else { completion(record, responseStream); return }
+        if configuration.recordSelector.selects(record) {
+            let data = responseStream?.cauli_data()
+            enabledFlorets.cauli_reduceAsync((record, data), transform: { current, floret, completion in
+                let (record, data) = current
+                floret.didRespond(record, responseBody: data) { record, data in
+                    completion((record, data))
+                }
+            }, completion: { record, data in
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else { return }
+                    strongSelf.storage.store(record)
+                    if let data = data {
+                        strongSelf.storage.storeResponseBody(InputStream(data: data), for: record)
+                    }
+                    let storedResponseStream = strongSelf.storage.responseBody(for: record)
+                    completion(record, storedResponseStream)
+                }
+            })
+        } else {
+            storage.store(record)
+            if let responseStream = responseStream {
+                storage.storeResponseBody(responseStream, for: record)
             }
-        }, completion: { record in
-            DispatchQueue.main.sync {
-                self.storage.store(record)
-            }
-            completionHandler(record)
-        })
+            let storedResponseStream = storage.responseBody(for: record)
+            completion(record, storedResponseStream)
+        }
     }
-
 }

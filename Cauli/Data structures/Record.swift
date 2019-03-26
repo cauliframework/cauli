@@ -40,13 +40,16 @@ public struct Record {
     /// The result will be nil until either the URL loading system failed to perform the
     /// request, or the response is received. The `data` of the `Response` can be incomplete
     /// while receiving.
-    public var result: Result<Response>?
+    public var result: Result<URLResponseRepresentable>?
 
     /// The requestStarted Date is set after all florets finished their `willRequest` function.
     public var requestStarted: Date?
 
     /// The responseReceived Date is set after all florets finished their `didRespond` function.
     public var responseReceived: Date?
+
+    public var requestBodySize: Int64?
+    public var responseBodySize: Int64?
 }
 
 extension Record: Codable {}
@@ -55,23 +58,13 @@ extension Record {
     init(_ request: URLRequest) {
         identifier = UUID()
         originalRequest = request
+        originalRequest.httpBody = nil
+        originalRequest.httpBodyStream = nil
         designatedRequest = request
-    }
-}
-
-extension Record {
-    internal mutating func append(receivedData: Data) throws {
-        guard case let .result(result)? = result else {
-            throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
-        }
-        var currentData = result.data ?? Data()
-        currentData.append(receivedData)
-        self.result = .result(Response(result.urlResponse, data: currentData))
-    }
-}
-
-extension Record {
-    internal func swapped(to path: URL) -> SwappedRecord {
-        return SwappedRecord(self, folder: path)
+        designatedRequest.httpBody = nil
+        designatedRequest.httpBodyStream = nil
+        // TODO: Fixme
+        requestBodySize = nil
+        responseBodySize = nil
     }
 }

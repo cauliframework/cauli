@@ -22,7 +22,7 @@
 
 import Foundation
 
-internal enum URLResponseRepresentable {
+public enum URLResponseRepresentable {
     case urlResponse(URLResponse)
     case httpURLResponse(HTTPURLResponse)
 
@@ -48,7 +48,7 @@ extension URLResponseRepresentable: Encodable {
         case httpURLResponse
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
         case .urlResponse(let urlResponse):
@@ -60,7 +60,7 @@ extension URLResponseRepresentable: Encodable {
 }
 
 extension URLResponseRepresentable: Decodable {
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         do {
             let urlResponse = try container.decode(URLResponse.Codable.self, forKey: .urlResponse)

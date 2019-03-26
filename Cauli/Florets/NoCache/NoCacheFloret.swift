@@ -59,9 +59,9 @@ public class NoCacheFloret: FindReplaceFloret {
             allHTTPHeaderFields["Expires"] = "0"
             allHTTPHeaderFields["Cache-Control"] = "no-cache"
 
-            guard let newHTTPURLRespones = HTTPURLResponse(url: url, statusCode: httpURLResponse.statusCode, httpVersion: nil, headerFields: allHTTPHeaderFields) else { return result }
+            guard let newHTTPURLResponse = HTTPURLResponse(url: url, statusCode: httpURLResponse.statusCode, httpVersion: nil, headerFields: allHTTPHeaderFields) else { return result }
 
-            return Result.result(Response(newHTTPURLRespones, data: response.data))
+            return Result.result(URLResponseRepresentable(newHTTPURLResponse))
         }
 
         super.init(willRequestModifiers: [willRequestReplaceDefinition], didRespondModifiers: [didRespondReplaceDefinition], name: "NoCacheFloret")

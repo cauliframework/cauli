@@ -40,9 +40,11 @@ public protocol InterceptingFloret: Floret {
     ///
     /// - Parameters:
     ///   - record: The `Record` that represents the request before it was performed.
+    ///   - requestBody: TODO
+    ///   - responseBody: TODO
     ///   - completionHandler: Call this completion handler exactly once with the
     ///     original or modified `Record`.
-    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
+    func willRequest(_ record: Record, requestBody: Data?, responseBody: Data?, completionHandler: (_ record: Record, _ requestBody: Data?, _ responseBody: Data?) -> Void)
 
     /// This function will be called after a request is performed and the response arrived.
     /// The InterceptingFlorets will be called in the order the Cauli instance got initialized with.
@@ -52,7 +54,8 @@ public protocol InterceptingFloret: Floret {
     ///
     /// - Parameters:
     ///   - record: The `Record` that represents the request after it was performed.
+    ///   - responseBody: TODO
     ///   - completionHandler: Call this completion handler exactly once with the
     ///     original or modified `Record`.
-    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void)
+    func didRespond(_ record: Record, responseBody: Data?, completionHandler: (_ record: Record, _ responseBody: Data?) -> Void)
 }

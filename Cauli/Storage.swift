@@ -23,7 +23,7 @@
 import Foundation
 
 /// A Storage is used to store and retrieve Records. It can be either in memory or on disk.
-public protocol Storage {
+public protocol Storage: class {
 
     /// The `capacity` defines the capacity of the storage.
     var capacity: StorageCapacity { get set }
@@ -32,13 +32,6 @@ public protocol Storage {
     /// This allows you to modify requests and responses after they are executed but before they are passed along to other florets.
     var preStorageRecordModifier: RecordModifier? { get set }
 
-    /// Initialize a Store with capacity and optional pre storage record modifier
-    ///
-    /// - Parameters:
-    ///   - capacity: `StorageCapacity` of the storage
-    ///   - preStorageRecordModifier: `RecordModifier` that can modify a `Record` before it is stored
-    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier?)
-
     /// Adds a record to the storage. Updates a possibly existing record.
     /// A record is the same if it's identifier is the same.
     ///
@@ -46,14 +39,20 @@ public protocol Storage {
     func store(_ record: Record)
 
     /// Returns a number of records after the referenced record.
-    /// Records are sorted by order there were added to the storage,
-    /// Might return less than `count` if there are no more records.
     ///
     /// - Parameters:
-    ///   - count: The number of records that should be returned.
+    ///   - predicate: An optional predicate to filter the records
+    ///   - sorting: A sort descriptor defining the order of the returned items
+    ///   - limit: The maximum number of records that should be returned.
     ///   - after: The record after which there should be new records returned.
-    /// - Returns: The records after the referenced record, sorted from latest to oldest.
-    func records(_ count: Int, after: Record?) -> [Record]
+    ///         If nil, the first records are returned
+    /// - Returns: The records after the referenced record.
+    func records<T: Comparable>(with predicate: NSPredicate?, sortedBy keyPath: KeyPath<Record, T?>, ascending: Bool, limit: Int, after record: Record?) -> [Record]
+
+    func storeRequestBody(_ stream: InputStream, for record: Record)
+    func requestBody(for record: Record) -> InputStream?
+    func storeResponseBody(_ stream: InputStream, for record: Record)
+    func responseBody(for record: Record) -> InputStream?
 }
 
 /// Defines the capacity of a storage.

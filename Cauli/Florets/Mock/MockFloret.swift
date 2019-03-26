@@ -87,36 +87,39 @@ public class MockFloret: InterceptingFloret {
         MockFloretStorage.mocker()
     }()
 
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard case .mock(let forced) = mode else { completionHandler(record); return }
-        var result = resultForRequest(record.designatedRequest)
-        if forced && result == nil {
-             result = Result<Response>.notFound(for: record.designatedRequest)
-        }
-        if let result = result {
-            var record = record
-            record.result = result
-            completionHandler(record)
-        } else {
-            completionHandler(record)
-        }
+    public func willRequest(_ record: Record, requestBody: Data?, completionHandler: (Record, Data?) -> Void) {
+//        guard case .mock(let forced) = mode else { completionHandler(record); return }
+//        var result = resultForRequest(record.designatedRequest)
+//        if forced && result == nil {
+//             result = Result<Response>.notFound(for: record.designatedRequest)
+//        }
+//        if let result = result {
+//            var record = record
+//            record.result = result
+//            completionHandler(record)
+//        } else {
+//            completionHandler(record)
+//        }
+        // TODO: implement me
+        completionHandler(record, requestBody)
     }
 
-    private func resultForRequest(_ request: URLRequest) -> Result<Response>? {
+    private func resultForRequest(_ request: URLRequest) -> Result<URLResponseRepresentable>? {
         guard let storage = mockStorage else {
             return nil
         }
-        let manuallyMappedResponse: Result<Response>? = mappings.reduce(nil) { mappedRecord, mapping in
+        let manuallyMappedResponse: Result<URLResponseRepresentable>? = mappings.reduce(nil) { mappedRecord, mapping in
             mappedRecord ?? mapping.closure(request, self)
         }
         return manuallyMappedResponse ?? storage.results(for: request).randomElement()
     }
 
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        if mode == .record {
-            recordStorage.store(record)
-        }
-        completionHandler(record)
+    public func didRespond(_ record: Record, responseBody: Data?, completionHandler: (Record, Data?) -> Void) {
+//        if mode == .record {
+//            recordStorage.store(record)
+//        }
+        // TODO: implement me
+        completionHandler(record, responseBody)
     }
 
     /// This function will try to use the mocking storage (from within the
@@ -124,13 +127,13 @@ public class MockFloret: InterceptingFloret {
     ///
     /// - Parameter path: The path of a record relative to the "MockFloret" folder.
     /// - Returns: A Result or nil if no decodable Record at that path.
-    public func resultForPath(_ path: String) -> Result<Response>? {
+    public func resultForPath(_ path: String) -> Result<URLResponseRepresentable>? {
         return mockStorage?.resultForPath(path)
     }
 
     private var mappings: [Mapping] = []
     /// A MappingClosue maps a `URLRequest` to an optional `Result`.
-    public typealias MappingClosure = (URLRequest, MockFloret) -> Result<Response>?
+    public typealias MappingClosure = (URLRequest, MockFloret) -> Result<URLResponseRepresentable>?
 
     /// Adds a manual mapping defining which Result to use for a certain Request.
     ///
@@ -214,24 +217,24 @@ extension MockFloret {
     }
 }
 
-extension Result {
-    /// Creates an returns a not-found (404) result for the given request.
-    ///
-    /// - Parameter request: The request.
-    /// - Returns: The not-found `Result` for the given request.
-    public static func notFound(for request: URLRequest) -> Result<Response> {
-        let response = Response.notFound(for: request)
-        return .result(response)
-    }
-}
-
-internal extension Response {
-    static func notFound(for request: URLRequest) -> Response {
-        // swiftlint:disable force_unwrapping
-        let url = request.url ?? URL(string: "http://example.com")!
-        let body = "<html><head></head><body><h1>404 - No Mock found</h1></body></html>".data(using: .utf8)!
-        let urlResponse = HTTPURLResponse(url: url, statusCode: 404, httpVersion: "1.1", headerFields: nil)!
-        // swiftlint:enable force_unwrapping
-        return Response(urlResponse, data: body)
-    }
-}
+//extension Result {
+//    /// Creates an returns a not-found (404) result for the given request.
+//    ///
+//    /// - Parameter request: The request.
+//    /// - Returns: The not-found `Result` for the given request.
+//    public static func notFound(for request: URLRequest) -> Result<URLResponseRepresentable> {
+//        let response = URLResponseRepresentable.notFound(for: request)
+//        return .result(response)
+//    }
+//}
+//
+//internal extension URLResponseRepresentable {
+//    static func notFound(for request: URLRequest) -> URLResponseRepresentable {
+//        // swiftlint:disable force_unwrapping
+//        let url = request.url ?? URL(string: "http://example.com")!
+//        let body = "<html><head></head><body><h1>404 - No Mock found</h1></body></html>".data(using: .utf8)!
+//        let urlResponse = HTTPURLResponse(url: url, statusCode: 404, httpVersion: "1.1", headerFields: nil)!
+//        // swiftlint:enable force_unwrapping
+//        return URLResponseRepresentable(urlResponse, data: body)
+//    }
+//}

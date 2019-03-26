@@ -42,19 +42,20 @@ public class HTTPBodyStreamFloret: InterceptingFloret {
         self.maximumConvertedByteSize = maximumConvertedByteSize
     }
 
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard let httpBodyStream = record.designatedRequest.httpBodyStream,
-            let data = data(reading: httpBodyStream) else {
-            return completionHandler(record)
-        }
-        var record = record
-        record.designatedRequest.httpBodyStream = nil
-        record.designatedRequest.httpBody = data
-        completionHandler(record)
+    public func willRequest(_ record: Record, requestBody: Data?, responseBody: Data?, completionHandler: (Record, Data?, Data?) -> Void) {
+        // TODO: implement me (or rather remove this floret alltogether)
+//        guard let httpBodyStream = record.designatedRequest.httpBodyStream,
+//            let data = data(reading: httpBodyStream) else {
+//            return completionHandler(record)
+//        }
+//        var record = record
+//        record.designatedRequest.httpBodyStream = nil
+//        record.designatedRequest.httpBody = data
+        completionHandler(record, requestBody, responseBody)
     }
 
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        completionHandler(record)
+    public func didRespond(_ record: Record, responseBody: Data?, completionHandler: (Record, Data?) -> Void) {
+        completionHandler(record, responseBody)
     }
 
     private func data(reading input: InputStream) -> Data? {

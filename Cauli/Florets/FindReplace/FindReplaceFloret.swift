@@ -46,19 +46,21 @@ public class FindReplaceFloret: InterceptingFloret {
         self.name = name
     }
 
-    public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+    public func willRequest(_ record: Record, requestBody: Data?, responseBody: Data?, completionHandler: (Record, Data?, Data?) -> Void) {
+
         let record = willRequestModifiers.reduce(record) { record, recordModifier in
             recordModifier.modify(record)
         }
 
-        completionHandler(record)
+        completionHandler(record, requestBody, responseBody)
     }
 
-    public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+    public func didRespond(_ record: Record, responseBody: Data?, completionHandler: (Record, Data?) -> Void) {
+
         let record = didRespondModifiers.reduce(record) { record, recordModifier in
             recordModifier.modify(record)
         }
 
-        completionHandler(record)
+        completionHandler(record, responseBody)
     }
 }

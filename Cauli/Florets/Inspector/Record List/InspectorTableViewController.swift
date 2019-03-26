@@ -66,7 +66,7 @@ internal class InspectorTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if dataSource.items.isEmpty {
-            let records = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
+            let records = cauli.storage.records(with: nil, sortedBy: \Record.requestStarted, ascending: false, limit: InspectorTableViewController.recordPageSize, after: dataSource.items.last)
             dataSource.append(records: records, to: tableView)
         }
         searchController.searchBar.isHidden = false
@@ -93,8 +93,8 @@ internal class InspectorTableViewController: UITableViewController {
         let distanceToBottom = tableView.contentSize.height - tableView.frame.height - tableView.contentOffset.y
         guard !scrolledToEnd, !isLoading, distanceToBottom < 100 else { return }
         isLoading = true
-        let newRecords = cauli.storage.records(InspectorTableViewController.recordPageSize, after: dataSource.items.last)
-        guard !newRecords.isEmpty  else {
+        let newRecords = cauli.storage.records(with: nil, sortedBy: \Record.requestStarted, ascending: false, limit: InspectorTableViewController.recordPageSize, after: dataSource.items.last)
+        guard !newRecords.isEmpty else {
             isLoading = false
             scrolledToEnd = true
             return

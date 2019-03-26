@@ -36,6 +36,7 @@ internal class CauliURLProtocol: URLProtocol {
     }
 
     private var record: Record
+    private var responseHttpBodyStream: FilecachedInputOutputStream?
     private var dataTask: URLSessionDataTask?
     private var authenticationChallengeProxy: CauliAuthenticationChallengeProxy?
 
@@ -49,6 +50,9 @@ internal class CauliURLProtocol: URLProtocol {
 
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
         record = Record(request)
+        if let bodyData = request.httpBody {
+            record.designatedRequest.httpBodyStream = InputStream(data: bodyData)
+        }
         super.init(request: request, cachedResponse: cachedResponse, client: client)
     }
 }
@@ -73,8 +77,12 @@ extension CauliURLProtocol {
     }
 
     override func startLoading() {
-        willRequest(record) { record in
+        willRequest(record) { record, responseHttpBodyStream in
             self.record = record
+            if let responseHttpBodyStream = responseHttpBodyStream {
+                self.responseHttpBodyStream = FilecachedInputOutputStream()
+                self.responseHttpBodyStream?.writableOutputStream?.cauli_write(responseHttpBodyStream)
+            }
             self.record.requestStarted = Date()
             if case .result(_)? = record.result {
                 self.urlSession(didCompleteWithError: nil)
@@ -95,18 +103,19 @@ extension CauliURLProtocol {
 
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        record.result = .result(Response(response, data: nil))
+        responseHttpBodyStream = FilecachedInputOutputStream()
+        record.result = .result(URLResponseRepresentable(response))
         completionHandler(.allow)
     }
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
-        if CauliURLProtocol.handles(record) {
-            try? record.append(receivedData: receivedData)
-        } else {
-            if case let .result(response)? = record.result, let data = response.data {
-                self.client?.urlProtocol(self, didLoad: data)
-            }
-            client?.urlProtocol(self, didLoad: receivedData)
+        responseHttpBodyStream?.writableOutputStream?.cauli_write(receivedData)
+        if !CauliURLProtocol.handles(record) {
+            // TODO: pass the data up one layer directly?
+//            if case let .result(response)? = record.result, let data = response.data {
+//                self.client?.urlProtocol(self, didLoad: data)
+//            }
+//            client?.urlProtocol(self, didLoad: receivedData)
         }
     }
 
@@ -115,21 +124,25 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     private func urlSession(didCompleteWithError error: Error?) {
+        responseHttpBodyStream?.writableOutputStream?.close()
         invalidateURLSession()
         if let error = error {
             record.result = .error(error as NSError)
         }
 
-        didRespond(record) { record in
+        didRespond(record, responseBody: responseHttpBodyStream) { record, responseBody in
             self.record = record
             self.record.responseReceived = Date()
             switch record.result {
             case let .result(response)?:
                 self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
-                if let data = response.data {
-                    self.client?.urlProtocol(self, didLoad: data)
-                }
-                self.client?.urlProtocolDidFinishLoading(self)
+                responseBody?.cauli_readData(iteration: { [weak self] data in
+                    guard let strongSelf = self else { return }
+                    strongSelf.client?.urlProtocol(strongSelf, didLoad: data)
+                    }, completion: { [weak self] in
+                        guard let strongSelf = self else { return }
+                        strongSelf.client?.urlProtocolDidFinishLoading(strongSelf)
+                })
             case .error(let error)?:
                 self.client?.urlProtocol(self, didFailWithError: error)
             case nil:
@@ -158,31 +171,35 @@ extension CauliURLProtocol {
         }
     }
 
-    private func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
+    private func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record, _ responseBody: InputStream?) -> Void) {
+        CauliURLProtocol.delegates.cauli_reduceAsync((record, record.designatedRequest.httpBodyStream, nil as InputStream?), transform: { current, delegate, completion in
+            let (record, requestBody, responseBody) = current
             if delegate.handles(record) {
-                delegate.willRequest(record) { record in
-                    completion(record)
+                delegate.willRequest(record, requestStream: requestBody, responseStream: responseBody) { record, requestBody, responseBody in
+                    completion((record, requestBody, responseBody))
                 }
             } else {
-                completion(record)
+                completion((record, requestBody, responseBody))
             }
-        }, completion: { record in
-            completionHandler(record)
+        }, completion: { record, requestBody, responseBody in
+            var record = record
+            record.designatedRequest.httpBodyStream = requestBody
+            completionHandler(record, responseBody)
         })
     }
 
-    private func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
+    private func didRespond(_ record: Record, responseBody: InputStream?, modificationCompletionHandler completionHandler: @escaping (Record, InputStream?) -> Void) {
+        CauliURLProtocol.delegates.cauli_reduceAsync((record, responseBody), transform: { current, delegate, completion in
+            let (record, responseBody) = current
             if delegate.handles(record) {
-                delegate.didRespond(record) { record in
-                    completion(record)
+                delegate.didRespond(record, responseStream: responseBody) { record, responseBody in
+                    completion((record, responseBody))
                 }
             } else {
-                completion(record)
+                completion((record, responseBody))
             }
-        }, completion: { record in
-            completionHandler(record)
+        }, completion: { record, responseBody in
+            completionHandler(record, responseBody)
         })
     }
 

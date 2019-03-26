@@ -50,12 +50,13 @@ internal class RecordTableViewController: UITableViewController {
     }
 
     @objc func shareButtonTapped() {
-        guard let tempPath = MockRecordSerializer.write(record: record) else { return }
-
-        let allRecordFiles = (try? FileManager.default.contentsOfDirectory(at: tempPath, includingPropertiesForKeys: nil, options: [])) ?? []
-
-        let viewContoller = UIActivityViewController(activityItems: allRecordFiles, applicationActivities: nil)
-        present(viewContoller, animated: true, completion: nil)
+        // TODO: implement me!
+//        guard let tempPath = MockRecordSerializer.write(record: record) else { return }
+//
+//        let allRecordFiles = (try? FileManager.default.contentsOfDirectory(at: tempPath, includingPropertiesForKeys: nil, options: [])) ?? []
+//
+//        let viewContoller = UIActivityViewController(activityItems: allRecordFiles, applicationActivities: nil)
+//        present(viewContoller, animated: true, completion: nil)
     }
 
 }
