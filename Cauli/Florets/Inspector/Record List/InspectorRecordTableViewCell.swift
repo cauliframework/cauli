@@ -59,7 +59,7 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         switch record.result {
         case nil:
             statusCodeLabel.text = "-"
-            statusCodeLabel.backgroundColor = UIColor(red: 1080 / 255.0, green: 117 / 255.0, blue: 125 / 255.0, alpha: 1)
+            statusCodeLabel.backgroundColor = InspectorRecordTableViewCell.grayColor
         case .error(let error)?:
             statusCodeLabel.text = errorString(for: error.code)
             statusCodeLabel.backgroundColor = InspectorRecordTableViewCell.redColor
