@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwe-2a-sT2" customClass="TagLabel" customModule="Cauliframework" customModuleProvider="target">
-                        <rect key="frame" x="8" y="6" width="32.5" height="14.5"/>
+                        <rect key="frame" x="8" y="8" width="32.5" height="16.5"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32.5" id="HHo-Bu-FGN"/>
                         </constraints>
@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daq-5Q-ci8">
-                        <rect key="frame" x="8" y="28.5" width="328" height="18"/>
+                        <rect key="frame" x="8" y="30.5" width="328" height="14"/>
                         <attributedString key="attributedText">
                             <fragment content="/organizations/cauliframework">
                                 <attributes>
@@ -39,13 +39,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="GET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpj-7q-WGE">
-                        <rect key="frame" x="48.5" y="6" width="25" height="14.5"/>
+                        <rect key="frame" x="48.5" y="9" width="25" height="14.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="18:24:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLL-7a-gbP">
-                        <rect key="frame" x="287" y="6" width="49" height="15"/>
+                        <rect key="frame" x="287" y="9" width="49" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -59,10 +59,10 @@
                     <constraint firstItem="Dwe-2a-sT2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gu7-pd-88e"/>
                     <constraint firstItem="Daq-5Q-ci8" firstAttribute="trailing" secondItem="iLL-7a-gbP" secondAttribute="trailing" id="hLN-Ws-XA9"/>
                     <constraint firstItem="Dwe-2a-sT2" firstAttribute="centerY" secondItem="gpj-7q-WGE" secondAttribute="centerY" id="hdY-gP-ZPa"/>
-                    <constraint firstItem="Daq-5Q-ci8" firstAttribute="top" secondItem="Dwe-2a-sT2" secondAttribute="bottom" constant="8" id="l9E-Ky-K8P"/>
+                    <constraint firstItem="Daq-5Q-ci8" firstAttribute="top" secondItem="Dwe-2a-sT2" secondAttribute="bottom" constant="6" id="l9E-Ky-K8P"/>
                     <constraint firstItem="Dwe-2a-sT2" firstAttribute="leading" secondItem="Daq-5Q-ci8" secondAttribute="leading" id="qh3-tu-ow6"/>
-                    <constraint firstAttribute="bottom" secondItem="Daq-5Q-ci8" secondAttribute="bottom" constant="6" id="sBH-ie-iPA"/>
-                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="sTL-rE-sZ2"/>
+                    <constraint firstAttribute="bottom" secondItem="Daq-5Q-ci8" secondAttribute="bottom" constant="8" id="sBH-ie-iPA"/>
+                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sTL-rE-sZ2"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
