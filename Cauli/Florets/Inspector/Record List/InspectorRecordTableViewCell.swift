@@ -83,7 +83,7 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         default: return InspectorRecordTableViewCell.grayColor
         }
     }
-    
+
     private func errorString(for code: Int) -> String {
         guard let error = CFNetworkErrors(rawValue: Int32(code)) else {
             return "Error"
