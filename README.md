@@ -44,7 +44,7 @@ github "cauliframework/cauli"
 
 ### Setup
 
-Add an `import Cauliframework` to your `AppDelegate` and call the `run` function on the shared instace in the `application(:, didFinishLaunchingWithOptions:)`.
+Add an `import Cauliframework` to your `AppDelegate` and call the `run` function on the shared instace in the `application(:, didFinishLaunchingWithOptions:)`. Make sure to call `run` before instantiating networking classes. Otherwise Cauli can't hook into it and won't be able to create any records.
 
 ```swift
 import Cauliframework
