@@ -11,39 +11,24 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="KGk-i7-Jjw" customClass="InspectorRecordTableViewCell" customModule="Cauliframework" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="336" height="82"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="KGk-i7-Jjw" customClass="InspectorRecordTableViewCell" customModule="Cauliframework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="336" height="69"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="336" height="81.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="336" height="68.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="GET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpj-7q-WGE" customClass="TagLabel" customModule="Cauliframework" customModuleProvider="target">
-                        <rect key="frame" x="11" y="9" width="55" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="18:24:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLL-7a-gbP">
-                        <rect key="frame" x="11" y="55.5" width="55" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwe-2a-sT2" customClass="TagLabel" customModule="Cauliframework" customModuleProvider="target">
-                        <rect key="frame" x="297" y="55.5" width="28" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <rect key="frame" x="11" y="9" width="32.5" height="16.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32.5" id="HHo-Bu-FGN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="application/json" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8QC-S5-nAc">
-                        <rect key="frame" x="80" y="55.5" width="208" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daq-5Q-ci8">
-                        <rect key="frame" x="80" y="9" width="245" height="37.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daq-5Q-ci8">
+                        <rect key="frame" x="11" y="33.5" width="321" height="25"/>
                         <attributedString key="attributedText">
                             <fragment content="/organizations/cauliframework">
                                 <attributes>
@@ -53,35 +38,40 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="GET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpj-7q-WGE">
+                        <rect key="frame" x="53.5" y="10" width="25" height="14.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="18:24:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLL-7a-gbP">
+                        <rect key="frame" x="283" y="10" width="49" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="8QC-S5-nAc" firstAttribute="leading" secondItem="iLL-7a-gbP" secondAttribute="trailing" constant="14" id="1wc-gR-MIw"/>
-                    <constraint firstItem="iLL-7a-gbP" firstAttribute="trailing" secondItem="gpj-7q-WGE" secondAttribute="trailing" id="3Ak-1y-NrP"/>
-                    <constraint firstAttribute="trailing" secondItem="Daq-5Q-ci8" secondAttribute="trailing" constant="11" id="3DA-dN-OJ7"/>
-                    <constraint firstItem="iLL-7a-gbP" firstAttribute="top" secondItem="8QC-S5-nAc" secondAttribute="top" id="6Ly-0F-drW"/>
-                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="leading" secondItem="8QC-S5-nAc" secondAttribute="trailing" constant="9" id="KxH-bT-2il"/>
-                    <constraint firstItem="8QC-S5-nAc" firstAttribute="bottom" secondItem="Dwe-2a-sT2" secondAttribute="bottom" id="LOF-IK-d7A"/>
-                    <constraint firstAttribute="trailing" secondItem="Dwe-2a-sT2" secondAttribute="trailing" constant="11" id="M8v-cB-N4e"/>
-                    <constraint firstItem="iLL-7a-gbP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gpj-7q-WGE" secondAttribute="bottom" constant="9" id="Nvm-QR-Xxh"/>
-                    <constraint firstItem="gpj-7q-WGE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="P1d-Oi-CeW"/>
-                    <constraint firstItem="iLL-7a-gbP" firstAttribute="leading" secondItem="gpj-7q-WGE" secondAttribute="leading" id="Y5B-MC-ds7"/>
-                    <constraint firstAttribute="bottom" secondItem="Dwe-2a-sT2" secondAttribute="bottom" constant="9" id="YuN-eG-s4v"/>
-                    <constraint firstItem="gpj-7q-WGE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="bpH-2b-oQz"/>
-                    <constraint firstItem="Daq-5Q-ci8" firstAttribute="top" secondItem="gpj-7q-WGE" secondAttribute="top" id="fGl-a9-RqJ"/>
-                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="top" secondItem="Daq-5Q-ci8" secondAttribute="bottom" constant="9" id="lCH-io-4h4"/>
-                    <constraint firstItem="Daq-5Q-ci8" firstAttribute="leading" secondItem="gpj-7q-WGE" secondAttribute="trailing" constant="14" id="oth-P3-cmR"/>
-                    <constraint firstItem="8QC-S5-nAc" firstAttribute="top" secondItem="Dwe-2a-sT2" secondAttribute="top" id="qDp-tz-eAH"/>
-                    <constraint firstItem="iLL-7a-gbP" firstAttribute="bottom" secondItem="8QC-S5-nAc" secondAttribute="bottom" id="zgc-Q8-gHH"/>
+                    <constraint firstItem="iLL-7a-gbP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gpj-7q-WGE" secondAttribute="trailing" constant="10" id="LYI-lH-s9Z"/>
+                    <constraint firstItem="gpj-7q-WGE" firstAttribute="leading" secondItem="Dwe-2a-sT2" secondAttribute="trailing" constant="10" id="SDi-8D-0tP"/>
+                    <constraint firstItem="iLL-7a-gbP" firstAttribute="centerY" secondItem="gpj-7q-WGE" secondAttribute="centerY" id="f3w-QG-uLC"/>
+                    <constraint firstAttribute="trailing" secondItem="iLL-7a-gbP" secondAttribute="trailing" constant="4" id="fVl-6Y-KWf"/>
+                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="gu7-pd-88e"/>
+                    <constraint firstItem="Daq-5Q-ci8" firstAttribute="trailing" secondItem="iLL-7a-gbP" secondAttribute="trailing" id="hLN-Ws-XA9"/>
+                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="centerY" secondItem="gpj-7q-WGE" secondAttribute="centerY" id="hdY-gP-ZPa"/>
+                    <constraint firstItem="Daq-5Q-ci8" firstAttribute="top" secondItem="Dwe-2a-sT2" secondAttribute="bottom" constant="8" id="l9E-Ky-K8P"/>
+                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="leading" secondItem="Daq-5Q-ci8" secondAttribute="leading" id="qh3-tu-ow6"/>
+                    <constraint firstAttribute="bottom" secondItem="Daq-5Q-ci8" secondAttribute="bottom" constant="10" id="sBH-ie-iPA"/>
+                    <constraint firstItem="Dwe-2a-sT2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="sTL-rE-sZ2"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentTypeLabel" destination="8QC-S5-nAc" id="h3s-Jd-jlB"/>
                 <outlet property="methodLabel" destination="gpj-7q-WGE" id="MV7-Np-EiE"/>
                 <outlet property="pathLabel" destination="Daq-5Q-ci8" id="BCX-Xj-QRZ"/>
                 <outlet property="statusCodeLabel" destination="Dwe-2a-sT2" id="Dvp-Ah-FgJ"/>
                 <outlet property="timeLabel" destination="iLL-7a-gbP" id="eNA-VL-lwI"/>
             </connections>
-            <point key="canvasLocation" x="150.40000000000001" y="170.01499250374815"/>
+            <point key="canvasLocation" x="150.40000000000001" y="162.3688155922039"/>
         </tableViewCell>
     </objects>
 </document>

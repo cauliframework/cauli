@@ -50,6 +50,7 @@
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
+		1FF25CF92275EDD800008E51 /* NSError+NetworkErrorShortString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF25CF82275EDD800008E51 /* NSError+NetworkErrorShortString.swift */; };
 		1FFFE7D621AC7C080040B805 /* Record+Fake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D121AC7C080040B805 /* Record+Fake.swift */; };
 		1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */; };
 		5005E53D222BE0C800BD5DF7 /* DisplayingFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */; };
@@ -136,6 +137,7 @@
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		1FF25CF82275EDD800008E51 /* NSError+NetworkErrorShortString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+NetworkErrorShortString.swift"; sourceTree = "<group>"; };
 		1FFFE7D121AC7C080040B805 /* Record+Fake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+Fake.swift"; sourceTree = "<group>"; };
 		1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorageSpec.swift; sourceTree = "<group>"; };
 		4313259D01CD824F65FBB0E8 /* Pods-Cauli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cauli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cauli/Pods-Cauli.debug.xcconfig"; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				1FA4A50621B7C40100F1CA6B /* Record List */,
 				1FBE790421A1A271004C81A7 /* InspectorFloret.swift */,
 				1FBE790C21A1A572004C81A7 /* TagLabel.swift */,
+				1FF25CF82275EDD800008E51 /* NSError+NetworkErrorShortString.swift */,
 			);
 			path = Inspector;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				5005E53F222BE0D400BD5DF7 /* InterceptingFloret.swift in Sources */,
 				5042C4D421EBE1B500652AC6 /* SwitchTableViewCell.swift in Sources */,
 				1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */,
+				1FF25CF92275EDD800008E51 /* NSError+NetworkErrorShortString.swift in Sources */,
 				1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */,
 				1FA4A50E21B7C40100F1CA6B /* InspectorTableViewController.swift in Sources */,
 				1F0ACDFF222C26D0004E0361 /* PlaintextPrettyPrinter.swift in Sources */,

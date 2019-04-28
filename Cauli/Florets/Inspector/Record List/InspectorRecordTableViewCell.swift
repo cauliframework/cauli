@@ -27,17 +27,16 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
     static let timeFormatter: DateFormatter = {
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .short
+        timeFormatter.timeStyle = .medium
         return timeFormatter
     }()
 
     static let reuseIdentifier = "InspectorRecordTableViewCell"
     static let nibName = "InspectorRecordTableViewCell"
 
-    @IBOutlet private weak var methodLabel: TagLabel!
+    @IBOutlet private weak var methodLabel: UILabel!
     @IBOutlet private weak var pathLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
-    @IBOutlet private weak var contentTypeLabel: UILabel!
     @IBOutlet private weak var statusCodeLabel: TagLabel!
 
     internal func configure(with record: Record, stringToHighlight: String?) {
@@ -59,31 +58,29 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         pathLabel.attributedText = pathAttributedString
         switch record.result {
         case nil:
-            contentTypeLabel.text = ""
-            statusCodeLabel.text = "no Response"
-            statusCodeLabel.borderColor = .black
+            statusCodeLabel.text = "-"
+            statusCodeLabel.backgroundColor = InspectorRecordTableViewCell.grayColor
         case .error(let error)?:
-            contentTypeLabel.text = error.localizedDescription
-            statusCodeLabel.text = "Error"
-            statusCodeLabel.borderColor = InspectorRecordTableViewCell.redColor
+            statusCodeLabel.text = error.cauli_networkErrorShortString
+            statusCodeLabel.backgroundColor = InspectorRecordTableViewCell.redColor
         case .result(let response)?:
             if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
-                contentTypeLabel.text = httpUrlResponse.allHeaderFields["Content-Type"] as? String
                 statusCodeLabel.text = "\(httpUrlResponse.statusCode)"
-                statusCodeLabel.borderColor = colorForHTTPStatusCode(httpUrlResponse.statusCode)
+                statusCodeLabel.backgroundColor = colorForHTTPStatusCode(httpUrlResponse.statusCode)
             }
         }
     }
 
-    static let greenColor = UIColor(red: 126 / 255.0, green: 211 / 255.0, blue: 33 / 255.0, alpha: 1)
+    static let greenColor = UIColor(red: 11 / 255.0, green: 176 / 255.0, blue: 61 / 255.0, alpha: 1)
     static let blueColor = UIColor(red: 74 / 255.0, green: 144 / 255.0, blue: 226 / 255.0, alpha: 1)
-    static let redColor = UIColor(red: 208 / 255.0, green: 2 / 255.0, blue: 27 / 255.0, alpha: 1)
+    static let redColor = UIColor(red: 210 / 255.0, green: 46 / 255.0, blue: 14 / 255.0, alpha: 1)
+    static let grayColor = UIColor(red: 155 / 255.0, green: 155 / 255.0, blue: 155 / 255.0, alpha: 1)
     private func colorForHTTPStatusCode(_ statusCode: Int) -> UIColor {
         switch statusCode {
         case 0..<300: return InspectorRecordTableViewCell.greenColor
         case 300..<400: return InspectorRecordTableViewCell.blueColor
         case 400..<600: return InspectorRecordTableViewCell.redColor
-        default: return UIColor.black
+        default: return InspectorRecordTableViewCell.grayColor
         }
     }
 }
