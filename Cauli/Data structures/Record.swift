@@ -28,18 +28,15 @@ public struct Record {
     /// two Records are assumed to be the same.
     public var identifier: UUID
 
-    /// The originalRequest is the request passed on to the URL loading system.
-    /// The originalRequest should not be changed by any floret.
-    public var originalRequest: URLRequest
-
     /// The designatedRequest will initially be the same as the originalRequest
     /// but can be changed by every Floret. The designatedRequest is the one
     /// that will be executed in the end.
-    public var designatedRequest: URLRequest
+    public var request: URLRequest
 
     /// The result will be nil until either the URL loading system failed to perform the
     /// request, or the response is received. The `data` of the `Response` can be incomplete
     /// while receiving.
+    // TODO: put the response body here as well?
     public var result: Result<URLResponseRepresentable>?
 
     /// The requestStarted Date is set after all florets finished their `willRequest` function.
@@ -57,12 +54,9 @@ extension Record: Codable {}
 extension Record {
     init(_ request: URLRequest) {
         identifier = UUID()
-        originalRequest = request
-        originalRequest.httpBody = nil
-        originalRequest.httpBodyStream = nil
-        designatedRequest = request
-        designatedRequest.httpBody = nil
-        designatedRequest.httpBodyStream = nil
+        self.request = request
+        self.request.httpBody = nil
+        self.request.httpBodyStream = nil
         // TODO: Fixme
         requestBodySize = nil
         responseBodySize = nil

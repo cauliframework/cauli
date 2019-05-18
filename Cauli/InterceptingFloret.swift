@@ -44,6 +44,8 @@ public protocol InterceptingFloret: Floret {
     ///   - responseBody: TODO
     ///   - completionHandler: Call this completion handler exactly once with the
     ///     original or modified `Record`.
+    // TODO: Check if we want to split this up; one function for manipulating the request and one function to return mocked response body
+    // TODO: Better? Finish willRequest once a mocked responseBody is returned and continue with the didRespond right away
     func willRequest(_ record: Record, requestBody: Data?, responseBody: Data?, completionHandler: (_ record: Record, _ requestBody: Data?, _ responseBody: Data?) -> Void)
 
     /// This function will be called after a request is performed and the response arrived.
