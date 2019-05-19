@@ -111,7 +111,7 @@ extension Cauli {
 
 extension Cauli: CauliURLProtocolDelegate {
     func handles(_ record: Record) -> Bool {
-        return configuration.recordSelector.selects(record)
+        return enabled && configuration.recordSelector.selects(record)
     }
 
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
