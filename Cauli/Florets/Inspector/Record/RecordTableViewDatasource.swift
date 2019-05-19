@@ -32,7 +32,7 @@ internal class RecordTableViewDatasource: NSObject {
     }
 
     convenience init(_ record: Record) {
-        let requestSection = Section(record.designatedRequest)
+        let requestSection = Section(record.request)
         let responseSection = Section(record.result)
         self.init([requestSection, responseSection])
     }
@@ -100,22 +100,23 @@ extension RecordTableViewDatasource.Item {
         self.description = description
         self.value = value
     }
-    static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
-        // swiftlint:disable trailing_closure
-        return RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
-            guard let data = response.data else { return nil }
-            let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
-            let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
-            let filePath = tmpFolder.appendingPathComponent(fileName)
-            do {
-                try data.write(to: filePath)
-                return filePath
-            } catch {
-                return nil
-            }
-        })
-        // swiftlint:enable trailing_closure
-    }
+    // TODO: fixme
+//    static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
+//        // swiftlint:disable trailing_closure
+//        return RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
+//            guard let data = response.data else { return nil }
+//            let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
+//            let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
+//            let filePath = tmpFolder.appendingPathComponent(fileName)
+//            do {
+//                try data.write(to: filePath)
+//                return filePath
+//            } catch {
+//                return nil
+//            }
+//        })
+//        // swiftlint:enable trailing_closure
+//    }
 }
 
 extension RecordTableViewDatasource.Section {
@@ -135,21 +136,22 @@ extension RecordTableViewDatasource.Section {
 
     init(_ result: Result<Response>?) {
         var resultItems: [RecordTableViewDatasource.Item] = []
-        switch result {
-        case .error(let error)?:
-            resultItems.append(RecordTableViewDatasource.Item(title: "Error", description: error.localizedDescription))
-        case .result(let response)?:
-            resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-", value: response.urlResponse.url))
-            if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
-                resultItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: httpUrlResponse.allHeaderFields.compactMap { key, value in
-                    "\(key): \(value)"
-                }
-                    .joined(separator: "\n"), value: httpUrlResponse.allHeaderFields))
-                resultItems.append(RecordTableViewDatasource.Item(title: "Status Code", description: "\(httpUrlResponse.statusCode)"))
-            }
-            resultItems.append(RecordTableViewDatasource.Item.forBody(in: response))
-        case .none: break
-        }
+        // TODO: Fixme
+//        switch result {
+//        case .error(let error)?:
+//            resultItems.append(RecordTableViewDatasource.Item(title: "Error", description: error.localizedDescription))
+//        case .result(let response)?:
+//            resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-", value: response.urlResponse.url))
+//            if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
+//                resultItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: httpUrlResponse.allHeaderFields.compactMap { key, value in
+//                    "\(key): \(value)"
+//                }
+//                    .joined(separator: "\n"), value: httpUrlResponse.allHeaderFields))
+//                resultItems.append(RecordTableViewDatasource.Item(title: "Status Code", description: "\(httpUrlResponse.statusCode)"))
+//            }
+//            resultItems.append(RecordTableViewDatasource.Item.forBody(in: response))
+//        case .none: break
+//        }
         self.init(title: "Response", items: resultItems)
     }
 

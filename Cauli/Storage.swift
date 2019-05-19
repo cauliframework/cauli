@@ -24,20 +24,20 @@ import Foundation
 
 /// A Storage is used to store and retrieve Records. It can be either in memory or on disk.
 public protocol Storage {
-    
+
     /// The `capacity` defines the capacity of the storage.
     var capacity: StorageCapacity { get set }
-    
+
     /// A `RecordModifier` that can modify each `Record` before it is persisted to a `Storage`.
     /// This allows you to modify requests and responses after they are executed but before they are passed along to other florets.
     var preStorageRecordModifier: RecordModifier? { get set }
-    
+
     /// Adds a record to the storage. Updates a possibly existing record.
     /// A record is the same if it's identifier is the same.
     ///
     /// - Parameter record: The record to add to the storage.
     func store(_ record: Record)
-    
+
     /// Returns a number of records after the referenced record.
     ///
     /// - Parameters:
@@ -48,34 +48,33 @@ public protocol Storage {
     ///         If nil, the first records are returned
     /// - Returns: The records after the referenced record.
     func records<T: Comparable>(with predicate: NSPredicate?, sortedBy keyPath: KeyPath<Record, T?>, ascending: Bool, limit: Int, after record: Record?) -> [Record]
-    
+
     /// Stores the request body data as a stream.
     ///
     /// - Parameters:
     ///   - stream: The stream to store.
     ///   - record: The record describing the request.
     func storeRequestBody(_ stream: InputStream, for record: Record)
-    
+
     /// Returns the request body data as a stream.
     ///
     /// - Parameter record: The record describing the request.
     /// - Returns: The inputStream for the data if any was stored before.
     func requestBody(for record: Record) -> InputStream?
-    
+
     /// Stores the response body data as a stream.
     ///
     /// - Parameters:
     ///   - stream: The stream to store.
     ///   - record: The record describing the request.
     func storeResponseBody(_ stream: InputStream, for record: Record)
-    
+
     /// Returns the response body data as a stream.
     ///
     /// - Parameter record: The record describing the request.
     /// - Returns: The inputStream for the data if any was stored before.
     func responseBody(for record: Record) -> InputStream?
 }
-
 
 /// Defines the capacity of a storage.
 public enum StorageCapacity: Equatable {

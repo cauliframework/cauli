@@ -43,13 +43,13 @@ public class HTTPBodyStreamFloret: InterceptingFloret {
     }
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        guard let httpBodyStream = record.designatedRequest.httpBodyStream,
+        guard let httpBodyStream = record.request.httpBodyStream,
             let data = data(reading: httpBodyStream) else {
             return completionHandler(record)
         }
         var record = record
-        record.designatedRequest.httpBodyStream = nil
-        record.designatedRequest.httpBody = data
+        record.request.httpBodyStream = nil
+        record.request.httpBody = data
         completionHandler(record)
     }
 

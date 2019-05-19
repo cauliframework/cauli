@@ -28,18 +28,12 @@ public struct Record {
     /// two Records are assumed to be the same.
     public var identifier: UUID
 
-    /// The originalRequest is the request passed on to the URL loading system.
-    /// The originalRequest should not be changed by any floret.
-    public var originalRequest: URLRequest
-
-    /// The designatedRequest will initially be the same as the originalRequest
-    /// but can be changed by every Floret. The designatedRequest is the one
-    /// that will be executed in the end.
-    public var designatedRequest: URLRequest
+    /// The request executed. Once the record is received from the storage, the
+    /// httpBody will be converted to a httpBodyStream.
+    public var request: URLRequest
 
     /// The result will be nil until either the URL loading system failed to perform the
-    /// request, or the response is received. The `data` of the `Response` can be incomplete
-    /// while receiving.
+    /// request, or the response is received. The `responseBodyStream` will be set by the 
     public var result: Result<Response>?
 
     /// The requestStarted Date is set after all florets finished their `willRequest` function.
@@ -47,6 +41,12 @@ public struct Record {
 
     /// The responseReceived Date is set after all florets finished their `didRespond` function.
     public var responseReceived: Date?
+
+    /// The size of the request body data. Nil if the request body was empty.
+    public var requestBodySize: Int64?
+
+    /// The size of the response body data. Nil if the response body was empty.
+    public var responseBodySize: Int64?
 }
 
 extension Record: Codable {}
@@ -54,24 +54,23 @@ extension Record: Codable {}
 extension Record {
     init(_ request: URLRequest) {
         identifier = UUID()
-        originalRequest = request
-        designatedRequest = request
+        self.request = request
     }
 }
 
 extension Record {
-    internal mutating func append(receivedData: Data) throws {
-        guard case let .result(result)? = result else {
-            throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
-        }
-        var currentData = result.data ?? Data()
-        currentData.append(receivedData)
-        self.result = .result(Response(result.urlResponse, data: currentData))
-    }
+//    internal mutating func append(receivedData: Data) throws {
+//        guard case let .result(result)? = result else {
+//            throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
+//        }
+//        var currentData = result.data ?? Data()
+//        currentData.append(receivedData)
+//        self.result = .result(Response(result.urlResponse, data: currentData))
+//    }
 }
 
 extension Record {
-    internal func swapped(to path: URL) -> SwappedRecord {
-        return SwappedRecord(self, folder: path)
-    }
+//    internal func swapped(to path: URL) -> SwappedRecord {
+//        return SwappedRecord(self, folder: path)
+//    }
 }

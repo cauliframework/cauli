@@ -51,20 +51,9 @@ public extension RecordSelector {
     ///     equal than the required size.
     static func max(bytesize: Int) -> RecordSelector {
         return RecordSelector { record in
-            guard record.designatedRequest.httpBody?.count ?? 0 <= bytesize else { return false }
-            switch record.result {
-            case nil: return true
-            case .error?: return true
-            case .result(let response)?:
-                if let data = response.data {
-                    return data.count <= bytesize
-                } else if let urlResponse = response.urlResponse as? HTTPURLResponse,
-                    let contentLengthString = urlResponse.allHeaderFields["Content-Length"] as? String,
-                    let contentLength = Int(contentLengthString) {
-                    return contentLength <= bytesize
-                }
-                return true
-            }
+            let requestBodySize = record.requestBodySize ?? 0
+            let responseBodySize = record.responseBodySize ?? 0
+            return requestBodySize + responseBodySize <= bytesize
         }
     }
 }

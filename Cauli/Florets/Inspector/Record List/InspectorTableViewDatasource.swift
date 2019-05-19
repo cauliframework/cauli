@@ -52,7 +52,7 @@ internal class InspectorTableViewDatasource: NSObject {
             return
         }
         filter = RecordSelector { record in
-            guard let urlString = record.designatedRequest.url?.absoluteString else {
+            guard let urlString = record.request.url?.absoluteString else {
                 return false
             }
             return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil

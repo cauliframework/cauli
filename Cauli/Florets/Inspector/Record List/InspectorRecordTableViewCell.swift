@@ -45,8 +45,8 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         } else {
             timeLabel.text = ""
         }
-        methodLabel.text = record.designatedRequest.httpMethod
-        let pathString = record.designatedRequest.url?.absoluteString ?? ""
+        methodLabel.text = record.request.httpMethod
+        let pathString = record.request.url?.absoluteString ?? ""
         let pathAttributedString = NSMutableAttributedString(string: pathString)
         if let stringToHighlight = stringToHighlight {
             var rangeToSearch = pathString.startIndex..<pathString.endIndex

@@ -23,9 +23,9 @@
 import Foundation
 
 /// The `Response` wrapps the `URLResponse` and the data received from the server.
-public struct Response: Codable {
+public struct Response {
     /// The `Data` received for a request.
-    public var data: Data?
+    public var responseBodyStream: InputStream?
 
     /// The `URLResponse` for a request.
     public var urlResponse: URLResponse {
@@ -41,11 +41,30 @@ public struct Response: Codable {
     ///
     /// - Parameters:
     ///   - urlResponse: The URLResponse
-    ///   - data: Optional received data
-    init(_ urlResponse: URLResponse, data: Data?) {
-        self.data = data
+    ///   - responseBodyStream: The data received for a request.
+    init(_ urlResponse: URLResponse, responseBodyStream: InputStream?) {
+        self.responseBodyStream = responseBodyStream
         urlResponseRepresentable = URLResponseRepresentable(urlResponse)
     }
 
     private var urlResponseRepresentable: URLResponseRepresentable
+}
+
+extension Response: Codable {
+
+    private enum CodingKeys: CodingKey {
+        case response
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let response = try container.decode(URLResponseRepresentable.self)
+        self.urlResponseRepresentable = response
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(urlResponseRepresentable)
+    }
+
 }

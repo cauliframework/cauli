@@ -22,55 +22,55 @@
 
 import Foundation
 
-internal struct SwappedRecord: Codable {
-    let identifier: UUID
-    let originalRequest: SwappedURLRequest
-    let designatedRequest: SwappedURLRequest
-    let result: Result<SwappedResponse>?
-    let requestStarted: Date?
-    let responseReceived: Date?
-}
-
-extension SwappedRecord {
-    init(_ record: Record, folder: URL) {
-        self.identifier = record.identifier
-        self.originalRequest = SwappedURLRequest(record.originalRequest, bodyFilepath: folder.appendingPathComponent("originalRequest.data"))
-        self.designatedRequest = SwappedURLRequest(record.designatedRequest, bodyFilepath: folder.appendingPathComponent("designatedRequest.data"))
-        if let result = record.result {
-            switch result {
-            case .error(let error):
-                self.result = .error(error)
-            case .result(let response):
-                let swappedResponse = SwappedResponse(response, dataFilepath: folder.appendingPathComponent("response.data"))
-                self.result = .result(swappedResponse)
-            }
-        } else {
-            self.result = nil
-        }
-
-        self.requestStarted = record.requestStarted
-        self.responseReceived = record.responseReceived
-    }
-
-    func record(in folder: URL) -> Record {
-        var record = Record(self.originalRequest.urlRequest(in: folder))
-
-        record.identifier = self.identifier
-        record.designatedRequest = self.designatedRequest.urlRequest(in: folder)
-        if let result = self.result {
-            switch result {
-            case .error(let error):
-                record.result = .error(error)
-            case .result(let swappedResponse):
-                let response = swappedResponse.response(in: folder)
-                record.result = .result(response)
-            }
-        } else {
-            record.result = nil
-        }
-        record.requestStarted = self.requestStarted
-        record.responseReceived = self.responseReceived
-
-        return record
-    }
-}
+//internal struct SwappedRecord: Codable {
+//    let identifier: UUID
+//    let originalRequest: SwappedURLRequest
+//    let designatedRequest: SwappedURLRequest
+//    let result: Result<SwappedResponse>?
+//    let requestStarted: Date?
+//    let responseReceived: Date?
+//}
+//
+//extension SwappedRecord {
+//    init(_ record: Record, folder: URL) {
+//        self.identifier = record.identifier
+//        self.originalRequest = SwappedURLRequest(record.originalRequest, bodyFilepath: folder.appendingPathComponent("originalRequest.data"))
+//        self.designatedRequest = SwappedURLRequest(record.designatedRequest, bodyFilepath: folder.appendingPathComponent("designatedRequest.data"))
+//        if let result = record.result {
+//            switch result {
+//            case .error(let error):
+//                self.result = .error(error)
+//            case .result(let response):
+//                let swappedResponse = SwappedResponse(response, dataFilepath: folder.appendingPathComponent("response.data"))
+//                self.result = .result(swappedResponse)
+//            }
+//        } else {
+//            self.result = nil
+//        }
+//
+//        self.requestStarted = record.requestStarted
+//        self.responseReceived = record.responseReceived
+//    }
+//
+//    func record(in folder: URL) -> Record {
+//        var record = Record(self.originalRequest.urlRequest(in: folder))
+//
+//        record.identifier = self.identifier
+//        record.designatedRequest = self.designatedRequest.urlRequest(in: folder)
+//        if let result = self.result {
+//            switch result {
+//            case .error(let error):
+//                record.result = .error(error)
+//            case .result(let swappedResponse):
+//                let response = swappedResponse.response(in: folder)
+//                record.result = .result(response)
+//            }
+//        } else {
+//            record.result = nil
+//        }
+//        record.requestStarted = self.requestStarted
+//        record.responseReceived = self.responseReceived
+//
+//        return record
+//    }
+//}
