@@ -48,32 +48,6 @@ public protocol Storage {
     ///         If nil, the first records are returned
     /// - Returns: The records after the referenced record.
     func records<T: Comparable>(with predicate: NSPredicate?, sortedBy keyPath: KeyPath<Record, T?>, ascending: Bool, limit: Int, after record: Record?) -> [Record]
-
-    /// Stores the request body data as a stream.
-    ///
-    /// - Parameters:
-    ///   - stream: The stream to store.
-    ///   - record: The record describing the request.
-    func storeRequestBody(_ stream: InputStream, for record: Record)
-
-    /// Returns the request body data as a stream.
-    ///
-    /// - Parameter record: The record describing the request.
-    /// - Returns: The inputStream for the data if any was stored before.
-    func requestBody(for record: Record) -> InputStream?
-
-    /// Stores the response body data as a stream.
-    ///
-    /// - Parameters:
-    ///   - stream: The stream to store.
-    ///   - record: The record describing the request.
-    func storeResponseBody(_ stream: InputStream, for record: Record)
-
-    /// Returns the response body data as a stream.
-    ///
-    /// - Parameter record: The record describing the request.
-    /// - Returns: The inputStream for the data if any was stored before.
-    func responseBody(for record: Record) -> InputStream?
 }
 
 /// Defines the capacity of a storage.
