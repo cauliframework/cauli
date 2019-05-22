@@ -1,7 +1,9 @@
 # Changelog
 
 ## Unreleased
-* **imrovement** Added Support for iOS 8 and 9. [#164](https://github.com/cauliframework/cauli/issues/164) by @brototyp
+* **improvement** Added Support for iOS 8 and 9. [#164](https://github.com/cauliframework/cauli/issues/164) by @brototyp
+* **improvement** Redesigned Inspector Floret record list. [#179](https://github.com/cauliframework/cauli/issues/179) by @Shukuyen
+* **bugfix** Fixed a bug where a Cauli instance did not consider the enabled state when deciding whether to handle a record or not. [#185](https://github.com/cauliframework/cauli/issues/185) by @pstued
 
 ## 1.0
 * **feature** Added a `HTTPBodyStreamFloret` to improve the compatibilty to requests with `httpBodyStream`s. [#154](https://github.com/cauliframework/cauli/pull/154) by @brototyp
