@@ -22,50 +22,50 @@
 
 import Foundation
 
-internal final class MemoryStorage: Storage {
-
-    var records: [Record] = []
-    var capacity: StorageCapacity {
-        didSet {
-            ensureCapacity()
-        }
-    }
-    var preStorageRecordModifier: RecordModifier?
-
-    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
-        self.capacity = capacity
-        self.preStorageRecordModifier = preStorageRecordModifier
-    }
-
-    func store(_ record: Record) {
-        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-        let modifiedRecord = preStorageRecordModifier?.modify(record) ?? record
-        if let recordIndex = records.index(where: { $0.identifier == modifiedRecord.identifier }) {
-            records[recordIndex] = modifiedRecord
-        } else {
-            records.insert(modifiedRecord, at: 0)
-            ensureCapacity()
-        }
-    }
-
-    func records(_ count: Int, after record: Record?) -> [Record] {
-        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-        let index: Int
-        if let record = record,
-            let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
-            index = recordIndex + 1
-        } else {
-            index = 0
-        }
-        let maxCount = min(count, records.count - index)
-        return Array(records[index..<(index + maxCount)])
-    }
-
-    private func ensureCapacity() {
-        switch capacity {
-        case .unlimited: return
-        case .records(let maximumRecordCount):
-            records = Array(records.prefix(maximumRecordCount))
-        }
-    }
-}
+//internal final class MemoryStorage: Storage {
+//
+//    var records: [Record] = []
+//    var capacity: StorageCapacity {
+//        didSet {
+//            ensureCapacity()
+//        }
+//    }
+//    var preStorageRecordModifier: RecordModifier?
+//
+//    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
+//        self.capacity = capacity
+//        self.preStorageRecordModifier = preStorageRecordModifier
+//    }
+//
+//    func store(_ record: Record) {
+//        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
+//        let modifiedRecord = preStorageRecordModifier?.modify(record) ?? record
+//        if let recordIndex = records.index(where: { $0.identifier == modifiedRecord.identifier }) {
+//            records[recordIndex] = modifiedRecord
+//        } else {
+//            records.insert(modifiedRecord, at: 0)
+//            ensureCapacity()
+//        }
+//    }
+//
+//    func records(_ count: Int, after record: Record?) -> [Record] {
+//        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
+//        let index: Int
+//        if let record = record,
+//            let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
+//            index = recordIndex + 1
+//        } else {
+//            index = 0
+//        }
+//        let maxCount = min(count, records.count - index)
+//        return Array(records[index..<(index + maxCount)])
+//    }
+//
+//    private func ensureCapacity() {
+//        switch capacity {
+//        case .unlimited: return
+//        case .records(let maximumRecordCount):
+//            records = Array(records.prefix(maximumRecordCount))
+//        }
+//    }
+//}

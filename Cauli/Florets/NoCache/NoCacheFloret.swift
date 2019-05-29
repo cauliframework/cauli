@@ -40,7 +40,7 @@ public class NoCacheFloret: FindReplaceFloret {
 
     /// Public initalizer to create an instance of the `NoCacheFloret`.
     public required init() {
-        let willRequestReplaceDefinition = RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
+        let willRequestReplaceDefinition = RecordModifier(keyPath: \Record.request) { designatedRequest -> (URLRequest) in
             var request = designatedRequest
             request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
             request.setValue(nil, forHTTPHeaderField: "If-Modified-Since")
@@ -61,7 +61,9 @@ public class NoCacheFloret: FindReplaceFloret {
 
             guard let newHTTPURLRespones = HTTPURLResponse(url: url, statusCode: httpURLResponse.statusCode, httpVersion: nil, headerFields: allHTTPHeaderFields) else { return result }
 
-            return Result.result(Response(newHTTPURLRespones, data: response.data))
+            // TODO: Fixme
+            return Result.result(Response(newHTTPURLRespones, responseBodyStream: nil))
+//            return Result.result(Response(newHTTPURLRespones, data: response.data))
         }
 
         super.init(willRequestModifiers: [willRequestReplaceDefinition], didRespondModifiers: [didRespondReplaceDefinition], name: "NoCacheFloret")

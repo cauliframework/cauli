@@ -22,46 +22,46 @@
 
 import Foundation
 
-internal struct SwappedResponse: Codable {
-    let dataFilename: String?
-    var urlResponse: URLResponse {
-        get {
-            return urlResponseRepresentable.urlResponse
-        }
-        set {
-            urlResponseRepresentable = URLResponseRepresentable(newValue)
-        }
-    }
-
-    init(_ urlResponse: URLResponse, dataFilename: String?) {
-        self.dataFilename = dataFilename
-        urlResponseRepresentable = URLResponseRepresentable(urlResponse)
-    }
-
-    var urlResponseRepresentable: URLResponseRepresentable
-}
-
-extension SwappedResponse {
-    init(_ response: Response, dataFilepath: URL) {
-        self.urlResponseRepresentable = URLResponseRepresentable(response.urlResponse)
-
-        if let data = response.data,
-            (try? data.write(to: dataFilepath)) != nil {
-            self.dataFilename = dataFilepath.lastPathComponent
-        } else {
-            self.dataFilename = nil
-        }
-    }
-
-    func response(in folder: URL) -> Response {
-        var response = Response(urlResponse, data: nil)
-        response.data = nil
-
-        if let dataFilename = dataFilename,
-            let data = try? Data(contentsOf: folder.appendingPathComponent(dataFilename)) {
-            response.data = data
-        }
-
-        return response
-    }
-}
+//internal struct SwappedResponse: Codable {
+//    let dataFilename: String?
+//    var urlResponse: URLResponse {
+//        get {
+//            return urlResponseRepresentable.urlResponse
+//        }
+//        set {
+//            urlResponseRepresentable = URLResponseRepresentable(newValue)
+//        }
+//    }
+//
+//    init(_ urlResponse: URLResponse, dataFilename: String?) {
+//        self.dataFilename = dataFilename
+//        urlResponseRepresentable = URLResponseRepresentable(urlResponse)
+//    }
+//
+//    var urlResponseRepresentable: URLResponseRepresentable
+//}
+//
+//extension SwappedResponse {
+//    init(_ response: Response, dataFilepath: URL) {
+//        self.urlResponseRepresentable = URLResponseRepresentable(response.urlResponse)
+//
+//        if let data = response.data,
+//            (try? data.write(to: dataFilepath)) != nil {
+//            self.dataFilename = dataFilepath.lastPathComponent
+//        } else {
+//            self.dataFilename = nil
+//        }
+//    }
+//
+//    func response(in folder: URL) -> Response {
+//        var response = Response(urlResponse, data: nil)
+//        response.data = nil
+//
+//        if let dataFilename = dataFilename,
+//            let data = try? Data(contentsOf: folder.appendingPathComponent(dataFilename)) {
+//            response.data = data
+//        }
+//
+//        return response
+//    }
+//}

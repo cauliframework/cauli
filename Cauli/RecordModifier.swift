@@ -55,7 +55,7 @@ extension RecordModifier {
     ///   - template: The substitution template used when replacing matching instances of the expression.
     /// - Returns: A RecordModifier is modifying the RequestURL. Used to initalize a FindReplaceFloret.
     public static func modifyUrl(expression: NSRegularExpression, template: String) -> RecordModifier {
-        let keyPath = \Record.designatedRequest.url
+        let keyPath = \Record.request.url
         let modifier: (URL?) -> (URL?) = { url in
             guard let oldURL = url else { return url }
             let urlWithReplacements = replacingOcurrences(of: expression, in: oldURL.absoluteString, with: template)
