@@ -72,20 +72,21 @@ extension CauliURLProtocol {
         return request
     }
 
-    override func startLoading() {
-        willRequest(record) { record in
-            self.record = record
-            self.record.requestStarted = Date()
-            if case .result(_)? = record.result {
-                self.urlSession(didCompleteWithError: nil)
-            } else if case let .error(error)? = record.result {
-                self.urlSession(didCompleteWithError: error)
-            } else {
-                self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
-                self.dataTask?.resume()
-            }
-        }
-    }
+    // TODO: Fixme
+//    override func startLoading() {
+//        willRequest(record) { record in
+//            self.record = record
+//            self.record.requestStarted = Date()
+//            if case .result(_)? = record.result {
+//                self.urlSession(didCompleteWithError: nil)
+//            } else if case let .error(error)? = record.result {
+//                self.urlSession(didCompleteWithError: error)
+//            } else {
+//                self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
+//                self.dataTask?.resume()
+//            }
+//        }
+//    }
 
     override func stopLoading() {
         dataTask?.cancel()
@@ -93,62 +94,63 @@ extension CauliURLProtocol {
     }
 }
 
+// TODO: Fixme
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        record.result = .result(Response(response, data: nil))
-        completionHandler(.allow)
-    }
-
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
-        if CauliURLProtocol.handles(record) {
-            try? record.append(receivedData: receivedData)
-        } else {
-            if case let .result(response)? = record.result, let data = response.data {
-                self.client?.urlProtocol(self, didLoad: data)
-            }
-            client?.urlProtocol(self, didLoad: receivedData)
-        }
-    }
-
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        urlSession(didCompleteWithError: error)
-    }
-
-    private func urlSession(didCompleteWithError error: Error?) {
-        invalidateURLSession()
-        if let error = error {
-            record.result = .error(error as NSError)
-        }
-
-        didRespond(record) { record in
-            self.record = record
-            self.record.responseReceived = Date()
-            switch record.result {
-            case let .result(response)?:
-                self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
-                if let data = response.data {
-                    self.client?.urlProtocol(self, didLoad: data)
-                }
-                self.client?.urlProtocolDidFinishLoading(self)
-            case .error(let error)?:
-                self.client?.urlProtocol(self, didFailWithError: error)
-            case nil:
-                self.client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
-            }
-        }
-    }
-
-    @available(iOS 10.0, *)
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        // possibly add the metrics to the record in the future
-    }
-
-    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        let authenticationChallengeProxy = CauliAuthenticationChallengeProxy(authChallengeCompletionHandler: completionHandler)
-        let proxiedChallenge = URLAuthenticationChallenge(authenticationChallenge: challenge, sender: authenticationChallengeProxy)
-        self.authenticationChallengeProxy = authenticationChallengeProxy
-        client?.urlProtocol(self, didReceive: proxiedChallenge)
-    }
+//    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+//        record.result = .result(Response(response, data: nil))
+//        completionHandler(.allow)
+//    }
+//
+//    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
+//        if CauliURLProtocol.handles(record) {
+//            try? record.append(receivedData: receivedData)
+//        } else {
+//            if case let .result(response)? = record.result, let data = response.data {
+//                self.client?.urlProtocol(self, didLoad: data)
+//            }
+//            client?.urlProtocol(self, didLoad: receivedData)
+//        }
+//    }
+//
+//    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+//        urlSession(didCompleteWithError: error)
+//    }
+//
+//    private func urlSession(didCompleteWithError error: Error?) {
+//        invalidateURLSession()
+//        if let error = error {
+//            record.result = .error(error as NSError)
+//        }
+//
+//        didRespond(record) { record in
+//            self.record = record
+//            self.record.responseReceived = Date()
+//            switch record.result {
+//            case let .result(response)?:
+//                self.client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
+//                if let data = response.data {
+//                    self.client?.urlProtocol(self, didLoad: data)
+//                }
+//                self.client?.urlProtocolDidFinishLoading(self)
+//            case .error(let error)?:
+//                self.client?.urlProtocol(self, didFailWithError: error)
+//            case nil:
+//                self.client?.urlProtocol(self, didFailWithError: NSError(domain: "FIXME", code: 0, userInfo: [:]))
+//            }
+//        }
+//    }
+//
+//    @available(iOS 10.0, *)
+//    public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+//        // possibly add the metrics to the record in the future
+//    }
+//
+//    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+//        let authenticationChallengeProxy = CauliAuthenticationChallengeProxy(authChallengeCompletionHandler: completionHandler)
+//        let proxiedChallenge = URLAuthenticationChallenge(authenticationChallenge: challenge, sender: authenticationChallengeProxy)
+//        self.authenticationChallengeProxy = authenticationChallengeProxy
+//        client?.urlProtocol(self, didReceive: proxiedChallenge)
+//    }
 }
 
 extension CauliURLProtocol {

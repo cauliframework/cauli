@@ -35,34 +35,38 @@ internal class MockFloretStorage {
     func store(_ record: Record) {
         guard case .result(let response)? = record.result,
             let responseFoldername = MockFloretStorage.foldername(for: response) else { return }
-        let requestFoldername = MockFloretStorage.foldername(for: record.designatedRequest)
+        let requestFoldername = MockFloretStorage.foldername(for: record.request)
         let requestPath = path.appendingPathComponent(requestFoldername, isDirectory: true)
         let storedResponseUrls = (try? FileManager.default.contentsOfDirectory(atPath: requestPath.path)) ?? []
         if storedResponseUrls.contains(where: { $0.starts(with: responseFoldername) }) {
             // already recorded
             return
         }
-        if let tempRecordPath = MockRecordSerializer.write(record: record) {
-            let responsePath = requestPath.appendingPathComponent(responseFoldername, isDirectory: true)
-            try? FileManager.default.createDirectory(at: requestPath, withIntermediateDirectories: true, attributes: nil)
-            try? FileManager.default.moveItem(at: tempRecordPath, to: responsePath)
-        }
+        // TODO: Fixme
+//        if let tempRecordPath = MockRecordSerializer.write(record: record) {
+//            let responsePath = requestPath.appendingPathComponent(responseFoldername, isDirectory: true)
+//            try? FileManager.default.createDirectory(at: requestPath, withIntermediateDirectories: true, attributes: nil)
+//            try? FileManager.default.moveItem(at: tempRecordPath, to: responsePath)
+//        }
     }
 
     func results(for request: URLRequest) -> [Result<Response>] {
         let requestFoldername = MockFloretStorage.foldername(for: request)
         let requestPath = path.appendingPathComponent(requestFoldername, isDirectory: true)
         let storedResponseUrls = try? FileManager.default.contentsOfDirectory(at: requestPath, includingPropertiesForKeys: [], options: [])
-        return storedResponseUrls?.lazy.compactMap { url in
-            MockRecordSerializer.record(from: url)?.result
+        return storedResponseUrls?.lazy.compactMap { _ in
+            // TODO: Fixme
+            return nil
+//            MockRecordSerializer.record(from: url)?.result
         } ?? []
     }
 
     func resultForPath(_ path: String) -> Result<Response>? {
         let absolutePath = self.path.appendingPathComponent(path, isDirectory: true)
-        if let record = MockRecordSerializer.record(from: absolutePath) {
-            return record.result
-        }
+        // TODO: Fixme
+//        if let record = MockRecordSerializer.record(from: absolutePath) {
+//            return record.result
+//        }
         return nil
     }
 
@@ -74,12 +78,14 @@ internal class MockFloretStorage {
             return MD5Digest(from: Data(etag.utf8)).description
         } else {
             let codeHash = MD5Digest(from: Data("\(httpurlresponse.statusCode)".utf8)).description
-            if let data = response.data {
-                let dataHash = MD5Digest(from: data).description
-                return MD5Digest(from: Data("\(codeHash)\(dataHash)".utf8)).description
-            } else {
-                return codeHash
-            }
+            // TODO: Fixme
+//            if let data = response.data {
+//                let dataHash = MD5Digest(from: data).description
+//                return MD5Digest(from: Data("\(codeHash)\(dataHash)".utf8)).description
+//            } else {
+//                return codeHash
+//            }
+            return nil
         }
     }
 

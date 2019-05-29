@@ -55,7 +55,10 @@ public class Cauli {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration
-        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
+        // TODO: Fixme
+        let storage: Storage? = nil
+        self.storage = storage!
+//        self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
         CauliURLProtocol.add(delegate: self)
         loadConfiguration(configuration)
     }
