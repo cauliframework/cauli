@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.1
 * **improvement** Added Support for iOS 8 and 9. [#164](https://github.com/cauliframework/cauli/issues/164) by @brototyp
 * **improvement** Redesigned Inspector Floret record list. [#179](https://github.com/cauliframework/cauli/issues/179) by @Shukuyen
 * **bugfix** Fixed a bug where a Cauli instance did not consider the enabled state when deciding whether to handle a record or not. [#185](https://github.com/cauliframework/cauli/issues/185) by @pstued
