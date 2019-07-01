@@ -30,7 +30,7 @@ public class Cauli {
     /// The shared Cauli instance. This instance is fully configured with the default
     /// Florets. Make sure to call the `run()` function to start the instance.
     /// You can create a new Cauli instance with your own Configuration and Florets.
-    public static let shared = Cauli([InspectorFloret()], configuration: Configuration.standard)
+    public static let shared = Cauli([InspectorFloret()])
 
     /// The Storage used by this instance to store all Records.
     public let storage: Storage
@@ -51,7 +51,7 @@ public class Cauli {
     /// - Parameters:
     ///   - florets: The florets that should be used.
     ///   - configuration: The configuration.
-    public init(_ florets: [Floret], configuration: Configuration) {
+    public init(_ florets: [Floret], configuration: Configuration = .standard) {
         Cauli.setup()
         self.florets = florets
         self.configuration = configuration

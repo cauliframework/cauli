@@ -34,6 +34,11 @@ class CauliSpec: QuickSpec {
                 strongCauli = nil
                 expect(weakCauli).to(beNil())
             }
+            it("should initialize with standard configuration when no parameter was given") {
+                let cauli = Cauli([])
+                let standardConfiguration = Configuration.standard
+                expect(cauli.storage.capacity) == standardConfiguration.storageCapacity
+            }
             it("should configure the storage with the correct storage capacity") {
                 let cauli = Cauli([], configuration: Configuration(recordSelector: RecordSelector.init(selects: {_ in true }), enableShakeGesture: true, storageCapacity: .unlimited))
                 expect(cauli.storage.capacity) == .unlimited
