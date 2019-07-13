@@ -22,50 +22,74 @@
 
 import Foundation
 
-//internal final class MemoryStorage: Storage {
-//
-//    var records: [Record] = []
-//    var capacity: StorageCapacity {
-//        didSet {
-//            ensureCapacity()
-//        }
-//    }
-//    var preStorageRecordModifier: RecordModifier?
-//
-//    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
-//        self.capacity = capacity
-//        self.preStorageRecordModifier = preStorageRecordModifier
-//    }
-//
-//    func store(_ record: Record) {
-//        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-//        let modifiedRecord = preStorageRecordModifier?.modify(record) ?? record
-//        if let recordIndex = records.index(where: { $0.identifier == modifiedRecord.identifier }) {
-//            records[recordIndex] = modifiedRecord
-//        } else {
-//            records.insert(modifiedRecord, at: 0)
-//            ensureCapacity()
-//        }
-//    }
-//
-//    func records(_ count: Int, after record: Record?) -> [Record] {
-//        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
-//        let index: Int
-//        if let record = record,
-//            let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
-//            index = recordIndex + 1
-//        } else {
-//            index = 0
-//        }
-//        let maxCount = min(count, records.count - index)
-//        return Array(records[index..<(index + maxCount)])
-//    }
-//
-//    private func ensureCapacity() {
-//        switch capacity {
-//        case .unlimited: return
-//        case .records(let maximumRecordCount):
-//            records = Array(records.prefix(maximumRecordCount))
-//        }
-//    }
-//}
+internal final class MemoryStorage: Storage {
+
+    var records: [Record] = []
+    var capacity: StorageCapacity {
+        didSet {
+            ensureCapacity()
+        }
+    }
+    var preStorageRecordModifier: RecordModifier?
+
+    init(capacity: StorageCapacity, preStorageRecordModifier: RecordModifier? = nil) {
+        self.capacity = capacity
+        self.preStorageRecordModifier = preStorageRecordModifier
+    }
+
+    func store(_ record: Record) {
+        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
+        let modifiedRecord = preStorageRecordModifier?.modify(record) ?? record
+        if let recordIndex = records.index(where: { $0.identifier == modifiedRecord.identifier }) {
+            records[recordIndex] = modifiedRecord
+        } else {
+            records.insert(modifiedRecord, at: 0)
+            ensureCapacity()
+        }
+    }
+
+    func records<T>(with predicate: NSPredicate?, sortedBy keyPath: KeyPath<Record, T?>, ascending: Bool, limit: Int, after record: Record?) -> [Record] where T: Comparable {
+        assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
+        let records = self.records(with: predicate, sortedBy: keyPath, ascending: ascending)
+        let index: Int
+        if let record = record,
+            let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
+            index = recordIndex + 1
+        } else {
+            index = 0
+        }
+        let maxCount = min(limit, records.count - index)
+        return Array(records[index..<(index + maxCount)])
+    }
+
+    private func records<T: Comparable>(with predicate: NSPredicate?, sortedBy keyPath: KeyPath<Record, T?>, ascending: Bool) -> [Record] {
+        let filtered: [Record]
+        if let predicate = predicate {
+            filtered = records.filter { predicate.evaluate(with: $0) }
+        } else {
+            filtered = records
+        }
+        let sorted = filtered.sorted { lhs, rhs in
+            guard let lhsValue = lhs[keyPath: keyPath] else {
+                return !ascending
+            }
+            guard let rhsValue = rhs[keyPath: keyPath] else {
+                return ascending
+            }
+            if ascending {
+                return lhsValue < rhsValue
+            } else {
+                return lhsValue > rhsValue
+            }
+        }
+        return sorted
+    }
+
+    private func ensureCapacity() {
+        switch capacity {
+        case .unlimited: return
+        case .records(let maximumRecordCount):
+            records = Array(records.prefix(maximumRecordCount))
+        }
+    }
+}

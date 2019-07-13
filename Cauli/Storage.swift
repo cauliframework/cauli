@@ -50,6 +50,12 @@ public protocol Storage {
     func records<T: Comparable>(with predicate: NSPredicate?, sortedBy keyPath: KeyPath<Record, T?>, ascending: Bool, limit: Int, after record: Record?) -> [Record]
 }
 
+extension Storage {
+    func records(limit: Int, after record: Record? = nil) -> [Record] {
+        return records(with: nil, sortedBy: \Record.requestStarted, ascending: true, limit: limit, after: record)
+    }
+}
+
 /// Defines the capacity of a storage.
 public enum StorageCapacity: Equatable {
     /// The capacity is unlimited.

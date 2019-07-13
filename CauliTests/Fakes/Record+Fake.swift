@@ -31,24 +31,25 @@ extension Record {
         return Record(URLRequest(url: url))
     }
     func setting(identifier: UUID) -> Record {
-        return Record(identifier: identifier, originalRequest: originalRequest, designatedRequest: designatedRequest, result: result, requestStarted: nil, responseReceived: nil)
+        return Record(identifier: identifier, request: request, result: result, requestStarted: requestStarted, responseReceived: responseReceived, requestBodySize: requestBodySize, responseBodySize: responseBodySize)
     }
-    func setting(originalRequestUrl url: URL) -> Record {
-        return Record(identifier: identifier, originalRequest: URLRequest(url: url), designatedRequest: designatedRequest, result: result, requestStarted: requestStarted, responseReceived: responseReceived)
+    func setting(requestUrl url: URL) -> Record {
+        let request = URLRequest(url: url)
+        return Record(identifier: identifier, request: request, result: result, requestStarted: requestStarted, responseReceived: responseReceived, requestBodySize: requestBodySize, responseBodySize: responseBodySize)
     }
-    mutating func setting(designatedRequestsHeaderFields headerFields: [String: String]?) {
-        designatedRequest.allHTTPHeaderFields?.keys.forEach {
-            designatedRequest.setValue(nil, forHTTPHeaderField: $0)
+    mutating func setting(requestsHeaderFields headerFields: [String: String]?) {
+        request.allHTTPHeaderFields?.keys.forEach {
+            request.setValue(nil, forHTTPHeaderField: $0)
         }
 
         headerFields?.forEach {
-            designatedRequest.setValue($1, forHTTPHeaderField: $0)
+            request.setValue($1, forHTTPHeaderField: $0)
         }
     }
-    mutating func setting(designatedRequestsCachePolicy cachePolicy: [String: String]?) {
-        designatedRequest.cachePolicy = .reloadIgnoringLocalCacheData
+    mutating func setting(requestsCachePolicy cachePolicy: [String: String]?) {
+        request.cachePolicy = .reloadIgnoringLocalCacheData
     }
     mutating func setting(httpURLResponse response: HTTPURLResponse) {
-        result = .result(Response(response, data: nil))
+        result = .result(Response(response, responseBodyStream: nil))
     }
 }
