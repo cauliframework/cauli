@@ -46,10 +46,10 @@ class MemoryStorageSpec: QuickSpec {
                 let record = Record.fake()
                 storage.store(record)
                 let updatedUrl = URL(string: "spec_modified_url")!
-                let modifiedRecord = record.setting(originalRequestUrl: updatedUrl)
+                let modifiedRecord = record.setting(requestUrl: updatedUrl)
                 storage.store(modifiedRecord)
                 expect(storage.records.count) == 1
-                expect(storage.records.first?.originalRequest.url) == updatedUrl
+                expect(storage.records.first?.request.url) == updatedUrl
             }
             it("should remove the oldest record if the limit is exceeded") {
                 let storage = MemoryStorage(capacity: .records(1))
@@ -69,13 +69,13 @@ class MemoryStorageSpec: QuickSpec {
                 storage.store(firstRecord)
                 storage.store(secondRecord)
                 expect(storage.records.count) == 2
-                expect(storage.records(1, after: nil).first!.identifier) == secondRecord.identifier
+                expect(storage.records(limit: 1, after: nil).first!.identifier) == secondRecord.identifier
             }
             it("should not fail if more items requested than existing") {
                 let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 storage.store(firstRecord)
-                expect(storage.records(10, after: nil).count) == 1
+                expect(storage.records(limit: 10, after: nil).count) == 1
             }
             it("should only return the amount of items requested") {
                 let storage = MemoryStorage(capacity: .records(10))
@@ -84,7 +84,7 @@ class MemoryStorageSpec: QuickSpec {
                 storage.store(firstRecord)
                 storage.store(secondRecord)
                 expect(storage.records.count) == 2
-                expect(storage.records(1, after: nil).count) == 1
+                expect(storage.records(limit: 1, after: nil).count) == 1
             }
             it("should not return the after-item") {
                 let storage = MemoryStorage(capacity: .records(10))
@@ -93,30 +93,30 @@ class MemoryStorageSpec: QuickSpec {
                 storage.store(firstRecord)
                 storage.store(secondRecord)
                 expect(storage.records.count) == 2
-                expect(storage.records(1, after: secondRecord).count) == 1
-                expect(storage.records(1, after: secondRecord).first!.identifier) == firstRecord.identifier
+                expect(storage.records(limit: 1, after: secondRecord).count) == 1
+                expect(storage.records(limit: 1, after: secondRecord).first!.identifier) == firstRecord.identifier
             }
             it("should return no item if the after-item is the last") {
                 let storage = MemoryStorage(capacity: .records(10))
                 let firstRecord = Record.fake()
                 storage.store(firstRecord)
-                expect(storage.records(10, after: firstRecord).count) == 0
+                expect(storage.records(limit: 10, after: firstRecord).count) == 0
             }
         }
         describe("preStorageRecordModifier") {
             it("should return a modifier record") {
                 let headerKey = "fake"
-                let recordModifier = RecordModifier(keyPath: \Record.designatedRequest) { designatedRequest -> (URLRequest) in
+                let recordModifier = RecordModifier(keyPath: \Record.request) { designatedRequest -> (URLRequest) in
                     var request = designatedRequest
                     request.setValue(String(repeating: "*", count: (request.value(forHTTPHeaderField: headerKey) ?? "").count), forHTTPHeaderField: headerKey)
                     return request
                 }
                 let storage = MemoryStorage(capacity: .records(10), preStorageRecordModifier: recordModifier)
                 var firstRecord = Record.fake()
-                firstRecord.setting(designatedRequestsHeaderFields: [headerKey: "fake"])
+                firstRecord.setting(requestsHeaderFields: [headerKey: "fake"])
                 storage.store(firstRecord)
-                expect(storage.records(1, after: nil).first!.designatedRequest.value(forHTTPHeaderField: headerKey)) != firstRecord.designatedRequest.value(forHTTPHeaderField: headerKey)
-                expect(storage.records(1, after: nil).first!.designatedRequest.value(forHTTPHeaderField: headerKey)) == "****"
+                expect(storage.records(limit: 1, after: nil).first!.request.value(forHTTPHeaderField: headerKey)) != firstRecord.request.value(forHTTPHeaderField: headerKey)
+                expect(storage.records(limit: 1, after: nil).first!.request.value(forHTTPHeaderField: headerKey)) == "****"
             }
         }
     }
