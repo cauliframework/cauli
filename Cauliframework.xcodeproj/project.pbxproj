@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,7 @@
 		1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */; };
 		1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */; };
 		1FB3296F2181CBCD001CA03D /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3296E2181CBCD001CA03D /* RecordSelector.swift */; };
+		1FB67F4623322589004618EE /* FilecachedInputOutputStreamSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB67F4423322583004618EE /* FilecachedInputOutputStreamSpec.swift */; };
 		1FBE790521A1A271004C81A7 /* InspectorFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790421A1A271004C81A7 /* InspectorFloret.swift */; };
 		1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790C21A1A572004C81A7 /* TagLabel.swift */; };
 		1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */; };
@@ -124,6 +125,7 @@
 		1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Shake.swift"; sourceTree = "<group>"; };
 		1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShakePresenter.swift; sourceTree = "<group>"; };
 		1FB3296E2181CBCD001CA03D /* RecordSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
+		1FB67F4423322583004618EE /* FilecachedInputOutputStreamSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilecachedInputOutputStreamSpec.swift; sourceTree = "<group>"; };
 		1FBE790421A1A271004C81A7 /* InspectorFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorFloret.swift; sourceTree = "<group>"; };
 		1FBE790C21A1A572004C81A7 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				1F8C2A1421D794BD009D0382 /* CauliSpec.swift */,
 				50ABECFE21C834A5009667E1 /* FindReplaceFloretSpec.swift */,
 				5044B7E921F28555006908B2 /* NoCacheFloretSpec.swift */,
+				1FB67F4423322583004618EE /* FilecachedInputOutputStreamSpec.swift */,
 			);
 			path = CauliTests;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				1F7001C4216B8250007A9355 /* CauliURLProtocolDelegateStub.swift in Sources */,
 				505B4BF121AC5C91008A9836 /* URLResponse+Fake.swift in Sources */,
 				505B4BEE21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift in Sources */,
+				1FB67F4623322589004618EE /* FilecachedInputOutputStreamSpec.swift in Sources */,
 				5CC65DBB22DA39B10019F237 /* Record+Fake.swift in Sources */,
 				1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */,
 			);

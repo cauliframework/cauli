@@ -26,53 +26,55 @@ import Foundation
 /// Every byte written to the stream is first written to a temp file before
 /// it can be read from.
 internal class FilecachedInputOutputStream: InputStream {
-    
+
     let writableOutputStream: OutputStream?
-    
+
     private let cacheFile: URL
     private let readableInputStream: InputStream
-    
+
     deinit {
         DispatchQueue.global(qos: .background).async { [cacheFile] in
             do {
                 try FileManager.default.removeItem(at: cacheFile)
-            }
-            catch (let error as NSError)
+            } catch (let error as NSError)
                 where error.domain == NSCocoaErrorDomain && error.code == NSFileNoSuchFileError {
                     // All good. File doesn't exist.
-            }
-            catch {
+            } catch {
                 print("Failed to delete temporary file with path: \(cacheFile)")
             }
         }
     }
-    
-    init() {
+
+    init(fileCache: URL) {
+        writableOutputStream = OutputStream(url: fileCache, append: true)
+        writableOutputStream?.open()
+        readableInputStream = InputStream(url: fileCache)!
+        cacheFile = fileCache
+        super.init(url: fileCache)!
+    }
+
+    convenience init() {
         let tempfolder = URL(fileURLWithPath: NSTemporaryDirectory())
         let tempfile = tempfolder.appendingPathComponent(UUID().uuidString)
-        writableOutputStream = OutputStream(url: tempfile, append: true)
-        writableOutputStream?.open()
-        readableInputStream = InputStream(url: tempfile)!
-        cacheFile = tempfile
-        super.init(url: tempfile)!
+        self.init(fileCache: tempfile)
     }
-    
+
     override var hasBytesAvailable: Bool {
         return writableOutputStream?.streamStatus != .closed || readableInputStream.hasBytesAvailable
     }
-    
+
     override func open() {
         readableInputStream.open()
     }
-    
+
     override func close() {
         readableInputStream.close()
     }
-    
+
     override func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
         return readableInputStream.read(buffer, maxLength: len)
     }
-    
+
     override func getBuffer(_ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, length len: UnsafeMutablePointer<Int>) -> Bool {
         return readableInputStream.getBuffer(buffer, length: len)
     }
