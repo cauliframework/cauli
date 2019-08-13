@@ -28,15 +28,24 @@ internal class SwitchTableViewCell: UITableViewCell {
     static let nibName = "SwitchTableViewCell"
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var `switch`: UISwitch!
+    @IBOutlet private weak var titleLabelBottomConstraint: NSLayoutConstraint!
     var switchValueChanged: ((Bool) -> Void)?
 
-    func set(title: String, switchValue: Bool) {
+    func set(title: String, switchValue: Bool, description: String?) {
         titleLabel.text = title
+        descriptionLabel.text = description
         `switch`.isOn = switchValue
+        titleLabelBottomConstraint.isActive = description == nil
     }
 
     @IBAction private func switchValueChanged(_ sender: UISwitch) {
         switchValueChanged?(sender.isOn)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabelBottomConstraint.isActive = false
     }
 }
