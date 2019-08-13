@@ -31,6 +31,8 @@ import UIKit
 /// * filter `Record`s by the request URL.
 public class InspectorFloret: DisplayingFloret {
 
+    public var description: String? = "Tap to view records captured when the InspectorFloret is active."
+
     /// Public initalizer to create an instance of the `InspectorFloret`.
     public init() {}
 

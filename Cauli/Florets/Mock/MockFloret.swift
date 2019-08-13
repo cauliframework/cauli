@@ -67,6 +67,8 @@ public class MockFloret: InterceptingFloret {
 
     private let mode: Mode
 
+    public var description: String? = "Mock network requests for tests or to reproduce a bug. You can also use it to record your mock data."
+
     /// Creates a new MockFloret instance and defines it's mode.
     ///
     /// - Parameters:
