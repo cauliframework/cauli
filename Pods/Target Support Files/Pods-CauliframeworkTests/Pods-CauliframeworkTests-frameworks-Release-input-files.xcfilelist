@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-CauliframeworkTests/Pods-CauliframeworkTests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework
+${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework
+${BUILT_PRODUCTS_DIR}/Quick/Quick.framework
