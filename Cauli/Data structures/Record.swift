@@ -57,20 +57,3 @@ extension Record {
         self.request = request
     }
 }
-
-extension Record {
-//    internal mutating func append(receivedData: Data) throws {
-//        guard case let .result(result)? = result else {
-//            throw NSError.CauliInternal.appendingDataWithoutResponse(receivedData, record: self)
-//        }
-//        var currentData = result.data ?? Data()
-//        currentData.append(receivedData)
-//        self.result = .result(Response(result.urlResponse, data: currentData))
-//    }
-}
-
-extension Record {
-//    internal func swapped(to path: URL) -> SwappedRecord {
-//        return SwappedRecord(self, folder: path)
-//    }
-}

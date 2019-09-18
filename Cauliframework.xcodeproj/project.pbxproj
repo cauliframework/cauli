@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,7 @@
 		1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */; };
 		1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */; };
 		1FB3296F2181CBCD001CA03D /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3296E2181CBCD001CA03D /* RecordSelector.swift */; };
+		1FB67F4623322589004618EE /* FilecachedInputOutputStreamSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB67F4423322583004618EE /* FilecachedInputOutputStreamSpec.swift */; };
 		1FBE790521A1A271004C81A7 /* InspectorFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790421A1A271004C81A7 /* InspectorFloret.swift */; };
 		1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE790C21A1A572004C81A7 /* TagLabel.swift */; };
 		1FD0F8812150F0A000BD383B /* Collection+ReduceAsnyc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */; };
@@ -48,6 +49,7 @@
 		1FE3F73620F64A2B00233C7C /* Cauli.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE3F72820F64A2B00233C7C /* Cauli.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE3F74020F64AA000233C7C /* Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F73F20F64AA000233C7C /* Cauli.swift */; };
 		1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */; };
+		1FEF6D1F22EE197A0008C9AA /* FilecachedInputOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF6D1E22EE197A0008C9AA /* FilecachedInputOutputStream.swift */; };
 		1FF25CF92275EDD800008E51 /* NSError+NetworkErrorShortString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF25CF82275EDD800008E51 /* NSError+NetworkErrorShortString.swift */; };
 		1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */; };
 		5005E53D222BE0C800BD5DF7 /* DisplayingFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */; };
@@ -123,6 +125,7 @@
 		1FB1FF55219DB75E0021B4F4 /* UIWindow+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Shake.swift"; sourceTree = "<group>"; };
 		1FB1FF59219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerShakePresenter.swift; sourceTree = "<group>"; };
 		1FB3296E2181CBCD001CA03D /* RecordSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
+		1FB67F4423322583004618EE /* FilecachedInputOutputStreamSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilecachedInputOutputStreamSpec.swift; sourceTree = "<group>"; };
 		1FBE790421A1A271004C81A7 /* InspectorFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorFloret.swift; sourceTree = "<group>"; };
 		1FBE790C21A1A572004C81A7 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		1FD0F8802150F0A000BD383B /* Collection+ReduceAsnyc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+ReduceAsnyc.swift"; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		1FE3F73520F64A2B00233C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE3F73F20F64AA000233C7C /* Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cauli.swift; sourceTree = "<group>"; };
 		1FE3F74120F64C6700233C7C /* CauliURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliURLProtocol.swift; sourceTree = "<group>"; };
+		1FEF6D1E22EE197A0008C9AA /* FilecachedInputOutputStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilecachedInputOutputStream.swift; sourceTree = "<group>"; };
 		1FF25CF82275EDD800008E51 /* NSError+NetworkErrorShortString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+NetworkErrorShortString.swift"; sourceTree = "<group>"; };
 		1FFFE7D121AC7C080040B805 /* Record+Fake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+Fake.swift"; sourceTree = "<group>"; };
 		1FFFE7D221AC7C080040B805 /* MemoryStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorageSpec.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 				1FE3F73F20F64AA000233C7C /* Cauli.swift */,
 				50576BB9210E173C0085DF5E /* Floret.swift */,
 				1F18B1A2210EF9F500CEDD42 /* Storage.swift */,
+				1FEF6D1E22EE197A0008C9AA /* FilecachedInputOutputStream.swift */,
 				5005E53E222BE0D400BD5DF7 /* InterceptingFloret.swift */,
 				5005E53C222BE0C700BD5DF7 /* DisplayingFloret.swift */,
 				50E068E921C67E2300A9DFA8 /* RecordModifier.swift */,
@@ -352,6 +357,7 @@
 				1F8C2A1421D794BD009D0382 /* CauliSpec.swift */,
 				50ABECFE21C834A5009667E1 /* FindReplaceFloretSpec.swift */,
 				5044B7E921F28555006908B2 /* NoCacheFloretSpec.swift */,
+				1FB67F4423322583004618EE /* FilecachedInputOutputStreamSpec.swift */,
 			);
 			path = CauliTests;
 			sourceTree = "<group>";
@@ -704,6 +710,7 @@
 				1F6BB4562163609100D56F4F /* Configuration.swift in Sources */,
 				1F7BF23020F790F50023D219 /* URLSessionConfiguration+Swizzling.swift in Sources */,
 				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,
+				1FEF6D1F22EE197A0008C9AA /* FilecachedInputOutputStream.swift in Sources */,
 				1FA4A50D21B7C40100F1CA6B /* InspectorRecordTableViewCell.swift in Sources */,
 				5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
@@ -727,6 +734,7 @@
 				1F7001C4216B8250007A9355 /* CauliURLProtocolDelegateStub.swift in Sources */,
 				505B4BF121AC5C91008A9836 /* URLResponse+Fake.swift in Sources */,
 				505B4BEE21AC5BF1008A9836 /* URLResponseRepresentableSpec.swift in Sources */,
+				1FB67F4623322589004618EE /* FilecachedInputOutputStreamSpec.swift in Sources */,
 				5CC65DBB22DA39B10019F237 /* Record+Fake.swift in Sources */,
 				1FFFE7D721AC7C080040B805 /* MemoryStorageSpec.swift in Sources */,
 			);
