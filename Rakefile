@@ -20,6 +20,12 @@ namespace :test do
   task ios_example: :prepare do
     run_build('cauli-ios-example', 'iphonesimulator', 'iPhone 6', '12.2')
   end
+
+  desc 'Builds the project with the Swift Package Manager'
+  task spm: :prepare do
+    sh("swift build") rescue nil
+    package_manager_failed('Swift Package Manager') unless $?.success?
+  end
 end
 
 
@@ -27,6 +33,7 @@ desc 'Run the Cauli tests'
 task :test do
   Rake::Task['test:ios'].invoke
   Rake::Task['test:ios_example'].invoke
+  Rake::Task['package_manager:spm'].invoke
 end
 
 task default: 'test'
