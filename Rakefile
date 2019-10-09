@@ -20,6 +20,12 @@ namespace :test do
   task ios_example: :prepare do
     run_build('cauli-ios-example', 'iphonesimulator', 'iPhone 6', '12.2')
   end
+end
+
+namespace :package_manager do
+  desc 'Prepare tests'
+  task :prepare do
+  end
 
   desc 'Builds the project with the Swift Package Manager'
   task spm: :prepare do
