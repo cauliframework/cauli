@@ -29,7 +29,9 @@ namespace :package_manager do
 
   desc 'Builds the project with the Swift Package Manager'
   task spm: :prepare do
-    sh("swift build") rescue nil
+    sh("swift build \
+    -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" \
+    -Xswiftc "-target" -Xswiftc "x86_64-apple-ios12.0-simulator"") rescue nil
     package_manager_failed('Swift Package Manager') unless $?.success?
   end
 end
