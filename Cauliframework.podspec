@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = "10.0"
   s.source       = { :git => "https://github.com/cauliframework/cauli.git", :tag => "#{s.version}" }
   s.source_files  = "Cauli", "Cauli/**/*.swift"
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.resources = 'Cauli/**/*.xib'
 
