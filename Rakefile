@@ -22,11 +22,26 @@ namespace :test do
   end
 end
 
+namespace :package_manager do
+  desc 'Prepare tests'
+  task :prepare do
+  end
+
+  desc 'Builds the project with the Swift Package Manager'
+  task spm: :prepare do
+    sh("swift build \
+    -Xswiftc \"-sdk\" -Xswiftc \"\`xcrun --sdk iphonesimulator --show-sdk-path\`\" \
+    -Xswiftc \"-target\" -Xswiftc \"x86_64-apple-ios12.0-simulator\"") rescue nil
+    package_manager_failed('Swift Package Manager') unless $?.success?
+  end
+end
+
 
 desc 'Run the Cauli tests'
 task :test do
   Rake::Task['test:ios'].invoke
   Rake::Task['test:ios_example'].invoke
+  Rake::Task['package_manager:spm'].invoke
 end
 
 task default: 'test'
