@@ -30,7 +30,7 @@ internal struct InternalError: Codable {
 
 internal extension NSError {
     var compatibleUserInfo: [String: String] {
-        return self.userInfo.reduce([:]) { (result, keyValuePair: (key: String, value: Any)) -> [String: String] in
+        self.userInfo.reduce([:]) { (result, keyValuePair: (key: String, value: Any)) -> [String: String] in
             var newResult = result
             let keyString = keyValuePair.key
 

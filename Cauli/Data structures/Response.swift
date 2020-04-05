@@ -30,7 +30,7 @@ public struct Response: Codable {
     /// The `URLResponse` for a request.
     public var urlResponse: URLResponse {
         get {
-            return urlResponseRepresentable.urlResponse
+            urlResponseRepresentable.urlResponse
         }
         set {
             urlResponseRepresentable = URLResponseRepresentable(newValue)

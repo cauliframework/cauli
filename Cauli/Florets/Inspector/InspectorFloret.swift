@@ -35,7 +35,7 @@ public class InspectorFloret: DisplayingFloret {
     public init() {}
 
     public func viewController(_ cauli: Cauli) -> UIViewController {
-        return InspectorTableViewController(cauli)
+        InspectorTableViewController(cauli)
     }
 
 }

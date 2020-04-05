@@ -74,7 +74,7 @@ extension URLResponseRepresentable: Decodable {
 
 extension URLResponse {
     var codable: Codable {
-        return Codable(object: self)
+        Codable(object: self)
     }
     struct Codable: Swift.Codable {
         let object: URLResponse
@@ -114,7 +114,7 @@ extension URLResponse {
 
 extension HTTPURLResponse {
     var httpUrlResponseCodable: HTTPURLResponseCodable {
-        return HTTPURLResponseCodable(object: self)
+        HTTPURLResponseCodable(object: self)
     }
     struct HTTPURLResponseCodable: Swift.Codable {
         let object: HTTPURLResponse

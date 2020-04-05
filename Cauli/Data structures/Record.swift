@@ -72,6 +72,6 @@ extension Record {
 
 extension Record {
     internal func swapped(to path: URL) -> SwappedRecord {
-        return SwappedRecord(self, folder: path)
+        SwappedRecord(self, folder: path)
     }
 }
