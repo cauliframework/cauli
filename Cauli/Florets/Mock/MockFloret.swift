@@ -127,7 +127,7 @@ public class MockFloret: InterceptingFloret {
     /// - Parameter path: The path of a record relative to the "MockFloret" folder.
     /// - Returns: A Result or nil if no decodable Record at that path.
     public func resultForPath(_ path: String) -> Result<Response>? {
-        return mockStorage?.resultForPath(path)
+        mockStorage?.resultForPath(path)
     }
 
     private var mappings: [Mapping] = []
@@ -155,7 +155,7 @@ public class MockFloret: InterceptingFloret {
     /// - Returns: The Mapping. Use this object to remove the mapping at a later time.
     @discardableResult
     public func addMapping(forUrlPath urlPath: String, with closure: @escaping MappingClosure) -> Mapping {
-        return addMapping { request, floret in
+        addMapping { request, floret in
             guard let path = request.url?.path,
                 path == urlPath else { return nil }
             return closure(request, floret)
@@ -172,7 +172,7 @@ public class MockFloret: InterceptingFloret {
     /// - Returns: The Mapping. Use this object to remove the mapping at a later time.
     @discardableResult
     public func addMapping(forUrl url: URL, with closure: @escaping MappingClosure) -> Mapping {
-        return addMapping { request, floret in
+        addMapping { request, floret in
             guard let requestUrl = request.url,
                 requestUrl == url else { return nil }
             return closure(request, floret)

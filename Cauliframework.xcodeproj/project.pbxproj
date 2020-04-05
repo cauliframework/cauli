@@ -928,7 +928,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 050B9B8E9B59CC9EA6894B34 /* Pods-CauliframeworkTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -947,7 +946,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C2C8A7A7631197F710F58ED1 /* Pods-CauliframeworkTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CauliTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -60,7 +60,7 @@ internal class InspectorTableViewDatasource: NSObject {
     }
 
     private func filter(records: [Record]) -> [Record] {
-        return filteredItems(in: records, with: filter)
+        filteredItems(in: records, with: filter)
     }
 
     private func performBatchUpdate(in tableView: UITableView, updates: (() -> Void), completion: ((_ finished: Bool) -> Void)? = nil) {
@@ -97,11 +97,11 @@ extension InspectorTableViewDatasource: UITableViewDataSource {
     }
 
     internal func record(at indexPath: IndexPath) -> Record {
-        return filteredItems[indexPath.row]
+        filteredItems[indexPath.row]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredItems.count
+        filteredItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

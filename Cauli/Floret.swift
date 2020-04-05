@@ -39,7 +39,7 @@ public protocol Floret {
 // swiftlint:disable missing_docs
 public extension Floret {
     var name: String {
-        return String(describing: Self.self)
+        String(describing: Self.self)
     }
 
     var description: String? {

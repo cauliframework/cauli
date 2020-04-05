@@ -33,7 +33,7 @@ class CauliURLProtocolSpec: QuickSpec {
         // we are mocking everything
         stub(condition: {_ in true}) { _ in
             let stubData = "{\"response\":\"ok\"}".data(using: .utf8)
-            return OHHTTPStubsResponse(data: stubData!, statusCode:200, headers:["Content-Type":"application/json"])
+            return HTTPStubsResponse(data: stubData!, statusCode:200, headers:["Content-Type":"application/json"])
         }
         URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
         URLProtocol.registerClass(CauliURLProtocol.self)
