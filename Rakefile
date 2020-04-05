@@ -10,10 +10,6 @@ namespace :test do
     run_tests('Cauliframework', 'iphonesimulator', 'iPhone 6', '12.2')
     run_tests('Cauliframework', 'iphonesimulator', 'iPhone 6', '11.4')
     run_tests('Cauliframework', 'iphonesimulator', 'iPhone 6', '10.3.1')
-
-    # https://github.com/cauliframework/cauli/pull/194#issuecomment-528759961
-    `sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift'`
-    run_tests('Cauliframework', 'iphonesimulator', 'iPhone 6', '9.3')
   end
 
   desc 'Build the Cauli iOS Example Application'
