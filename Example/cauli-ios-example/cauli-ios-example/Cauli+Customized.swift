@@ -13,7 +13,9 @@ internal extension Cauli {
     static let findReplaceFloret: FindReplaceFloret = {
         let expresssion = try! NSRegularExpression(pattern: "^http://", options: [])
         let httpsUrl = RecordModifier.modifyUrl(expression: expresssion, template: "https://")
-        return FindReplaceFloret(willRequestModifiers: [httpsUrl], name: "https-ify Floret")
+        let floret = FindReplaceFloret(willRequestModifiers: [httpsUrl], name: "https-ify Floret")
+        floret.description = "You can set this text while creating your floret!"
+        return floret
     }()
     static let mockFloret: MockFloret = {
         let floret = MockFloret()

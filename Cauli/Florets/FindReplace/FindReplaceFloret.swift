@@ -30,7 +30,7 @@ public class FindReplaceFloret: InterceptingFloret {
 
     public var enabled: Bool = true
     public let name: String
-    public let description: String?
+    public var description: String?
 
     private let willRequestModifiers: [RecordModifier]
     private let didRespondModifiers: [RecordModifier]
