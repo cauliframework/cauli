@@ -26,7 +26,7 @@ internal struct SwappedResponse: Codable {
     let dataFilename: String?
     var urlResponse: URLResponse {
         get {
-            return urlResponseRepresentable.urlResponse
+            urlResponseRepresentable.urlResponse
         }
         set {
             urlResponseRepresentable = URLResponseRepresentable(newValue)

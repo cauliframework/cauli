@@ -40,7 +40,7 @@ internal final class MemoryStorage: Storage {
     func store(_ record: Record) {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
         let modifiedRecord = preStorageRecordModifier?.modify(record) ?? record
-        if let recordIndex = records.index(where: { $0.identifier == modifiedRecord.identifier }) {
+        if let recordIndex = records.firstIndex(where: { $0.identifier == modifiedRecord.identifier }) {
             records[recordIndex] = modifiedRecord
         } else {
             records.insert(modifiedRecord, at: 0)
@@ -52,7 +52,7 @@ internal final class MemoryStorage: Storage {
         assert(Thread.isMainThread, "\(#file):\(#line) must run on the main thread!")
         let index: Int
         if let record = record,
-            let recordIndex = records.index(where: { $0.identifier == record.identifier }) {
+            let recordIndex = records.firstIndex(where: { $0.identifier == record.identifier }) {
             index = recordIndex + 1
         } else {
             index = 0

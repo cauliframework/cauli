@@ -36,7 +36,7 @@ public class Cauli {
     public let storage: Storage
     internal let florets: [Floret]
     private var enabledFlorets: [InterceptingFloret] {
-        return florets.compactMap { $0 as? InterceptingFloret }.filter { $0.enabled }
+        florets.compactMap { $0 as? InterceptingFloret }.filter { $0.enabled }
     }
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?
@@ -78,7 +78,7 @@ public class Cauli {
     ///
     /// - Returns: A new, unretained ViewController.
     public func viewController() -> UIViewController {
-        return CauliViewController(cauli: self)
+        CauliViewController(cauli: self)
     }
 
     /// Starts this Cauli instance.
@@ -92,10 +92,10 @@ public class Cauli {
     }
 }
 
-extension Cauli {
+private extension Cauli {
     // We use this static property here to ensure the actual setup
     // is performed only once
-    private static let _setup: Void = {
+    static let _setup: Void = {
         URLProtocol.registerClass(CauliURLProtocol.self)
         URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
         return
@@ -104,14 +104,14 @@ extension Cauli {
     /// Performs initial Cauli setup and hooks itself into the [URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system).
     ///
     /// Call this as early as possible, preferred in the [application:didFinishLaunchingWithOptions:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application).
-    private static func setup() {
+    static func setup() {
         _ = _setup
     }
 }
 
 extension Cauli: CauliURLProtocolDelegate {
     func handles(_ record: Record) -> Bool {
-        return enabled && configuration.recordSelector.selects(record)
+        enabled && configuration.recordSelector.selects(record)
     }
 
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {

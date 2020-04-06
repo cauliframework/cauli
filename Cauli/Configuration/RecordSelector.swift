@@ -41,7 +41,7 @@ public extension RecordSelector {
     ///
     /// - Returns: Returns a RecordSelector where every Record is selected.
     static func all() -> RecordSelector {
-        return RecordSelector { _ in true }
+        RecordSelector { _ in true }
     }
 
     /// Selects Records by a maximum filesize
@@ -50,7 +50,7 @@ public extension RecordSelector {
     /// - Returns: Returns a RecordSelector that selects only the Records where the body is smaller or
     ///     equal than the required size.
     static func max(bytesize: Int) -> RecordSelector {
-        return RecordSelector { record in
+        RecordSelector { record in
             guard record.designatedRequest.httpBody?.count ?? 0 <= bytesize else { return false }
             switch record.result {
             case nil: return true

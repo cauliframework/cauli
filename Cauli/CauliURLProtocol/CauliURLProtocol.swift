@@ -65,11 +65,11 @@ extension CauliURLProtocol {
     }
 
     override class func canInit(with request: URLRequest) -> Bool {
-        return !delegates.isEmpty && handles(Record(request))
+        !delegates.isEmpty && handles(Record(request))
     }
 
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        return request
+        request
     }
 
     override func startLoading() {
@@ -151,14 +151,12 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 }
 
-extension CauliURLProtocol {
-    private class func handles(_ record: Record) -> Bool {
-        return delegates.reduce(false) { result, delegate in
-            result || delegate.handles(record)
-        }
+private extension CauliURLProtocol {
+    class func handles(_ record: Record) -> Bool {
+        delegates.contains { $0.handles(record) }
     }
 
-    private func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
             if delegate.handles(record) {
                 delegate.willRequest(record) { record in
@@ -172,7 +170,7 @@ extension CauliURLProtocol {
         })
     }
 
-    private func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in
             if delegate.handles(record) {
                 delegate.didRespond(record) { record in
@@ -189,7 +187,7 @@ extension CauliURLProtocol {
     /// A CauliURLProtocol instance holds a strong reference to its executingURLSession, which
     /// itself holds a strong reference to its delegate, the CauliURLProtocol instance.
     /// To break this retain cycle we have to call the `finishTasksAndInvalidate`.
-    private func invalidateURLSession() {
+    func invalidateURLSession() {
         self.executingURLSession.finishTasksAndInvalidate()
     }
 }
