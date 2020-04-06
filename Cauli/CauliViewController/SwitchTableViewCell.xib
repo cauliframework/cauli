@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,20 +13,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="98.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZY-5C-n8c">
-                        <rect key="frame" x="16" y="11" width="229" height="77"/>
+                        <rect key="frame" x="15" y="11" width="231" height="77"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBY-fB-uhj">
-                                <rect key="frame" x="0.0" y="0.0" width="229" height="62.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="231" height="62.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8I-TX-nSr" userLabel="Description Label">
-                                <rect key="frame" x="0.0" y="62.5" width="229" height="14.5"/>
+                                <rect key="frame" x="0.0" y="62.5" width="231" height="14.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <nil key="highlightedColor"/>
@@ -41,18 +39,12 @@
                             <constraint firstAttribute="trailing" secondItem="k8I-TX-nSr" secondAttribute="trailing" id="J0r-NC-0du"/>
                             <constraint firstItem="k8I-TX-nSr" firstAttribute="top" secondItem="DBY-fB-uhj" secondAttribute="bottom" id="Nqa-X9-ymT"/>
                             <constraint firstAttribute="bottom" secondItem="k8I-TX-nSr" secondAttribute="bottom" id="cLU-Ij-y7U"/>
-                            <constraint firstAttribute="bottom" secondItem="DBY-fB-uhj" secondAttribute="bottom" id="tNm-fU-iN7"/>
                             <constraint firstAttribute="trailing" secondItem="DBY-fB-uhj" secondAttribute="trailing" id="tOh-T7-1Zc"/>
                             <constraint firstItem="DBY-fB-uhj" firstAttribute="top" secondItem="QZY-5C-n8c" secondAttribute="top" id="tyE-K6-0dv"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="tNm-fU-iN7"/>
-                            </mask>
-                        </variation>
                     </view>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fR1-TD-FSt">
-                        <rect key="frame" x="255" y="34" width="51" height="31"/>
+                        <rect key="frame" x="256" y="34" width="51" height="31"/>
                         <connections>
                             <action selector="switchValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="Lv9-2k-Hru"/>
                         </connections>
@@ -73,7 +65,6 @@
                 <outlet property="descriptionLabel" destination="k8I-TX-nSr" id="b2I-Ac-tkW"/>
                 <outlet property="switch" destination="fR1-TD-FSt" id="BRF-e4-fve"/>
                 <outlet property="titleLabel" destination="DBY-fB-uhj" id="mQx-8s-r4m"/>
-                <outlet property="titleLabelBottomConstraint" destination="tNm-fU-iN7" id="aSS-cH-c0R"/>
             </connections>
             <point key="canvasLocation" x="140.80000000000001" y="179.46026986506749"/>
         </tableViewCell>
