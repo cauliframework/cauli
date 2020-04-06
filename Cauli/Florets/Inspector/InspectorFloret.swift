@@ -31,7 +31,7 @@ import UIKit
 /// * filter `Record`s by the request URL.
 public class InspectorFloret: DisplayingFloret {
 
-    public var description: String? = "Tap to view records captured when the InspectorFloret is active."
+    public var description: String? = "Tap to inspect network requests and responses. Data is recorded as long as Cauli is enabled."
 
     /// Public initalizer to create an instance of the `InspectorFloret`.
     public init() {}
