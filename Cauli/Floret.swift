@@ -29,12 +29,21 @@ public protocol Floret {
     /// The name of the Floret. This will be used to identify the floret in the UI.
     /// If not implemented, the type will be used per default.
     var name: String { get }
+
+    /// An optional description of the floret. This will be displayed alongside the
+    /// floret name in the UI. Use it to explain in few words what the floret does and
+    /// how to use it.
+    var description: String? { get }
 }
 
 // swiftlint:disable missing_docs
 public extension Floret {
     var name: String {
         String(describing: Self.self)
+    }
+
+    var description: String? {
+        return nil
     }
 }
 // swiftlint:enable missing_docs

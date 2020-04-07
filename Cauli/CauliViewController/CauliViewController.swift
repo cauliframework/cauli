@@ -24,6 +24,16 @@ import UIKit
 
 internal class CauliViewController: UITableViewController {
 
+    private class SubtitleTableViewCell: UITableViewCell {
+        required init?(coder: NSCoder) {
+            super.init(coder: coder)
+        }
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        }
+    }
+
     private let cauli: Cauli
     private var displayingFlorets: [DisplayingFloret]
     private var interceptingFlorets: [InterceptingFloret]
@@ -46,6 +56,7 @@ internal class CauliViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "SubtitleCell")
         let bundle = Bundle(for: SwitchTableViewCell.self)
         tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
     }
@@ -71,7 +82,15 @@ internal class CauliViewController: UITableViewController {
     }
 
     private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell: UITableViewCell
+        if let description = displayingFlorets[indexPath.row].description {
+            cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
+            cell.detailTextLabel?.numberOfLines = 0
+            cell.detailTextLabel?.lineBreakMode = .byWordWrapping
+            cell.detailTextLabel?.text = description
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        }
         cell.textLabel?.text = displayingFlorets[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -81,7 +100,7 @@ internal class CauliViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
 
         var floret = interceptingFlorets[indexPath.row]
-        cell.set(title: floret.name, switchValue: floret.enabled)
+        cell.set(title: floret.name, switchValue: floret.enabled, description: floret.description)
         cell.switchValueChanged = {
             floret.enabled = $0
         }

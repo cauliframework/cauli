@@ -67,6 +67,15 @@ public class MockFloret: InterceptingFloret {
 
     private let mode: Mode
 
+    public var description: String? {
+        switch mode {
+        case .record:
+            return "Enable to start recording network requests."
+        case .mock:
+            return "Enable to mock network requests. This floret can be configured to record requests as well."
+        }
+    }
+
     /// Creates a new MockFloret instance and defines it's mode.
     ///
     /// - Parameters:

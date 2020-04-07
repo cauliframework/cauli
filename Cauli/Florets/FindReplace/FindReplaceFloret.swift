@@ -30,6 +30,7 @@ public class FindReplaceFloret: InterceptingFloret {
 
     public var enabled: Bool = true
     public let name: String
+    public var description: String?
 
     private let willRequestModifiers: [RecordModifier]
     private let didRespondModifiers: [RecordModifier]
@@ -40,10 +41,12 @@ public class FindReplaceFloret: InterceptingFloret {
     ///   - willRequestModifiers: The RecordModifiers used to modify a Record before sending a request.
     ///   - didRespondModifiers: The RecordModifiers used to modify a Record after receiving a response.
     ///   - name: Can be used to describe the set of choosen RecordModifiers. The default name is `FindReplaceFloret`.
-    public init(willRequestModifiers: [RecordModifier] = [], didRespondModifiers: [RecordModifier] = [], name: String = "FindReplaceFloret") {
+    ///   - description: Provide additional description what this floret does that is exposed in the UI
+    public init(willRequestModifiers: [RecordModifier] = [], didRespondModifiers: [RecordModifier] = [], name: String = "FindReplaceFloret", description: String? = nil) {
         self.willRequestModifiers = willRequestModifiers
         self.didRespondModifiers = didRespondModifiers
         self.name = name
+        self.description = description
     }
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
