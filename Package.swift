@@ -7,6 +7,9 @@ import PackageDescription
 
 let package = Package(
     name: "Cauliframework",
+    platforms: [
+        .iOS(.v8),
+    ],
     products: [
         .library(name: "Cauliframework", targets: ["Cauliframework"])
     ],
