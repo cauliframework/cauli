@@ -16,5 +16,5 @@ let package = Package(
     targets: [
         .target(name: "Cauliframework", dependencies: [], path: "Cauli"),
     ],
-   swiftLanguageVersions:[.v5]
+    swiftLanguageVersions: [.v5]
 )
