@@ -66,5 +66,5 @@ def tests_failed(platform)
 end
 
 def red(string)
-  "\033[0;31m! #{string}"
+  "\033[0;31m! #{string}\033[0m"
 end
