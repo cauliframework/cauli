@@ -99,6 +99,10 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         completionHandler(.allow)
     }
 
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        client?.urlProtocol(self, wasRedirectedTo: request, redirectResponse: response)
+    }
+
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
         if CauliURLProtocol.handles(record) {
             try? record.append(receivedData: receivedData)
@@ -155,6 +159,8 @@ private extension CauliURLProtocol {
     class func handles(_ record: Record) -> Bool {
         delegates.contains { $0.handles(record) }
     }
+    
+    
 
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in

@@ -2,6 +2,7 @@
 
 ## Unreleased
 * **improvement** Added an optional description to florets [#176](https://github.com/cauliframework/cauli/issues/176) by @Shukuyen  
+* **bugfix** Fixed an issue where cauli didn’t pass the redirection information up to the application. [#196](https://github.com/cauliframework/cauli/issues/196)
 
 ## 1.0.1
 * **improvement** Added Support for iOS 8 and 9. [#164](https://github.com/cauliframework/cauli/issues/164) by @brototyp
