@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://cauli.works"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.authors            = { "Cornelius Horstmann" => "cornelius@brototyp.de", "Pascal Stüdlein" => "mail@pascal-stuedlein.de" }
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "12.0"
 
   # watchOS and tvOS are currently not tested
   # s.watchos.deployment_target = "3.0"

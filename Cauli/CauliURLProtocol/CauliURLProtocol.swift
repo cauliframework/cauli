@@ -76,7 +76,7 @@ extension CauliURLProtocol {
         willRequest(record) { record in
             self.record = record
             self.record.requestStarted = Date()
-            if case .result(_)? = record.result {
+            if case .result? = record.result {
                 self.urlSession(didCompleteWithError: nil)
             } else if case let .error(error)? = record.result {
                 self.urlSession(didCompleteWithError: error)

@@ -28,7 +28,7 @@ import Foundation
 /// under a given name.
 public class FindReplaceFloret: InterceptingFloret {
 
-    public var enabled: Bool = true
+    public var enabled = true
     public let name: String
     public var description: String?
 
