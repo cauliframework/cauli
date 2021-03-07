@@ -1,0 +1,29 @@
+name: Swift
+
+on:
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:    
+  test:
+    name: Danger
+    runs-on: macos-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Install Bundler
+      run: gem install bundler:1.17.2
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}-2
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Bundle Install
+      run: bundle install --path vendor/bundle
+    - name: Danger
+      run: bundle exec danger
+      env:
+        destination: $
+        LANG: 'en_US.UTF-8'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
