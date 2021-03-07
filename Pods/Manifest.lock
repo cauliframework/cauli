@@ -1,26 +1,26 @@
 PODS:
-  - Nimble (8.0.7)
-  - OHHTTPStubs/Core (9.0.0)
-  - OHHTTPStubs/Default (9.0.0):
+  - Nimble (9.0.0)
+  - OHHTTPStubs/Core (9.1.0)
+  - OHHTTPStubs/Default (9.1.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (9.0.0):
+  - OHHTTPStubs/JSON (9.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (9.0.0):
+  - OHHTTPStubs/NSURLSession (9.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - OHHTTPStubs/Swift (9.0.0):
+  - OHHTTPStubs/OHPathHelpers (9.1.0)
+  - OHHTTPStubs/Swift (9.1.0):
     - OHHTTPStubs/Default
-  - Quick (2.2.0)
-  - SwiftLint (0.39.2)
+  - Quick (3.1.2)
+  - SwiftLint (0.43.0)
 
 DEPENDENCIES:
-  - Nimble (~> 8.0)
-  - OHHTTPStubs/Swift (~> 9.0)
-  - Quick (~> 2.0)
-  - SwiftLint (~> 0.39)
+  - Nimble (~> 9.0)
+  - OHHTTPStubs/Swift (~> 9.1)
+  - Quick (~> 3.1)
+  - SwiftLint (~> 0.43)
 
 SPEC REPOS:
   trunk:
@@ -30,11 +30,11 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
-  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
+  Quick: 60f0ea3b8e0cfc0df3259a5c06a238ad8b3c46e0
+  SwiftLint: 0c645fdc6feed3e390c1701ab3cc669f88b42752
 
-PODFILE CHECKSUM: 6f7a18592531c744ba431a9f7b31116bc3fef16b
+PODFILE CHECKSUM: 94dc37c4783f6f2120f4aa8039af891e5061b12a
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.10.1
