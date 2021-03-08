@@ -224,17 +224,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Cauliframework/Cauliframework.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cauliframework.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

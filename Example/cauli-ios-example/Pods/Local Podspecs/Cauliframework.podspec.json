@@ -1,6 +1,6 @@
 {
   "name": "Cauliframework",
-  "version": "1.0",
+  "version": "1.0.1",
   "summary": "Helps you to intercept network requests.",
   "description": "Cauli is a network debugging framework featuring a plugin infrastructure to hook into selected request and responses as well as recording and displaying performed requests. It provides a wide range of possibilities. For example from inspecting network traffic to mock UnitTests. Missing something fancy? How about writing your own Plugin.",
   "homepage": "https://cauli.works",
@@ -17,12 +17,13 @@
   },
   "source": {
     "git": "https://github.com/cauliframework/cauli.git",
-    "tag": "1.0"
+    "tag": "1.0.1"
   },
   "source_files": [
     "Cauli",
     "Cauli/**/*.swift"
   ],
-  "swift_version": "4.2",
-  "resources": "Cauli/**/*.xib"
+  "swift_versions": "5.0",
+  "resources": "Cauli/**/*.xib",
+  "swift_version": "5.0"
 }
