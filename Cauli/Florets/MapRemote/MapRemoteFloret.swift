@@ -20,19 +20,38 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public class MapRemoteFloret: InterceptingFloret {
+public class MapRemoteFloret {
+    
     public var enabled: Bool = false
+    public var description: String? {
+        "The MapRemoteFloret can modify the url of a request before performed. \n Currently \(enabledMappingUuids.count) mappings are enabled."
+    }
     
     private let mappings: [Mapping]
+    private var enabledMappingUuids: Set<UUID> = []
     
     public init(mappings: [Mapping]) {
         self.mappings = mappings
     }
     
+    func isMappingEnabled(_ mapping: Mapping) -> Bool {
+        enabledMappingUuids.contains(mapping.uuid)
+    }
+    
+    func setMapping(_ mapping: Mapping, enabled: Bool) {
+        if enabled {
+            enabledMappingUuids.insert(mapping.uuid)
+        } else {
+            enabledMappingUuids.remove(mapping.uuid)
+        }
+    }
+}
+
+extension MapRemoteFloret: InterceptingFloret {
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        let mappedRecord = mappings.reduce(record) { (record, mapping) -> Record in
+        let mappedRecord = mappings.filter { enabledMappingUuids.contains($0.uuid) }.reduce(record) { (record, mapping) -> Record in
             guard let requestUrl = record.designatedRequest.url, mapping.sourceLocation.matches(url: requestUrl) else { return record }
             var record = record
             let updatedUrl = mapping.destinationLocation.updating(url: requestUrl)
@@ -45,5 +64,10 @@ public class MapRemoteFloret: InterceptingFloret {
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         completionHandler(record)
     }
-    
+}
+
+extension MapRemoteFloret: DisplayingFloret {
+    public func viewController(_ cauli: Cauli) -> UIViewController {
+        MappingsListViewController(mapRemoteFloret: self, mappings: mappings)
+    }
 }
