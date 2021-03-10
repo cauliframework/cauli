@@ -1,0 +1,42 @@
+name: Swift
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:    
+  test:
+    name: Test
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Install Bundler
+      run: gem install bundler:1.17.2
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}-2
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Bundle Install
+      run: bundle install --path vendor/bundle
+    - name: Install iOS 12.4 simulator
+      run: |
+        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+        sudo ln -s /Applications/Xcode_10.3.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 12.4.simruntime
+        xcrun simctl list runtimes
+        xcrun simctl create custom-test-device "iPhone 6" "com.apple.CoreSimulator.SimRuntime.iOS-12-4"
+        xcrun simctl list devices 12.4
+    - name: Install iOS 13.7 simulator
+      run: |
+        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+        sudo ln -s /Applications/Xcode_11.7.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 13.7.simruntime
+        xcrun simctl list runtimes
+        xcrun simctl create custom-test-device "iPhone 7" "com.apple.CoreSimulator.SimRuntime.iOS-13-7"
+        xcrun simctl list devices 13.7
+    - name: Unit tests
+      run: bundle exec rake test
