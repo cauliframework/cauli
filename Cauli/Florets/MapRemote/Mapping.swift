@@ -42,7 +42,7 @@ public struct Mapping {
     let name: String
     let sourceLocation: MappingLocation
     let destinationLocation: MappingLocation
-    
+
     /// Initializes a new Mapping.
     /// - Parameters:
     ///   - name: The name of the Mapping. This is used to uniquely identify this mapping.
@@ -55,13 +55,22 @@ public struct Mapping {
     }
 }
 
+/// A mapping location describes a given part of a url.
+/// The mapping location can be used to either filter urls, or to apply changes on the url.
 public struct MappingLocation {
     let `protocol`: Protocol?
     let host: String?
     let port: Int?
     let path: String?
     let query: String?
-    
+
+    /// Instantiates a new MappingLocation.
+    /// - Parameters:
+    ///   - protocol: The protocol, http or https, of the url.
+    ///   - host: The host of the url.
+    ///   - port: The port of the url.
+    ///   - path: The path of the url. Should begin with a `/`.
+    ///   - query: The query of the url. Should contain the `?`.
     public init(`protocol`: Protocol? = nil, host: String? = nil, port: Int? = nil, path: String? = nil, query: String? = nil) {
         self.`protocol` = `protocol`
         self.host = host

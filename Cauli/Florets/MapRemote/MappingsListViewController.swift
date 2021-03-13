@@ -22,20 +22,20 @@
 
 import UIKit
 
-class MappingsListViewController: UITableViewController {
-    
+internal class MappingsListViewController: UITableViewController {
+
     private let dataSource: MappingsListDatasource
-    
+
     init(mapRemoteFloret: MapRemoteFloret, mappings: [Mapping]) {
         self.dataSource = MappingsListDatasource(mapRemoteFloret: mapRemoteFloret, mappings: mappings)
         super.init(nibName: nil, bundle: nil)
         dataSource.setup(tableView)
         tableView.dataSource = dataSource
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

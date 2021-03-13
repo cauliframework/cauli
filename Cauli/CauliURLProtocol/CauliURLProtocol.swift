@@ -159,8 +159,6 @@ private extension CauliURLProtocol {
     class func handles(_ record: Record) -> Bool {
         delegates.contains { $0.handles(record) }
     }
-    
-    
 
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         CauliURLProtocol.delegates.cauli_reduceAsync(record, transform: { record, delegate, completion in

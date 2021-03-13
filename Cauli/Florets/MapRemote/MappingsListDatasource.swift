@@ -22,27 +22,29 @@
 
 import UIKit
 
-class MappingsListDatasource: NSObject, UITableViewDataSource {
-    
+internal class MappingsListDatasource: NSObject, UITableViewDataSource {
+
     private let mapRemoteFloret: MapRemoteFloret
     private let mappings: [Mapping]
-    
+
     init(mapRemoteFloret: MapRemoteFloret, mappings: [Mapping]) {
         self.mapRemoteFloret = mapRemoteFloret
         self.mappings = mappings
     }
-    
+
     func setup(_ tableView: UITableView) {
         let bundle = Bundle(for: SwitchTableViewCell.self)
         tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         mappings.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as! SwitchTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else {
+            fatalError("Unable to dequeue a cell")
+        }
         let mapping = mappings[indexPath.row]
         cell.set(title: mapping.name, switchValue: mapRemoteFloret.isMappingEnabled(mapping), description: nil)
         cell.switchValueChanged = { [weak mapRemoteFloret] newValue in

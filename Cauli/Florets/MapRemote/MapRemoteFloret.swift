@@ -34,40 +34,43 @@ import UIKit
 /// let floret = MapRemoteFloret(mappings: [httpsifyMapping, mapLocal])
 /// Cauli([floret])
 /// ```
-public class MapRemoteFloret {
-    
+public class MapRemoteFloret: InterceptingFloret {
+
     internal var userDefaults = UserDefaults()
     public var enabled: Bool {
-        set {
-            userDefaults.setValue(newValue, forKey: "Cauli.MapRemoteFloret.enabled")
-        }
         get {
             userDefaults.bool(forKey: "Cauli.MapRemoteFloret.enabled")
         }
+        set {
+            userDefaults.setValue(newValue, forKey: "Cauli.MapRemoteFloret.enabled")
+        }
     }
+
     public var description: String? {
         "The MapRemoteFloret can modify the url of a request before performed. \n Currently \(enabledMappings.count) mappings are enabled."
     }
-    
+
     private let mappings: [Mapping]
     private var enabledMappings: Set<String> {
-        set {
-            userDefaults.setValue(Array(newValue), forKey: "Cauli.MapRemoteFloret.enabledMappings")
-        }
         get {
             guard let mappings = userDefaults.array(forKey: "Cauli.MapRemoteFloret.enabledMappings") as? [String] else { return [] }
             return Set(mappings)
         }
+        set {
+            userDefaults.setValue(Array(newValue), forKey: "Cauli.MapRemoteFloret.enabledMappings")
+        }
     }
-    
+
+    /// Instantiates a new MapRemoteFloret instance with an array of mappings.
+    /// - Parameter mappings: An array of mappings. Mappings will be evaluated in the order of this array.
     public init(mappings: [Mapping]) {
         self.mappings = mappings
     }
-    
+
     func isMappingEnabled(_ mapping: Mapping) -> Bool {
         enabledMappings.contains(mapping.name)
     }
-    
+
     func setMapping(_ mapping: Mapping, enabled: Bool) {
         if enabled {
             enabledMappings.insert(mapping.name)
@@ -75,11 +78,9 @@ public class MapRemoteFloret {
             enabledMappings.remove(mapping.name)
         }
     }
-}
 
-extension MapRemoteFloret: InterceptingFloret {
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        let mappedRecord = mappings.filter { enabledMappings.contains($0.name) }.reduce(record) { (record, mapping) -> Record in
+        let mappedRecord = mappings.filter { enabledMappings.contains($0.name) }.reduce(record) { record, mapping -> Record in
             guard let requestUrl = record.designatedRequest.url, mapping.sourceLocation.matches(url: requestUrl) else { return record }
             var record = record
             let updatedUrl = mapping.destinationLocation.updating(url: requestUrl)
@@ -88,13 +89,11 @@ extension MapRemoteFloret: InterceptingFloret {
         }
         completionHandler(mappedRecord)
     }
-    
+
     public func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         completionHandler(record)
     }
-}
 
-extension MapRemoteFloret: DisplayingFloret {
     public func viewController(_ cauli: Cauli) -> UIViewController {
         MappingsListViewController(mapRemoteFloret: self, mappings: mappings)
     }
