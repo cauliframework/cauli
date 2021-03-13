@@ -15,6 +15,8 @@
 		1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */; };
 		1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A2210EF9F500CEDD42 /* Storage.swift */; };
 		1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */; };
+		1F19EFF025FD0550009A3A48 /* Frequently Asked Questions.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F19EFEF25FD0550009A3A48 /* Frequently Asked Questions.md */; };
+		1F19EFF425FD0554009A3A48 /* Florets.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F19EFF325FD0554009A3A48 /* Florets.md */; };
 		1F23D35021EBCBC000D6E316 /* Architecture.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32121EBCBC000D6E316 /* Architecture.md */; };
 		1F23D35121EBCBC000D6E316 /* Configuring Cauli.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */; };
 		1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */; };
@@ -103,6 +105,8 @@
 		1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRecordSerializer.swift; sourceTree = "<group>"; };
 		1F18B1A2210EF9F500CEDD42 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		1F19EFEF25FD0550009A3A48 /* Frequently Asked Questions.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Frequently Asked Questions.md"; sourceTree = "<group>"; };
+		1F19EFF325FD0554009A3A48 /* Florets.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Florets.md; sourceTree = "<group>"; };
 		1F23D32121EBCBC000D6E316 /* Architecture.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Architecture.md; sourceTree = "<group>"; };
 		1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Configuring Cauli.md"; sourceTree = "<group>"; };
 		1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your Own Plugin.md"; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 				1F23D32121EBCBC000D6E316 /* Architecture.md */,
 				1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */,
 				1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */,
+				1F19EFEF25FD0550009A3A48 /* Frequently Asked Questions.md */,
+				1F19EFF325FD0554009A3A48 /* Florets.md */,
 			);
 			path = guides;
 			sourceTree = "<group>";
@@ -594,9 +600,11 @@
 				1F23D35621EBCBD300D6E316 /* README.md in Resources */,
 				1F23D35021EBCBC000D6E316 /* Architecture.md in Resources */,
 				1F23D35521EBCBD300D6E316 /* CHANGELOG.md in Resources */,
+				1F19EFF425FD0554009A3A48 /* Florets.md in Resources */,
 				5042C4D321EBE1B500652AC6 /* SwitchTableViewCell.xib in Resources */,
 				1FA4A50F21B7C40100F1CA6B /* InspectorRecordTableViewCell.xib in Resources */,
 				1F23D35121EBCBC000D6E316 /* Configuring Cauli.md in Resources */,
+				1F19EFF025FD0550009A3A48 /* Frequently Asked Questions.md in Resources */,
 				1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

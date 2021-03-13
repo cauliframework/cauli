@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **feature** Added a `MapRemoteFloret` to simply change urls of requests before they are sent. [#216](https://github.com/cauliframework/cauli/issues/216) by @brototyp
 * **improvement** Added an optional description to florets [#176](https://github.com/cauliframework/cauli/issues/176) by @Shukuyen  
 * **bugfix** Fixed an issue where cauli didn’t pass the redirection information up to the application. [#196](https://github.com/cauliframework/cauli/issues/196)
 
