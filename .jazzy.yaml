@@ -1,4 +1,5 @@
 module: Cauliframework
+xcodebuild_arguments: [-workspace, Cauliframework.xcworkspace, -scheme, Cauliframework]
 author_url: https://cauli.works
 github_url: https://github.com/cauliframework/cauli
 output: docs/generated

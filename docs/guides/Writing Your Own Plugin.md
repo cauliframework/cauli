@@ -6,7 +6,7 @@ You can write your own plugin if you want to process requests before they get se
 
 Before implementing your own idea, you have to decide which Floret base protocol suits you best. You can also implement multiple.
 
-**[InterceptingFloret]](https://cauli.works/docs/Protocols/InterceptingFloret.html):** This protocol let's you process requests and responses.   
+**[InterceptingFloret](https://cauli.works/docs/Protocols/InterceptingFloret.html):** This protocol let's you process requests and responses.   
 **[DisplayingFloret](https://cauli.works/docs/Protocols/DisplayingFloret.html):** This protocol let's you create a custom UIViewController for your floret.  
 **[Floret](https://cauli.works/docs/Protocols/Floret.html):** The Floret protocol is the base for the protocols described above. It should not be implemented directly, since there will be no effect.
 
