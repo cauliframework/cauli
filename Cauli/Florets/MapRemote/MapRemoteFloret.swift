@@ -22,10 +22,10 @@
 
 import UIKit
 
-/// The MapRemoteFloret can modify the url of a request before the request is performed.
-/// This is esp. helpful to change the app to use a staging or testing server.
+/// The `MapRemoteFloret` can modify the url before the request is performed.
+/// This is esp. helpful when using a staging or testing server.
 ///
-/// The MapRemoteFloret can only modify the url of a request. If you need to update headers please use the `FindReplaceFloret`.
+/// The `MapRemoteFloret` can only modify the url of a request. If you need to update headers please use the `FindReplaceFloret`.
 ///
 /// Example configuration. For more examples check the `Mapping` documentation.
 /// ```swift
@@ -61,7 +61,7 @@ public class MapRemoteFloret: InterceptingFloret {
         }
     }
 
-    /// Instantiates a new MapRemoteFloret instance with an array of mappings.
+    /// Instantiates a new `MapRemoteFloret` instance with an array of mappings.
     /// - Parameter mappings: An array of mappings. Mappings will be evaluated in the order of this array.
     public init(mappings: [Mapping]) {
         self.mappings = mappings

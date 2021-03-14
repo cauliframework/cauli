@@ -22,14 +22,14 @@
 
 import Foundation
 
-/// A mapping is a declaration of a single mapping. All urls that
-/// fit the description of the `sourceLocation` will be changed
+/// A `Mapping` is a declaration of a single mapping. All urls that
+/// match the description of the `sourceLocation` will be changed
 /// according to the description in the `destinationLocation`.
-/// All nil values are ignored in this case.
+/// All `nil` values are ignored in this case.
 ///
 /// ## Examples
 ///
-/// This mapping will update all http requests to https requests.
+/// This `Mapping` will update all http requests to https requests.
 /// ```swift
 /// Mapping(name: "https-ify", sourceLocation: MappingLocation(scheme: "http"), destinationLocation: MappingLocation(scheme: "https"))
 /// ```
@@ -43,10 +43,10 @@ public struct Mapping {
     let sourceLocation: MappingLocation
     let destinationLocation: MappingLocation
 
-    /// Initializes a new Mapping.
+    /// Initializes a new `Mapping`.
     /// - Parameters:
-    ///   - name: The name of the Mapping. This is used to uniquely identify this mapping.
-    ///   - sourceLocation: This defines all urls this Mapping should apply to.
+    ///   - name: The name of the `Mapping`. This is used to uniquely identify this mapping.
+    ///   - sourceLocation: This defines all urls this `Mapping` should apply to.
     ///   - destinationLocation: This defines the changes for the url.
     public init(name: String, sourceLocation: MappingLocation, destinationLocation: MappingLocation) {
         self.name = name
@@ -64,7 +64,7 @@ public struct MappingLocation {
     let path: String?
     let query: String?
 
-    /// Instantiates a new MappingLocation.
+    /// Instantiates a new `MappingLocation`.
     /// - Parameters:
     ///   - protocol: The protocol, http or https, of the url.
     ///   - host: The host of the url.

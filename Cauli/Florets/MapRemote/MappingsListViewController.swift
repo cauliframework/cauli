@@ -24,10 +24,10 @@ import UIKit
 
 internal class MappingsListViewController: UITableViewController {
 
-    private let dataSource: MappingsListDatasource
+    private let dataSource: MappingsListDataSource
 
     init(mapRemoteFloret: MapRemoteFloret, mappings: [Mapping]) {
-        self.dataSource = MappingsListDatasource(mapRemoteFloret: mapRemoteFloret, mappings: mappings)
+        self.dataSource = MappingsListDataSource(mapRemoteFloret: mapRemoteFloret, mappings: mappings)
         super.init(nibName: nil, bundle: nil)
         dataSource.setup(tableView)
         tableView.dataSource = dataSource

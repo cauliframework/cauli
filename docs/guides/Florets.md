@@ -18,4 +18,4 @@ The [FindReplaceFloret](https://cauli.works/docs/Classes/FindReplaceFloret.html)
 
 ## MapRemoteFloret
 
-The [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) can modify the url of a request before the request is performed. This is esp. helpful to change the app to use a staging or testing server.
+The [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) can modify the url of a request before the request is performed. This is esp. helpful when using a staging or testing server.

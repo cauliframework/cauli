@@ -38,7 +38,7 @@
 		1F95025D25F6816C006F8262 /* MapRemoteFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95025C25F6816C006F8262 /* MapRemoteFloret.swift */; };
 		1F95026325F681F5006F8262 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026225F681F5006F8262 /* Mapping.swift */; };
 		1F95026A25F68A28006F8262 /* MappingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026925F68A28006F8262 /* MappingsListViewController.swift */; };
-		1F95026E25F68A4A006F8262 /* MappingsListDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026D25F68A4A006F8262 /* MappingsListDatasource.swift */; };
+		1F95026E25F68A4A006F8262 /* MappingsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026D25F68A4A006F8262 /* MappingsListDataSource.swift */; };
 		1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */; };
 		1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */; };
 		1FA4A50C21B7C40100F1CA6B /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50521B7C40100F1CA6B /* RecordTableViewController.swift */; };
@@ -128,7 +128,7 @@
 		1F95025C25F6816C006F8262 /* MapRemoteFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRemoteFloret.swift; sourceTree = "<group>"; };
 		1F95026225F681F5006F8262 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
 		1F95026925F68A28006F8262 /* MappingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingsListViewController.swift; sourceTree = "<group>"; };
-		1F95026D25F68A4A006F8262 /* MappingsListDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingsListDatasource.swift; sourceTree = "<group>"; };
+		1F95026D25F68A4A006F8262 /* MappingsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingsListDataSource.swift; sourceTree = "<group>"; };
 		1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
 		1FA4A50521B7C40100F1CA6B /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 				1F95025C25F6816C006F8262 /* MapRemoteFloret.swift */,
 				1F95026225F681F5006F8262 /* Mapping.swift */,
 				1F95026925F68A28006F8262 /* MappingsListViewController.swift */,
-				1F95026D25F68A4A006F8262 /* MappingsListDatasource.swift */,
+				1F95026D25F68A4A006F8262 /* MappingsListDataSource.swift */,
 			);
 			path = MapRemote;
 			sourceTree = "<group>";
@@ -726,7 +726,7 @@
 				1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */,
 				1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */,
 				50E068E821C67E0C00A9DFA8 /* FindReplaceFloret.swift in Sources */,
-				1F95026E25F68A4A006F8262 /* MappingsListDatasource.swift in Sources */,
+				1F95026E25F68A4A006F8262 /* MappingsListDataSource.swift in Sources */,
 				50616E4C214D130C00C8092D /* Result.swift in Sources */,
 				5087DE9E21331041005B7080 /* NSError+Codable.swift in Sources */,
 				1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */,

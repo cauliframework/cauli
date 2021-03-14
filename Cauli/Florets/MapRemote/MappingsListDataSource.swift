@@ -22,7 +22,7 @@
 
 import UIKit
 
-internal class MappingsListDatasource: NSObject, UITableViewDataSource {
+internal class MappingsListDataSource: NSObject, UITableViewDataSource {
 
     private let mapRemoteFloret: MapRemoteFloret
     private let mappings: [Mapping]
