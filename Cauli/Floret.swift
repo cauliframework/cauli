@@ -43,7 +43,7 @@ public extension Floret {
     }
 
     var description: String? {
-        return nil
+        nil
     }
 }
 // swiftlint:enable missing_docs
