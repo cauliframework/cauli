@@ -25,7 +25,38 @@ import Foundation
 extension URLRequest {
 
     var cURL: String {
-        ""
+        guard let url = url,
+              let httpMethod = httpMethod else {
+            assertionFailure("")
+            return ""
+        }
+
+        var options: [String] = ["-X \(httpMethod)"]
+
+        if let httpHeaderFields = allHTTPHeaderFields,
+           !httpHeaderFields.isEmpty {
+            let combinedHeaders = httpHeaderFields.reduce("") { result, httpHeaderField -> String in
+                var mutableResult = result
+                mutableResult += "-H \"\(httpHeaderField.key): \(httpHeaderField.value)\""
+                return mutableResult
+            }
+            options.append(combinedHeaders)
+        }
+
+        if let httpBody = httpBody,
+           let httpBodyString = String(data: httpBody, encoding: .utf8),
+           !httpBodyString.isEmpty {
+            options.append("-d \"\(httpBodyString)\"")
+        }
+
+        let commandParts = ["curl",
+                            options.joined(separator: " "),
+                            url.absoluteString]
+        return commandParts.compactMap {
+            guard !$0.isEmpty else { return nil }
+            return $0
+        }
+        .joined(separator: " ")
     }
 
 }

@@ -24,8 +24,24 @@ import Foundation
 
 extension URLRequest {
     
-    static var fake: URLRequest {
-        return URLRequest(url: URL(string: "https://cauli.works/fake")!)
+    static func fake(httpMethod: String? = nil, httpHeaders: [String: String]? = nil, httpBody: String? = nil) -> URLRequest{
+        var request = URLRequest(url: URL(string: "https://cauli.works/fake")!)
+        
+        if let httpMethod = httpMethod {
+            request.httpMethod = httpMethod
+        }
+        
+        if let httpHeaders = httpHeaders {
+            httpHeaders.forEach {
+                request.addValue($0.value, forHTTPHeaderField: $0.key)
+            }
+        }
+        
+        if let httpBody = httpBody {
+            request.httpBody = httpBody.data(using: .utf8)
+        }
+        
+        return request
     }
     
 }

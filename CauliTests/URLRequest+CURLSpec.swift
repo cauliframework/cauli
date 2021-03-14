@@ -30,9 +30,43 @@ class URLRequestCURLSpec: QuickSpec {
     
     override func spec() {
         describe("cURL") {
-            it("should return") {
-                let fakeRequest = URLRequest.fake
-                expect(fakeRequest.cURL) == ""
+            it("returns a curl command with http method and URL") {
+                let fakeRequest = URLRequest.fake()
+                expect(fakeRequest.cURL) == "curl -X GET https://cauli.works/fake"
+            }
+            
+            it("starts with curl as prefix") {
+                let fakeRequest = URLRequest.fake()
+                let hasCurlAsPrefix = fakeRequest.cURL.hasPrefix("curl")
+                expect(hasCurlAsPrefix) == true
+            }
+            
+            it("returns a curl command matching the request URL") {
+                let fakeRequest = URLRequest.fake()
+                let hasURLasSuffix = fakeRequest.cURL.hasSuffix("https://cauli.works/fake")
+                expect(hasURLasSuffix) == true
+            }
+            
+            it("ensures to contain the request http method") {
+                let httpMethod = "POST"
+                let fakeRequest = URLRequest.fake(httpMethod: httpMethod)
+                let containsRequestMethodPost = fakeRequest.cURL.contains("-X \(httpMethod)")
+                expect(containsRequestMethodPost) == true
+            }
+            
+            it("ensures to contain the http header fields") {
+                let httpHeaders = ["Accept": "application/json", "Content-Type": "text/xml"]
+                let fakeRequest = URLRequest.fake(httpHeaders: httpHeaders)
+                let containsAcceptHTTPHeader = fakeRequest.cURL.contains("-H \"Accept: application/json\"")
+                let containsContentTypeHTTPHeader = fakeRequest.cURL.contains("-H \"Content-Type: text/xml\"")
+                expect(containsAcceptHTTPHeader && containsContentTypeHTTPHeader) == true
+            }
+            
+            it("ensures to contain the http body data") {
+                let httpBody = "{ \"http\": \"body\" }"
+                let fakeRequest = URLRequest.fake(httpBody: httpBody)
+                let containsHttpBody = fakeRequest.cURL.contains("-d \"\(httpBody)\"")
+                expect(containsHttpBody) == true
             }
         }
     }
