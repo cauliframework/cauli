@@ -121,7 +121,9 @@ class LoggingFloret: InterceptingFloret {
         if case .result(let response) = record.result, let httpResponse = response.urlResponse as? HTTPURLResponse {
             print("RESPONSE of: \(request.httpMethod!) \(request.url!)")
             print("HTTP status \(httpResponse.statusCode), Request took \(Date().timeIntervalSince(record.requestStarted!)) seconds")
-            print(String(data: response.data!, encoding: .utf8)!)
+	    if let data = response.data {
+                print(String(data: data, encoding: .utf8)!)
+	    }
         }
         completionHandler(record)
     }
