@@ -1,5 +1,5 @@
 PODS:
-  - Cauliframework (1.0)
+  - Cauliframework (1.0.1)
 
 DEPENDENCIES:
   - Cauliframework (from `../../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Cauliframework: db9185b09a79e6ee56d39986a3e7dded2916a70e
+  Cauliframework: 311e383f595cc3969c93afbcc80bf45c71da468f
 
 PODFILE CHECKSUM: 6aa874b392e490b17f77e20dbd808153ee0fbd15
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.1

@@ -30,5 +30,11 @@ internal extension Cauli {
         return floret
     }()
     static let inspectorFloret = InspectorFloret()
-    static let customShared = Cauli([HTTPBodyStreamFloret(), findReplaceFloret, mockFloret, inspectorFloret])
+    static let mapRemoteFloret: MapRemoteFloret = {
+        let mapping = Mapping(name: "invalidurl.invalid", sourceLocation: MappingLocation(host: "invalidurl.invalid"), destinationLocation: MappingLocation(path: "/rewritten"))
+        let floret = MapRemoteFloret(mappings: [mapping])
+        floret.enabled = true
+        return floret
+    }()
+    static let customShared = Cauli([HTTPBodyStreamFloret(), findReplaceFloret, mockFloret, inspectorFloret, mapRemoteFloret])
 }

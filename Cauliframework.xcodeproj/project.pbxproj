@@ -15,6 +15,8 @@
 		1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */; };
 		1F18B1A4210EF9F500CEDD42 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A2210EF9F500CEDD42 /* Storage.swift */; };
 		1F18B1A5210EF9F500CEDD42 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */; };
+		1F19EFF025FD0550009A3A48 /* Frequently Asked Questions.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F19EFEF25FD0550009A3A48 /* Frequently Asked Questions.md */; };
+		1F19EFF425FD0554009A3A48 /* Florets.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F19EFF325FD0554009A3A48 /* Florets.md */; };
 		1F23D35021EBCBC000D6E316 /* Architecture.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32121EBCBC000D6E316 /* Architecture.md */; };
 		1F23D35121EBCBC000D6E316 /* Configuring Cauli.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */; };
 		1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */; };
@@ -33,6 +35,10 @@
 		1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80E2CB21E2AB2800F1EA01 /* SwappedResponse.swift */; };
 		1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */; };
 		1F8C2A1521D794BD009D0382 /* CauliSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C2A1421D794BD009D0382 /* CauliSpec.swift */; };
+		1F95025D25F6816C006F8262 /* MapRemoteFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95025C25F6816C006F8262 /* MapRemoteFloret.swift */; };
+		1F95026325F681F5006F8262 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026225F681F5006F8262 /* Mapping.swift */; };
+		1F95026A25F68A28006F8262 /* MappingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026925F68A28006F8262 /* MappingsListViewController.swift */; };
+		1F95026E25F68A4A006F8262 /* MappingsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F95026D25F68A4A006F8262 /* MappingsListDataSource.swift */; };
 		1FA4A50A21B7C40100F1CA6B /* RecordItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */; };
 		1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */; };
 		1FA4A50C21B7C40100F1CA6B /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4A50521B7C40100F1CA6B /* RecordTableViewController.swift */; };
@@ -99,6 +105,8 @@
 		1F0EB9E2219DB4C800060F28 /* MockRecordSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRecordSerializer.swift; sourceTree = "<group>"; };
 		1F18B1A2210EF9F500CEDD42 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1F18B1A3210EF9F500CEDD42 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		1F19EFEF25FD0550009A3A48 /* Frequently Asked Questions.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Frequently Asked Questions.md"; sourceTree = "<group>"; };
+		1F19EFF325FD0554009A3A48 /* Florets.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Florets.md; sourceTree = "<group>"; };
 		1F23D32121EBCBC000D6E316 /* Architecture.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Architecture.md; sourceTree = "<group>"; };
 		1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Configuring Cauli.md"; sourceTree = "<group>"; };
 		1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your Own Plugin.md"; sourceTree = "<group>"; };
@@ -117,6 +125,10 @@
 		1F80E2CB21E2AB2800F1EA01 /* SwappedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwappedResponse.swift; sourceTree = "<group>"; };
 		1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPBodyStreamFloret.swift; sourceTree = "<group>"; };
 		1F8C2A1421D794BD009D0382 /* CauliSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauliSpec.swift; sourceTree = "<group>"; };
+		1F95025C25F6816C006F8262 /* MapRemoteFloret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRemoteFloret.swift; sourceTree = "<group>"; };
+		1F95026225F681F5006F8262 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
+		1F95026925F68A28006F8262 /* MappingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingsListViewController.swift; sourceTree = "<group>"; };
+		1F95026D25F68A4A006F8262 /* MappingsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingsListDataSource.swift; sourceTree = "<group>"; };
 		1FA4A50321B7C40100F1CA6B /* RecordItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordItemTableViewCell.swift; sourceTree = "<group>"; };
 		1FA4A50421B7C40100F1CA6B /* RecordTableViewDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewDatasource.swift; sourceTree = "<group>"; };
 		1FA4A50521B7C40100F1CA6B /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +218,7 @@
 		1F0EB9D8219DB32300060F28 /* Florets */ = {
 			isa = PBXGroup;
 			children = (
+				1F95025B25F68155006F8262 /* MapRemote */,
 				1F891AE922271203000ECD61 /* HTTPBodyStreamFloret */,
 				50E068E621C67DF800A9DFA8 /* FindReplace */,
 				5044B7E621F2853A006908B2 /* NoCache */,
@@ -245,6 +258,8 @@
 				1F23D32121EBCBC000D6E316 /* Architecture.md */,
 				1F23D32221EBCBC000D6E316 /* Configuring Cauli.md */,
 				1F23D32321EBCBC000D6E316 /* Writing Your Own Plugin.md */,
+				1F19EFEF25FD0550009A3A48 /* Frequently Asked Questions.md */,
+				1F19EFF325FD0554009A3A48 /* Florets.md */,
 			);
 			path = guides;
 			sourceTree = "<group>";
@@ -263,6 +278,17 @@
 				1F891AEA22271221000ECD61 /* HTTPBodyStreamFloret.swift */,
 			);
 			path = HTTPBodyStreamFloret;
+			sourceTree = "<group>";
+		};
+		1F95025B25F68155006F8262 /* MapRemote */ = {
+			isa = PBXGroup;
+			children = (
+				1F95025C25F6816C006F8262 /* MapRemoteFloret.swift */,
+				1F95026225F681F5006F8262 /* Mapping.swift */,
+				1F95026925F68A28006F8262 /* MappingsListViewController.swift */,
+				1F95026D25F68A4A006F8262 /* MappingsListDataSource.swift */,
+			);
+			path = MapRemote;
 			sourceTree = "<group>";
 		};
 		1FA4A50221B7C40100F1CA6B /* Record */ = {
@@ -574,9 +600,11 @@
 				1F23D35621EBCBD300D6E316 /* README.md in Resources */,
 				1F23D35021EBCBC000D6E316 /* Architecture.md in Resources */,
 				1F23D35521EBCBD300D6E316 /* CHANGELOG.md in Resources */,
+				1F19EFF425FD0554009A3A48 /* Florets.md in Resources */,
 				5042C4D321EBE1B500652AC6 /* SwitchTableViewCell.xib in Resources */,
 				1FA4A50F21B7C40100F1CA6B /* InspectorRecordTableViewCell.xib in Resources */,
 				1F23D35121EBCBC000D6E316 /* Configuring Cauli.md in Resources */,
+				1F19EFF025FD0550009A3A48 /* Frequently Asked Questions.md in Resources */,
 				1F23D35221EBCBC000D6E316 /* Writing Your Own Plugin.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,10 +703,12 @@
 			files = (
 				1F0EB9DF219DB32300060F28 /* MockFloretStorage.swift in Sources */,
 				1FBE790521A1A271004C81A7 /* InspectorFloret.swift in Sources */,
+				1F95026325F681F5006F8262 /* Mapping.swift in Sources */,
 				5005E53D222BE0C800BD5DF7 /* DisplayingFloret.swift in Sources */,
 				1FE3F74220F64C6700233C7C /* CauliURLProtocol.swift in Sources */,
 				1FB1FF5A219DB7DD0021B4F4 /* ViewControllerShakePresenter.swift in Sources */,
 				1FA4A50C21B7C40100F1CA6B /* RecordTableViewController.swift in Sources */,
+				1F95025D25F6816C006F8262 /* MapRemoteFloret.swift in Sources */,
 				1F0ACE00222C26D0004E0361 /* PrettyPrinter.swift in Sources */,
 				5005E53F222BE0D400BD5DF7 /* InterceptingFloret.swift in Sources */,
 				5042C4D421EBE1B500652AC6 /* SwitchTableViewCell.swift in Sources */,
@@ -696,6 +726,7 @@
 				1FA4A50B21B7C40100F1CA6B /* RecordTableViewDatasource.swift in Sources */,
 				1FB1FF58219DB75E0021B4F4 /* UIWindow+Shake.swift in Sources */,
 				50E068E821C67E0C00A9DFA8 /* FindReplaceFloret.swift in Sources */,
+				1F95026E25F68A4A006F8262 /* MappingsListDataSource.swift in Sources */,
 				50616E4C214D130C00C8092D /* Result.swift in Sources */,
 				5087DE9E21331041005B7080 /* NSError+Codable.swift in Sources */,
 				1FBE790D21A1A572004C81A7 /* TagLabel.swift in Sources */,
@@ -717,6 +748,7 @@
 				1F80E2CD21E2AB2800F1EA01 /* SwappedResponse.swift in Sources */,
 				1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,
+				1F95026A25F68A28006F8262 /* MappingsListViewController.swift in Sources */,
 				1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
 				5087DE9C21330018005B7080 /* URLResponseRepresentable.swift in Sources */,
