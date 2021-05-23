@@ -1,4 +1,4 @@
-name: Swift
+name: Danger
 
 on:
   pull_request:

@@ -1,6 +1,6 @@
 # ![Cauli](https://cauli.works/logo.png)
 
-[![Build Status](https://travis-ci.org/cauliframework/cauli.svg?branch=develop)](https://travis-ci.org/cauliframework/cauli)
+[![Tests](https://github.com/cauliframework/cauli/workflows/Tests/badge.svg)](https://github.com/cauliframework/cauli/actions)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauliframework.svg?style=flat-square)](https://cocoapods.org/pods/Cauliframework)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/cauliframework/cauli/blob/develop/LICENSE)
 [![Jazzy documentation](https://cauli.works/docs/badge.svg)](https://cauli.works/docs/)
