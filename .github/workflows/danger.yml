@@ -12,11 +12,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Install Bundler
-      run: gem install bundler:1.17.2
+      run: gem install bundler:2.2.17
     - uses: actions/cache@v1
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}-2
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}-3
         restore-keys: |
           ${{ runner.os }}-gem-
     - name: Bundle Install
