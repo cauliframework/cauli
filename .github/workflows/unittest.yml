@@ -6,37 +6,39 @@ on:
   pull_request:
     branches: [ master, develop ]
 
-jobs:    
+jobs:
   test:
-    name: Test
-    runs-on: macos-latest
-
+    runs-on: macos-12
+    strategy:
+      matrix:
+        include: # selection of https://github.com/actions/runner-images/blob/macOS-12/20230916.1/images/macos/macos-12-Readme.md#installed-simulators
+          - xcode: "13.4.1"
+            ios: "15.5"
+            device: "iPhone 8"
+          - xcode: "14.2"
+            ios: "16.2"
+            device: "iPhone 8"
+    if: github.event_name  == 'pull_request' # if only run pull request when multiple trigger workflow
+    name: "test ios ${{matrix.ios}}"
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Install Bundler
-      run: gem install bundler:2.2.17
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}-3
-        restore-keys: |
-          ${{ runner.os }}-gem-
-    - name: Bundle Install
-      run: bundle install --path vendor/bundle
-    - name: Install iOS 12.4 simulator
-      run: |
-        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
-        sudo ln -s /Applications/Xcode_10.3.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 12.4.simruntime
-        xcrun simctl list runtimes
-        xcrun simctl create custom-test-device "iPhone 6" "com.apple.CoreSimulator.SimRuntime.iOS-12-4"
-        xcrun simctl list devices 12.4
-    - name: Install iOS 13.7 simulator
-      run: |
-        sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
-        sudo ln -s /Applications/Xcode_11.7.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 13.7.simruntime
-        xcrun simctl list runtimes
-        xcrun simctl create custom-test-device "iPhone 7" "com.apple.CoreSimulator.SimRuntime.iOS-13-7"
-        xcrun simctl list devices 13.7
-    - name: Unit tests
-      run: bundle exec rake test
+    - uses: actions/checkout@v3
+    - name: "Select Xcode ${{matrix.xcode}}"
+      run: sudo xcode-select -switch /Applications/Xcode_${{matrix.xcode}}.app && /usr/bin/xcodebuild -version
+    - name: Run Unit Tests on ${{matrix.ios}} ${{matrix.device}}
+      run: xcodebuild -workspace Cauliframework.xcworkspace -scheme 'Cauliframework' -sdk 'iphonesimulator' -destination 'platform=iOS Simulator,name=${{matrix.device}},OS=${{matrix.ios}}' -configuration Debug clean test
+  build-example-app:
+    runs-on: macos-12
+    if: github.event_name  == 'pull_request' # if only run pull request when multiple trigger workflow
+    name: "Build Example App"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Example App
+      run: xcodebuild -workspace Example/cauli-ios-example/cauli-ios-example.xcworkspace -scheme 'Cauliframework'  -destination 'platform=iOS Simulator,name=iPhone 8,OS=16.2' -configuration Release clean build
+  build-spm:
+    runs-on: macos-12
+    if: github.event_name  == 'pull_request' # if only run pull request when multiple trigger workflow
+    name: "Build SPM"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build SPM
+      run: swift build -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios16.2-simulator"
