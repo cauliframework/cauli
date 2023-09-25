@@ -31,7 +31,7 @@ public class HTTPBodyStreamFloret: InterceptingFloret {
     private static let bufferByteSize = 1024
 
     private let maximumConvertedByteSize: Int64
-    public var enabled: Bool = true
+    public var enabled = true
 
     /// Will create a new `HTTPBodyStreamFloret` instance.
     ///

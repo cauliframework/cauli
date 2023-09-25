@@ -40,6 +40,9 @@ public class InspectorFloret: DisplayingFloret {
         self.formatter = InspectorFloretFormatter()
     }
 
+    /// Public initializer to create an instace of the `InspectorFloret` with a custom
+    /// formatter. See `InspectorFloretFormatterType` for further details.
+    /// - Parameter formatter: The `InspectorFloretFormatterType` to be used.
     public init(formatter: InspectorFloretFormatterType) {
         self.formatter = formatter
     }

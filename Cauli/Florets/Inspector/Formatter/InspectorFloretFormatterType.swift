@@ -20,7 +20,18 @@
 //  THE SOFTWARE.
 //
 
+/// The `InspectorFloretFormatterType` is used to define how a Record is formatted when
+/// shown in the `InspectorFloret`.
 public protocol InspectorFloretFormatterType {
+    /// Returns the `RecordListFormattedData` for a `Record`.
+    /// - Parameter record: the Record
+    /// - Returns: The RecordListFormattedData
     func listFormattedData(for record: Record) -> InspectorFloret.RecordListFormattedData
+    /// This function is called when deciding if a `Record` should be shown with a given query,
+    /// for example when typing in a search field.
+    /// - Parameters:
+    ///   - record: The Record
+    ///   - query: The Search Query
+    /// - Returns: Return true, if the Record matches the Query.
     func recordMatchesQuery(record: Record, query: String) -> Bool
 }

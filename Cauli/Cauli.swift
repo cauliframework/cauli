@@ -40,7 +40,7 @@ public class Cauli {
     }
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?
-    private var enabled: Bool = false
+    private var enabled = false
 
     deinit {
         CauliURLProtocol.remove(delegate: self)

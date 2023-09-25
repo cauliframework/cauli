@@ -23,11 +23,19 @@
 import UIKit
 
 extension InspectorFloret {
+    /// The RecordListFormattedData defines the data shown
+    /// in the Record list in the InspectorFloret.
     public struct RecordListFormattedData {
+        /// The string shown in the method label
         let method: String
+        /// The string shown in the path label
         let path: String
+        /// The string shown in the time label
         let time: String
+        /// The string shown in the status label
         let status: String
+        /// The background color of the status label.
+        /// The text color of the status label will be white.
         let statusColor: UIColor
     }
 }
