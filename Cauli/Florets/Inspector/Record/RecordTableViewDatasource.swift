@@ -97,13 +97,14 @@ extension RecordTableViewDatasource {
     }
 }
 
+// swiftlint:disable trailing_closure
 extension RecordTableViewDatasource.Item {
     init(title: String, description: String) {
         self.init(title: title, description: description, value: nil)
     }
     static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
         RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
-            guard let data = response.data else { return nil as URL? }
+            guard let data = response.data else { return nil as URL? as Any }
             let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
             let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
             let filePath = tmpFolder.appendingPathComponent(fileName)
@@ -111,7 +112,7 @@ extension RecordTableViewDatasource.Item {
                 try data.write(to: filePath)
                 return filePath
             } catch {
-                return nil as URL?
+                return nil as URL? as Any
             }
         })
     }
@@ -123,9 +124,7 @@ extension RecordTableViewDatasource.Section {
         var requestItems: [RecordTableViewDatasource.Item] = []
         requestItems.append(RecordTableViewDatasource.Item(title: "Method", description: request.httpMethod ?? "-"))
         requestItems.append(RecordTableViewDatasource.Item(title: "URL", description: request.url?.absoluteString ?? "-"))
-        requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in
-            "\(key): \(value)"
-        }
+        requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in "\(key): \(value)" }
             .joined(separator: "\n") ?? "-", value: { request.allHTTPHeaderFields }))
         requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(request.httpBody?.count ?? 0) bytes", value: { request.httpBody }))
         requestItems.append(RecordTableViewDatasource.Item(title: "Cache Policy", description: String(request.cachePolicy.rawValue)))
@@ -153,3 +152,4 @@ extension RecordTableViewDatasource.Section {
     }
 
 }
+// swiftlint:enable trailing_closure

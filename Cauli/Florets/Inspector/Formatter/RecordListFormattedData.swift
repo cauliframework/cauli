@@ -27,15 +27,23 @@ extension InspectorFloret {
     /// in the Record list in the InspectorFloret.
     public struct RecordListFormattedData {
         /// The string shown in the method label
-        let method: String
+        public let method: String
         /// The string shown in the path label
-        let path: String
+        public let path: String
         /// The string shown in the time label
-        let time: String
+        public let time: String
         /// The string shown in the status label
-        let status: String
+        public let status: String
         /// The background color of the status label.
         /// The text color of the status label will be white.
-        let statusColor: UIColor
+        public let statusColor: UIColor
+
+        public init(method: String, path: String, time: String, status: String, statusColor: UIColor) {
+            self.method = method
+            self.path = path
+            self.time = time
+            self.status = status
+            self.statusColor = statusColor
+        }
     }
 }

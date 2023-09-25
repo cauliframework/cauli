@@ -22,16 +22,9 @@
 
 import UIKit
 
-internal class InspectorFloretFormatter: InspectorFloretFormatterType {
-
-    static let timeFormatter: DateFormatter = {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .medium
-        return timeFormatter
-    }()
-
-    func listFormattedData(for record: Record) -> InspectorFloret.RecordListFormattedData {
+public class InspectorFloretFormatter: InspectorFloretFormatterType {
+    public init() {}
+    public func listFormattedData(for record: Record) -> InspectorFloret.RecordListFormattedData {
         let method = record.designatedRequest.httpMethod ?? ""
         let path = record.designatedRequest.url?.absoluteString ?? ""
         let time: String
@@ -61,17 +54,20 @@ internal class InspectorFloretFormatter: InspectorFloretFormatterType {
         return InspectorFloret.RecordListFormattedData(method: method, path: path, time: time, status: status, statusColor: statusColor)
     }
 
-    func recordMatchesQuery(record: Record, query: String) -> Bool {
+    public func recordMatchesQuery(record: Record, query: String) -> Bool {
         guard let urlString = record.designatedRequest.url?.absoluteString else {
             return false
         }
         return urlString.range(of: query, options: String.CompareOptions.caseInsensitive) != nil
     }
+}
 
+extension InspectorFloretFormatter {
     static let greenColor = UIColor(red: 11 / 255.0, green: 176 / 255.0, blue: 61 / 255.0, alpha: 1)
     static let blueColor = UIColor(red: 74 / 255.0, green: 144 / 255.0, blue: 226 / 255.0, alpha: 1)
     static let redColor = UIColor(red: 210 / 255.0, green: 46 / 255.0, blue: 14 / 255.0, alpha: 1)
     static let grayColor = UIColor(red: 155 / 255.0, green: 155 / 255.0, blue: 155 / 255.0, alpha: 1)
+
     private func colorForHTTPStatusCode(_ statusCode: Int) -> UIColor {
         switch statusCode {
         case 0..<300: return Self.greenColor
@@ -80,4 +76,13 @@ internal class InspectorFloretFormatter: InspectorFloretFormatterType {
         default: return Self.grayColor
         }
     }
+}
+
+extension InspectorFloretFormatter {
+    static let timeFormatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .medium
+        return timeFormatter
+    }()
 }
