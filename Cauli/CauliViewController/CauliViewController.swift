@@ -25,6 +25,7 @@ import UIKit
 internal class CauliViewController: UITableViewController {
 
     private class SubtitleTableViewCell: UITableViewCell {
+        static let reuseIdentifier = "SubtitleTableViewCell"
         required init?(coder: NSCoder) {
             super.init(coder: coder)
         }
@@ -56,9 +57,8 @@ internal class CauliViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "SubtitleCell")
-        let bundle = Bundle(for: SwitchTableViewCell.self)
-        tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
+        tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: SubtitleTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: Cauli.bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +89,7 @@ internal class CauliViewController: UITableViewController {
     private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         if let description = displayingFlorets[indexPath.row].description {
-            cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: SubtitleTableViewCell.reuseIdentifier, for: indexPath)
             cell.detailTextLabel?.numberOfLines = 0
             cell.detailTextLabel?.lineBreakMode = .byWordWrapping
             cell.detailTextLabel?.text = description

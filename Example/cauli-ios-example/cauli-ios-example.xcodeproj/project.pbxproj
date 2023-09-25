@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,7 +18,7 @@
 		1FBA701E2118743E0078F6AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA701C2118743E0078F6AD /* Main.storyboard */; };
 		1FBA70202118743F0078F6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA701F2118743F0078F6AD /* Assets.xcassets */; };
 		1FBA70232118743F0078F6AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA70212118743F0078F6AD /* LaunchScreen.storyboard */; };
-		87A207FA1677A8AB0197BDFC /* Pods_cauli_ios_example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6617E2785E9DF18F30ECF5 /* Pods_cauli_ios_example.framework */; };
+		5CADAC032ABDD46100ECB901 /* Cauliframework in Frameworks */ = {isa = PBXBuildFile; productRef = 5CADAC022ABDD46100ECB901 /* Cauliframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +35,7 @@
 		1FBA701F2118743F0078F6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBA70222118743F0078F6AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FBA70242118743F0078F6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A4624103340C8B84A69F1F1 /* Pods-cauli-ios-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli-ios-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example.debug.xcconfig"; sourceTree = "<group>"; };
-		6A7A74FEBB6E1A3206B50660 /* Pods-cauli-ios-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cauli-ios-example.release.xcconfig"; path = "Pods/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example.release.xcconfig"; sourceTree = "<group>"; };
-		CA6617E2785E9DF18F30ECF5 /* Pods_cauli_ios_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cauli_ios_example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C58F74D2ABDE6460092D5F4 /* cauli */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = cauli; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,22 +43,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A207FA1677A8AB0197BDFC /* Pods_cauli_ios_example.framework in Frameworks */,
+				5CADAC032ABDD46100ECB901 /* Cauliframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E2121EF00B448FC97D3EE42 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5A4624103340C8B84A69F1F1 /* Pods-cauli-ios-example.debug.xcconfig */,
-				6A7A74FEBB6E1A3206B50660 /* Pods-cauli-ios-example.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		1F2749E821A0BD0000A6DD6E /* Sections */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +80,10 @@
 		1FBA700C2118743E0078F6AD = {
 			isa = PBXGroup;
 			children = (
+				5C58F74C2ABDE6460092D5F4 /* Packages */,
 				1FBA70172118743E0078F6AD /* cauli-ios-example */,
 				1FBA70162118743E0078F6AD /* Products */,
-				0E2121EF00B448FC97D3EE42 /* Pods */,
-				2F160F5C97B9EF870360FA3B /* Frameworks */,
+				5CADAC012ABDD46100ECB901 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,10 +111,17 @@
 			path = "cauli-ios-example";
 			sourceTree = "<group>";
 		};
-		2F160F5C97B9EF870360FA3B /* Frameworks */ = {
+		5C58F74C2ABDE6460092D5F4 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				CA6617E2785E9DF18F30ECF5 /* Pods_cauli_ios_example.framework */,
+				5C58F74D2ABDE6460092D5F4 /* cauli */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		5CADAC012ABDD46100ECB901 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,17 +133,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FBA70272118743F0078F6AD /* Build configuration list for PBXNativeTarget "cauli-ios-example" */;
 			buildPhases = (
-				A38A662E5B3D2954F6C56CDE /* [CP] Check Pods Manifest.lock */,
 				1FBA70112118743E0078F6AD /* Sources */,
 				1FBA70122118743E0078F6AD /* Frameworks */,
 				1FBA70132118743E0078F6AD /* Resources */,
-				DF12D3BD96820B8E48E75B63 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "cauli-ios-example";
+			packageProductDependencies = (
+				5CADAC022ABDD46100ECB901 /* Cauliframework */,
+			);
 			productName = "cauli-ios-example";
 			productReference = 1FBA70152118743E0078F6AD /* cauli-ios-example.app */;
 			productType = "com.apple.product-type.application";
@@ -199,44 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A38A662E5B3D2954F6C56CDE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-cauli-ios-example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF12D3BD96820B8E48E75B63 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cauli-ios-example/Pods-cauli-ios-example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1FBA70112118743E0078F6AD /* Sources */ = {
@@ -390,40 +349,38 @@
 		};
 		1FBA70282118743F0078F6AD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A4624103340C8B84A69F1F1 /* Pods-cauli-ios-example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "cauli-ios-example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "works.cauli.framework.ios-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		1FBA70292118743F0078F6AD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A7A74FEBB6E1A3206B50660 /* Pods-cauli-ios-example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "cauli-ios-example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "works.cauli.framework.ios-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -450,6 +407,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5CADAC022ABDD46100ECB901 /* Cauliframework */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Cauliframework;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1FBA700D2118743E0078F6AD /* Project object */;
 }
