@@ -22,4 +22,5 @@
 
 public protocol InspectorFloretFormatterType {
     func listFormattedData(for record: Record) -> InspectorFloret.RecordListFormattedData
+    func recordMatchesQuery(record: Record, query: String) -> Bool
 }

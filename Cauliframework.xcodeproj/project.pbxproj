@@ -77,6 +77,9 @@
 		50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */; };
 		50E068E821C67E0C00A9DFA8 /* FindReplaceFloret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */; };
 		50E068EA21C67E2300A9DFA8 /* RecordModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E068E921C67E2300A9DFA8 /* RecordModifier.swift */; };
+		5C51E3BE2AC193F800E5720D /* InspectorFloretFormatterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51E3BB2AC193F800E5720D /* InspectorFloretFormatterType.swift */; };
+		5C51E3BF2AC193F800E5720D /* RecordListFormattedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51E3BC2AC193F800E5720D /* RecordListFormattedData.swift */; };
+		5C51E3C02AC193F800E5720D /* InspectorFloretFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51E3BD2AC193F800E5720D /* InspectorFloretFormatter.swift */; };
 		5C58F7512ABDE72A0092D5F4 /* InspectorRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C58F74F2ABDE72A0092D5F4 /* InspectorRecordTableViewCell.xib */; };
 		5C58F7522ABDE72A0092D5F4 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C58F7502ABDE72A0092D5F4 /* SwitchTableViewCell.xib */; };
 		5CADABF42ABDC79400ECB901 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5CADABF32ABDC79400ECB901 /* OHHTTPStubsSwift */; };
@@ -170,6 +173,9 @@
 		50B6C943212DF2D500BB1E57 /* NSError+Cauli.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Cauli.swift"; sourceTree = "<group>"; };
 		50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindReplaceFloret.swift; sourceTree = "<group>"; };
 		50E068E921C67E2300A9DFA8 /* RecordModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModifier.swift; sourceTree = "<group>"; };
+		5C51E3BB2AC193F800E5720D /* InspectorFloretFormatterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorFloretFormatterType.swift; sourceTree = "<group>"; };
+		5C51E3BC2AC193F800E5720D /* RecordListFormattedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordListFormattedData.swift; sourceTree = "<group>"; };
+		5C51E3BD2AC193F800E5720D /* InspectorFloretFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorFloretFormatter.swift; sourceTree = "<group>"; };
 		5C58F74F2ABDE72A0092D5F4 /* InspectorRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InspectorRecordTableViewCell.xib; sourceTree = "<group>"; };
 		5C58F7502ABDE72A0092D5F4 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -304,6 +310,7 @@
 		1FBE790321A1A245004C81A7 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
+				5C51E3BA2AC193F800E5720D /* Formatter */,
 				1F0ACDFC222C26D0004E0361 /* PrettyPrinter */,
 				1FA4A50221B7C40100F1CA6B /* Record */,
 				1FA4A50621B7C40100F1CA6B /* Record List */,
@@ -460,6 +467,16 @@
 				50E068E721C67E0C00A9DFA8 /* FindReplaceFloret.swift */,
 			);
 			path = FindReplace;
+			sourceTree = "<group>";
+		};
+		5C51E3BA2AC193F800E5720D /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				5C51E3BB2AC193F800E5720D /* InspectorFloretFormatterType.swift */,
+				5C51E3BC2AC193F800E5720D /* RecordListFormattedData.swift */,
+				5C51E3BD2AC193F800E5720D /* InspectorFloretFormatter.swift */,
+			);
+			path = Formatter;
 			sourceTree = "<group>";
 		};
 		5C58F74E2ABDE72A0092D5F4 /* Resources */ = {
@@ -635,6 +652,7 @@
 				1F0ACDFF222C26D0004E0361 /* PlaintextPrettyPrinter.swift in Sources */,
 				1F0EB9E3219DB4C800060F28 /* MockRecordSerializer.swift in Sources */,
 				50A6CFB821178E2200FC57E7 /* URLRequest+Codable.swift in Sources */,
+				5C51E3C02AC193F800E5720D /* InspectorFloretFormatter.swift in Sources */,
 				5044B7E821F2853A006908B2 /* NoCacheFloret.swift in Sources */,
 				1FB3296F2181CBCD001CA03D /* RecordSelector.swift in Sources */,
 				50576BBA210E173C0085DF5E /* Floret.swift in Sources */,
@@ -655,6 +673,7 @@
 				1F6BB4562163609100D56F4F /* Configuration.swift in Sources */,
 				1F7BF23020F790F50023D219 /* URLSessionConfiguration+Swizzling.swift in Sources */,
 				1F7BF22E20F77B6C0023D219 /* Record.swift in Sources */,
+				5C51E3BE2AC193F800E5720D /* InspectorFloretFormatterType.swift in Sources */,
 				1FA4A50D21B7C40100F1CA6B /* InspectorRecordTableViewCell.swift in Sources */,
 				5042C4D221EBE1B500652AC6 /* CauliViewController.swift in Sources */,
 				1F644F4A211B620B004C4271 /* WeakReference.swift in Sources */,
@@ -665,6 +684,7 @@
 				1F891AEB22271221000ECD61 /* HTTPBodyStreamFloret.swift in Sources */,
 				50B6C944212DF2D500BB1E57 /* NSError+Cauli.swift in Sources */,
 				1F95026A25F68A28006F8262 /* MappingsListViewController.swift in Sources */,
+				5C51E3BF2AC193F800E5720D /* RecordListFormattedData.swift in Sources */,
 				1F0EB9E0219DB32300060F28 /* MockFloret.swift in Sources */,
 				1F7BF22C20F77B0A0023D219 /* CauliURLProtocolDelegate.swift in Sources */,
 				5087DE9C21330018005B7080 /* URLResponseRepresentable.swift in Sources */,

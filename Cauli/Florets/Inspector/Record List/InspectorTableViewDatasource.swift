@@ -26,18 +26,24 @@ internal class InspectorTableViewDatasource: NSObject {
 
     internal private(set) var items: [Record] = [] {
         didSet {
-            filteredItems = self.filteredItems(in: items, with: filter)
+            filteredItems = self.items.filter(self.filter.selects)
         }
     }
     internal private(set) var filteredItems: [Record] = []
-    private var filter: RecordSelector? {
-        didSet {
-            filteredItems = self.filteredItems(in: items, with: filter)
-        }
-    }
     internal var filterString: String? {
         didSet {
-            updateFilter(with: filterString)
+            filteredItems = self.items.filter(self.filter.selects)
+        }
+    }
+    private var filter: RecordSelector {
+        guard let filterString = filterString, !filterString.isEmpty else {
+            return RecordSelector { _ in true }
+        }
+        return RecordSelector { record in
+            guard let urlString = record.designatedRequest.url?.absoluteString else {
+                return false
+            }
+            return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil
         }
     }
 
@@ -46,28 +52,6 @@ internal class InspectorTableViewDatasource: NSObject {
     init(formatter: InspectorFloretFormatterType) {
         self.formatter = formatter
         super.init()
-    }
-
-    private func filteredItems(in array: [Record], with filter: RecordSelector?) -> [Record] {
-        guard let filter = filter else { return array }
-        return array.filter(filter.selects)
-    }
-
-    private func updateFilter(with filterString: String?) {
-        guard let filterString = filterString, !filterString.isEmpty else {
-            filter = nil
-            return
-        }
-        filter = RecordSelector { record in
-            guard let urlString = record.designatedRequest.url?.absoluteString else {
-                return false
-            }
-            return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil
-        }
-    }
-
-    private func filter(records: [Record]) -> [Record] {
-        filteredItems(in: records, with: filter)
     }
 
     private func performBatchUpdate(in tableView: UITableView, updates: (() -> Void), completion: ((_ finished: Bool) -> Void)? = nil) {
@@ -84,7 +68,7 @@ internal class InspectorTableViewDatasource: NSObject {
     internal func append(records: [Record], to tableView: UITableView, completion: ((_ finished: Bool) -> Void)? = nil) {
         performBatchUpdate(in: tableView, updates: {
             let numberOfExistingRecords = filteredItems.count
-            let numberOfAddedRecords = filter(records: records).count
+            let numberOfAddedRecords = records.filter(filter.selects).count
             let indexPaths = (numberOfExistingRecords..<(numberOfExistingRecords + numberOfAddedRecords)).map { IndexPath(row: $0, section: 0) }
             tableView.insertRows(at: indexPaths, with: .bottom)
             items += records

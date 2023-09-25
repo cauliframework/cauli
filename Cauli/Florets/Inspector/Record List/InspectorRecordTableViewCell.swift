@@ -40,7 +40,7 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         if let stringToHighlight = stringToHighlight {
             var rangeToSearch = pathString.startIndex..<pathString.endIndex
             while let matchingRange = pathString.range(of: stringToHighlight, options: String.CompareOptions.caseInsensitive, range: rangeToSearch) {
-                pathAttributedString.addAttributes([.font: UIFont.boldSystemFont(ofSize: pathLabel.font.pointSize), .foregroundColor: tintColor], range: NSRange(matchingRange, in: pathString))
+                pathAttributedString.addAttributes([.font: UIFont.boldSystemFont(ofSize: pathLabel.font.pointSize), .foregroundColor: tintColor ?? .blue], range: NSRange(matchingRange, in: pathString))
                 rangeToSearch = matchingRange.upperBound..<pathString.endIndex
             }
         }
