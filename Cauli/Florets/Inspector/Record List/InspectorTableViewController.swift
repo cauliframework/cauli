@@ -27,7 +27,8 @@ internal class InspectorTableViewController: UITableViewController {
     private static let recordPageSize = 20
 
     var cauli: Cauli
-    let dataSource = InspectorTableViewDatasource()
+    let formatter: InspectorFloretFormatterType
+    lazy var dataSource = { InspectorTableViewDatasource(formatter: self.formatter) }()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -40,8 +41,9 @@ internal class InspectorTableViewController: UITableViewController {
         return searchController
     }()
 
-    init(_ cauli: Cauli) {
+    init(_ cauli: Cauli, formatter: InspectorFloretFormatterType) {
         self.cauli = cauli
+        self.formatter = formatter
         super.init(nibName: nil, bundle: nil)
     }
 

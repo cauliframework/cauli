@@ -20,32 +20,6 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
-
-/// The InspectorFloret lets you browse through and share your requests and responses from within the application. Just open `Cauli`s viewController.
-///
-/// You can
-/// * browse through all stored `Records`.
-/// * inspect details of a `Record`.
-/// * share details of a `Record`.
-/// * filter `Record`s by the request URL.
-public class InspectorFloret: DisplayingFloret {
-
-    public var description: String? = "Tap to inspect network requests and responses. Data is recorded as long as Cauli is enabled."
-
-    private let formatter: InspectorFloretFormatterType
-
-    /// Public initalizer to create an instance of the `InspectorFloret`.
-    public init() {
-        self.formatter = InspectorFloretFormatter()
-    }
-
-    public init(formatter: InspectorFloretFormatterType) {
-        self.formatter = formatter
-    }
-
-    public func viewController(_ cauli: Cauli) -> UIViewController {
-        InspectorTableViewController(cauli, formatter: formatter)
-    }
-
+public protocol InspectorFloretFormatterType {
+    func listFormattedData(for record: Record) -> InspectorFloret.RecordListFormattedData
 }

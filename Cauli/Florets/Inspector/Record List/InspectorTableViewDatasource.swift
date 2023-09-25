@@ -41,6 +41,13 @@ internal class InspectorTableViewDatasource: NSObject {
         }
     }
 
+    private let formatter: InspectorFloretFormatterType
+
+    init(formatter: InspectorFloretFormatterType) {
+        self.formatter = formatter
+        super.init()
+    }
+
     private func filteredItems(in array: [Record], with filter: RecordSelector?) -> [Record] {
         guard let filter = filter else { return array }
         return array.filter(filter.selects)
@@ -107,7 +114,8 @@ extension InspectorTableViewDatasource: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: InspectorRecordTableViewCell.reuseIdentifier, for: indexPath) as? InspectorRecordTableViewCell else {
             fatalError("Unable to dequeue a cell")
         }
-        cell.configure(with: record(at: indexPath), stringToHighlight: filterString)
+        let data = formatter.listFormattedData(for: record(at: indexPath))
+        cell.configure(with: data, stringToHighlight: filterString)
         cell.accessoryType = .disclosureIndicator
         return cell
     }
