@@ -89,8 +89,7 @@ internal class InspectorTableViewDatasource: NSObject {
 extension InspectorTableViewDatasource: UITableViewDataSource {
     internal func setup(tableView: UITableView) {
         tableView.dataSource = self
-        let bundle = Bundle(for: InspectorTableViewController.self)
-        let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: bundle)
+        let nib = UINib(nibName: InspectorRecordTableViewCell.nibName, bundle: Cauli.bundle)
         tableView.register(nib, forCellReuseIdentifier: InspectorRecordTableViewCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 82.0
