@@ -4,6 +4,7 @@
 * **feature** Added a `MapRemoteFloret` that can change urls of requests before they are sent. [#216](https://github.com/cauliframework/cauli/issues/216) by @brototyp
 * **improvement** Added an optional description to florets [#176](https://github.com/cauliframework/cauli/issues/176) by @Shukuyen  
 * **improvement** Removed Cocoapods as a developer dependency in favor of SPM. [#238](https://github.com/cauliframework/cauli/pull/238)
+* **improvement** Extracted the `InspectorFloretFormatter` to increase customizability if the `InspectorFloret`. [#239](https://github.com/cauliframework/cauli/pull/239)
 * **bugfix** Fixed an issue where cauli didn’t pass the redirection information up to the application. [#196](https://github.com/cauliframework/cauli/issues/196)
 * **bugfix** Fixed an issue when using Cauli via SPM. [#238](https://github.com/cauliframework/cauli/pull/238)
 

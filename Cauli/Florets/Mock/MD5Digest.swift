@@ -187,3 +187,4 @@ private struct MD5State {
         (a, b, c, d) = (d, b &+ r, b, c)
     }
 }
+// swiftlint:enable all

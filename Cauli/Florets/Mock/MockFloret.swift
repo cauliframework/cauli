@@ -63,7 +63,7 @@ import Foundation
 /// ```
 public class MockFloret: InterceptingFloret {
 
-    public var enabled: Bool = true
+    public var enabled = true
 
     private let mode: Mode
 

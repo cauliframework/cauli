@@ -74,10 +74,11 @@ extension RecordTableViewController {
     }
 
     private func presentActionSelection(for item: RecordTableViewDatasource.Item, from cell: UITableViewCell) {
+        guard let valueGenerator = item.value else { return }
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         for prettyPrinter in RecordTableViewController.prettyPrinter {
-            if let value = item.value(), let viewController = prettyPrinter.viewController(for: value) {
+            if let viewController = prettyPrinter.viewController(for: valueGenerator()) {
                 alertController.addAction(UIAlertAction(title: prettyPrinter.name, style: .default) { [weak self] _ in
                     self?.navigationController?.pushViewController(viewController, animated: true)
                 })
@@ -85,7 +86,7 @@ extension RecordTableViewController {
         }
 
         alertController.addAction(UIAlertAction(title: "Share", style: .default) { [weak self] _ in
-            let activityItem = item.value() ?? item.description
+            let activityItem = valueGenerator()
             self?.presentShareSheet(for: [activityItem], from: cell)
         })
 

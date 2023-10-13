@@ -67,6 +67,12 @@ extension RecordTableViewDatasource: UITableViewDataSource {
             recordItemCell.textLabel?.text = item.title
             recordItemCell.detailTextLabel?.text = item.description
             recordItemCell.detailTextLabel?.numberOfLines = 15
+
+            if item.value != nil {
+                recordItemCell.accessoryType = .disclosureIndicator
+            } else {
+                recordItemCell.accessoryType = .none
+            }
         }
 
         return recordItemCell
@@ -87,23 +93,18 @@ extension RecordTableViewDatasource {
     struct Item {
         let title: String
         let description: String
-        let value: () -> (Any?)
+        let value: (() -> (Any))?
     }
 }
 
+// swiftlint:disable trailing_closure
 extension RecordTableViewDatasource.Item {
     init(title: String, description: String) {
         self.init(title: title, description: description, value: nil)
     }
-    init(title: String, description: String, value: @autoclosure @escaping () -> (Any?)) {
-        self.title = title
-        self.description = description
-        self.value = value
-    }
     static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
-        // swiftlint:disable trailing_closure
-        return RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
-            guard let data = response.data else { return nil }
+        RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
+            guard let data = response.data else { return nil as URL? as Any }
             let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
             let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
             let filePath = tmpFolder.appendingPathComponent(fileName)
@@ -111,10 +112,9 @@ extension RecordTableViewDatasource.Item {
                 try data.write(to: filePath)
                 return filePath
             } catch {
-                return nil
+                return nil as URL? as Any
             }
         })
-        // swiftlint:enable trailing_closure
     }
 }
 
@@ -124,11 +124,9 @@ extension RecordTableViewDatasource.Section {
         var requestItems: [RecordTableViewDatasource.Item] = []
         requestItems.append(RecordTableViewDatasource.Item(title: "Method", description: request.httpMethod ?? "-"))
         requestItems.append(RecordTableViewDatasource.Item(title: "URL", description: request.url?.absoluteString ?? "-"))
-        requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in
-            "\(key): \(value)"
-        }
-            .joined(separator: "\n") ?? "-", value: request.allHTTPHeaderFields))
-        requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(request.httpBody?.count ?? 0) bytes", value: request.httpBody))
+        requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in "\(key): \(value)" }
+            .joined(separator: "\n") ?? "-", value: { request.allHTTPHeaderFields }))
+        requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(request.httpBody?.count ?? 0) bytes", value: { request.httpBody }))
         requestItems.append(RecordTableViewDatasource.Item(title: "Cache Policy", description: String(request.cachePolicy.rawValue)))
         self.init(title: "Request", items: requestItems)
     }
@@ -139,12 +137,12 @@ extension RecordTableViewDatasource.Section {
         case .error(let error)?:
             resultItems.append(RecordTableViewDatasource.Item(title: "Error", description: error.localizedDescription))
         case .result(let response)?:
-            resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-", value: response.urlResponse.url))
+            resultItems.append(RecordTableViewDatasource.Item(title: "URL", description: response.urlResponse.url?.absoluteString ?? "-", value: { response.urlResponse.url }))
             if let httpUrlResponse = response.urlResponse as? HTTPURLResponse {
                 resultItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: httpUrlResponse.allHeaderFields.compactMap { key, value in
                     "\(key): \(value)"
                 }
-                    .joined(separator: "\n"), value: httpUrlResponse.allHeaderFields))
+                    .joined(separator: "\n"), value: { httpUrlResponse.allHeaderFields }))
                 resultItems.append(RecordTableViewDatasource.Item(title: "Status Code", description: "\(httpUrlResponse.statusCode)"))
             }
             resultItems.append(RecordTableViewDatasource.Item.forBody(in: response))
@@ -154,3 +152,4 @@ extension RecordTableViewDatasource.Section {
     }
 
 }
+// swiftlint:enable trailing_closure

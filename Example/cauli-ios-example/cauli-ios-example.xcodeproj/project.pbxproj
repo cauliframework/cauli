@@ -18,6 +18,7 @@
 		1FBA701E2118743E0078F6AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA701C2118743E0078F6AD /* Main.storyboard */; };
 		1FBA70202118743F0078F6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA701F2118743F0078F6AD /* Assets.xcassets */; };
 		1FBA70232118743F0078F6AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA70212118743F0078F6AD /* LaunchScreen.storyboard */; };
+		5C51E3C22AC1CE5300E5720D /* CustomInspectorFloretFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51E3C12AC1CE5300E5720D /* CustomInspectorFloretFormatter.swift */; };
 		5CADAC032ABDD46100ECB901 /* Cauliframework in Frameworks */ = {isa = PBXBuildFile; productRef = 5CADAC022ABDD46100ECB901 /* Cauliframework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		1FBA701F2118743F0078F6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FBA70222118743F0078F6AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FBA70242118743F0078F6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C51E3C12AC1CE5300E5720D /* CustomInspectorFloretFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInspectorFloretFormatter.swift; sourceTree = "<group>"; };
 		5C58F74D2ABDE6460092D5F4 /* cauli */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = cauli; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 				1FBA70242118743F0078F6AD /* Info.plist */,
 				1FA4A52621C93A8700F1CA6B /* MockFloret */,
 				1F85D9C021664F850077AB81 /* Cauli+Customized.swift */,
+				5C51E3C12AC1CE5300E5720D /* CustomInspectorFloretFormatter.swift */,
 				1F45CF20221C8B8E00DA929D /* File.txt */,
 			);
 			path = "cauli-ios-example";
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FBA701B2118743E0078F6AD /* RequestsTableViewController.swift in Sources */,
+				5C51E3C22AC1CE5300E5720D /* CustomInspectorFloretFormatter.swift in Sources */,
 				1FBA70192118743E0078F6AD /* AppDelegate.swift in Sources */,
 				1F2749EE21A0C13200A6DD6E /* RequestModelTableViewCell.swift in Sources */,
 				1F85D9C121664F850077AB81 /* Cauli+Customized.swift in Sources */,

@@ -33,11 +33,22 @@ public class InspectorFloret: DisplayingFloret {
 
     public var description: String? = "Tap to inspect network requests and responses. Data is recorded as long as Cauli is enabled."
 
+    private let formatter: InspectorFloretFormatterType
+
     /// Public initalizer to create an instance of the `InspectorFloret`.
-    public init() {}
+    public init() {
+        self.formatter = InspectorFloretFormatter()
+    }
+
+    /// Public initializer to create an instace of the `InspectorFloret` with a custom
+    /// formatter. See `InspectorFloretFormatterType` for further details.
+    /// - Parameter formatter: The `InspectorFloretFormatterType` to be used.
+    public init(formatter: InspectorFloretFormatterType) {
+        self.formatter = formatter
+    }
 
     public func viewController(_ cauli: Cauli) -> UIViewController {
-        InspectorTableViewController(cauli)
+        InspectorTableViewController(cauli, formatter: formatter)
     }
 
 }

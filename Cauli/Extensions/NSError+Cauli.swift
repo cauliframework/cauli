@@ -63,3 +63,4 @@ extension NSError {
         }
     }
 }
+// swiftlint:enable nesting
