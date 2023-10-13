@@ -38,6 +38,7 @@ extension InspectorFloret {
         /// The text color of the status label will be white.
         public let statusColor: UIColor
 
+        /// Initializes a new `RecordListFormattedData`. Parameter match property documentation
         public init(method: String, path: String, time: String, status: String, statusColor: UIColor) {
             self.method = method
             self.path = path

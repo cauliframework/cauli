@@ -1,7 +1,7 @@
 # ![Cauli](https://cauli.works/logo.png)
 
 [![Tests](https://github.com/cauliframework/cauli/workflows/Tests/badge.svg)](https://github.com/cauliframework/cauli/actions)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Cauliframework.svg?style=flat-square)](https://cocoapods.org/pods/Cauliframework)
+[![SPM Compatible](https://camo.githubusercontent.com/86f8561418bbd6240d5c39dbf80b83a3dc1e85e69fe58da808f0168194dcc0d3/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5377696674504d2d436f6d70617469626c652d627269676874677265656e2e737667)](https://github.com/cauliframework/cauli/blob/develop/Package.swift)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/cauliframework/cauli/blob/develop/LICENSE)
 [![Jazzy documentation](https://cauli.works/docs/badge.svg)](https://cauli.works/docs/)
 
