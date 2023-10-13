@@ -25,15 +25,13 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 
 ### Installation
 
-```
-
 #### [Swift Package Manager](https://swift.org/package-manager/)
 
 The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into the swift compiler. Once you have your Swift package set up, add the following to your `Package.swift` file.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/cauliframework/cauli.git", from: "1.0.1")
+    .package(url: "https://github.com/cauliframework/cauli.git", from: "1.1")
 ]
 ```
 
