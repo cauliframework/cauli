@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+* **bugfix** Fixed an issue were the inspector wouldn’t use the formatters filter. [#246](https://github.com/cauliframework/cauli/pull/246)
+
 ## 1.1
 * **feature** Added a `MapRemoteFloret` that can change urls of requests before they are sent. [#216](https://github.com/cauliframework/cauli/issues/216) by @brototyp
 * **improvement** Added an optional description to florets [#176](https://github.com/cauliframework/cauli/issues/176) by @Shukuyen  

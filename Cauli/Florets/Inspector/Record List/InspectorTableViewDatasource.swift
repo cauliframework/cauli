@@ -40,10 +40,7 @@ internal class InspectorTableViewDatasource: NSObject {
             return RecordSelector { _ in true }
         }
         return RecordSelector { record in
-            guard let urlString = record.designatedRequest.url?.absoluteString else {
-                return false
-            }
-            return urlString.range(of: filterString, options: String.CompareOptions.caseInsensitive) != nil
+            self.formatter.recordMatchesQuery(record: record, query: filterString)
         }
     }
 
