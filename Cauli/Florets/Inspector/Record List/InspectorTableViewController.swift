@@ -65,6 +65,13 @@ internal class InspectorTableViewController: UITableViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        if let rect = self.navigationController?.navigationBar.frame {
+            let y = rect.size.height + rect.origin.y
+            self.tableView.contentInset = UIEdgeInsets( top: y, left: 0, bottom: 0, right: 0)
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if dataSource.items.isEmpty {
