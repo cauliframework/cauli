@@ -24,7 +24,7 @@ jobs:
           - runner: macos-26
             xcode: "latest-stable"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: ${{ matrix.xcode }}
@@ -44,7 +44,7 @@ jobs:
     name: Build Example App
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: "16.4"
@@ -61,7 +61,7 @@ jobs:
     name: Lint Podspec
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: "16.4"
@@ -75,6 +75,6 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/realm/swiftlint:0.57.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Run SwiftLint
         run: swiftlint lint --reporter github-actions-logging
