@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 //
 // Cauliframework
 //
@@ -8,7 +8,7 @@ import PackageDescription
 let package = Package(
     name: "Cauliframework",
     platforms: [
-        .iOS(.v11),
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -22,8 +22,13 @@ let package = Package(
             dependencies: [],
             path: "Cauli",
             resources: [
-              .process("Resources/*")
+                .process("Resources")
             ]
+        ),
+        .testTarget(
+            name: "CauliframeworkTests",
+            dependencies: ["Cauliframework"],
+            path: "CauliTests"
         )
     ],
     swiftLanguageVersions: [.v5]

@@ -1,5 +1,6 @@
 module: Cauliframework
-xcodebuild_arguments: [-workspace, Cauliframework.xcworkspace, -scheme, Cauliframework]
+swift_build_tool: xcodebuild
+xcodebuild_arguments: [-scheme, Cauliframework, -destination, generic/platform=iOS]
 author_url: https://cauli.works
 github_url: https://github.com/cauliframework/cauli
 output: docs/generated

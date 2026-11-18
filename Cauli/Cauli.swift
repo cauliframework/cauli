@@ -95,7 +95,7 @@ public class Cauli {
 private extension Cauli {
     // We use this static property here to ensure the actual setup
     // is performed only once
-    static let _setup: Void = {
+    static let performSetupOnce: Void = {
         URLProtocol.registerClass(CauliURLProtocol.self)
         URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
         return
@@ -105,7 +105,7 @@ private extension Cauli {
     ///
     /// Call this as early as possible, preferred in the [application:didFinishLaunchingWithOptions:](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application).
     static func setup() {
-        _ = _setup
+        _ = performSetupOnce
     }
 }
 

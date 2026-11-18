@@ -33,7 +33,7 @@ internal class MappingsListDataSource: NSObject, UITableViewDataSource {
     }
 
     func setup(_ tableView: UITableView) {
-        let bundle = Bundle(for: SwitchTableViewCell.self)
+        let bundle = Cauli.bundle
         tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
     }
 

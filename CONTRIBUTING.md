@@ -28,6 +28,12 @@ Somebody will add two eyes to your code and might give some feedback. Got some c
 
 Checked out the repository and would like some guidance to find your way?
 
-* We are using SPM to manage our testing dependencies, [Quick](https://github.com/Quick/Quick), [Nimble](https://github.com/Quick/Nimble) and OHHTTPStubs.
-* Just open the `Cauliframework.xcworkspace`. Here you can find all the code that make up Cauli.
-* Have you seen the `Example` folder? In there we added an iOS example application. Open the `cauli-ios-example.xcworkspace` and have a look. You can use the example app to play around, test your changes or sketch out a new idea for a Floret.
+* Cauli is a Swift package. Just open the `Package.swift` in Xcode. Here you can find all the code that make up Cauli.
+* The unit tests use plain XCTest and don't need any third party dependencies. Run them with `⌘U` in Xcode, or from the command line:
+  ```sh
+  xcodebuild test -scheme Cauliframework -destination 'platform=iOS Simulator,name=iPhone 16'
+  ```
+* Have you seen the `Example` folder? In there we added an iOS example application. Open the `cauli-ios-example.xcodeproj` and have a look. You can use the example app to play around, test your changes or sketch out a new idea for a Floret.
+* Please add an entry to the `CHANGELOG.md` for every change that affects the framework.
+* The documentation is generated with [jazzy](https://github.com/realm/jazzy): `bundle install && bundle exec jazzy`. Ruby is only needed for this.
+* CocoaPods is only used for distribution. The `Cauliframework.podspec` is linted on CI, but there is no need to install CocoaPods for development.

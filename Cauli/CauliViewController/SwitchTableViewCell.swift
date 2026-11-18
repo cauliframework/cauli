@@ -41,8 +41,4 @@ internal class SwitchTableViewCell: UITableViewCell {
     @IBAction private func switchValueChanged(_ sender: UISwitch) {
         switchValueChanged?(sender.isOn)
     }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }

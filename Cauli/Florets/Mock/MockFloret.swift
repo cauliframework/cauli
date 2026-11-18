@@ -238,7 +238,7 @@ internal extension Response {
     static func notFound(for request: URLRequest) -> Response {
         // swiftlint:disable force_unwrapping
         let url = request.url ?? URL(string: "http://example.com")!
-        let body = "<html><head></head><body><h1>404 - No Mock found</h1></body></html>".data(using: .utf8)!
+        let body = Data("<html><head></head><body><h1>404 - No Mock found</h1></body></html>".utf8)
         let urlResponse = HTTPURLResponse(url: url, statusCode: 404, httpVersion: "1.1", headerFields: nil)!
         // swiftlint:enable force_unwrapping
         return Response(urlResponse, data: body)
