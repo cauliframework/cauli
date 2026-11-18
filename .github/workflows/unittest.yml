@@ -32,11 +32,13 @@ jobs:
         run: xcodebuild -version
       - name: Run unit tests
         run: |
-          DESTINATION="$(.github/scripts/simulator-destination.sh)"
-          echo "Testing on ${DESTINATION}"
+          IPHONE="$(.github/scripts/simulator-destination.sh iPhone)"
+          IPAD="$(.github/scripts/simulator-destination.sh iPad)"
+          echo "Testing on ${IPHONE} and ${IPAD}"
           xcodebuild test \
             -scheme Cauliframework \
-            -destination "${DESTINATION}" \
+            -destination "${IPHONE}" \
+            -destination "${IPAD}" \
             -configuration Debug \
             -skipPackagePluginValidation
 
