@@ -20,14 +20,31 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+import Cauliframework
+import Foundation
+import XCTest
 
-//! Project version number for Cauli.
-FOUNDATION_EXPORT double CauliVersionNumber;
+final class CauliTests: XCTestCase {
 
-//! Project version string for Cauli.
-FOUNDATION_EXPORT const unsigned char CauliVersionString[];
+    // MARK: - init
 
-// In this header, you should import all the public headers of your framework using statements like #import <Cauli/PublicHeader.h>
+    func testInitDoesNotCreateARetainCycle() {
+        var strongCauli: Cauli? = Cauli([], configuration: Configuration.standard)
+        weak var weakCauli: Cauli? = strongCauli
+        strongCauli = nil
+        XCTAssertNil(weakCauli)
+    }
 
+    func testInitUsesTheStandardConfigurationWhenNoParameterWasGiven() {
+        let cauli = Cauli([])
+        XCTAssertEqual(cauli.storage.capacity, Configuration.standard.storageCapacity)
+    }
 
+    func testInitConfiguresTheStorageWithTheCorrectStorageCapacity() {
+        let cauli = Cauli([], configuration: Configuration(recordSelector: RecordSelector(selects: { _ in true }), enableShakeGesture: true, storageCapacity: .unlimited))
+        XCTAssertEqual(cauli.storage.capacity, .unlimited)
+
+        let cauli2 = Cauli([], configuration: Configuration(recordSelector: RecordSelector(selects: { _ in true }), enableShakeGesture: true, storageCapacity: .records(10)))
+        XCTAssertEqual(cauli2.storage.capacity, .records(10))
+    }
+}

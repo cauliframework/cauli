@@ -5,40 +5,76 @@ on:
     branches: [ master, develop ]
   pull_request:
     branches: [ master, develop ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
-    runs-on: macos-12
+    name: "Test (Xcode ${{ matrix.xcode }})"
+    runs-on: ${{ matrix.runner }}
     strategy:
+      fail-fast: false
       matrix:
-        include: # selection of https://github.com/actions/runner-images/blob/macOS-12/20230916.1/images/macos/macos-12-Readme.md#installed-simulators
-          - xcode: "13.4.1"
-            ios: "15.5"
-            device: "iPhone 8"
-          - xcode: "14.2"
-            ios: "16.2"
-            device: "iPhone 8"
-    if: github.event_name  == 'pull_request' # if only run pull request when multiple trigger workflow
-    name: "test ios ${{matrix.ios}}"
+        include:
+          - runner: macos-15
+            xcode: "16.4"
+          - runner: macos-26
+            xcode: "latest-stable"
     steps:
-    - uses: actions/checkout@v3
-    - name: "Select Xcode ${{matrix.xcode}}"
-      run: sudo xcode-select -switch /Applications/Xcode_${{matrix.xcode}}.app && /usr/bin/xcodebuild -version
-    - name: Run Unit Tests on ${{matrix.ios}} ${{matrix.device}}
-      run: xcodebuild -workspace Cauliframework.xcworkspace -scheme 'Cauliframework' -sdk 'iphonesimulator' -destination 'platform=iOS Simulator,name=${{matrix.device}},OS=${{matrix.ios}}' -configuration Debug clean test
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ matrix.xcode }}
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Run unit tests
+        run: |
+          DESTINATION="$(.github/scripts/simulator-destination.sh)"
+          echo "Testing on ${DESTINATION}"
+          xcodebuild test \
+            -scheme Cauliframework \
+            -destination "${DESTINATION}" \
+            -configuration Debug \
+            -skipPackagePluginValidation
+
   build-example-app:
-    runs-on: macos-12
-    if: github.event_name  == 'pull_request' # if only run pull request when multiple trigger workflow
-    name: "Build Example App"
+    name: Build Example App
+    runs-on: macos-15
     steps:
-    - uses: actions/checkout@v3
-    - name: Build Example App
-      run: xcodebuild -workspace Example/cauli-ios-example/cauli-ios-example.xcworkspace -scheme 'Cauliframework'  -destination 'platform=iOS Simulator,name=iPhone 8,OS=16.2' -configuration Release clean build
-  build-spm:
-    runs-on: macos-12
-    if: github.event_name  == 'pull_request' # if only run pull request when multiple trigger workflow
-    name: "Build SPM"
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.4"
+      - name: Build example app
+        run: |
+          xcodebuild build \
+            -project Example/cauli-ios-example/cauli-ios-example.xcodeproj \
+            -scheme cauli-ios-example \
+            -destination "generic/platform=iOS Simulator" \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO
+
+  lint-podspec:
+    name: Lint Podspec
+    runs-on: macos-15
     steps:
-    - uses: actions/checkout@v3
-    - name: Build SPM
-      run: swift build -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios16.2-simulator"
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.4"
+      - name: Install CocoaPods
+        run: command -v pod || sudo gem install cocoapods
+      - name: Lint podspec
+        run: pod lib lint Cauliframework.podspec --allow-warnings
+
+  swiftlint:
+    name: SwiftLint
+    runs-on: ubuntu-latest
+    container: ghcr.io/realm/swiftlint:0.57.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging

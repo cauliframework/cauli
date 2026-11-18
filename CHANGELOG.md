@@ -1,6 +1,11 @@
 # Changelog
 
 ## Unreleased
+* **improvement** Raised the minimum deployment target to iOS 13.
+* **improvement** Migrated the unit tests from Quick, Nimble and OHHTTPStubs to XCTest. The tests are now part of the `Package.swift`, the Xcode project and workspace have been removed.
+* **improvement** Removed Danger and the remaining CocoaPods development setup. CocoaPods is only used for distribution.
+* **improvement** Updated the CI to current macOS runners and Xcode versions and added SwiftLint and podspec linting.
+* **bugfix** Fixed the `MapRemoteFloret` list not loading its cell when using Cauli via SPM.
 * **bugfix** Fixed an issue were the inspector wouldn’t use the formatters filter. [#246](https://github.com/cauliframework/cauli/pull/246)
 
 ## 1.1
