@@ -24,15 +24,21 @@
 import Foundation
 
 class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {
+    /// Decides whether a record is handled. Defaults to handling every record.
+    var handlesClosure: ((Record) -> Bool)?
     var willRequestClosure: ((inout Record) -> Void)?
     var didRespondClosure: ((inout Record) -> Void)?
-    
+    /// Takes over `willRequest` completely, e.g. to call the completion handler later.
+    var willRequestHandler: ((Record, @escaping (Record) -> Void) -> Void)?
+
     func handles(_ record: Record) -> Bool {
-        return true
+        handlesClosure?(record) ?? true
     }
-    
+
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
-        if let willRequestClosure = willRequestClosure {
+        if let willRequestHandler = willRequestHandler {
+            willRequestHandler(record, completionHandler)
+        } else if let willRequestClosure = willRequestClosure {
             var updatedRecord = record
             willRequestClosure(&updatedRecord)
             completionHandler(updatedRecord)
@@ -40,7 +46,7 @@ class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {
             completionHandler(record)
         }
     }
-    
+
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         if let didRespondClosure = didRespondClosure {
             var updatedRecord = record
@@ -50,5 +56,4 @@ class CauliURLProtocolDelegateStub: CauliURLProtocolDelegate {
             completionHandler(record)
         }
     }
-    
 }

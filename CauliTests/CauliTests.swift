@@ -20,7 +20,7 @@
 //  THE SOFTWARE.
 //
 
-import Cauliframework
+@testable import Cauliframework
 import Foundation
 import XCTest
 
@@ -46,5 +46,42 @@ final class CauliTests: XCTestCase {
 
         let cauli2 = Cauli([], configuration: Configuration(recordSelector: RecordSelector(selects: { _ in true }), enableShakeGesture: true, storageCapacity: .records(10)))
         XCTAssertEqual(cauli2.storage.capacity, .records(10))
+    }
+
+    // MARK: - Regression: the main thread waiting for a request
+
+    func testWillRequestCompletesWhileTheMainThreadWaitsForTheRequest() {
+        assertCompletesWhileTheMainThreadIsBlocked { cauli, record, completion in
+            cauli.willRequest(record, modificationCompletionHandler: completion)
+        }
+    }
+
+    func testDidRespondCompletesWhileTheMainThreadWaitsForTheResponse() {
+        assertCompletesWhileTheMainThreadIsBlocked { cauli, record, completion in
+            cauli.didRespond(record, modificationCompletionHandler: completion)
+        }
+    }
+
+    /// Calls `operation` on a background thread, like the URL loading system does, while the main thread
+    /// blocks until it completes, like `Data(contentsOf:)` or a semaphore around a request in the app would.
+    private func assertCompletesWhileTheMainThreadIsBlocked(file: StaticString = #filePath, line: UInt = #line, _ operation: @escaping (Cauli, Record, @escaping (Record) -> Void) -> Void) {
+        let cauli = Cauli([], configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .unlimited))
+        cauli.run()
+        let completed = DispatchSemaphore(value: 0)
+        let eventuallyCompleted = expectation(description: "operation eventually completed")
+
+        DispatchQueue.global().async {
+            operation(cauli, Record.fake()) { _ in
+                completed.signal()
+                eventuallyCompleted.fulfill()
+            }
+        }
+
+        let result = completed.wait(timeout: .now() + 2)
+        XCTAssertEqual(result, .success, "deadlock: Cauli waits for the main thread, while the main thread waits for Cauli", file: file, line: line)
+
+        // Clean up: stop handling records and let a pending `DispatchQueue.main.sync` run, so nothing leaks into other tests.
+        cauli.pause()
+        wait(for: [eventuallyCompleted], timeout: 5)
     }
 }
