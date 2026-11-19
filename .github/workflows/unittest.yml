@@ -21,7 +21,7 @@ jobs:
         include:
           - runner: macos-15
             xcode: "16.4"
-          - runner: macos-26
+          - runner: macos-15
             xcode: "latest-stable"
     steps:
       - uses: actions/checkout@v5
@@ -40,7 +40,15 @@ jobs:
             -destination "${IPHONE}" \
             -destination "${IPAD}" \
             -configuration Debug \
+            -resultBundlePath TestResults.xcresult \
             -skipPackagePluginValidation
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults-Xcode-${{ matrix.xcode }}
+          path: TestResults.xcresult
+          if-no-files-found: ignore
 
   build-example-app:
     name: Build Example App
