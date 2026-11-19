@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **feature** Added a cURL command to the request details of the `InspectorFloret`, which can be viewed, copied and shared. Based on [#222](https://github.com/cauliframework/cauli/pull/222) by @pstued
 * **bugfix** Fixed the `MapRemoteFloret`'s mappings not being reachable from the Cauli menu. It is now listed as displaying floret as well.
 * **bugfix** Fixed responses being delivered with duplicated data, or data before the response, once a record stops being handled while it loads, e.g. a chunked response growing beyond the `RecordSelector.max(bytesize:)` limit.
 * **bugfix** Fixed a stopped request still being started, or reported to the client, when the florets finished modifying it afterwards.

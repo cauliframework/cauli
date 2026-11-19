@@ -85,3 +85,32 @@ final class RecordTableViewControllerTests: XCTestCase {
                       file: file, line: line)
     }
 }
+
+final class RecordTableViewControllerActionTests: XCTestCase {
+
+    private final class PresentationCapturingRecordTableViewController: RecordTableViewController {
+        var presentedControllers: [UIViewController] = []
+
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            presentedControllers.append(viewControllerToPresent)
+        }
+    }
+
+    func testSelectingTheCURLRowOffersToCopyIt() throws {
+        let sut = PresentationCapturingRecordTableViewController(Record(URLRequest(url: URL(string: "https://cauli.works")!)))
+        sut.loadViewIfNeeded()
+        sut.view.frame = CGRect(x: 0, y: 0, width: 768, height: 1024)
+        sut.tableView.reloadData()
+        sut.tableView.layoutIfNeeded()
+        let cURLRow = try XCTUnwrap(sut.datasource.sections.first?.items.firstIndex { $0.title == "cURL" })
+        let indexPath = IndexPath(row: cURLRow, section: 0)
+        sut.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+        sut.tableView.layoutIfNeeded()
+        XCTAssertNotNil(sut.tableView.cellForRow(at: indexPath), "the row must be laid out to be selectable")
+
+        sut.tableView(sut.tableView, didSelectRowAt: indexPath)
+
+        let actionSheet = try XCTUnwrap(sut.presentedControllers.last as? UIAlertController)
+        XCTAssertTrue(actionSheet.actions.contains { $0.title == "Copy" })
+    }
+}
