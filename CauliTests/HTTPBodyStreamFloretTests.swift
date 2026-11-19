@@ -47,6 +47,23 @@ final class HTTPBodyStreamFloretTests: XCTestCase {
         let record = waitForCompletion { floret.willRequest(Record(request(withBodyStream: InputStream(data: body))), modificationCompletionHandler: $0) }
 
         XCTAssertEqual(record.map(bodyData(of:)), body, "the request must still be sent with its complete body")
+        if let record = record {
+            waitForCompletion { floret.didRespond(record, modificationCompletionHandler: $0) }
+        }
+    }
+
+    func testRemovesTheTemporaryBodyFileOnceTheResponseArrived() throws {
+        let body = Data(repeating: 7, count: 100 * 1024)
+        let floret = HTTPBodyStreamFloret(maximumConvertedByteSize: 50 * 1024)
+        let existingFiles = try temporaryBodyFiles()
+
+        let record = try XCTUnwrap(waitForCompletion { floret.willRequest(Record(request(withBodyStream: InputStream(data: body))), modificationCompletionHandler: $0) })
+        let createdFiles = try temporaryBodyFiles().subtracting(existingFiles)
+        XCTAssertEqual(createdFiles.count, 1, "a body above the limit is expected to be kept in a temporary file")
+
+        waitForCompletion { floret.didRespond(record, modificationCompletionHandler: $0) }
+
+        XCTAssertTrue(try temporaryBodyFiles().isDisjoint(with: createdFiles), "the temporary file should be removed")
     }
 
     // MARK: - Regression: streams that fail while reading
@@ -54,7 +71,7 @@ final class HTTPBodyStreamFloretTests: XCTestCase {
     func testDoesNotCrashWhenTheStreamFailsWhileReading() {
         let floret = HTTPBodyStreamFloret()
 
-        // Currently `read` returns -1 and `Data.append(_:count:)` traps on the negative count.
+        // `read` returns -1, which must not be used as a byte count.
         let record = waitForCompletion { floret.willRequest(Record(request(withBodyStream: FailingInputStream())), modificationCompletionHandler: $0) }
 
         XCTAssertNotNil(record)
@@ -62,6 +79,10 @@ final class HTTPBodyStreamFloretTests: XCTestCase {
     }
 
     // MARK: - Helper
+
+    private func temporaryBodyFiles() throws -> Set<String> {
+        Set(try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory()).filter { $0.hasPrefix("cauli-httpbody-") })
+    }
 
     private func request(withBodyStream stream: InputStream) -> URLRequest {
         var request = URLRequest(url: url)
