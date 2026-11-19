@@ -55,6 +55,8 @@ internal class RecordTableViewController: UITableViewController {
         let allRecordFiles = (try? FileManager.default.contentsOfDirectory(at: tempPath, includingPropertiesForKeys: nil, options: [])) ?? []
 
         let viewContoller = UIActivityViewController(activityItems: allRecordFiles, applicationActivities: nil)
+        // Required on iPad, where the share sheet is presented as a popover.
+        viewContoller.popoverPresentationController?.barButtonItem = shareButton
         present(viewContoller, animated: true, completion: nil)
     }
 
@@ -91,6 +93,9 @@ extension RecordTableViewController {
         })
 
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        // Required on iPad, where the action sheet is presented as a popover.
+        alertController.popoverPresentationController?.sourceView = cell
+        alertController.popoverPresentationController?.sourceRect = cell.bounds
 
         present(alertController, animated: true, completion: nil)
     }
