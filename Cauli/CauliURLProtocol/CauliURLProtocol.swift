@@ -23,12 +23,6 @@
 import Foundation
 
 internal class CauliURLProtocol: URLProtocol {
-    private lazy var executingURLSession: URLSession = {
-        let sessionConfiguration = URLSessionConfiguration.default
-        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
-        return URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
-    }()
-
     private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
     private static var delegates: [CauliURLProtocolDelegate] {
         let nonNilDelegates = weakDelegates.filter { $0.value != nil }
@@ -36,8 +30,19 @@ internal class CauliURLProtocol: URLProtocol {
     }
 
     private var record: Record
-    private var dataTask: URLSessionDataTask?
     private var authenticationChallengeProxy: CauliAuthenticationChallengeProxy?
+
+    /// Guards `isStopped`, `executingURLSession` and `dataTask`, which are accessed from
+    /// the client's thread (`stopLoading`) and from the threads the florets complete on.
+    private let stateLock = NSLock()
+    private var isStopped = false
+    private var executingURLSession: URLSession?
+    private var dataTask: URLSessionDataTask?
+
+    /// `true` once the record is no longer handled while its response is loading,
+    /// e.g. because it exceeds the size allowed by the `RecordSelector`.
+    /// From then on the response is passed through to the client without being recorded.
+    private var isPassingThrough = false
 
     internal static func add(delegate: CauliURLProtocolDelegate) {
         weakDelegates.append(WeakReference(delegate))
@@ -74,6 +79,7 @@ extension CauliURLProtocol {
 
     override func startLoading() {
         willRequest(record) { record in
+            guard !self.hasStopped else { return }
             self.record = record
             self.record.requestStarted = Date()
             if case .result(_)? = record.result {
@@ -81,13 +87,17 @@ extension CauliURLProtocol {
             } else if case let .error(error)? = record.result {
                 self.urlSession(didCompleteWithError: error)
             } else {
-                self.dataTask = self.executingURLSession.dataTask(with: self.record.designatedRequest)
-                self.dataTask?.resume()
+                self.startDataTask(with: self.record.designatedRequest)
             }
         }
     }
 
     override func stopLoading() {
+        stateLock.lock()
+        isStopped = true
+        let dataTask = self.dataTask
+        stateLock.unlock()
+
         dataTask?.cancel()
         invalidateURLSession()
     }
@@ -96,6 +106,9 @@ extension CauliURLProtocol {
 extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         record.result = .result(Response(response, data: nil))
+        if !CauliURLProtocol.handles(record) {
+            startPassingThrough()
+        }
         completionHandler(.allow)
     }
 
@@ -104,13 +117,13 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive receivedData: Data) {
-        if CauliURLProtocol.handles(record) {
-            try? record.append(receivedData: receivedData)
-        } else {
-            if case let .result(response)? = record.result, let data = response.data {
-                self.client?.urlProtocol(self, didLoad: data)
-            }
+        if isPassingThrough {
             client?.urlProtocol(self, didLoad: receivedData)
+            return
+        }
+        try? record.append(receivedData: receivedData)
+        if !CauliURLProtocol.handles(record) {
+            startPassingThrough()
         }
     }
 
@@ -120,11 +133,22 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
 
     private func urlSession(didCompleteWithError error: Error?) {
         invalidateURLSession()
+        // After `stopLoading` the client must not be called anymore, e.g. for the cancellation error.
+        guard !hasStopped else { return }
+        if isPassingThrough {
+            if let error = error {
+                client?.urlProtocol(self, didFailWithError: error)
+            } else {
+                client?.urlProtocolDidFinishLoading(self)
+            }
+            return
+        }
         if let error = error {
             record.result = .error(error as NSError)
         }
 
         didRespond(record) { record in
+            guard !self.hasStopped else { return }
             self.record = record
             self.record.responseReceived = Date()
             switch record.result {
@@ -188,10 +212,45 @@ private extension CauliURLProtocol {
         })
     }
 
+    var hasStopped: Bool {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        return isStopped
+    }
+
+    func startDataTask(with request: URLRequest) {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        guard !isStopped else { return }
+        let sessionConfiguration = URLSessionConfiguration.default
+        sessionConfiguration.protocolClasses = sessionConfiguration.protocolClasses?.filter { $0 != CauliURLProtocol.self }
+        let session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        let dataTask = session.dataTask(with: request)
+        executingURLSession = session
+        self.dataTask = dataTask
+        dataTask.resume()
+    }
+
+    /// Stops recording the response and hands it to the client as it arrives.
+    /// The response and everything buffered so far is delivered once, before any further data.
+    func startPassingThrough() {
+        guard !isPassingThrough, case let .result(response)? = record.result else { return }
+        isPassingThrough = true
+        client?.urlProtocol(self, didReceive: response.urlResponse, cacheStoragePolicy: .allowed)
+        if let data = response.data {
+            client?.urlProtocol(self, didLoad: data)
+        }
+        // The record isn't handled anymore, so there is no need to keep the buffered data.
+        record.result = .result(Response(response.urlResponse, data: nil))
+    }
+
     /// A CauliURLProtocol instance holds a strong reference to its executingURLSession, which
     /// itself holds a strong reference to its delegate, the CauliURLProtocol instance.
     /// To break this retain cycle we have to call the `finishTasksAndInvalidate`.
     func invalidateURLSession() {
-        self.executingURLSession.finishTasksAndInvalidate()
+        stateLock.lock()
+        let executingURLSession = self.executingURLSession
+        stateLock.unlock()
+        executingURLSession?.finishTasksAndInvalidate()
     }
 }

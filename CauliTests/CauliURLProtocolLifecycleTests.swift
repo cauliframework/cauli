@@ -92,13 +92,18 @@ final class CauliURLProtocolLifecycleTests: XCTestCase {
         }
         let sut = makeProtocol()
 
+        let noClientCallbacks = expectation(description: "no client callbacks after stopLoading")
+        noClientCallbacks.isInverted = true
+        client.onEvent = { _ in noClientCallbacks.fulfill() }
+
         sut.startLoading()
         sut.stopLoading()
-        // Currently this creates a task on the already invalidated session, which raises
-        // "Task created in a session that has been invalidated" and crashes the test.
+        // Must neither start a request on the already invalidated session, nor report anything,
+        // also not asynchronously once the session would have failed or finished the task.
         pendingCompletion?(Record(URLRequest(url: url)))
 
         XCTAssertNotNil(pendingCompletion, "the delegate should have been asked to modify the request")
+        wait(for: [noClientCallbacks], timeout: 1)
         XCTAssertEqual(client.events, [], "a stopped protocol must not report anything to its client")
     }
 

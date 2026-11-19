@@ -36,6 +36,9 @@ final class URLProtocolClientSpy: NSObject, URLProtocolClient {
     private let lock = NSLock()
     private var recordedEvents: [Event] = []
 
+    /// Called after each recorded event, on the thread the protocol called the client on.
+    var onEvent: ((Event) -> Void)?
+
     var events: [Event] {
         lock.lock()
         defer { lock.unlock() }
@@ -55,6 +58,7 @@ final class URLProtocolClientSpy: NSObject, URLProtocolClient {
         lock.lock()
         recordedEvents.append(event)
         lock.unlock()
+        onEvent?(event)
     }
 
     func urlProtocol(_ protocol: URLProtocol, wasRedirectedTo request: URLRequest, redirectResponse: URLResponse) {
