@@ -20,15 +20,20 @@
 //  THE SOFTWARE.
 //
 
+@testable import Cauliframework
 import Foundation
 import ObjectiveC
 
 /// A `URLProtocol` that answers every request with a static JSON response,
 /// so that the tests never hit the network.
 ///
-/// `enable()` registers the protocol for `URLSession.shared` and injects it into
-/// every `URLSessionConfiguration.default`, which is what `CauliURLProtocol` uses
-/// to perform the actual request.
+/// `enable()` injects the protocol into every `URLSessionConfiguration.default`,
+/// directly after the `CauliURLProtocol` if it is there. This way a session created
+/// with `.default` is still intercepted by Cauli first, and the session the
+/// `CauliURLProtocol` uses to perform the actual request is answered by the stub.
+///
+/// It composes with Cauli's own swizzling of `URLSessionConfiguration.default`,
+/// as long as that is installed before `enable()` is called.
 final class StubURLProtocol: URLProtocol {
 
     static let stubData = Data("{\"response\":\"ok\"}".utf8)
@@ -43,7 +48,6 @@ final class StubURLProtocol: URLProtocol {
     static func enable() {
         guard !isEnabled else { return }
         isEnabled = true
-        URLProtocol.registerClass(StubURLProtocol.self)
         method_exchangeImplementations(defaultConfigurationGetter, stubbedConfigurationGetter)
     }
 
@@ -51,7 +55,6 @@ final class StubURLProtocol: URLProtocol {
         guard isEnabled else { return }
         isEnabled = false
         method_exchangeImplementations(defaultConfigurationGetter, stubbedConfigurationGetter)
-        URLProtocol.unregisterClass(StubURLProtocol.self)
     }
 
     override class func canInit(with request: URLRequest) -> Bool {
@@ -79,7 +82,10 @@ final class StubURLProtocol: URLProtocol {
 extension URLSessionConfiguration {
     @objc class func stubbedDefaultSessionConfiguration() -> URLSessionConfiguration {
         let configuration = stubbedDefaultSessionConfiguration() // since it is swizzled, this calls the original implementation
-        configuration.protocolClasses = [StubURLProtocol.self] + (configuration.protocolClasses ?? [])
+        var protocolClasses = configuration.protocolClasses ?? []
+        let stubIndex = protocolClasses.firstIndex { $0 == CauliURLProtocol.self }.map { $0 + 1 } ?? 0
+        protocolClasses.insert(StubURLProtocol.self, at: stubIndex)
+        configuration.protocolClasses = protocolClasses
         return configuration
     }
 }

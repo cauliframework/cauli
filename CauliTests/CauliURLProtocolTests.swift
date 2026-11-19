@@ -27,18 +27,23 @@ import XCTest
 final class CauliURLProtocolTests: XCTestCase {
 
     private let url = URL(string: "https://cauli.works")!
+    private var session: URLSession!
 
     override func setUp() {
         super.setUp()
-        // we are stubbing every request
+        // Creating a Cauli installs its URL loading hooks once for the whole process, which is
+        // what other tests do as well. Toggling them here would turn them off for everyone else.
+        _ = Cauli([], configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))
+        // We are stubbing every request.
         StubURLProtocol.enable()
-        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
-        URLProtocol.registerClass(CauliURLProtocol.self)
+        session = URLSession(configuration: .default)
+        XCTAssertTrue(session.configuration.protocolClasses?.first == CauliURLProtocol.self, "requests must reach Cauli first")
+        XCTAssertTrue(session.configuration.protocolClasses?.dropFirst().first == StubURLProtocol.self, "Cauli's own requests must reach the stub")
     }
 
     override func tearDown() {
-        URLProtocol.unregisterClass(CauliURLProtocol.self)
-        URLSessionConfiguration.cauliSwizzleDefaultSessionConfigurationGetter()
+        session.invalidateAndCancel()
+        session = nil
         StubURLProtocol.disable()
         super.tearDown()
     }
@@ -52,7 +57,7 @@ final class CauliURLProtocolTests: XCTestCase {
         delegate.willRequestClosure = { _ in willRequestCalled.fulfill() }
         CauliURLProtocol.add(delegate: delegate)
 
-        URLSession.shared.dataTask(with: url) { _, _, _ in }.resume()
+        session.dataTask(with: url) { _, _, _ in }.resume()
 
         wait(for: [willRequestCalled], timeout: 5)
     }
@@ -64,7 +69,7 @@ final class CauliURLProtocolTests: XCTestCase {
         delegate.didRespondClosure = { _ in didRespondCalled.fulfill() }
         CauliURLProtocol.add(delegate: delegate)
 
-        URLSession.shared.dataTask(with: url) { _, _, _ in }.resume()
+        session.dataTask(with: url) { _, _, _ in }.resume()
 
         wait(for: [didRespondCalled], timeout: 5)
     }
@@ -80,7 +85,7 @@ final class CauliURLProtocolTests: XCTestCase {
         CauliURLProtocol.remove(delegate: delegate)
 
         let requestFinished = expectation(description: "request finished")
-        URLSession.shared.dataTask(with: url) { _, _, _ in requestFinished.fulfill() }.resume()
+        session.dataTask(with: url) { _, _, _ in requestFinished.fulfill() }.resume()
 
         wait(for: [requestFinished], timeout: 5)
         XCTAssertFalse(didCallDelegateFunction)
@@ -155,7 +160,7 @@ final class CauliURLProtocolTests: XCTestCase {
 
         let requestFinished = expectation(description: "request finished")
         var receivedData: Data?
-        URLSession.shared.dataTask(with: url) { data, _, _ in
+        session.dataTask(with: url) { data, _, _ in
             receivedData = data
             requestFinished.fulfill()
         }.resume()
@@ -180,7 +185,7 @@ final class CauliURLProtocolTests: XCTestCase {
         }
         CauliURLProtocol.add(delegate: delegate)
 
-        URLSession.shared.dataTask(with: url) { _, _, _ in }.resume()
+        session.dataTask(with: url) { _, _, _ in }.resume()
 
         wait(for: [didRespondCalled], timeout: 5)
         return didRespondRecord
