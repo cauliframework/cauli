@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **bugfix** Fixed the `MapRemoteFloret`'s mappings not being reachable from the Cauli menu. It is now listed as displaying floret as well.
 * **bugfix** Fixed responses being delivered with duplicated data, or data before the response, once a record stops being handled while it loads, e.g. a chunked response growing beyond the `RecordSelector.max(bytesize:)` limit.
 * **bugfix** Fixed a stopped request still being started, or reported to the client, when the florets finished modifying it afterwards.
 * **bugfix** Fixed a deadlock when the main thread waits for a request that Cauli intercepts.

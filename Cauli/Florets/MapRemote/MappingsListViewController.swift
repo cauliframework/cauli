@@ -29,6 +29,7 @@ internal class MappingsListViewController: UITableViewController {
     init(mapRemoteFloret: MapRemoteFloret, mappings: [Mapping]) {
         self.dataSource = MappingsListDataSource(mapRemoteFloret: mapRemoteFloret, mappings: mappings)
         super.init(nibName: nil, bundle: nil)
+        title = mapRemoteFloret.name
         dataSource.setup(tableView)
         tableView.dataSource = dataSource
     }
