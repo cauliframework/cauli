@@ -34,7 +34,7 @@ import UIKit
 /// let floret = MapRemoteFloret(mappings: [httpsifyMapping, mapLocal])
 /// Cauli([floret])
 /// ```
-public class MapRemoteFloret: InterceptingFloret {
+public class MapRemoteFloret: InterceptingFloret, DisplayingFloret {
 
     internal var userDefaults = UserDefaults()
     public var enabled: Bool {
