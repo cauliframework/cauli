@@ -1,6 +1,11 @@
 # Changelog
 
 ## Unreleased
+* **bugfix** Fixed responses being delivered with duplicated data, or data before the response, once a record stops being handled while it loads, e.g. a chunked response growing beyond the `RecordSelector.max(bytesize:)` limit.
+* **bugfix** Fixed a stopped request still being started, or reported to the client, when the florets finished modifying it afterwards.
+* **bugfix** Fixed a deadlock when the main thread waits for a request that Cauli intercepts.
+* **bugfix** Fixed the `HTTPBodyStreamFloret` sending requests without their body if it exceeds the `maximumConvertedByteSize`, and crashing when the body stream fails.
+* **bugfix** Fixed a crash on iPad when sharing a record or selecting a record detail in the `InspectorFloret`.
 * **improvement** Raised the minimum deployment target to iOS 13.
 * **improvement** Migrated the unit tests from Quick, Nimble and OHHTTPStubs to XCTest. The tests are now part of the `Package.swift`, the Xcode project and workspace have been removed.
 * **improvement** Removed Danger and the remaining CocoaPods development setup. CocoaPods is only used for distribution.
