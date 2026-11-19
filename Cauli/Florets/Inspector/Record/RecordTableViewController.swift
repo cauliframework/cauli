@@ -87,6 +87,12 @@ extension RecordTableViewController {
             }
         }
 
+        if let string = valueGenerator() as? String {
+            alertController.addAction(UIAlertAction(title: "Copy", style: .default) { _ in
+                UIPasteboard.general.string = string
+            })
+        }
+
         alertController.addAction(UIAlertAction(title: "Share", style: .default) { [weak self] _ in
             let activityItem = valueGenerator()
             self?.presentShareSheet(for: [activityItem], from: cell)
