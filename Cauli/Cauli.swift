@@ -122,9 +122,7 @@ extension Cauli: CauliURLProtocolDelegate {
                 completion(record)
             }
         }, completion: { record in
-            DispatchQueue.main.sync {
-                self.storage.store(record)
-            }
+            self.store(record)
             completionHandler(record)
         })
     }
@@ -137,11 +135,20 @@ extension Cauli: CauliURLProtocolDelegate {
                 completion(record)
             }
         }, completion: { record in
-            DispatchQueue.main.sync {
-                self.storage.store(record)
-            }
+            self.store(record)
             completionHandler(record)
         })
+    }
+}
+
+private extension Cauli {
+    /// Stores the record on the main thread without waiting for it. Waiting would deadlock
+    /// whenever the main thread itself waits for the request, e.g. in `Data(contentsOf:)`.
+    /// The main queue is serial, so records are still stored in the order they arrive.
+    func store(_ record: Record) {
+        DispatchQueue.main.async {
+            self.storage.store(record)
+        }
     }
 }
 
