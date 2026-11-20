@@ -34,13 +34,16 @@ public class Cauli {
 
     /// The Storage used by this instance to store all Records.
     public let storage: Storage
+
+    /// `true` while this Cauli instance intercepts requests, i.e. after `run()` and before `pause()`.
+    /// Use it e.g. to show in your app whether Cauli is running.
+    public private(set) var isRunning = false
     internal let florets: [Floret]
     private var enabledFlorets: [InterceptingFloret] {
         florets.compactMap { $0 as? InterceptingFloret }.filter { $0.enabled }
     }
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?
-    private var enabled = false
 
     deinit {
         CauliURLProtocol.remove(delegate: self)
@@ -83,12 +86,12 @@ public class Cauli {
 
     /// Starts this Cauli instance.
     public func run() {
-        enabled = true
+        isRunning = true
     }
 
     /// Stops this Cauli instance.
     public func pause() {
-        enabled = false
+        isRunning = false
     }
 }
 
@@ -111,12 +114,12 @@ private extension Cauli {
 
 extension Cauli: CauliURLProtocolDelegate {
     func handles(_ record: Record) -> Bool {
-        enabled && configuration.recordSelector.selects(record)
+        isRunning && configuration.recordSelector.selects(record)
     }
 
     func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         assert(!Thread.current.isMainThread, "should never be called on the MainThread")
-        guard enabled else { completionHandler(record); return }
+        guard isRunning else { completionHandler(record); return }
         enabledFlorets.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.willRequest(record) { record in
                 completion(record)
@@ -129,7 +132,7 @@ extension Cauli: CauliURLProtocolDelegate {
 
     func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
         assert(!Thread.current.isMainThread, "should never be called on the MainThread")
-        guard enabled else { completionHandler(record); return }
+        guard isRunning else { completionHandler(record); return }
         enabledFlorets.cauli_reduceAsync(record, transform: { record, floret, completion in
             floret.didRespond(record) { record in
                 completion(record)

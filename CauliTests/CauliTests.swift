@@ -48,6 +48,23 @@ final class CauliTests: XCTestCase {
         XCTAssertEqual(cauli2.storage.capacity, .records(10))
     }
 
+    // MARK: - isRunning
+
+    func testIsNotRunningAfterInit() {
+        let cauli = Cauli([], configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))
+        XCTAssertFalse(cauli.isRunning)
+    }
+
+    func testIsRunningFollowsRunAndPause() {
+        let cauli = Cauli([], configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))
+
+        cauli.run()
+        XCTAssertTrue(cauli.isRunning)
+
+        cauli.pause()
+        XCTAssertFalse(cauli.isRunning)
+    }
+
     // MARK: - Regression: the main thread waiting for a request
 
     func testWillRequestCompletesWhileTheMainThreadWaitsForTheRequest() {
