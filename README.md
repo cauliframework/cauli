@@ -37,13 +37,15 @@ dependencies: [
 
 ### Setup
 
-Add an `import Cauliframework` to your `AppDelegate` and call the `run` function on the shared instace in the `application(:, didFinishLaunchingWithOptions:)`. Make sure to call `run` before instantiating any `URLSession`. Otherwise Cauli can't intercept network requests and create any records.
+Add an `import Cauliframework` to your `AppDelegate` and call the `run` function on the shared instance in `application(_:didFinishLaunchingWithOptions:)`. Make sure to call `run` before instantiating any `URLSession`. Otherwise Cauli can't intercept network requests and create any records.
 
 ```swift
 import Cauliframework
+import UIKit
 
-public class AppDelegate: UIApplicationDelegate {
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Cauli.shared.run()
         // perform your usual application setup
         return true
@@ -52,6 +54,66 @@ public class AppDelegate: UIApplicationDelegate {
 ```
 
 This will configure Cauli to hook into every request, setup the core florets (plugins) ([InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html)) and configures a shake gesture for the Cauli UI.
+
+## Built-in Florets
+
+* [InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html) lets you browse through and share your requests and responses from within the application. Just shake your device (if you are using the default configuration).
+* [MockFloret](https://cauli.works/docs/Classes/MockFloret.html) mocks your network requests, e.g. for tests or to reproduce a bug. It can also record responses for later mocking.
+* [NoCacheFloret](https://cauli.works/docs/Classes/NoCacheFloret.html) modifies requests and responses so that no cached data is returned or written to the cache.
+* [FindReplaceFloret](https://cauli.works/docs/Classes/FindReplaceFloret.html) replaces any part of a request or response, using a [RecordModifier](https://cauli.works/docs/Structs/RecordModifier.html).
+* [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) changes the url of a request before it is performed, e.g. to use a staging or testing server.
+* [HTTPBodyStreamFloret](https://cauli.works/docs/Classes/HTTPBodyStreamFloret.html) turns a request's `httpBodyStream` into `httpBody` data, so the body can be inspected and modified.
+
+Pass the florets you want to use when creating your own `Cauli` instance:
+
+```swift
+let cauli = Cauli([InspectorFloret(), NoCacheFloret()])
+cauli.run()
+```
+
+For more information read [Plugins / Florets](https://cauli.works/docs/florets.html).
+
+## Writing your own Floret
+
+A floret can process requests and responses, provide its own UI, or both:
+
+* **[InterceptingFloret](https://cauli.works/docs/Protocols/InterceptingFloret.html)** is called before a request is sent (`willRequest`) and after its response arrived (`didRespond`). It can modify the `Record` before passing it on.
+* **[DisplayingFloret](https://cauli.works/docs/Protocols/DisplayingFloret.html)** provides a view controller, which is shown in the Cauli UI. It has access to the `Cauli` instance and thus to its [Storage](https://cauli.works/docs/Protocols/Storage.html) of recorded requests.
+
+This example prints every request and response to the console:
+
+```swift
+import Cauliframework
+
+final class LoggingFloret: InterceptingFloret {
+    var enabled = true
+    var description: String? { "Prints every request and response to the console." }
+
+    func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        let request = record.designatedRequest
+        print("→ \(request.httpMethod ?? "GET") \(request.url?.absoluteString ?? "-")")
+        completionHandler(record)
+    }
+
+    func didRespond(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
+        let url = record.designatedRequest.url?.absoluteString ?? "-"
+        switch record.result {
+        case .result(let response)?:
+            let statusCode = (response.urlResponse as? HTTPURLResponse).map { String($0.statusCode) } ?? "-"
+            print("← \(statusCode) \(url) (\(response.data?.count ?? 0) bytes)")
+        case .error(let error)?:
+            print("← failed \(url): \(error.localizedDescription)")
+        case nil:
+            break
+        }
+        completionHandler(record)
+    }
+}
+```
+
+`willRequest` and `didRespond` are called on a background thread. Always call the completion handler exactly once, with the original or a modified record, otherwise the request won't continue.
+
+Add it like any other floret, e.g. `Cauli([InspectorFloret(), LoggingFloret()])`. For more details read [Writing Your Own Plugin / Floret](https://cauli.works/docs/writing-your-own-plugin.html).
 
 ## Contributing
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details.
