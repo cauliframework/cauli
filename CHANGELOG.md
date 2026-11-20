@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **improvement** Documented that the upload progress isn't reported for intercepted requests, and how to exclude uploads from Cauli. [#202](https://github.com/cauliframework/cauli/issues/202)
 * **feature** Added `Cauli.isRunning` to check whether a Cauli instance currently intercepts requests. [#188](https://github.com/cauliframework/cauli/issues/188)
 * **feature** Added a cURL command to the request details of the `InspectorFloret`, which can be viewed, copied and shared. Based on [#222](https://github.com/cauliframework/cauli/pull/222) by @pstued
 * **bugfix** Fixed the `MapRemoteFloret`'s mappings not being reachable from the Cauli menu. It is now listed as displaying floret as well.
