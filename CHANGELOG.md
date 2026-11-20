@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **feature** Added a `mockFolder` parameter to the `MockFloret`, to read mocks from another folder in the bundle or, in the simulator, from a folder on your Mac. [#226](https://github.com/cauliframework/cauli/issues/226), [#100](https://github.com/cauliframework/cauli/issues/100)
 * **feature** Added `Cauli.isRunning` to check whether a Cauli instance currently intercepts requests. [#188](https://github.com/cauliframework/cauli/issues/188)
 * **feature** Added a cURL command to the request details of the `InspectorFloret`, which can be viewed, copied and shared. Based on [#222](https://github.com/cauliframework/cauli/pull/222) by @pstued
 * **bugfix** Fixed the `MapRemoteFloret`'s mappings not being reachable from the Cauli menu. It is now listed as displaying floret as well.

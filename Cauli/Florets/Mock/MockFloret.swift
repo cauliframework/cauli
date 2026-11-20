@@ -45,6 +45,12 @@ import Foundation
 /// For every request the MockFloret will then search in this folder if there is any
 /// recorded response. If there are multiple it will return a random response.
 ///
+/// You can also use another folder, e.g. a different set of mocks in the bundle,
+/// or, when running in the simulator, a folder on your Mac:
+/// ```swift
+/// let mockFloret = MockFloret(mockFolder: URL(fileURLWithPath: "/Users/me/Desktop/mock-data"))
+/// ```
+///
 /// ## Manual Response Mapping
 /// You can use the `addMapping` functions to manually map a request to a specific response.
 /// ```swift
@@ -66,6 +72,7 @@ public class MockFloret: InterceptingFloret {
     public var enabled = true
 
     private let mode: Mode
+    private let mockFolder: URL?
 
     public var description: String? {
         switch mode {
@@ -80,8 +87,13 @@ public class MockFloret: InterceptingFloret {
     ///
     /// - Parameters:
     ///   - mode: The `Mode` of this MockFloret.
-    public init(mode: Mode = .mock(forced: false)) {
+    ///   - mockFolder: The folder the recorded responses are read from in mock mode.
+    ///     Defaults to the "MockFloret" folder in the main bundle. Can be any file URL,
+    ///     e.g. another folder in the bundle or, in the simulator, a folder on your Mac.
+    ///     Recordings are always written to the "MockFloret" folder in the documents directory.
+    public init(mode: Mode = .mock(forced: false), mockFolder: URL? = nil) {
         self.mode = mode
+        self.mockFolder = mockFolder
 
         if mode == .record {
             print("recording to \(recordStorage.path)")
@@ -93,7 +105,7 @@ public class MockFloret: InterceptingFloret {
     }()
 
     private lazy var mockStorage: MockFloretStorage? = {
-        MockFloretStorage.mocker()
+        MockFloretStorage.mocker(folder: mockFolder)
     }()
 
     public func willRequest(_ record: Record, modificationCompletionHandler completionHandler: @escaping (Record) -> Void) {
@@ -128,10 +140,10 @@ public class MockFloret: InterceptingFloret {
         completionHandler(record)
     }
 
-    /// This function will try to use the mocking storage (from within the
-    /// bundle) to decode a Result by a given path.
+    /// This function will try to use the mocking storage (the `mockFolder`, by default
+    /// the "MockFloret" folder in the bundle) to decode a Result by a given path.
     ///
-    /// - Parameter path: The path of a record relative to the "MockFloret" folder.
+    /// - Parameter path: The path of a record relative to the mock folder.
     /// - Returns: A Result or nil if no decodable Record at that path.
     public func resultForPath(_ path: String) -> Result<Response>? {
         mockStorage?.resultForPath(path)
@@ -203,8 +215,9 @@ extension MockFloret {
         /// Cauli configuration) requests, serialize and store them in the documents folder.
         case record
 
-        /// In mock mode the MockFloret will search for a "MockFloret" folder in the Bundle
-        /// and tries to map all requests to a response stored in that folder.
+        /// In mock mode the MockFloret will search for a "MockFloret" folder in the Bundle,
+        /// or the `mockFolder` passed to the initializer, and tries to map all requests
+        /// to a response stored in that folder.
         /// Forced defines the behaviour if no response is found.
         /// If forced is false, the request will be ignored by the `MockFloret`.
         /// If forced is true, the request will be answered with a 404-not-found response.

@@ -27,7 +27,7 @@ internal class MockFloretStorage {
     let path: URL
     let writable: Bool
 
-    private init(path: URL, writable: Bool) {
+    init(path: URL, writable: Bool) {
         self.path = path
         self.writable = writable
     }
@@ -103,8 +103,9 @@ extension MockFloretStorage {
         return MockFloretStorage(path: recorderPath, writable: true)
     }
 
-    static func mocker() -> MockFloretStorage? {
-        guard let url = Bundle.main.resourceURL?.appendingPathComponent("MockFloret", isDirectory: true) else { return nil }
+    /// - Parameter folder: The folder to read the mocks from. Defaults to the "MockFloret" folder in the main bundle.
+    static func mocker(folder: URL? = nil) -> MockFloretStorage? {
+        guard let url = folder ?? Bundle.main.resourceURL?.appendingPathComponent("MockFloret", isDirectory: true) else { return nil }
         return MockFloretStorage(path: url, writable: false)
     }
 }
