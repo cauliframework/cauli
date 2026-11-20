@@ -14,8 +14,12 @@ The [NoCacheFloret](https://cauli.works/docs/Classes/NoCacheFloret.html) modifie
 
 ## FindReplaceFloret
 
-The [FindReplaceFloret](https://cauli.works/docs/Classes/FindReplaceFloret.html) can be used to easily replace any part of a request or response by using a [RecordModifier](https://cauli.works/docs/Classes/FindReplaceFloret/RecordModifier.html)
+The [FindReplaceFloret](https://cauli.works/docs/Classes/FindReplaceFloret.html) can be used to easily replace any part of a request or response by using a [RecordModifier](https://cauli.works/docs/Structs/RecordModifier.html)
 
 ## MapRemoteFloret
 
 The [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) can modify the url of a request before the request is performed. This is esp. helpful when using a staging or testing server.
+
+## HTTPBodyStreamFloret
+
+The [HTTPBodyStreamFloret](https://cauli.works/docs/Classes/HTTPBodyStreamFloret.html) reads a request's `httpBodyStream` and sets its data as `httpBody`, so the body can be inspected in the `InspectorFloret` or modified by other florets. Bodies larger than its `maximumConvertedByteSize` are kept as a stream.
