@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **improvement** Added a guide describing how the `MockFloret` records and mocks requests, and the format of its mocks. [#166](https://github.com/cauliframework/cauli/issues/166)
 * **feature** Added a `mockFolder` parameter to the `MockFloret`, to read mocks from another folder in the bundle or, in the simulator, from a folder on your Mac. [#226](https://github.com/cauliframework/cauli/issues/226), [#100](https://github.com/cauliframework/cauli/issues/100)
 * **improvement** Documented that the upload progress isn't reported for intercepted requests, and how to exclude uploads from Cauli. [#202](https://github.com/cauliframework/cauli/issues/202)
 * **feature** Added `Cauli.isRunning` to check whether a Cauli instance currently intercepts requests. [#188](https://github.com/cauliframework/cauli/issues/188)

@@ -19,6 +19,7 @@ Cauli is a network debugging framework featuring a plugin infrastructure to hook
 * [Configuring Cauli](https://cauli.works/docs/configuring-cauli.html)
 * [Plugins / Florets](https://cauli.works/docs/florets.html)
 * [Writing Your Own Plugin / Floret](https://cauli.works/docs/writing-your-own-plugin.html)
+* [MockFloret](https://cauli.works/docs/mockfloret.html)
 * [Frequently Asked Questions](https://cauli.works/docs/frequently-asked-questions.html)
 
 ## Getting Started
