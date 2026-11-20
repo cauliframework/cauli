@@ -12,6 +12,28 @@ Currently only the `URLSession.default` and `URLSessions` initialised with the `
 WKWebView runs out of process, meaning it is not using the URL loading system of your application and thus are not passing through the `URLProtocol`. In iOS 11 Apple added the [`setURLSchemeHandler:forURLScheme:`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/2875766-seturlschemehandler?language=objc) on the [WKWebViewConfiguration](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration?language=objc) which can be used to intercept requests, but it is not possible to register a custom `WKURLSchemeHandler` for http or https schemes. There are [alternative solutions](https://github.com/wilddylan/WKWebViewWithURLProtocol/blob/master/WKWebViewWithURLProtocol/NSURLProtocol%2BWKWebViewSupport.m) which leverage private API, but Cauli should stay private API free.
 `SFSafariViewController` runs out of process as well and is sandboxed. There are no APIs to intercept requests.
 
+## Why is the upload progress not reported for intercepted uploads?
+Cauli intercepts requests with a `URLProtocol`, which performs the request on its own `URLSession` and reports the response back to yours. A `URLProtocol` can report responses, data, redirects and errors, but there is no API to report how many bytes of a request body were sent. Because of that, `urlSession(_:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)` of your `URLSessionTaskDelegate` isn't called for requests Cauli intercepts. All other delegate methods are called as usual. This is a limitation of the URL Loading System, which affects all `URLProtocol` based tools.
+
+If you rely on the upload progress, you can exclude those requests from Cauli with a `RecordSelector`. Requests that aren't selected aren't intercepted at all, so their progress is reported as usual, but they aren't recorded or modified by any floret either.
+
+```swift
+let recordSelector = RecordSelector { record in
+    // Don't intercept uploads, so their progress is reported.
+    record.designatedRequest.url?.path.hasPrefix("/upload") != true
+}
+
+let configuration = Configuration(
+    recordSelector: recordSelector,
+    enableShakeGesture: true,
+    storageCapacity: .records(50)
+)
+
+let cauli = Cauli([ InspectorFloret() ], configuration: configuration)
+```
+
+This replaces the default `RecordSelector.max(bytesize:)`, so responses of any size are recorded for all other requests.
+
 ## How can I modify Records before they are displayed in displaying florets, like the InspectorFloret?
 You may want to modify certain aspects of recorded requests or responses before they are displayed in the `Cauli` view controller. For example you have some confidential information in the request headers, like an API key or auth token that you don't want to expose.
 
