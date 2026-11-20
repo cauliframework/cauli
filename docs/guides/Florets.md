@@ -6,7 +6,7 @@ The [InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html) let
 
 ## MockFloret
 
-The [MockFloret](https://cauli.works/docs/Classes/MockFloret.html) helps you to easily mock your network requests for tests or to reproduce a bug. You can can use it to record the responses for later mocking and even is compatible to the Format used in the [InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html).
+The [MockFloret](https://cauli.works/docs/Classes/MockFloret.html) helps you to easily mock your network requests for tests or to reproduce a bug. You can can use it to record the responses for later mocking and even is compatible to the Format used in the [InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html). By default it reads the mocks from a `MockFloret` folder in the app bundle. Use the `mockFolder` parameter to read them from another folder, e.g. a different set of mocks or, when running in the simulator, a folder on your Mac.
 
 ## NoCacheFloret
 
