@@ -3,8 +3,9 @@ name: Documentation
 # Generates the documentation with jazzy and publishes it to cauli.works
 # (cauliframework/cauliframework.github.io) for every release tag.
 #
-# Run it manually to only generate the documentation and download it as an
-# artifact, or select "Publish" to publish the documentation of the selected ref.
+# Pull requests changing the documentation setup only generate it, to check that
+# it still builds. Run it manually to only generate the documentation and download
+# it as an artifact, or select "Publish" to publish the documentation of the selected ref.
 #
 # Publishing needs the secret DOCS_DEPLOY_KEY: the private key of a deploy key
 # with write access to cauliframework/cauliframework.github.io.
@@ -12,6 +13,13 @@ name: Documentation
 on:
   push:
     tags: ['*']
+  pull_request:
+    paths:
+      - 'docs/guides/**'
+      - '.jazzy.yaml'
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '.github/workflows/documentation.yml'
   workflow_dispatch:
     inputs:
       publish:
