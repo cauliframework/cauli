@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+* **improvement** Removed the CocoaPods and Carthage support. Cauli is only distributed via the Swift Package Manager. Version 1.2 remains available on CocoaPods.
+
 ## 1.2
 * **improvement** The record details of the `InspectorFloret` now show the beginning of text bodies next to their size, with JSON compacted to show as much of it as possible. [#153](https://github.com/cauliframework/cauli/issues/153)
 * **improvement** Added a guide describing how the `MockFloret` records and mocks requests, and the format of its mocks. [#166](https://github.com/cauliframework/cauli/issues/166)

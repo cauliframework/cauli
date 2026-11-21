@@ -157,10 +157,6 @@ private extension Cauli {
 
 internal extension Cauli {
     static var bundle: Bundle {
-#if SWIFT_PACKAGE
-        return Bundle.module
-#else
-        return Bundle(for: SwitchTableViewCell.self)
-#endif
+        Bundle.module
     }
 }
