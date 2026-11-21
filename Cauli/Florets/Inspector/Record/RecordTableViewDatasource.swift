@@ -66,7 +66,8 @@ extension RecordTableViewDatasource: UITableViewDataSource {
         if let item = item(at: indexPath) {
             recordItemCell.textLabel?.text = item.title
             recordItemCell.detailTextLabel?.text = item.description
-            recordItemCell.detailTextLabel?.numberOfLines = 15
+            recordItemCell.detailTextLabel?.numberOfLines = item.numberOfLines
+            recordItemCell.detailTextLabel?.lineBreakMode = .byTruncatingTail
 
             if item.value != nil {
                 recordItemCell.accessoryType = .disclosureIndicator
@@ -94,6 +95,8 @@ extension RecordTableViewDatasource {
         let title: String
         let description: String
         let value: (() -> (Any))?
+        /// The maximum number of lines of the description in the list.
+        var numberOfLines = 15
     }
 }
 
@@ -103,7 +106,7 @@ extension RecordTableViewDatasource.Item {
         self.init(title: title, description: description, value: nil)
     }
     static func forBody(in response: Response) -> RecordTableViewDatasource.Item {
-        RecordTableViewDatasource.Item(title: "Body", description: "\(response.data?.count ?? 0) bytes", value: {
+        RecordTableViewDatasource.Item(title: "Body", description: bodyDescription(for: response.data), value: {
             guard let data = response.data else { return nil as URL? as Any }
             let fileName = response.urlResponse.suggestedFilename ?? UUID().uuidString
             let tmpFolder = URL(fileURLWithPath: NSTemporaryDirectory())
@@ -114,7 +117,17 @@ extension RecordTableViewDatasource.Item {
             } catch {
                 return nil as URL? as Any
             }
-        })
+        }, numberOfLines: bodyNumberOfLines)
+    }
+
+    /// The size line and up to five lines of the body preview.
+    static let bodyNumberOfLines = 6
+
+    /// The size of a body and, if it is text, a preview of its beginning.
+    static func bodyDescription(for body: Data?) -> String {
+        let size = "\(body?.count ?? 0) bytes"
+        guard let preview = BodyPreview.preview(of: body) else { return size }
+        return "\(size)\n\(preview)"
     }
 }
 
@@ -126,7 +139,7 @@ extension RecordTableViewDatasource.Section {
         requestItems.append(RecordTableViewDatasource.Item(title: "URL", description: request.url?.absoluteString ?? "-"))
         requestItems.append(RecordTableViewDatasource.Item(title: "Header Fields", description: request.allHTTPHeaderFields?.compactMap { key, value in "\(key): \(value)" }
             .joined(separator: "\n") ?? "-", value: { request.allHTTPHeaderFields }))
-        requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: "\(request.httpBody?.count ?? 0) bytes", value: { request.httpBody }))
+        requestItems.append(RecordTableViewDatasource.Item(title: "Body", description: RecordTableViewDatasource.Item.bodyDescription(for: request.httpBody), value: { request.httpBody }, numberOfLines: RecordTableViewDatasource.Item.bodyNumberOfLines))
         requestItems.append(RecordTableViewDatasource.Item(title: "Cache Policy", description: String(request.cachePolicy.rawValue)))
         let cURLCommand = request.cURLCommand
         requestItems.append(RecordTableViewDatasource.Item(title: "cURL", description: cURLCommand, value: { cURLCommand }))
