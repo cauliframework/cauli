@@ -94,7 +94,9 @@ final class CauliTests: XCTestCase {
             }
         }
 
-        let result = completed.wait(timeout: .now() + 2)
+        // Normally this completes within milliseconds. A deadlock never resolves, so a generous timeout still
+        // detects it, without failing when a busy CI simulator takes a few seconds to schedule the operation.
+        let result = completed.wait(timeout: .now() + 10)
         XCTAssertEqual(result, .success, "deadlock: Cauli waits for the main thread, while the main thread waits for Cauli", file: file, line: line)
 
         // Clean up: stop handling records and let a pending `DispatchQueue.main.sync` run, so nothing leaks into other tests.

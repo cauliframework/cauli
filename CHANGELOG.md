@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.2
 * **improvement** The record details of the `InspectorFloret` now show the beginning of text bodies next to their size, with JSON compacted to show as much of it as possible. [#153](https://github.com/cauliframework/cauli/issues/153)
 * **improvement** Added a guide describing how the `MockFloret` records and mocks requests, and the format of its mocks. [#166](https://github.com/cauliframework/cauli/issues/166)
 * **feature** Added a `mockFolder` parameter to the `MockFloret`, to read mocks from another folder in the bundle or, in the simulator, from a folder on your Mac. [#226](https://github.com/cauliframework/cauli/issues/226), [#100](https://github.com/cauliframework/cauli/issues/100)
@@ -18,7 +18,7 @@
 * **improvement** Removed Danger and the remaining CocoaPods development setup. CocoaPods is only used for distribution.
 * **improvement** Updated the CI to current macOS runners and Xcode versions and added SwiftLint and podspec linting.
 * **bugfix** Fixed the `MapRemoteFloret` list not loading its cell when using Cauli via SPM.
-* **bugfix** Fixed an issue were the inspector wouldn’t use the formatters filter. [#246](https://github.com/cauliframework/cauli/pull/246)
+* **bugfix** Fixed an issue where the inspector wouldn’t use the formatters filter. [#246](https://github.com/cauliframework/cauli/pull/246)
 
 ## 1.1
 * **feature** Added a `MapRemoteFloret` that can change urls of requests before they are sent. [#216](https://github.com/cauliframework/cauli/issues/216) by @brototyp
