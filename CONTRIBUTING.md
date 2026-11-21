@@ -36,4 +36,5 @@ Checked out the repository and would like some guidance to find your way?
 * Have you seen the `Example` folder? In there we added an iOS example application. Open the `cauli-ios-example.xcodeproj` and have a look. You can use the example app to play around, test your changes or sketch out a new idea for a Floret.
 * Please add an entry to the `CHANGELOG.md` for every change that affects the framework.
 * The documentation is generated with [jazzy](https://github.com/realm/jazzy): `bundle install && bundle exec jazzy`. Ruby is only needed for this.
+* The documentation on [cauli.works/docs](https://cauli.works/docs) is generated and published by the "Documentation" workflow whenever a release is tagged. It can also be run manually to check the generated documentation.
 * CocoaPods is only used for distribution. The `Cauliframework.podspec` is linted on CI, but there is no need to install CocoaPods for development.

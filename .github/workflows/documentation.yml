@@ -1,0 +1,84 @@
+name: Documentation
+
+# Generates the documentation with jazzy and publishes it to cauli.works
+# (cauliframework/cauliframework.github.io) for every release tag.
+#
+# Run it manually to only generate the documentation and download it as an
+# artifact, or select "Publish" to publish the documentation of the selected ref.
+#
+# Publishing needs the secret DOCS_DEPLOY_KEY: the private key of a deploy key
+# with write access to cauliframework/cauliframework.github.io.
+
+on:
+  push:
+    tags: ['*']
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the documentation to cauli.works
+        type: boolean
+        default: false
+
+concurrency:
+  group: documentation
+  cancel-in-progress: false
+
+jobs:
+  documentation:
+    name: Documentation
+    runs-on: macos-15
+    env:
+      PUBLISH: ${{ github.event_name == 'push' || inputs.publish }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the tags are needed to determine the version
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.4"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Determine the version
+        id: version
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            VERSION="${{ github.ref_name }}"
+          else
+            VERSION="$(git describe --tags)"
+          fi
+          echo "Documenting version ${VERSION}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+      - name: Generate the documentation
+        run: bundle exec jazzy --module-version "${{ steps.version.outputs.version }}"
+      - name: Upload the documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ steps.version.outputs.version }}
+          path: docs/generated
+      - name: Check out the website
+        if: env.PUBLISH == 'true'
+        uses: actions/checkout@v5
+        with:
+          repository: cauliframework/cauliframework.github.io
+          ssh-key: ${{ secrets.DOCS_DEPLOY_KEY }}
+          path: website
+      - name: Publish the documentation
+        if: env.PUBLISH == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          rsync -a --delete docs/generated/ website/docs/
+          # The version is shown on the website and compared to the version of blog posts.
+          sed -i '' -E "s/^version:([[:space:]]+).*/version:\1\"${VERSION}\"/" website/_config.yml
+          cd website
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A docs _config.yml
+          if git diff --cached --quiet; then
+            echo "The documentation didn't change."
+            exit 0
+          fi
+          git commit -m "Updated the documentation to version ${VERSION}"
+          git push
