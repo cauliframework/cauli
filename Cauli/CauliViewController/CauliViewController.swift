@@ -37,13 +37,15 @@ internal class CauliViewController: UITableViewController {
 
     private let cauli: Cauli
     private var displayingFlorets: [DisplayingFloret]
-    private var interceptingFlorets: [InterceptingFloret]
+    /// Read from Cauli every time, so the switches show the state Cauli uses.
+    private var interceptingFlorets: [InterceptingFloret] {
+        cauli.florets.compactMap { $0 as? InterceptingFloret }
+    }
 
     init(cauli: Cauli) {
         self.cauli = cauli
 
         displayingFlorets = cauli.florets.compactMap { $0 as? DisplayingFloret }
-        interceptingFlorets = cauli.florets.compactMap { $0 as? InterceptingFloret }
 
         super.init(style: .grouped)
         title = "Cauli"
@@ -104,10 +106,10 @@ internal class CauliViewController: UITableViewController {
     private func tableView(_ tableView: UITableView, switchCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
 
-        var floret = interceptingFlorets[indexPath.row]
+        let floret = interceptingFlorets[indexPath.row]
         cell.set(title: floret.name, switchValue: floret.enabled, description: floret.description)
-        cell.switchValueChanged = {
-            floret.enabled = $0
+        cell.switchValueChanged = { [cauli] isOn in
+            cauli.setEnabled(isOn, forInterceptingFloretAt: indexPath.row)
         }
         cell.selectionStyle = .none
         return cell
