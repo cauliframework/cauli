@@ -48,6 +48,64 @@ final class CauliURLProtocolTests: XCTestCase {
         super.tearDown()
     }
 
+    // MARK: - Regression: requests the client stops (#160)
+
+    func testATimedOutRequestIsReportedAsTimedOut() {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 1
+        let timingOutSession = URLSession(configuration: configuration)
+        defer { timingOutSession.invalidateAndCancel() }
+        let reportedError = reportedErrorOfTheResponse()
+        let failed = expectation(description: "the request failed")
+
+        timingOutSession.dataTask(with: StubURLProtocol.hangingURL) { _, _, error in
+            XCTAssertEqual((error as? URLError)?.code, .timedOut, "the app itself must see a timeout")
+            failed.fulfill()
+        }.resume()
+
+        wait(for: [failed, reportedError.reported], timeout: 10)
+        XCTAssertEqual(reportedError.error?.code, NSURLErrorTimedOut, "Cauli must record the timeout the app saw, not a cancellation")
+    }
+
+    func testACancelledRequestIsReportedAsCancelled() {
+        let reportedError = reportedErrorOfTheResponse()
+        let reachedTheServer = expectation(description: "the request reached the server")
+        StubURLProtocol.hangingRequestStarted = { reachedTheServer.fulfill() }
+        defer { StubURLProtocol.hangingRequestStarted = nil }
+        let task = session.dataTask(with: StubURLProtocol.hangingURL) { _, _, _ in }
+
+        task.resume()
+        wait(for: [reachedTheServer], timeout: 5)
+        task.cancel()
+
+        wait(for: [reportedError.reported], timeout: 5)
+        XCTAssertEqual(reportedError.error?.code, NSURLErrorCancelled)
+    }
+
+    private final class ReportedError {
+        var error: NSError?
+        var reported: XCTestExpectation
+
+        init(_ reported: XCTestExpectation) {
+            self.reported = reported
+        }
+    }
+
+    /// Captures the error of the record Cauli passes to `didRespond`, i.e. the one florets and the storage see.
+    private func reportedErrorOfTheResponse() -> ReportedError {
+        let delegate = CauliURLProtocolDelegateStub()
+        let reportedError = ReportedError(expectation(description: "the response was reported to the florets"))
+        delegate.didRespondClosure = { record in
+            if case .error(let error)? = record.result {
+                reportedError.error = error
+            }
+            reportedError.reported.fulfill()
+        }
+        CauliURLProtocol.add(delegate: delegate)
+        addTeardownBlock { CauliURLProtocol.remove(delegate: delegate) }
+        return reportedError
+    }
+
     // MARK: - addDelegate
 
     func testAddDelegateCallsWillRequestOnceANetworkRequestIsPerformed() {

@@ -38,6 +38,11 @@ final class StubURLProtocol: URLProtocol {
 
     static let stubData = Data("{\"response\":\"ok\"}".utf8)
 
+    /// Requests to this url are never answered, e.g. to let them time out.
+    static let hangingURL = URL(string: "https://hanging.stub.cauli.works")! // swiftlint:disable:this force_unwrapping
+    /// Called when a request to the `hangingURL` reached the stub.
+    static var hangingRequestStarted: (() -> Void)?
+
     // swiftlint:disable force_unwrapping
     private static let defaultConfigurationGetter = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))!
     private static let stubbedConfigurationGetter = class_getClassMethod(URLSessionConfiguration.self, #selector(URLSessionConfiguration.stubbedDefaultSessionConfiguration))!
@@ -66,6 +71,10 @@ final class StubURLProtocol: URLProtocol {
     }
 
     override func startLoading() {
+        if request.url?.host == StubURLProtocol.hangingURL.host {
+            StubURLProtocol.hangingRequestStarted?()
+            return
+        }
         guard let url = request.url,
             let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: ["Content-Type": "application/json"]) else {
             client?.urlProtocol(self, didFailWithError: URLError(.badURL))
