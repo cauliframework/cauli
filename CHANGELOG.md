@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **improvement** Added dark mode support. The plaintext viewer of the `InspectorFloret` and the floret list of the Cauli menu don't show white backgrounds in dark mode anymore.
 * **improvement** Removed the CocoaPods and Carthage support. Cauli is only distributed via the Swift Package Manager. Version 1.2 remains available on CocoaPods.
 
 ## 1.2

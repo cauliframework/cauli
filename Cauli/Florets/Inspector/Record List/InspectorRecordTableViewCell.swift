@@ -36,7 +36,7 @@ internal class InspectorRecordTableViewCell: UITableViewCell {
         timeLabel.text = data.time
         methodLabel.text = data.method
         let pathString = data.path
-        let pathAttributedString = NSMutableAttributedString(string: pathString)
+        let pathAttributedString = NSMutableAttributedString(string: pathString, attributes: [.foregroundColor: UIColor.label])
         if let stringToHighlight = stringToHighlight {
             var rangeToSearch = pathString.startIndex..<pathString.endIndex
             while let matchingRange = pathString.range(of: stringToHighlight, options: String.CompareOptions.caseInsensitive, range: rangeToSearch) {
