@@ -32,12 +32,18 @@ internal class CauliURLProtocol: URLProtocol {
     private var record: Record
     private var authenticationChallengeProxy: CauliAuthenticationChallengeProxy?
 
-    /// Guards `isStopped`, `executingURLSession` and `dataTask`, which are accessed from
-    /// the client's thread (`stopLoading`) and from the threads the florets complete on.
+    /// Guards the properties below, which are accessed from the client's thread (`stopLoading`)
+    /// and from the threads the florets complete on.
     private let stateLock = NSLock()
     private var isStopped = false
     private var executingURLSession: URLSession?
     private var dataTask: URLSessionDataTask?
+    /// The record as the florets modified it before the request, once `willRequest` finished.
+    private var requestedRecord: Record?
+    /// `true` once the response, or the reason the request stopped, was reported to the florets.
+    private var isResponseReported = false
+    /// `true` once the client was told about a redirect, as it then stops this protocol for a new one.
+    private var isRedirected = false
 
     /// `true` once the record is no longer handled while its response is loading,
     /// e.g. because it exceeds the size allowed by the `RecordSelector`.
@@ -79,9 +85,18 @@ extension CauliURLProtocol {
 
     override func startLoading() {
         willRequest(record) { record in
-            guard !self.hasStopped else { return }
+            var record = record
+            record.requestStarted = Date()
+            self.stateLock.lock()
+            self.requestedRecord = record
+            let isStopped = self.isStopped
+            self.stateLock.unlock()
+            guard !isStopped else {
+                // The client stopped the request while the florets were modifying it.
+                self.reportStop(of: record)
+                return
+            }
             self.record = record
-            self.record.requestStarted = Date()
             if case .result(_)? = record.result {
                 self.urlSession(didCompleteWithError: nil)
             } else if case let .error(error)? = record.result {
@@ -96,10 +111,15 @@ extension CauliURLProtocol {
         stateLock.lock()
         isStopped = true
         let dataTask = self.dataTask
+        let requestedRecord = isRedirected ? nil : self.requestedRecord
         stateLock.unlock()
 
         dataTask?.cancel()
         invalidateURLSession()
+        if let requestedRecord = requestedRecord {
+            // E.g. the request timed out, or the app cancelled it.
+            reportStop(of: requestedRecord)
+        }
     }
 }
 
@@ -113,6 +133,9 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        stateLock.lock()
+        isRedirected = true
+        stateLock.unlock()
         client?.urlProtocol(self, wasRedirectedTo: request, redirectResponse: response)
     }
 
@@ -136,6 +159,9 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         // After `stopLoading` the client must not be called anymore, e.g. for the cancellation error.
         guard !hasStopped else { return }
         if isPassingThrough {
+            // The record isn't handled anymore, so there is nothing to report. The URL loading system
+            // calls `stopLoading` after every request, which mustn't report this one as stopped either.
+            _ = markResponseReported()
             if let error = error {
                 client?.urlProtocol(self, didFailWithError: error)
             } else {
@@ -146,6 +172,7 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         if let error = error {
             record.result = .error(error as NSError)
         }
+        guard markResponseReported() else { return }
 
         didRespond(record) { record in
             guard !self.hasStopped else { return }
@@ -210,6 +237,27 @@ private extension CauliURLProtocol {
         }, completion: { record in
             completionHandler(record)
         })
+    }
+
+    /// Reports a request the client stopped to the florets, with the error the client sees,
+    /// so that e.g. the storage doesn't keep it as a request without a response.
+    /// The client itself isn't called anymore.
+    func reportStop(of record: Record) {
+        guard markResponseReported() else { return }
+        var record = record
+        let clientError = task?.error as NSError?
+        record.result = .error(clientError ?? NSError(domain: NSURLErrorDomain, code: NSURLErrorCancelled, userInfo: nil))
+        record.responseReceived = Date()
+        didRespond(record) { _ in }
+    }
+
+    /// Returns `true` only the first time, so the response is reported to the florets once.
+    func markResponseReported() -> Bool {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        guard !isResponseReported else { return false }
+        isResponseReported = true
+        return true
     }
 
     var hasStopped: Bool {
