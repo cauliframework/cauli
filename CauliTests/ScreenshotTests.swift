@@ -81,8 +81,16 @@ final class ScreenshotTests: XCTestCase {
         window.rootViewController = UINavigationController(rootViewController: viewController)
         window.makeKeyAndVisible()
         RunLoop.main.run(until: Date().addingTimeInterval(1))
-        let image = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in
-            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        window.layoutIfNeeded()
+        // The test host doesn't draw the window on screen, so render the layers directly.
+        let format = UIGraphicsImageRendererFormat(for: window.traitCollection)
+        format.opaque = true
+        let image = UIGraphicsImageRenderer(bounds: window.bounds, format: format).image { context in
+            window.traitCollection.performAsCurrent {
+                UIColor.systemBackground.setFill()
+                context.fill(window.bounds)
+                window.layer.render(in: context.cgContext)
+            }
         }
         window.isHidden = true
         return image
