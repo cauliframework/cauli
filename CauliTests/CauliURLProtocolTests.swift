@@ -26,11 +26,17 @@ import XCTest
 
 final class CauliURLProtocolTests: XCTestCase {
 
-    private let url = URL(string: "https://cauli.works")!
+    /// Unique per test, see `makeDelegate()`.
+    private var url: URL!
+    /// Never answered by the stub, unique per test.
+    private var hangingURL: URL!
     private var session: URLSession!
 
     override func setUp() {
         super.setUp()
+        let testID = UUID().uuidString
+        url = URL(string: "https://cauli.works/\(testID)")
+        hangingURL = StubURLProtocol.hangingURL.appendingPathComponent(testID)
         // Creating a Cauli installs its URL loading hooks once for the whole process, which is
         // what other tests do as well. Toggling them here would turn them off for everyone else.
         _ = Cauli([], configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))
@@ -58,7 +64,7 @@ final class CauliURLProtocolTests: XCTestCase {
         let reportedError = reportedErrorOfTheResponse()
         let failed = expectation(description: "the request failed")
 
-        timingOutSession.dataTask(with: StubURLProtocol.hangingURL) { _, _, error in
+        timingOutSession.dataTask(with: hangingURL) { _, _, error in
             XCTAssertEqual((error as? URLError)?.code, .timedOut, "the app itself must see a timeout")
             failed.fulfill()
         }.resume()
@@ -75,7 +81,7 @@ final class CauliURLProtocolTests: XCTestCase {
         let reachedTheServer = expectation(description: "the request reached the server")
         StubURLProtocol.hangingRequestStarted = { reachedTheServer.fulfill() }
         defer { StubURLProtocol.hangingRequestStarted = nil }
-        let task = session.dataTask(with: StubURLProtocol.hangingURL) { _, _, _ in }
+        let task = session.dataTask(with: hangingURL) { _, _, _ in }
 
         task.resume()
         wait(for: [reachedTheServer], timeout: 30)
@@ -96,7 +102,7 @@ final class CauliURLProtocolTests: XCTestCase {
 
     /// Captures the error of the record Cauli passes to `didRespond`, i.e. the one florets and the storage see.
     private func reportedErrorOfTheResponse() -> ReportedError {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let reportedError = ReportedError(expectation(description: "the response was reported to the florets"))
         delegate.didRespondClosure = { record in
             if case .error(let error)? = record.result {
@@ -112,7 +118,7 @@ final class CauliURLProtocolTests: XCTestCase {
     // MARK: - addDelegate
 
     func testAddDelegateCallsWillRequestOnceANetworkRequestIsPerformed() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let willRequestCalled = expectation(description: "willRequest called")
         willRequestCalled.assertForOverFulfill = false
         delegate.willRequestClosure = { _ in willRequestCalled.fulfill() }
@@ -124,7 +130,7 @@ final class CauliURLProtocolTests: XCTestCase {
     }
 
     func testAddDelegateCallsDidRespondOnceANetworkRequestIsPerformed() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let didRespondCalled = expectation(description: "didRespond called")
         didRespondCalled.assertForOverFulfill = false
         delegate.didRespondClosure = { _ in didRespondCalled.fulfill() }
@@ -138,7 +144,7 @@ final class CauliURLProtocolTests: XCTestCase {
     // MARK: - removeDelegate
 
     func testRemoveDelegateStopsCallingTheDelegateFunctions() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         var didCallDelegateFunction = false
         delegate.willRequestClosure = { _ in didCallDelegateFunction = true }
         delegate.didRespondClosure = { _ in didCallDelegateFunction = true }
@@ -155,13 +161,13 @@ final class CauliURLProtocolTests: XCTestCase {
     // MARK: - willRequest
 
     func testWillRequestEnablesToChangeTheDesignatedRequest() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         delegate.willRequestClosure = { record in
             record.designatedRequest = URLRequest(url: URL(string: "https://cauli.works/modified")!)
         }
         let didRespondRecord = recordPassedToDidRespond(of: delegate)
 
-        XCTAssertEqual(didRespondRecord?.originalRequest.url?.absoluteString, "https://cauli.works")
+        XCTAssertEqual(didRespondRecord?.originalRequest.url, url)
         XCTAssertEqual(didRespondRecord?.designatedRequest.url?.absoluteString, "https://cauli.works/modified")
         guard case let .result(response)? = didRespondRecord?.result else {
             return XCTFail("expected the record to contain a result")
@@ -170,7 +176,7 @@ final class CauliURLProtocolTests: XCTestCase {
     }
 
     func testWillRequestEnablesToSetTheResult() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let expectedData = Data("spec_changed_response".utf8)
         delegate.willRequestClosure = { record in
             let urlResponse = URLResponse(url: record.designatedRequest.url!, mimeType: nil, expectedContentLength: expectedData.count, textEncodingName: nil)
@@ -185,7 +191,7 @@ final class CauliURLProtocolTests: XCTestCase {
     }
 
     func testWillRequestEnablesToSetAnErrorResult() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let expectedError = NSError(domain: "domain", code: 0, userInfo: nil)
         delegate.willRequestClosure = { record in
             record.result = .error(expectedError)
@@ -201,7 +207,7 @@ final class CauliURLProtocolTests: XCTestCase {
     // MARK: - didRespond
 
     func testDidRespondIsCalledWithACorrectResult() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let didRespondRecord = recordPassedToDidRespond(of: delegate)
 
         guard case let .result(response)? = didRespondRecord?.result else {
@@ -211,7 +217,7 @@ final class CauliURLProtocolTests: XCTestCase {
     }
 
     func testDidRespondEnablesToUpdateTheResult() {
-        let delegate = CauliURLProtocolDelegateStub()
+        let delegate = makeDelegate()
         let expectedData = Data("spec_changed_response".utf8)
         delegate.didRespondClosure = { record in
             let urlResponse = URLResponse(url: record.designatedRequest.url!, mimeType: nil, expectedContentLength: expectedData.count, textEncodingName: nil)
@@ -231,6 +237,15 @@ final class CauliURLProtocolTests: XCTestCase {
     }
 
     // MARK: - Helper
+
+    /// A delegate that only handles the requests of the current test. Delegates are global, and requests
+    /// of other tests can still finish, e.g. when their `tearDown` cancels them, while this test runs.
+    private func makeDelegate() -> CauliURLProtocolDelegateStub {
+        let delegate = CauliURLProtocolDelegateStub()
+        let ownURLs: [URL?] = [url, hangingURL]
+        delegate.handlesClosure = { record in ownURLs.contains(record.originalRequest.url) }
+        return delegate
+    }
 
     /// Adds the delegate, performs a request and returns the record passed to `didRespond`.
     /// An existing `didRespondClosure` is still executed before the record is captured.
