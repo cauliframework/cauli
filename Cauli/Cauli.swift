@@ -37,11 +37,31 @@ public class Cauli {
 
     /// `true` while this Cauli instance intercepts requests, i.e. after `run()` and before `pause()`.
     /// Use it e.g. to show in your app whether Cauli is running.
-    public private(set) var isRunning = false
-    internal let florets: [Floret]
-    private var enabledFlorets: [InterceptingFloret] {
-        florets.compactMap { $0 as? InterceptingFloret }.filter { $0.enabled }
+    public var isRunning: Bool {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        return isRunningValue
     }
+
+    /// The florets, as Cauli uses them. Florets can be structs, so switching one on or off
+    /// has to change this array, not a copy of the floret. See `setEnabled(_:forInterceptingFloretAt:)`.
+    internal var florets: [Floret] {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        return storedFlorets
+    }
+
+    private var enabledFlorets: [InterceptingFloret] {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        return storedFlorets.compactMap { $0 as? InterceptingFloret }.filter { $0.enabled }
+    }
+
+    /// Guards `isRunningValue` and `storedFlorets`, which are changed on the main thread
+    /// and read on the threads of the URL loading system.
+    private let stateLock = NSLock()
+    private var isRunningValue = false
+    private var storedFlorets: [Floret]
     private let configuration: Configuration
     private var viewControllerManager: ViewControllerShakePresenter?
 
@@ -56,7 +76,7 @@ public class Cauli {
     ///   - configuration: The configuration.
     public init(_ florets: [Floret], configuration: Configuration = .standard) {
         Cauli.setup()
-        self.florets = florets
+        self.storedFlorets = florets
         self.configuration = configuration
         self.storage = MemoryStorage(capacity: configuration.storageCapacity, preStorageRecordModifier: configuration.preStorageRecordModifier)
         CauliURLProtocol.add(delegate: self)
@@ -86,12 +106,26 @@ public class Cauli {
 
     /// Starts this Cauli instance.
     public func run() {
-        isRunning = true
+        stateLock.lock()
+        isRunningValue = true
+        stateLock.unlock()
     }
 
     /// Stops this Cauli instance.
     public func pause() {
-        isRunning = false
+        stateLock.lock()
+        isRunningValue = false
+        stateLock.unlock()
+    }
+
+    /// Switches the `index`th `InterceptingFloret` on or off, counting only the intercepting florets.
+    internal func setEnabled(_ enabled: Bool, forInterceptingFloretAt index: Int) {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+        let positions = storedFlorets.indices.filter { storedFlorets[$0] is InterceptingFloret }
+        guard positions.indices.contains(index), var floret = storedFlorets[positions[index]] as? InterceptingFloret else { return }
+        floret.enabled = enabled
+        storedFlorets[positions[index]] = floret
     }
 }
 

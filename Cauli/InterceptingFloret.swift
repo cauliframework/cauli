@@ -27,6 +27,8 @@ public protocol InterceptingFloret: Floret {
 
     /// If an InterceptingFloret is disabled both functions `willRequest` and `didRespond` will
     /// not be called anymore. A InterceptingFloret doesn't need to perform any specific action.
+    /// The switches in the Cauli UI change it in a thread safe way. If you change it yourself
+    /// while requests are running, synchronize the access in your implementation.
     var enabled: Bool { get set }
 
     /// This function will be called before a request is performed. The InterceptingFlorets will be
