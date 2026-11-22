@@ -63,7 +63,10 @@ final class CauliURLProtocolTests: XCTestCase {
             failed.fulfill()
         }.resume()
 
-        wait(for: [failed, reportedError.reported], timeout: 10)
+        // Both normally take about a second. The generous timeouts only absorb stalls of busy CI simulators:
+        // a request that is never reported still fails, and the failing wait names the late part.
+        wait(for: [failed], timeout: 30)
+        wait(for: [reportedError.reported], timeout: 30)
         XCTAssertEqual(reportedError.error?.code, NSURLErrorTimedOut, "Cauli must record the timeout the app saw, not a cancellation")
     }
 
@@ -75,10 +78,10 @@ final class CauliURLProtocolTests: XCTestCase {
         let task = session.dataTask(with: StubURLProtocol.hangingURL) { _, _, _ in }
 
         task.resume()
-        wait(for: [reachedTheServer], timeout: 5)
+        wait(for: [reachedTheServer], timeout: 30)
         task.cancel()
 
-        wait(for: [reportedError.reported], timeout: 5)
+        wait(for: [reportedError.reported], timeout: 30)
         XCTAssertEqual(reportedError.error?.code, NSURLErrorCancelled)
     }
 
