@@ -67,6 +67,24 @@ jobs:
             -configuration Release \
             CODE_SIGNING_ALLOWED=NO
 
+  thread-sanitizer:
+    name: Thread Sanitizer
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.4"
+      - name: Run unit tests with the Thread Sanitizer
+        # halt_on_error makes a detected data race fail the tests instead of only logging a warning.
+        run: |
+          IPHONE="$(.github/scripts/simulator-destination.sh iPhone)"
+          TEST_RUNNER_TSAN_OPTIONS=halt_on_error=1 xcodebuild test \
+            -scheme Cauliframework \
+            -destination "${IPHONE}" \
+            -enableThreadSanitizer YES \
+            -skipPackagePluginValidation
+
   swiftlint:
     name: SwiftLint
     runs-on: ubuntu-latest
