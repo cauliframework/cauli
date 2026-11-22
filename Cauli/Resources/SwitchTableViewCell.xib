@@ -27,12 +27,10 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8I-TX-nSr" userLabel="Description Label">
                                 <rect key="frame" x="0.0" y="62.5" width="229" height="14.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="k8I-TX-nSr" firstAttribute="leading" secondItem="QZY-5C-n8c" secondAttribute="leading" id="4dG-fp-wER"/>
                             <constraint firstItem="DBY-fB-uhj" firstAttribute="leading" secondItem="QZY-5C-n8c" secondAttribute="leading" id="GMT-QZ-c4V"/>
