@@ -57,6 +57,15 @@ final class DarkModeTests: XCTestCase {
         }
     }
 
+    func testTheNetworkUsageTotalsHaveNoLightBackgrounds() {
+        let cell = NetworkUsageTotalsCell(style: .default, reuseIdentifier: nil)
+        cell.set(tiles: [.init(label: "Received", value: "3.8 MB", detail: "over the network")])
+
+        for view in viewsOutsideOfControls(in: cell.contentView) {
+            assertIsNotLight(view.backgroundColor, "the background of \(view)")
+        }
+    }
+
     // MARK: - Helper
 
     /// All views in the hierarchy, without the internals of controls like `UISwitch`,

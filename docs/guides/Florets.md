@@ -28,6 +28,8 @@ The [HTTPBodyStreamFloret](https://cauli.works/docs/Classes/HTTPBodyStreamFloret
 
 The [NetworkUsageFloret](https://cauli.works/docs/Classes/NetworkUsageFloret.html) measures how much the app uses the network and suggests how to use less. It counts the bytes sent and received over the network, the size after decompression, cache hits, protocols and connection reuse, per host and per endpoint (paths with ids are grouped, e.g. `/users/:id`). It counts from the moment it is created until `reset()`, and can export the usage as CSV or JSON.
 
+In the Cauli menu it shows the totals, the hints and the hosts by data received. Every hint opens a screen with the affected endpoints and how to fix it, and every host lists its endpoints, tagged with the hints about them. Reset and Share are in the navigation bar.
+
 ```swift
 let usage = NetworkUsageFloret()
 let cauli = Cauli([InspectorFloret(), usage])
