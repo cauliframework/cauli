@@ -100,6 +100,43 @@ final class CauliViewControllerTests: XCTestCase {
         XCTAssertTrue(navigationController.topViewController is MappingsListViewController, "recorded requests must stay accessible while paused")
     }
 
+    // MARK: - Onboarding without florets (#99)
+
+    func testWithoutFloretsTheMenuExplainsHowToAddOne() throws {
+        let sut = makeViewController(cauli: makeCauli(florets: []))
+
+        let getStartedSection = try XCTUnwrap(sut.index(of: .getStarted), "a Cauli without florets must explain how to add one")
+        let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: getStartedSection))
+        XCTAssertTrue(cell is GetStartedTableViewCell)
+        XCTAssertNil(sut.index(of: .displayingFlorets), "the empty floret sections are replaced")
+        XCTAssertNil(sut.index(of: .interceptingFlorets), "the empty floret sections are replaced")
+        XCTAssertNotNil(sut.index(of: .cauli), "Cauli can still be paused")
+    }
+
+    func testSelectingALearnMoreRowOpensTheDocumentation() throws {
+        let sut = makeViewController(cauli: makeCauli(florets: []))
+        var openedURLs: [URL] = []
+        sut.openURL = { openedURLs.append($0) }
+        let learnMoreSection = try XCTUnwrap(sut.index(of: .learnMore))
+        XCTAssertEqual(sut.tableView(sut.tableView, numberOfRowsInSection: learnMoreSection), CauliViewController.learnMoreLinks.count)
+
+        sut.tableView(sut.tableView, didSelectRowAt: IndexPath(row: 0, section: learnMoreSection))
+        sut.tableView(sut.tableView, didSelectRowAt: IndexPath(row: 1, section: learnMoreSection))
+
+        XCTAssertEqual(openedURLs.map(\.absoluteString), [
+            "https://cauli.works/docs/florets.html",
+            "https://cauli.works/docs/writing-your-own-plugin.html"
+        ])
+    }
+
+    func testWithFloretsTheMenuShowsNoOnboarding() {
+        let sut = makeViewController(cauli: makeCauli(florets: [InspectorFloret()]))
+
+        XCTAssertNil(sut.index(of: .getStarted))
+        XCTAssertNil(sut.index(of: .learnMore))
+        XCTAssertEqual(sut.index(of: .displayingFlorets), displayingFloretsSection)
+    }
+
     // MARK: - Helper
 
     private func makeCauli(florets: [Floret]) -> Cauli {

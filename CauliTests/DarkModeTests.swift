@@ -49,6 +49,14 @@ final class DarkModeTests: XCTestCase {
         }
     }
 
+    func testTheGetStartedCellHasNoLightBackgrounds() {
+        let cell = GetStartedTableViewCell(style: .default, reuseIdentifier: nil)
+
+        for view in viewsOutsideOfControls(in: cell.contentView) {
+            assertIsNotLight(view.backgroundColor, "the background of \(view)")
+        }
+    }
+
     // MARK: - Helper
 
     /// All views in the hierarchy, without the internals of controls like `UISwitch`,

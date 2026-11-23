@@ -23,10 +23,15 @@
 import Foundation
 
 internal class CauliURLProtocol: URLProtocol {
+    /// Guards `weakDelegates`, which is changed when a Cauli is created or deallocated, usually on the
+    /// main thread, and read for every request on the threads of the URL loading system.
+    /// Recursive, because releasing the last reference to a Cauli while reading calls `remove(delegate:)` from its deinit.
+    private static let delegatesLock = NSRecursiveLock()
     private static var weakDelegates: [WeakReference<CauliURLProtocolDelegate>] = []
     private static var delegates: [CauliURLProtocolDelegate] {
-        let nonNilDelegates = weakDelegates.filter { $0.value != nil }
-        return nonNilDelegates.compactMap { $0.value as? CauliURLProtocolDelegate }
+        delegatesLock.lock()
+        defer { delegatesLock.unlock() }
+        return weakDelegates.compactMap { $0.value as? CauliURLProtocolDelegate }
     }
 
     private var record: Record
@@ -51,10 +56,14 @@ internal class CauliURLProtocol: URLProtocol {
     private var isPassingThrough = false
 
     internal static func add(delegate: CauliURLProtocolDelegate) {
+        delegatesLock.lock()
+        defer { delegatesLock.unlock() }
         weakDelegates.append(WeakReference(delegate))
     }
 
     internal static func remove(delegate: CauliURLProtocolDelegate) {
+        delegatesLock.lock()
+        defer { delegatesLock.unlock() }
         weakDelegates = weakDelegates.filter { $0.value !== delegate }
     }
 
