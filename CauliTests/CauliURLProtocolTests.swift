@@ -236,6 +236,28 @@ final class CauliURLProtocolTests: XCTestCase {
         XCTAssertEqual(receivedData, expectedData)
     }
 
+    // MARK: - Transfer metrics (#271)
+
+    func testTheRecordOfAPerformedRequestHasTransferMetrics() {
+        let delegate = makeDelegate()
+
+        let didRespondRecord = recordPassedToDidRespond(of: delegate)
+
+        XCTAssertNotNil(didRespondRecord?.metrics, "the florets need the metrics in didRespond")
+    }
+
+    func testAResultSetByAFloretHasNoTransferMetrics() {
+        let delegate = makeDelegate()
+        delegate.willRequestClosure = { record in
+            let urlResponse = URLResponse(url: record.designatedRequest.url!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+            record.result = .result(Response(urlResponse, data: nil))
+        }
+
+        let didRespondRecord = recordPassedToDidRespond(of: delegate)
+
+        XCTAssertNil(didRespondRecord?.metrics, "nothing was transferred over the network")
+    }
+
     // MARK: - Helper
 
     /// A delegate that only handles the requests of the current test. Delegates are global, and requests

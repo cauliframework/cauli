@@ -47,6 +47,11 @@ public struct Record {
 
     /// The responseReceived Date is set after all florets finished their `didRespond` function.
     public var responseReceived: Date?
+
+    /// How the request was transferred: bytes sent and received over the network, compression, cache
+    /// and protocol. Set before the florets' `didRespond` once the request was performed over the network,
+    /// `nil` for a result a floret set in `willRequest`.
+    public var metrics: TransferMetrics?
 }
 
 extension Record: Codable {}
