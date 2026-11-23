@@ -26,8 +26,9 @@ import XCTest
 
 final class CauliViewControllerTests: XCTestCase {
 
-    private let displayingFloretsSection = 0
-    private let interceptingFloretsSection = 1
+    private let cauliSection = CauliViewController.Section.cauli.rawValue
+    private let displayingFloretsSection = CauliViewController.Section.displayingFlorets.rawValue
+    private let interceptingFloretsSection = CauliViewController.Section.interceptingFlorets.rawValue
 
     // MARK: - Regression: florets that intercept and display
 
@@ -52,7 +53,74 @@ final class CauliViewControllerTests: XCTestCase {
         XCTAssertTrue(navigationController.topViewController is MappingsListViewController)
     }
 
+    // MARK: - Pausing Cauli (#156)
+
+    func testTheMenuShowsWhetherCauliInterceptsRequests() throws {
+        let cauli = makeCauli(florets: [])
+        cauli.pause()
+        let sut = makeViewController(cauli: cauli)
+
+        XCTAssertFalse(try interceptSwitch(in: sut).isSwitchOn)
+
+        cauli.run()
+        sut.tableView.reloadData()
+
+        XCTAssertTrue(try interceptSwitch(in: sut).isSwitchOn)
+    }
+
+    func testTheInterceptSwitchPausesAndResumesCauli() throws {
+        let cauli = makeCauli(florets: [])
+        let sut = makeViewController(cauli: cauli)
+
+        try interceptSwitch(in: sut).switchValueChanged?(false)
+        XCTAssertFalse(cauli.isRunning)
+
+        try interceptSwitch(in: sut).switchValueChanged?(true)
+        XCTAssertTrue(cauli.isRunning)
+    }
+
+    func testWhilePausedTheInterceptingFloretsCantBeSwitched() throws {
+        let cauli = makeCauli(florets: [NoCacheFloret()])
+        let sut = makeViewController(cauli: cauli)
+        XCTAssertTrue(try floretSwitch(in: sut).isSwitchEnabled)
+
+        try interceptSwitch(in: sut).switchValueChanged?(false)
+
+        XCTAssertFalse(try floretSwitch(in: sut).isSwitchEnabled, "switching florets has no effect while Cauli is paused")
+    }
+
+    func testWhilePausedTheDisplayingFloretsCanStillBeOpened() {
+        let cauli = makeCauli(florets: [MapRemoteFloret(mappings: [mapping()])])
+        cauli.pause()
+        let sut = makeViewController(cauli: cauli)
+        let navigationController = UINavigationController(rootViewController: sut)
+
+        sut.tableView(sut.tableView, didSelectRowAt: IndexPath(row: 0, section: displayingFloretsSection))
+
+        XCTAssertTrue(navigationController.topViewController is MappingsListViewController, "recorded requests must stay accessible while paused")
+    }
+
     // MARK: - Helper
+
+    private func makeCauli(florets: [Floret]) -> Cauli {
+        let cauli = Cauli(florets, configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))
+        cauli.run()
+        return cauli
+    }
+
+    private func makeViewController(cauli: Cauli) -> CauliViewController {
+        let sut = CauliViewController(cauli: cauli)
+        sut.loadViewIfNeeded()
+        return sut
+    }
+
+    private func interceptSwitch(in sut: CauliViewController) throws -> SwitchTableViewCell {
+        try XCTUnwrap(sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: cauliSection)) as? SwitchTableViewCell)
+    }
+
+    private func floretSwitch(in sut: CauliViewController) throws -> SwitchTableViewCell {
+        try XCTUnwrap(sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: interceptingFloretsSection)) as? SwitchTableViewCell)
+    }
 
     private func makeViewController(florets: [Floret]) -> CauliViewController {
         let cauli = Cauli(florets, configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))

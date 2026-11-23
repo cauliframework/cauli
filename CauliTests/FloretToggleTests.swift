@@ -28,7 +28,7 @@ import XCTest
 /// while requests are intercepted on other threads.
 final class FloretToggleTests: XCTestCase {
 
-    private let interceptingFloretsSection = 1
+    private let interceptingFloretsSection = CauliViewController.Section.interceptingFlorets.rawValue
 
     /// A floret implemented as a struct, as custom florets may be.
     private struct CountingFloret: InterceptingFloret {

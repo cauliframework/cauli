@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **feature** Added a switch to the Cauli menu that pauses and resumes intercepting requests. Recorded requests stay available while Cauli is paused. [#156](https://github.com/cauliframework/cauli/issues/156)
 * **bugfix** Fixed timed out and cancelled requests not getting a result in the `InspectorFloret` and the other florets. They are now recorded with the error the app receives, e.g. a timeout instead of a cancellation. [#160](https://github.com/cauliframework/cauli/issues/160)
 * **bugfix** Fixed switching off an `InterceptingFloret` implemented as a struct in the Cauli menu having no effect. [#255](https://github.com/cauliframework/cauli/issues/255)
 * **bugfix** Fixed data races when florets are switched on or off, or Cauli is paused or resumed, while requests are running. [#255](https://github.com/cauliframework/cauli/issues/255)
