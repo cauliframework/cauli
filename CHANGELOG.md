@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.3
 * **bugfix** Fixed a data race when a Cauli instance is created or deallocated while requests are running.
 * **feature** The Cauli menu of a Cauli without florets explains what florets are and how to add one, with links to the documentation. [#99](https://github.com/cauliframework/cauli/issues/99)
 * **feature** Added a switch to the Cauli menu that pauses and resumes intercepting requests. Recorded requests stay available while Cauli is paused. [#156](https://github.com/cauliframework/cauli/issues/156)
