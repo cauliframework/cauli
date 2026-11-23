@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **feature** The `NetworkUsageFloret` shows its totals, hints and hosts in the Cauli menu, with a detail screen for every hint and host, and can share the usage as CSV or JSON. [#273](https://github.com/cauliframework/cauli/issues/273)
 * **feature** Added the `NetworkUsageFloret`, which measures the network usage per host and endpoint and finds avoidable usage with extensible rules, e.g. uncompressed or duplicate requests. [#272](https://github.com/cauliframework/cauli/issues/272)
 * **feature** Added `Record.metrics` with the bytes sent and received over the network, the decoded size, cache, protocol and connection reuse of a request. The record details of the `InspectorFloret` show them as "Transfer". [#271](https://github.com/cauliframework/cauli/issues/271)
 

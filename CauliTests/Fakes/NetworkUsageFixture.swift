@@ -48,6 +48,16 @@ enum NetworkUsageFixture {
         return NetworkUsageTransfer(date: date, method: method, url: url, host: parsedURL.host!, endpoint: EndpointPattern.pattern(for: parsedURL.path), statusCode: status, responseContentType: contentType, responseContentEncoding: contentEncoding, requestContentEncoding: requestEncoding, isCacheable: cacheable, metrics: metrics)
     }
 
+    /// A record of a response transferred over the network, as the floret gets it in `didRespond`.
+    static func record(url: String, headers: [String: String] = ["Content-Type": "application/json"], body: Int64 = 2_000) -> Record {
+        let requestURL = URL(string: url)!
+        var record = Record(URLRequest(url: requestURL))
+        let response = HTTPURLResponse(url: requestURL, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        record.result = .result(Response(response, data: nil))
+        record.metrics = TransferMetrics(requestHeaderBytes: 300, requestBodyBytes: 0, responseHeaderBytes: 200, responseBodyBytes: body, responseBodyBytesDecoded: body, isFromCache: false, networkProtocol: "h2", isReusedConnection: true, duration: 0.1)
+        return record
+    }
+
     static func snapshot(_ transfers: [NetworkUsageTransfer]) -> NetworkUsageSnapshot {
         let store = NetworkUsageStore(maximumTransfers: 10_000)
         transfers.forEach(store.add)
