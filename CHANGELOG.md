@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **bugfix** Fixed a data race when a Cauli instance is created or deallocated while requests are running.
 * **feature** The Cauli menu of a Cauli without florets explains what florets are and how to add one, with links to the documentation. [#99](https://github.com/cauliframework/cauli/issues/99)
 * **feature** Added a switch to the Cauli menu that pauses and resumes intercepting requests. Recorded requests stay available while Cauli is paused. [#156](https://github.com/cauliframework/cauli/issues/156)
 * **bugfix** Fixed timed out and cancelled requests not getting a result in the `InspectorFloret` and the other florets. They are now recorded with the error the app receives, e.g. a timeout instead of a cancellation. [#160](https://github.com/cauliframework/cauli/issues/160)
