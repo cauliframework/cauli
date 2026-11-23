@@ -40,6 +40,33 @@ internal class CauliViewController: UITableViewController {
         case cauli
         case displayingFlorets
         case interceptingFlorets
+        /// Instead of the florets, while there are none: explains how to add one.
+        case getStarted
+        case learnMore
+    }
+
+    /// The documentation linked in the `learnMore` section.
+    internal static let learnMoreLinks: [(title: String, url: URL)] = [
+        ("Built-in Florets", URL(string: "https://cauli.works/docs/florets.html")!), // swiftlint:disable:this force_unwrapping
+        ("Write Your Own Floret", URL(string: "https://cauli.works/docs/writing-your-own-plugin.html")!) // swiftlint:disable:this force_unwrapping
+    ]
+
+    /// Opens the links of the `learnMore` section. Replaceable in tests.
+    internal var openURL: (URL) -> Void = { url in
+        UIApplication.shared.open(url)
+    }
+
+    /// The sections shown, in order. Without florets, the floret sections are replaced by the onboarding.
+    private var sections: [Section] {
+        cauli.florets.isEmpty ? [.cauli, .getStarted, .learnMore] : [.cauli, .displayingFlorets, .interceptingFlorets]
+    }
+
+    internal func index(of section: Section) -> Int? {
+        sections.firstIndex(of: section)
+    }
+
+    private func section(at index: Int) -> Section? {
+        sections.indices.contains(index) ? sections[index] : nil
     }
 
     private let cauli: Cauli
@@ -68,6 +95,7 @@ internal class CauliViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: SubtitleTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: SwitchTableViewCell.nibName, bundle: Cauli.bundle), forCellReuseIdentifier: SwitchTableViewCell.reuseIdentifier)
+        tableView.register(GetStartedTableViewCell.self, forCellReuseIdentifier: GetStartedTableViewCell.reuseIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,25 +104,40 @@ internal class CauliViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        Section.allCases.count
+        sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Section(rawValue: section) {
-        case .cauli: return 1
+        switch self.section(at: section) {
+        case .cauli, .getStarted: return 1
         case .displayingFlorets: return displayingFlorets.count
         case .interceptingFlorets: return interceptingFlorets.count
+        case .learnMore: return CauliViewController.learnMoreLinks.count
         case nil: return 0
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch Section(rawValue: indexPath.section) {
+        switch section(at: indexPath.section) {
         case .cauli: return self.tableView(tableView, runningCellForRowAt: indexPath)
         case .displayingFlorets: return self.tableView(tableView, detailCellForRowAt: indexPath)
         case .interceptingFlorets: return self.tableView(tableView, switchCellForRowAt: indexPath)
+        case .getStarted: return tableView.dequeueReusableCell(withIdentifier: GetStartedTableViewCell.reuseIdentifier, for: indexPath)
+        case .learnMore: return self.tableView(tableView, linkCellForRowAt: indexPath)
         case nil: fatalError("we shouldn't reach this point")
         }
+    }
+
+    private func tableView(_ tableView: UITableView, linkCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let link = CauliViewController.learnMoreLinks[indexPath.row]
+        cell.textLabel?.text = link.title
+        cell.textLabel?.textColor = .link
+        cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.up.right"))
+        cell.accessoryView?.tintColor = .tertiaryLabel
+        cell.accessibilityTraits = .link
+        cell.accessibilityHint = "Opens the documentation in Safari."
+        return cell
     }
 
     private func tableView(_ tableView: UITableView, runningCellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,7 +152,9 @@ internal class CauliViewController: UITableViewController {
                 self.cauli.pause()
             }
             // The florets can only be switched while Cauli intercepts requests.
-            self.tableView.reloadSections(IndexSet(integer: Section.interceptingFlorets.rawValue), with: .none)
+            if let interceptingFloretsSection = self.index(of: .interceptingFlorets) {
+                self.tableView.reloadSections(IndexSet(integer: interceptingFloretsSection), with: .none)
+            }
         }
         cell.selectionStyle = .none
         return cell
@@ -143,20 +188,30 @@ internal class CauliViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard Section(rawValue: indexPath.section) == .displayingFlorets else { return }
-        navigationController?.pushViewController(displayingFlorets[indexPath.row].viewController(cauli), animated: true)
+        switch section(at: indexPath.section) {
+        case .displayingFlorets:
+            navigationController?.pushViewController(displayingFlorets[indexPath.row].viewController(cauli), animated: true)
+        case .learnMore:
+            tableView.deselectRow(at: indexPath, animated: true)
+            openURL(CauliViewController.learnMoreLinks[indexPath.row].url)
+        default:
+            return
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch Section(rawValue: section) {
+        switch self.section(at: section) {
         case .displayingFlorets: return "Displaying Florets"
         case .interceptingFlorets: return "Intercepting Florets"
+        case .getStarted: return "Get Started"
+        case .learnMore: return "Learn More"
         default: return nil
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch Section(rawValue: section) {
+        switch self.section(at: section) {
+        case .learnMore: return "Cauli still records requests, but without a displaying floret there's nothing to show them. Cauli.shared comes with the InspectorFloret."
         case .cauli: return "While paused, Cauli doesn't record or modify any requests. Requests recorded before stay available, e.g. in the InspectorFloret."
         case .interceptingFlorets: return "If an InterceptingFloret is disabled it cannot intercept any requests or responses."
         default: return nil
