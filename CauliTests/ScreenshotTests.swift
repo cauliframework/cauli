@@ -94,11 +94,11 @@ final class ScreenshotTests: XCTestCase {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             window = UIWindow(windowScene: scene)
             window.frame = scene.coordinateSpace.bounds
-            if height > 0 {
-                window.frame.size.height = height
-            }
         } else {
             window = UIWindow(frame: UIScreen.main.bounds)
+        }
+        if height > 0 {
+            window.frame.size.height = height
         }
         window.overrideUserInterfaceStyle = style
         window.rootViewController = UINavigationController(rootViewController: viewController)
