@@ -23,3 +23,37 @@ The [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) can
 ## HTTPBodyStreamFloret
 
 The [HTTPBodyStreamFloret](https://cauli.works/docs/Classes/HTTPBodyStreamFloret.html) reads a request's `httpBodyStream` and sets its data as `httpBody`, so the body can be inspected in the `InspectorFloret` or modified by other florets. Bodies larger than its `maximumConvertedByteSize` are kept as a stream.
+
+## NetworkUsageFloret
+
+The [NetworkUsageFloret](https://cauli.works/docs/Classes/NetworkUsageFloret.html) measures how much the app uses the network and suggests how to use less. It counts the bytes sent and received over the network, the size after decompression, cache hits, protocols and connection reuse, per host and per endpoint (paths with ids are grouped, e.g. `/users/:id`). It counts from the moment it is created until `reset()`, and can export the usage as CSV or JSON.
+
+```swift
+let usage = NetworkUsageFloret()
+let cauli = Cauli([InspectorFloret(), usage])
+
+usage.snapshot.totals.receivedBytes
+usage.hints.map(\.title)
+```
+
+Every hint comes from a `NetworkUsageRule`, a function of the recorded usage that returns a `NetworkUsageHint` with a summary, the affected endpoints, an estimated saving and how to fix it. The built-in rules find uncompressed responses and uploads, duplicate requests, responses that can't be cached, large payloads, hosts only using HTTP/1.1 and hosts that reuse few connections. Their thresholds can be adjusted, and your own rules are listed with them:
+
+```swift
+struct ImageFormatRule: NetworkUsageRule {
+    let identifier = "legacy-image-format"
+
+    func evaluate(_ usage: NetworkUsageSnapshot) -> NetworkUsageHint? {
+        let keys = Set(usage.transfers.filter { $0.responseContentType == "image/png" }.map(\.endpointKey))
+        guard !keys.isEmpty else { return nil }
+        return NetworkUsageHint(ruleIdentifier: identifier, severity: .info, title: "PNG images",
+                                summary: "\(keys.count) endpoints serve PNG images",
+                                affectedEndpoints: usage.endpoints(withKeys: keys),
+                                estimatedSavingBytes: nil, howToFix: "Serve WebP or AVIF instead.")
+    }
+}
+
+let usage = NetworkUsageFloret(rules: NetworkUsageFloret.defaultRules + [ImageFormatRule(), LargePayloadRule(minimumBodyBytes: 200_000)])
+```
+
+Only requests Cauli intercepts are counted. Requests excluded by the `RecordSelector`, or passed through because they exceed its limit, are missing.
+
