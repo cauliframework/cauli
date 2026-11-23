@@ -202,9 +202,9 @@ extension CauliURLProtocol: URLSessionDelegate, URLSessionDataDelegate {
         }
     }
 
-    @available(iOS 10.0, *)
+    /// Called before `didCompleteWithError`, so the florets get the metrics with the response.
     public func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        // possibly add the metrics to the record in the future
+        record.metrics = TransferMetrics(metrics)
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

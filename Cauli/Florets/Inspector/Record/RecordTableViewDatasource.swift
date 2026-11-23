@@ -33,7 +33,7 @@ internal class RecordTableViewDatasource: NSObject {
 
     convenience init(_ record: Record) {
         let requestSection = Section(record.designatedRequest)
-        let responseSection = Section(record.result)
+        let responseSection = Section(record.result, metrics: record.metrics)
         self.init([requestSection, responseSection])
     }
 
@@ -146,7 +146,7 @@ extension RecordTableViewDatasource.Section {
         self.init(title: "Request", items: requestItems)
     }
 
-    init(_ result: Result<Response>?) {
+    init(_ result: Result<Response>?, metrics: TransferMetrics? = nil) {
         var resultItems: [RecordTableViewDatasource.Item] = []
         switch result {
         case .error(let error)?:
@@ -163,8 +163,34 @@ extension RecordTableViewDatasource.Section {
             resultItems.append(RecordTableViewDatasource.Item.forBody(in: response))
         case .none: break
         }
+        if let metrics = metrics {
+            resultItems.append(RecordTableViewDatasource.Item(title: "Transfer", description: metrics.inspectorDescription))
+        }
         self.init(title: "Response", items: resultItems)
     }
 
 }
 // swiftlint:enable trailing_closure
+
+extension TransferMetrics {
+    /// E.g. "12.4 KB received over the network, 48 KB decoded\n640 bytes sent · h2 · reused connection · 182 ms"
+    var inspectorDescription: String {
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .file
+        let received: String
+        if isFromCache {
+            received = "Loaded from the cache"
+        } else if responseBodyBytesDecoded != responseBodyBytes {
+            received = "\(formatter.string(fromByteCount: receivedBytes)) received over the network, \(formatter.string(fromByteCount: responseBodyBytesDecoded)) decoded"
+        } else {
+            received = "\(formatter.string(fromByteCount: receivedBytes)) received over the network"
+        }
+        let details = [
+            "\(formatter.string(fromByteCount: sentBytes)) sent",
+            networkProtocol,
+            isReusedConnection ? "reused connection" : "new connection",
+            "\(Int((duration * 1_000).rounded())) ms"
+        ].compactMap { $0 }
+        return received + "\n" + details.joined(separator: " · ")
+    }
+}
