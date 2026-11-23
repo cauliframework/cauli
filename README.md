@@ -64,6 +64,7 @@ This will configure Cauli to hook into every request, setup the core florets (pl
 * [FindReplaceFloret](https://cauli.works/docs/Classes/FindReplaceFloret.html) replaces any part of a request or response, using a [RecordModifier](https://cauli.works/docs/Structs/RecordModifier.html).
 * [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) changes the url of a request before it is performed, e.g. to use a staging or testing server.
 * [HTTPBodyStreamFloret](https://cauli.works/docs/Classes/HTTPBodyStreamFloret.html) turns a request's `httpBodyStream` into `httpBody` data, so the body can be inspected and modified.
+* [NetworkUsageFloret](https://cauli.works/docs/Classes/NetworkUsageFloret.html) measures how much the app uses the network, per host and endpoint, and suggests how to use less, based on rules you can extend.
 
 Pass the florets you want to use when creating your own `Cauli` instance:
 
