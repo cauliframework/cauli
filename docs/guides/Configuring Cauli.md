@@ -23,6 +23,10 @@ cauli.run()
 cauli.pause()
 ```
 
+While paused, Cauli doesn't intercept requests: they aren't recorded or modified by any floret. Requests recorded before stay available, e.g. in the `InspectorFloret`. `cauli.isRunning` tells whether Cauli currently intercepts requests.
+
+Cauli can also be paused and resumed with the "Intercept Requests" switch at the top of the Cauli menu.
+
 ## Manually Display the Cauli UI
 
 If you don't want to use the shake gesture you can display the Cauli UI manually.

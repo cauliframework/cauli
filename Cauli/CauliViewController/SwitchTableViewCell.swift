@@ -32,10 +32,22 @@ internal class SwitchTableViewCell: UITableViewCell {
     @IBOutlet private weak var `switch`: UISwitch!
     var switchValueChanged: ((Bool) -> Void)?
 
-    func set(title: String, switchValue: Bool, description: String?) {
+    /// `isEnabled` false shows the row greyed out, with a switch that can't be changed.
+    func set(title: String, switchValue: Bool, description: String?, isEnabled: Bool = true) {
         titleLabel.text = title
         descriptionLabel.text = description
         `switch`.isOn = switchValue
+        `switch`.isEnabled = isEnabled
+        titleLabel.isEnabled = isEnabled
+        descriptionLabel.isEnabled = isEnabled
+    }
+
+    var isSwitchOn: Bool {
+        `switch`.isOn
+    }
+
+    var isSwitchEnabled: Bool {
+        `switch`.isEnabled
     }
 
     @IBAction private func switchValueChanged(_ sender: UISwitch) {

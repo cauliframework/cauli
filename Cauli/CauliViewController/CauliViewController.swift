@@ -35,6 +35,13 @@ internal class CauliViewController: UITableViewController {
         }
     }
 
+    internal enum Section: Int, CaseIterable {
+        /// Pauses and resumes intercepting requests.
+        case cauli
+        case displayingFlorets
+        case interceptingFlorets
+    }
+
     private let cauli: Cauli
     private var displayingFlorets: [DisplayingFloret]
     /// Read from Cauli every time, so the switches show the state Cauli uses.
@@ -69,23 +76,43 @@ internal class CauliViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        Section.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return displayingFlorets.count
+        switch Section(rawValue: section) {
+        case .cauli: return 1
+        case .displayingFlorets: return displayingFlorets.count
+        case .interceptingFlorets: return interceptingFlorets.count
+        case nil: return 0
         }
-
-        return interceptingFlorets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0: return self.tableView(tableView, detailCellForRowAt: indexPath)
-        case 1: return self.tableView(tableView, switchCellForRowAt: indexPath)
-        default: fatalError("we shouldn't reach this point")
+        switch Section(rawValue: indexPath.section) {
+        case .cauli: return self.tableView(tableView, runningCellForRowAt: indexPath)
+        case .displayingFlorets: return self.tableView(tableView, detailCellForRowAt: indexPath)
+        case .interceptingFlorets: return self.tableView(tableView, switchCellForRowAt: indexPath)
+        case nil: fatalError("we shouldn't reach this point")
         }
+    }
+
+    private func tableView(_ tableView: UITableView, runningCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
+
+        cell.set(title: "Intercept Requests", switchValue: cauli.isRunning, description: nil)
+        cell.switchValueChanged = { [weak self] isOn in
+            guard let self = self else { return }
+            if isOn {
+                self.cauli.run()
+            } else {
+                self.cauli.pause()
+            }
+            // The florets can only be switched while Cauli intercepts requests.
+            self.tableView.reloadSections(IndexSet(integer: Section.interceptingFlorets.rawValue), with: .none)
+        }
+        cell.selectionStyle = .none
+        return cell
     }
 
     private func tableView(_ tableView: UITableView, detailCellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +134,7 @@ internal class CauliViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.reuseIdentifier, for: indexPath) as? SwitchTableViewCell else { fatalError("we shouldn't reach this point") }
 
         let floret = interceptingFlorets[indexPath.row]
-        cell.set(title: floret.name, switchValue: floret.enabled, description: floret.description)
+        cell.set(title: floret.name, switchValue: floret.enabled, description: floret.description, isEnabled: cauli.isRunning)
         cell.switchValueChanged = { [cauli] isOn in
             cauli.setEnabled(isOn, forInterceptingFloretAt: indexPath.row)
         }
@@ -116,21 +143,22 @@ internal class CauliViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.section == 0 else { return }
+        guard Section(rawValue: indexPath.section) == .displayingFlorets else { return }
         navigationController?.pushViewController(displayingFlorets[indexPath.row].viewController(cauli), animated: true)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0: return "Displaying Florets"
-        case 1: return "Intercepting Florets"
+        switch Section(rawValue: section) {
+        case .displayingFlorets: return "Displaying Florets"
+        case .interceptingFlorets: return "Intercepting Florets"
         default: return nil
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch section {
-        case 1: return "If an InterceptingFloret is disabled it cannot intercept any requests or responses."
+        switch Section(rawValue: section) {
+        case .cauli: return "While paused, Cauli doesn't record or modify any requests. Requests recorded before stay available, e.g. in the InspectorFloret."
+        case .interceptingFlorets: return "If an InterceptingFloret is disabled it cannot intercept any requests or responses."
         default: return nil
         }
     }
