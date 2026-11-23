@@ -47,7 +47,7 @@ internal class NetworkUsageHintViewController: UITableViewController {
 
     private var summaryRows: [(String, String)] {
         let received = hint.affectedEndpoints.reduce(Int64(0)) { $0 + $1.totals.receivedBytes }
-        var rows = [("Received", NetworkUsageFormatting.bytes(received))]
+        var rows = [("Received by these endpoints", NetworkUsageFormatting.bytes(received))]
         if let saving = hint.estimatedSavingBytes {
             rows.append(("Possible saving", NetworkUsageFormatting.estimate(saving)))
         }
