@@ -45,6 +45,8 @@ final class ScreenshotTests: XCTestCase {
         floret.setCondition(.noThrottling, for: "auth.example.com")
         let cauli = Cauli([InspectorFloret(), floret, NoCacheFloret()], configuration: Configuration(recordSelector: .all(), enableShakeGesture: false, storageCapacity: .records(1)))
 
+        cauli.run()
+        defer { cauli.pause() }
         let device = UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone"
         let screens: [(String, () -> UIViewController)] = [
             ("1-menu", { CauliViewController(cauli: cauli) }),
