@@ -58,7 +58,7 @@ internal class SecurityAuditTotalsCell: UITableViewCell {
             value.font = .systemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize, weight: .bold)
             value.textColor = number < 1 ? .secondaryLabel : SecurityAuditFormatting.color(of: severity)
             let label = UILabel()
-            label.text = severity == .info ? "Info" : severity.name + "s"
+            label.text = severity == .warning ? "Warnings" : severity.name
             label.font = .preferredFont(forTextStyle: .footnote)
             label.textColor = .secondaryLabel
             [value, label].forEach { $0.adjustsFontForContentSizeCategory = true }
