@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* **feature** Added the `SecurityAuditFloret`, which finds privacy and security problems in requests with extensible rules, e.g. credentials over plain HTTP, secrets or personal data in URLs, outdated TLS and insecure cookies. Findings can be ignored per endpoint. [#282](https://github.com/cauliframework/cauli/issues/282)
+* **feature** Added `TransferMetrics.tlsVersion`, the TLS version of the connection. The `InspectorFloret` shows it with the transfer details. [#282](https://github.com/cauliframework/cauli/issues/282)
 * **feature** The `NetworkConditionsFloret` lists the default and every remembered host in the Cauli menu, where a condition can be picked per host, hosts can be forgotten and all throttling stopped. [#279](https://github.com/cauliframework/cauli/issues/279)
 * **feature** Added the `NetworkConditionsFloret`, which simulates slow and unreliable networks per host with presets like 3G, Edge and Offline, or your own conditions. It remembers every host the app connected to across app starts. [#278](https://github.com/cauliframework/cauli/issues/278)
 * **feature** The `NetworkUsageFloret` shows its totals, hints and hosts in the Cauli menu, with a detail screen for every hint and host, and can share the usage as CSV or JSON. [#273](https://github.com/cauliframework/cauli/issues/273)

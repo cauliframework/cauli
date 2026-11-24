@@ -21,6 +21,7 @@
 //
 
 import Foundation
+import Security
 
 /// How a request was transferred: the bytes sent and received over the network, and how it was loaded.
 /// Taken from the `URLSessionTaskMetrics` of the request Cauli performs.
@@ -54,6 +55,9 @@ public struct TransferMetrics: Codable, Equatable {
     /// The time from the start of the request until the response was complete, in seconds.
     public var duration: TimeInterval
 
+    /// The TLS version of the connection, e.g. "TLS 1.3". `nil` for plain HTTP, a response from the cache, or if unknown.
+    public var tlsVersion: String?
+
     /// All bytes sent over the network.
     public var sentBytes: Int64 {
         requestHeaderBytes + requestBodyBytes
@@ -65,7 +69,7 @@ public struct TransferMetrics: Codable, Equatable {
     }
 
     /// Creates metrics with the given values, e.g. for tests of florets that use them.
-    public init(requestHeaderBytes: Int64, requestBodyBytes: Int64, responseHeaderBytes: Int64, responseBodyBytes: Int64, responseBodyBytesDecoded: Int64, isFromCache: Bool, networkProtocol: String?, isReusedConnection: Bool, duration: TimeInterval) {
+    public init(requestHeaderBytes: Int64, requestBodyBytes: Int64, responseHeaderBytes: Int64, responseBodyBytes: Int64, responseBodyBytesDecoded: Int64, isFromCache: Bool, networkProtocol: String?, isReusedConnection: Bool, duration: TimeInterval, tlsVersion: String? = nil) {
         self.requestHeaderBytes = requestHeaderBytes
         self.requestBodyBytes = requestBodyBytes
         self.responseHeaderBytes = responseHeaderBytes
@@ -75,6 +79,7 @@ public struct TransferMetrics: Codable, Equatable {
         self.networkProtocol = networkProtocol
         self.isReusedConnection = isReusedConnection
         self.duration = duration
+        self.tlsVersion = tlsVersion
     }
 }
 
@@ -93,7 +98,20 @@ extension TransferMetrics {
             isFromCache: last?.resourceFetchType == .localCache,
             networkProtocol: last?.networkProtocolName,
             isReusedConnection: last?.isReusedConnection ?? false,
-            duration: metrics.taskInterval.duration
+            duration: metrics.taskInterval.duration,
+            tlsVersion: last?.negotiatedTLSProtocolVersion.map(TransferMetrics.name(of:))
         )
+    }
+
+    static func name(of version: tls_protocol_version_t) -> String {
+        switch version {
+        case .TLSv10: return "TLS 1.0"
+        case .TLSv11: return "TLS 1.1"
+        case .TLSv12: return "TLS 1.2"
+        case .TLSv13: return "TLS 1.3"
+        case .DTLSv10: return "DTLS 1.0"
+        case .DTLSv12: return "DTLS 1.2"
+        @unknown default: return "TLS (0x\(String(version.rawValue, radix: 16)))"
+        }
     }
 }

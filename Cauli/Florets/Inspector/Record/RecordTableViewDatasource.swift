@@ -188,6 +188,7 @@ extension TransferMetrics {
         let details = [
             "\(formatter.string(fromByteCount: sentBytes)) sent",
             networkProtocol,
+            tlsVersion,
             isReusedConnection ? "reused connection" : "new connection",
             "\(Int((duration * 1_000).rounded())) ms"
         ].compactMap { $0 }
