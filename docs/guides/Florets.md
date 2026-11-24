@@ -82,3 +82,42 @@ let conditions = NetworkConditionsFloret(conditions: NetworkCondition.presets + 
 
 Cauli hands each response to the app at once, so bandwidth limits are simulated as a delay. Only requests Cauli intercepts are affected.
 
+## SecurityAuditFloret
+
+The [SecurityAuditFloret](https://cauli.works/docs/Classes/SecurityAuditFloret.html) checks every request Cauli intercepts for privacy and security problems, and lists them by severity. Only URLs and headers are checked, not bodies. The built-in rules find:
+
+* credentials sent over plain HTTP (critical)
+* requests over plain HTTP, except to localhost
+* secrets in URLs, e.g. `access_token` or `api_key` query parameters
+* e-mail addresses and phone numbers in URLs
+* TLS older than 1.2
+* cookies without `Secure`, `HttpOnly` or `SameSite`
+* HTTPS hosts without `Strict-Transport-Security`
+
+If you list the app's own hosts, it also reports personal data sent to any other host, e.g. an analytics SDK:
+
+```swift
+let audit = SecurityAuditFloret(firstPartyHosts: ["example.com"])
+let cauli = Cauli([InspectorFloret(), audit])
+```
+
+Findings are grouped by endpoint, with the requests counted from the floret's creation until it is reset. Sensitive values like tokens are masked, with a button to reveal them. A finding can be ignored for its endpoints, e.g. plain HTTP to a test server in the local network. Ignored findings are kept across app starts and can be reported again from the "Ignored" list.
+
+Every finding comes from a `SecurityAuditRule`, which checks one request and its response at a time. Add your own to the built-in rules:
+
+```swift
+struct InternalHostRule: SecurityAuditRule {
+    let identifier = "internal-host"
+    func evaluate(_ exchange: SecurityAuditExchange) -> [SecurityAuditFinding] {
+        guard let host = exchange.host, host.hasSuffix(".internal.example.com") else { return [] }
+        return [SecurityAuditFinding(ruleIdentifier: identifier, severity: .warning, title: "Internal hosts",
+                                     summary: "The app talks to an internal host.", evidence: host,
+                                     howToFix: "Use the public API host.", scope: .host)]
+    }
+}
+
+let audit = SecurityAuditFloret(rules: SecurityAuditFloret.defaultRules + [InternalHostRule()])
+```
+
+The rules find patterns, not proof of a leak, so expect some findings that are fine for your app. Only requests Cauli intercepts are checked.
+
