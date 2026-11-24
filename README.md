@@ -65,6 +65,7 @@ This will configure Cauli to hook into every request, setup the core florets (pl
 * [MapRemoteFloret](https://cauli.works/docs/Classes/MapRemoteFloret.html) changes the url of a request before it is performed, e.g. to use a staging or testing server.
 * [HTTPBodyStreamFloret](https://cauli.works/docs/Classes/HTTPBodyStreamFloret.html) turns a request's `httpBodyStream` into `httpBody` data, so the body can be inspected and modified.
 * [NetworkUsageFloret](https://cauli.works/docs/Classes/NetworkUsageFloret.html) measures how much the app uses the network, per host and endpoint, and suggests how to use less, based on rules you can extend.
+* [NetworkConditionsFloret](https://cauli.works/docs/Classes/NetworkConditionsFloret.html) simulates slow and unreliable networks per host, e.g. 3G, Edge or offline, and remembers every host the app connected to.
 
 Pass the florets you want to use when creating your own `Cauli` instance:
 

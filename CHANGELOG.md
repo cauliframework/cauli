@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+* **feature** The `NetworkConditionsFloret` lists the default and every remembered host in the Cauli menu, where a condition can be picked per host, hosts can be forgotten and all throttling stopped. [#279](https://github.com/cauliframework/cauli/issues/279)
 * **feature** Added the `NetworkConditionsFloret`, which simulates slow and unreliable networks per host with presets like 3G, Edge and Offline, or your own conditions. It remembers every host the app connected to across app starts. [#278](https://github.com/cauliframework/cauli/issues/278)
 * **feature** The `NetworkUsageFloret` shows its totals, hints and hosts in the Cauli menu, with a detail screen for every hint and host, and can share the usage as CSV or JSON. [#273](https://github.com/cauliframework/cauli/issues/273)
 * **feature** Added the `NetworkUsageFloret`, which measures the network usage per host and endpoint and finds avoidable usage with extensible rules, e.g. uncompressed or duplicate requests. [#272](https://github.com/cauliframework/cauli/issues/272)
