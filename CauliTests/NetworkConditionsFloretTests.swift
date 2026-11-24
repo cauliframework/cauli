@@ -86,6 +86,15 @@ final class NetworkConditionsFloretTests: XCTestCase {
         XCTAssertEqual(floret.conditions.map { $0.name }, ["No throttling", "Custom"])
     }
 
+    func testAConditionSetInCodeBecomesSelectable() {
+        let custom = NetworkCondition(name: "Slow API", latency: 2)
+        let floret = makeFloret()
+        floret.setCondition(custom, for: "api.example.com")
+        XCTAssertEqual(floret.condition(for: "api.example.com"), custom)
+        XCTAssertEqual(floret.conditions.last, custom)
+        XCTAssertEqual(floret.conditions.count, NetworkCondition.presets.count + 1)
+    }
+
     // MARK: - Conditions per host
 
     func testHostConditionOverridesTheDefault() {

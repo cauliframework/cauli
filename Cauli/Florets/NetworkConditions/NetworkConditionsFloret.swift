@@ -44,7 +44,12 @@ public class NetworkConditionsFloret: InterceptingFloret {
     public var enabled = true
 
     /// The conditions that can be selected: the presets and your own.
-    public let conditions: [NetworkCondition]
+    /// A condition set in code that is not in the list is added to it.
+    public var conditions: [NetworkCondition] {
+        lock.lock()
+        defer { lock.unlock() }
+        return selectableConditions
+    }
 
     /// Returns a random number from 0 to 1 to decide whether a request fails. Replaced in tests.
     internal var random: () -> Double = { Double.random(in: 0..<1) }
@@ -63,6 +68,7 @@ public class NetworkConditionsFloret: InterceptingFloret {
 
     private let lock = NSLock()
     private let userDefaults: UserDefaults
+    private var selectableConditions: [NetworkCondition]
     private var defaultConditionName: String
     private var hostConditionNames: [String: String]
     private var rememberedHosts: [String]
@@ -71,10 +77,11 @@ public class NetworkConditionsFloret: InterceptingFloret {
     ///
     /// - Parameters:
     ///   - conditions: The conditions that can be selected in the Cauli menu. Add your own to the presets.
+    ///     Pass them on every app start, so their hosts keep them.
     ///     "No throttling" is always included.
     ///   - userDefaults: Where the conditions and hosts are kept across app starts.
     public init(conditions: [NetworkCondition] = NetworkCondition.presets, userDefaults: UserDefaults = .standard) {
-        self.conditions = conditions.contains { $0.name == NetworkCondition.noThrottling.name } ? conditions : [.noThrottling] + conditions
+        selectableConditions = conditions.contains { $0.name == NetworkCondition.noThrottling.name } ? conditions : [.noThrottling] + conditions
         self.userDefaults = userDefaults
         defaultConditionName = userDefaults.string(forKey: Key.defaultCondition) ?? NetworkCondition.noThrottling.name
         hostConditionNames = userDefaults.dictionary(forKey: Key.hostConditions) as? [String: String] ?? [:]
@@ -92,6 +99,7 @@ public class NetworkConditionsFloret: InterceptingFloret {
         }
         set {
             lock.lock()
+            add(newValue)
             defaultConditionName = newValue.name
             lock.unlock()
             userDefaults.set(newValue.name, forKey: Key.defaultCondition)
@@ -113,6 +121,9 @@ public class NetworkConditionsFloret: InterceptingFloret {
     /// Sets the host's own condition. `nil` makes it use the default.
     public func setCondition(_ condition: NetworkCondition?, for host: String) {
         lock.lock()
+        if let condition = condition {
+            add(condition)
+        }
         hostConditionNames[host] = condition?.name
         let names = hostConditionNames
         lock.unlock()
@@ -191,8 +202,18 @@ public class NetworkConditionsFloret: InterceptingFloret {
     }
 
     /// The condition with the name, "No throttling" if there is none, e.g. after a custom condition was removed.
+    /// Call it while holding the lock.
     private func condition(named name: String) -> NetworkCondition {
-        conditions.first { $0.name == name } ?? .noThrottling
+        selectableConditions.first { $0.name == name } ?? .noThrottling
+    }
+
+    /// Adds the condition if there is none with its name, else replaces it. Call it while holding the lock.
+    private func add(_ condition: NetworkCondition) {
+        if let index = selectableConditions.firstIndex(where: { $0.name == condition.name }) {
+            selectableConditions[index] = condition
+        } else {
+            selectableConditions.append(condition)
+        }
     }
 
     // MARK: - InterceptingFloret
