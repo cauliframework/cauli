@@ -80,7 +80,8 @@ internal class SecurityAuditIgnoredViewController: UITableViewController {
         cell.textLabel?.text = finding.title
         cell.detailTextLabel?.text = finding.endpoint
         cell.detailTextLabel?.font = .monospacedSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .footnote).pointSize, weight: .regular)
-        cell.detailTextLabel?.lineBreakMode = .byTruncatingMiddle
+        cell.detailTextLabel?.numberOfLines = 0
+        cell.detailTextLabel?.lineBreakMode = .byCharWrapping
         let button = UIButton(type: .system)
         button.setTitle("Stop Ignoring", for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline)
