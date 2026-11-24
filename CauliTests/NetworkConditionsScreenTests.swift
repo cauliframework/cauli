@@ -144,8 +144,8 @@ final class NetworkConditionsScreenTests: XCTestCase {
 
         sut.forget(hostAt: 0)
 
-        XCTAssertEqual(sut.hosts, ["images.example.com"])
-        XCTAssertEqual(floret.hosts, ["images.example.com"])
+        XCTAssertEqual(sut.hosts, ["api.example.com"], "images.example.com was the first row")
+        XCTAssertEqual(floret.hosts, ["api.example.com"])
     }
 
     func testThePresetsAreDescribed() {
