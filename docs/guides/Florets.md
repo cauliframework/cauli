@@ -59,3 +59,26 @@ let usage = NetworkUsageFloret(rules: NetworkUsageFloret.defaultRules + [ImageFo
 
 Only requests Cauli intercepts are counted. Requests excluded by the `RecordSelector`, or passed through because they exceed its limit, are missing.
 
+## NetworkConditionsFloret
+
+The [NetworkConditionsFloret](https://cauli.works/docs/Classes/NetworkConditionsFloret.html) simulates slow and unreliable networks. Every host can have its own `NetworkCondition`, all other hosts use the default. A condition adds latency, limits the download and upload bandwidth, and lets a share of the requests fail with a network error or an HTTP status. The presets are LTE, 3G, Edge, Very bad network and Offline.
+
+The floret remembers every host the app connected to, across app starts, so you can pick a host's condition in the Cauli menu before the next request. The menu shows what is throttled, and "Stop All Throttling" resets every condition.
+
+```swift
+let conditions = NetworkConditionsFloret()
+let cauli = Cauli([InspectorFloret(), conditions])
+conditions.defaultCondition = .threeG
+conditions.setCondition(.offline, for: "api.example.com")
+```
+
+Add your own conditions in code. They are listed in the menu with the presets:
+
+```swift
+let slowAPI = NetworkCondition(name: "Slow API", latency: 2, downloadBytesPerSecond: 20_000,
+                               failureRate: 0.2, failure: .httpStatus(503))
+let conditions = NetworkConditionsFloret(conditions: NetworkCondition.presets + [slowAPI])
+```
+
+Cauli hands each response to the app at once, so bandwidth limits are simulated as a delay. Only requests Cauli intercepts are affected.
+
