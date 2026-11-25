@@ -175,10 +175,16 @@ final class HTTPArchiveSharingTests: XCTestCase {
         sut.shareButtonTapped()
         let actionSheet = try XCTUnwrap(sut.presentedControllers.last as? UIAlertController)
         XCTAssertEqual(actionSheet.actions.map(\.title), ["All Requests (3)", "Matching “users” (2)", "Cancel"])
-        XCTAssertTrue(actionSheet.popoverPresentationController?.barButtonItem === sut.shareButton)
+        assertIsAnchoredToTheShareButton(actionSheet, of: sut)
 
         sut.share(sut.recordsToShare(matchingSearch: true))
         let shareSheet = try XCTUnwrap(sut.presentedControllers.last as? UIActivityViewController)
-        XCTAssertTrue(shareSheet.popoverPresentationController?.barButtonItem === sut.shareButton)
+        assertIsAnchoredToTheShareButton(shareSheet, of: sut)
+    }
+
+    /// On iPad, sheets are presented as popovers and need an anchor. On iPhone, they have no popover.
+    private func assertIsAnchoredToTheShareButton(_ sheet: UIViewController, of sut: InspectorTableViewController, line: UInt = #line) {
+        guard UIDevice.current.userInterfaceIdiom == .pad else { return }
+        XCTAssertTrue(sheet.popoverPresentationController?.barButtonItem === sut.shareButton, line: line)
     }
 }
