@@ -48,8 +48,15 @@ final class RecordTableViewControllerTests: XCTestCase {
 
         sut.shareButtonTapped()
 
-        let shareSheet = try XCTUnwrap(sut.presentedControllers.last as? UIActivityViewController)
-        assertHasPopoverAnchor(shareSheet)
+        let actionSheet = try XCTUnwrap(sut.presentedControllers.last as? UIAlertController)
+        XCTAssertEqual(actionSheet.actions.map(\.title), ["HAR File", "Mock Files for the MockFloret", "Cancel"])
+        assertHasPopoverAnchor(actionSheet)
+
+        sut.shareHTTPArchive()
+        assertHasPopoverAnchor(try XCTUnwrap(sut.presentedControllers.last as? UIActivityViewController))
+
+        sut.shareMockFiles()
+        assertHasPopoverAnchor(try XCTUnwrap(sut.presentedControllers.last as? UIActivityViewController))
     }
 
     func testSelectingARowAnchorsTheActionSheet() throws {

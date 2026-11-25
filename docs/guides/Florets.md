@@ -4,6 +4,8 @@
 
 The [InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html) lets you browse through and share your requests and responses from within the application. Just shake your device (if you are using the default configuration).
 
+The share button of the request list exports all recorded requests, or those matching the search, as an HTTP Archive (HAR file). Chrome DevTools, Firefox, Charles, Proxyman and many other tools open HAR files, so you can analyse a session elsewhere or attach it to a bug report. A single request can be shared as a HAR file or as mock files for the `MockFloret`. HAR files contain the full requests and responses, including tokens and cookies. To create one in code, use `HTTPArchive.data(for: records)`.
+
 ## MockFloret
 
 The [MockFloret](https://cauli.works/docs/Classes/MockFloret.html) helps you to easily mock your network requests for tests or to reproduce a bug. You can can use it to record the responses for later mocking and even is compatible to the Format used in the [InspectorFloret](https://cauli.works/docs/Classes/InspectorFloret.html). By default it reads the mocks from a `MockFloret` folder in the app bundle. Use the `mockFolder` parameter to read them from another folder, e.g. a different set of mocks or, when running in the simulator, a folder on your Mac. The [MockFloret guide](https://cauli.works/docs/mockfloret.html) describes how recording and mocking work and the format the mocks are stored in.

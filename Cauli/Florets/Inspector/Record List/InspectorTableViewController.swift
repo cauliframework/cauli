@@ -41,6 +41,12 @@ internal class InspectorTableViewController: UITableViewController {
         return searchController
     }()
 
+    lazy var shareButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+        button.accessibilityLabel = "Share as HAR File"
+        return button
+    }()
+
     init(_ cauli: Cauli, formatter: InspectorFloretFormatterType) {
         self.cauli = cauli
         self.formatter = formatter
@@ -56,6 +62,7 @@ internal class InspectorTableViewController: UITableViewController {
         super.viewDidLoad()
         title = "Records"
         dataSource.setup(tableView: tableView)
+        navigationItem.rightBarButtonItem = shareButton
         definesPresentationContext = true
         extendedLayoutIncludesOpaqueBars = true
         if #available(iOS 11.0, *) {
@@ -105,6 +112,42 @@ internal class InspectorTableViewController: UITableViewController {
         dataSource.append(records: newRecords, to: tableView) { [weak self] _ in
             self?.isLoading = false
         }
+    }
+}
+
+// MARK: - Sharing
+
+extension InspectorTableViewController {
+
+    /// All recorded requests, or only those matching the search.
+    func recordsToShare(matchingSearch: Bool) -> [Record] {
+        let records = cauli.storage.records(Int.max, after: nil)
+        guard matchingSearch, let query = dataSource.filterString, !query.isEmpty else { return records }
+        return records.filter { formatter.recordMatchesQuery(record: $0, query: query) }
+    }
+
+    @objc func shareButtonTapped() {
+        let alert = UIAlertController(title: "Share as HAR File", message: HTTPArchiveSharing.warning, preferredStyle: .actionSheet)
+        let all = recordsToShare(matchingSearch: false)
+        alert.addAction(UIAlertAction(title: "All Requests (\(all.count))", style: .default) { [weak self] _ in
+            self?.share(all)
+        })
+        if let query = dataSource.filterString, !query.isEmpty {
+            let matching = recordsToShare(matchingSearch: true)
+            alert.addAction(UIAlertAction(title: "Matching “\(query)” (\(matching.count))", style: .default) { [weak self] _ in
+                self?.share(matching)
+            })
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.popoverPresentationController?.barButtonItem = shareButton
+        present(alert, animated: true)
+    }
+
+    func share(_ records: [Record]) {
+        guard let url = try? HTTPArchiveSharing.fileURL(for: records) else { return }
+        let activity = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activity.popoverPresentationController?.barButtonItem = shareButton
+        present(activity, animated: true)
     }
 }
 
