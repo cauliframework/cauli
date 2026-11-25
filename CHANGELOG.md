@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.4
 * **feature** The `InspectorFloret` shares recorded requests as HAR files, all of them or those matching the search, and a single request from its details. `HTTPArchive` creates HAR files in code. [#285](https://github.com/cauliframework/cauli/issues/285)
 * **feature** Added the `SecurityAuditFloret`, which finds privacy and security problems in requests with extensible rules, e.g. credentials over plain HTTP, secrets or personal data in URLs, outdated TLS and insecure cookies. Findings can be ignored per endpoint. [#282](https://github.com/cauliframework/cauli/issues/282)
 * **feature** Added `TransferMetrics.tlsVersion`, the TLS version of the connection. The `InspectorFloret` shows it with the transfer details. [#282](https://github.com/cauliframework/cauli/issues/282)
