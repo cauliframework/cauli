@@ -34,7 +34,7 @@ The Swift Package Manager is a tool for automating the distribution of Swift cod
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/cauliframework/cauli.git", from: "1.3")
+    .package(url: "https://github.com/cauliframework/cauli.git", from: "1.4")
 ]
 ```
 
