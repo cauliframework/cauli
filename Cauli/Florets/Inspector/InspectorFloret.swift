@@ -28,6 +28,7 @@ import UIKit
 /// * browse through all stored `Records`.
 /// * inspect details of a `Record`.
 /// * share details of a `Record`.
+/// * share all `Record`s, or those matching the filter, as a HAR file (see `HTTPArchive`).
 /// * filter `Record`s by the request URL.
 public class InspectorFloret: DisplayingFloret {
 

@@ -50,6 +50,27 @@ internal class RecordTableViewController: UITableViewController {
     }
 
     @objc func shareButtonTapped() {
+        let alert = UIAlertController(title: "Share the Request", message: HTTPArchiveSharing.warning, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "HAR File", style: .default) { [weak self] _ in
+            self?.shareHTTPArchive()
+        })
+        alert.addAction(UIAlertAction(title: "Mock Files for the MockFloret", style: .default) { [weak self] _ in
+            self?.shareMockFiles()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.popoverPresentationController?.barButtonItem = shareButton
+        present(alert, animated: true)
+    }
+
+    func shareHTTPArchive() {
+        guard let url = try? HTTPArchiveSharing.fileURL(for: [record]) else { return }
+        let viewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        // Required on iPad, where the share sheet is presented as a popover.
+        viewController.popoverPresentationController?.barButtonItem = shareButton
+        present(viewController, animated: true, completion: nil)
+    }
+
+    func shareMockFiles() {
         guard let tempPath = MockRecordSerializer.write(record: record) else { return }
 
         let allRecordFiles = (try? FileManager.default.contentsOfDirectory(at: tempPath, includingPropertiesForKeys: nil, options: [])) ?? []
